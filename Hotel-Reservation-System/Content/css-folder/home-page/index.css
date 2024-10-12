@@ -1,0 +1,106 @@
+﻿/* Ana konteyner */
+.homepage-container {
+    max-width: 1200px; /* Maksimum genişlik */
+    margin: 0 auto; /* Ortala */
+    padding: 20px; /* İç boşluk */
+    text-align: center; /* Metin merkezleme */
+}
+
+h1 {
+    font-size: 2.5rem; /* Başlık boyutu */
+    color: #007bff; /* Başlık rengi */
+    margin-bottom: 15px; /* Alt boşluk */
+}
+
+h2 {
+    font-size: 1.8rem; /* Kart başlık boyutu */
+    color: #34495E; /* Kart başlık rengi */
+    margin: 5px 0; /* Üst ve alt boşluk */
+}
+
+/* Otel kartları */
+.hotel-list {
+    display: grid; /* Grid düzeni kullan */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Kartlar arasındaki boşluk */
+}
+
+.hotel-card {
+    background-color: #ffffff; /* Kart rengi */
+    border-radius: 10px; /* Kenar yuvarlama */
+    overflow: hidden; /* Taşmayı gizle */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+    transition: transform 0.3s, box-shadow 0.3s; /* Geçiş efekti */
+}
+
+    .hotel-card:hover {
+        transform: translateY(-5px); /* Hover efekti */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Hover gölgesi */
+    }
+
+/* Resim ayarları */
+.hotel-image {
+    width: 100%; /* Genişliği ayarla */
+    height: 200px; /* Sabit yükseklik */
+    object-fit: cover; /* Resmi kesme */
+}
+
+/* Konum ve puan bilgisi */
+.location-rating {
+    display: flex; /* Esnek düzen */
+    justify-content: space-between; /* Uçlara yerleştir */
+    padding: 10px 15px; /* İç boşluk */
+    font-size: 1rem; /* Yazı boyutu */
+    color: black; /* Metin rengi */
+    margin-bottom: -10px;
+}
+
+    .location-rating strong {
+        font-weight: 600; /* Kalın yazı */
+    }
+
+/* Otel bilgisi */
+.hotel-info {
+    padding: 15px; /* İç boşluk */
+}
+
+p {
+    margin: 5px 0; /* Üst ve alt boşluk */
+}
+
+/* Butonlar */
+.btn-reserve {
+    display: inline-block; /* Inline block */
+    background-color: #28a745; /* Rezervasyon butonu rengi */
+    color: #ffffff; /* Yazı rengi */
+    padding: 10px 15px; /* İç boşluk */
+    border-radius: 5px; /* Kenar yuvarlama */
+    text-decoration: none; /* Altı çizgiyi kaldır */
+    transition: background-color 0.3s; /* Geçiş efekti */
+    margin-top: 10px; /* Üst boşluk */
+}
+
+    .btn-reserve:hover {
+        background-color: #218838; /* Hover rengi */
+        color: #ffffff;
+    }
+
+.no-availability {
+    color: #dc3545; /* Renk */
+    font-weight: bold; /* Kalın yazı */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Bilgi butonu rengi */
+    color: #ffffff; /* Yazı rengi */
+    padding: 10px 15px; /* İç boşluk */
+    border-radius: 5px; /* Kenar yuvarlama */
+    text-decoration: none; /* Altı çizgiyi kaldır */
+    transition: background-color 0.3s; /* Geçiş efekti */
+    margin-left: 10px; /* Sol boşluk */
+}
+
+    .btn-info:hover {
+        background-color: #138496; /* Hover rengi */
+        color: #ffffff;
+    }

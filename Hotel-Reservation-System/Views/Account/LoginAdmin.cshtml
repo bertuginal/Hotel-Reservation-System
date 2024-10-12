@@ -22,7 +22,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Your e-mail" })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -48,6 +48,8 @@
                     <input type="submit" value="Login" class="btn btn-dark" />
                 </div>
             </div>
+            <hr />
+            <p class="text-left">Don't have an account? @Html.ActionLink("Sign Up", "RegisterAdmin")</p>
         </div>
     </div>
 }

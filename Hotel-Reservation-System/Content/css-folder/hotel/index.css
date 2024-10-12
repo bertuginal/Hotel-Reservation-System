@@ -1,0 +1,155 @@
+﻿
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Kartları ortalar */
+    padding: 20px;
+}
+
+
+.card {
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    margin: 15px;
+    transition: transform 0.3s, box-shadow 0.3s; 
+    width: 350px; 
+    overflow: hidden;
+}
+
+   
+    .card:hover {
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
+    }
+
+
+.card-image {
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover;
+}
+
+
+.card-body {
+    padding: 15px;
+}
+
+
+.card-title {
+    text-align: center;
+    font-size: 1.5em; 
+    margin: 0.5em 0; 
+    color: #34495e;
+}
+
+
+.card-subtitle {
+    text-align: center;
+    font-size: 1em;
+    color: #7f8c8d;
+}
+
+
+.card-text {
+    font-size: 0.9em; 
+    color: #555;
+    margin: 0.5em 0;
+}
+
+
+.card-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Kart eylem bölümü */
+.card-actions {
+    display: flex;
+    justify-content: space-between; /* Eylem butonlarını dağıt */
+    align-items: center; /* Dikey ortalama */
+    margin-top: 10px; /* Üstten boşluk */
+}
+
+
+@media (max-width: 768px) {
+    .card-container {
+        justify-content: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+    }
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+}
+
+.btn {
+    border-radius: 5px; /* Buton köşe yuvarlama */
+    padding: 6px 10px; /* Buton içi boşluk */
+    font-size: 0.85em; /* Buton yazı boyutu */
+    text-decoration: none; /* Alt çizgi kaldırma */
+    transition: background-color 0.3s; /* Hover animasyonu */
+}
+
+/* Buton renkleri */
+.btn-primary {
+    background-color: #3498db; /* Mavi arka plan */
+    color: white; /* Beyaz yazı */
+}
+
+.btn-warning {
+    background-color: #f39c12; /* Sarı arka plan */
+    color: white; /* Beyaz yazı */
+}
+
+.btn-info {
+    background-color: #1abc9c; /* Yeşil arka plan */
+    color: white; /* Beyaz yazı */
+}
+
+.btn-danger {
+    background-color: #e74c3c; /* Kırmızı arka plan */
+    color: white; /* Beyaz yazı */
+}
+
+/* Buton hover efekti */
+.btn:hover {
+    opacity: 0.9; /* Hoverda saydamlık */
+}
+
+.location-rating {
+    display: flex; /* Esnek kutu düzeni */
+    justify-content: space-between; /* Öğeleri uçlara yerleştir */
+    align-items: center; /* Dikey ortalama */
+}
+
+.rating {
+    margin-left: auto; /* Sağ tarafta yerleştirme */
+}
+
+.page-header {
+    text-align: center; /* Metni ortala */
+    margin: 30px 0; /* Üst ve alt boşluk */
+}
+
+    .page-header h1 {
+        font-size: 2.5rem; /* Başlık boyutu */
+        color: #007bff; /* Başlık rengi */
+    }
+
+    .page-header p {
+        font-size: 1.2rem; /* Alt metin boyutu */
+        color: #6c757d; /* Alt metin rengi */
+    }
+

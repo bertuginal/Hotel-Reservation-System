@@ -260,8 +260,9 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css-folder\account\admin\loginadmin.css" />
     <Content Include="Content\css-folder\account\customer\logincustomer.css" />
-    <Content Include="Content\css-folder\home\index.css" />
+    <Content Include="Content\css-folder\home-page\index.css" />
     <Content Include="Content\css-folder\hotel\details.css" />
+    <Content Include="Content\css-folder\hotel\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
