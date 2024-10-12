@@ -1,0 +1,46 @@
+﻿@model Hotel_Reservation_System.Models.Customer
+
+@{
+    ViewBag.Title = "Delete Customer";
+}
+
+<div>
+    <h2>CUSTOMER DELETE</h2>
+    <h4>Are you sure you want to delete "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)" customer?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-actions">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href="@Url.Action("Index", "Customer")" class="btn btn-secondary">Cancel</a>
+    </div>
+}

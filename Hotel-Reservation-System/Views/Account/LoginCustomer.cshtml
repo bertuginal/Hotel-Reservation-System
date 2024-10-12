@@ -1,0 +1,71 @@
+﻿@model Hotel_Reservation_System.Models.Customer
+
+@{
+    ViewBag.Title = "Login Customer";
+}
+
+<link href="~/Content/css-folder/account/customer/logincustomer.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm("LoginCustomer", "Account", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login-page">
+        <div class="form-horizontal">
+            <h2>SIGN IN CUSTOMER</h2>
+            <h4>Please enter your e-mail and password!</h4>
+            <hr />
+            <h6>* are required areas!</h6>
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Your e-mail" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group-append">
+                    @Html.Label("Password*", new { @class = "control-label col-md-2" })
+                    <button type="button" class="btn btn" id="togglePassword" onclick="togglePasswordVisibility()">
+                        🙈
+                    </button>
+                </div>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <input type="password" id="passwordInput" name="password" class="form-control" placeholder="Your password" />
+                    </div>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-dark" />
+                </div>
+            </div>
+            <hr />
+            <p class="text-left">Don't have an account? @Html.ActionLink("Sign Up", "RegisterCustomer")</p>
+        </div>
+    </div>
+}
+
+<!-- JavaScript -->
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("passwordInput");
+        var toggleBtn = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleBtn.innerText = "🙉"; 
+        } else {
+            passwordInput.type = "password";
+            toggleBtn.innerText = "🙈";
+        }
+    }
+</script>
