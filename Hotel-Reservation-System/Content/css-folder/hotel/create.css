@@ -1,0 +1,116 @@
+﻿/* Genel sayfa ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Form genel stil */
+.form-horizontal {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 800px;
+    margin: 50px auto;
+    border: 1px solid #e1e1e1;
+}
+
+/* Başlıklar */
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h4, h6 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Input ve Label düzeni */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+/* Dosya yükleme butonu */
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    input[type="file"]:hover {
+        background-color: #e6e6e6;
+    }
+
+/* Butonlar */
+.btn-success, .btn-danger {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+/* Validation mesajları */
+.text-danger {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Medya Sorguları */
+@media (max-width: 768px) {
+    .form-horizontal {
+        padding: 20px;
+        width: 90%;
+    }
+}

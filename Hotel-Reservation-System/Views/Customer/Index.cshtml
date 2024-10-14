@@ -4,33 +4,35 @@
     ViewBag.Title = "Customer List";
 }
 
-<h2>CUSTOMER LIST</h2>
+<link href="~/Content/css-folder/account/customer/index.css" rel="stylesheet" type="text/css" />
+
+
+<h2>CUSTOMER DASHBOARD</h2>
 <hr />
 
-    @Html.ActionLink("Create New Customer", "Create", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Create New Customer", "Create", null, new { @class = "btn btn-primary" })
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.First().FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Address)
-            </th>
-            <th></th>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>Edited Date</th>
+            <th>Customer Settings</th>
         </tr>
     </thead>
     <tbody>
+        @{
+            int count = 1;
+        }
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @count
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
@@ -41,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Address)
+                    @Html.DisplayFor(modelItem => item.EditedDate)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
@@ -49,6 +51,7 @@
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
+            count++;
         }
     </tbody>
 </table>

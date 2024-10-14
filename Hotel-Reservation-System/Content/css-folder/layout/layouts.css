@@ -1,0 +1,69 @@
+﻿
+.navbar .dropdown .dropdown-toggle {
+	color: #333;
+	text-decoration: none;
+}
+
+/* Dropdown menüleri arası boşluk */
+.navbar .dropdown {
+	margin-right: 20px; /* Dropdown menüleri arası 20px boşluk */
+}
+	/* Dropdown menü genel stil */
+	.navbar .dropdown .dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background-color: #fff; /* Beyaz arka plan */
+		border: solid 2px light-gray; /* Kenarlık */
+		border-radius: 8px; /* Köşeleri yuvarla */
+		padding: 10px 0; /* İç boşluk sadece üst ve alt */
+		list-style: none;
+		margin: 0;
+		width: 180px; /* Daha geniş menü */
+		box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Yumuşak gölge efekti */
+		z-index: 1000; /* Önde görünmesi için */
+	}
+
+		/* Dropdown menüdeki her bir <li> öğesi */
+		.navbar .dropdown .dropdown-menu li {
+			padding: 12px 20px; /* İçerik boşluğu */
+			border-radius: 8px;
+			border-bottom: 1px solid #ccc; /* Ortadan ayıran çizgi */
+			transition: background-color 0.3s ease, transform 0.3s ease; /* Hover'da animasyon */
+		}
+
+			/* Son <li> öğesi için alt çizgiyi kaldır */
+			.navbar .dropdown .dropdown-menu li:last-child {
+				border-bottom: none;
+			}
+
+			/* Hover efektiyle arka plan rengi ve hafif büyüme */
+			.navbar .dropdown .dropdown-menu li:hover {
+				background-color: #8c8c8c; /* Açık gri arka plan */
+				transform: scale(0.96); /* Hover'da hafif büyüme */
+				cursor: pointer;
+			}
+
+			/* <li> içindeki <a> link stilini düzenleme */
+			.navbar .dropdown .dropdown-menu li a {
+				color: #343a40; /* Koyu gri yazı rengi */
+				text-decoration: none; /* Alt çizgiyi kaldır */
+				display: block; /* Linki tam bloğa yay */
+				font-weight: 500; /* Yarı kalın yazı */
+				transition: color 0.3s ease; /* Renk geçişi */
+			}
+
+				/* Hover'da link rengini değiştir */
+				.navbar .dropdown .dropdown-menu li a:hover {
+					color: #ffffff; /* Hover'da mavi renk */
+				}
+
+	/* Dropdown menü ve diğer menüler arasındaki boşluk */
+	.navbar .dropdown + .dropdown {
+		margin-left: 15px; /* Aralık açıldı */
+	}
+
+	/* Beyaz renkte dropdown menüler */
+	.navbar .dropdown .dropdown-toggle {
+		color: #fff; /* Beyaz yazı rengi */
+	}

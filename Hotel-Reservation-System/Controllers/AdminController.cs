@@ -73,6 +73,7 @@ public class AdminController : Controller
                 existingAdmin.Email = admin.Email;
                 existingAdmin.Password = admin.Password;
                 existingAdmin.CreatedDate = admin.CreatedDate;
+                existingAdmin.EditedDate = DateTime.Now;
 
                 db.Entry(existingAdmin).State = EntityState.Modified;
                 db.SaveChanges();

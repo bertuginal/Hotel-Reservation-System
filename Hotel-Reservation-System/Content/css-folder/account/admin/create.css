@@ -1,0 +1,177 @@
+﻿
+body {
+    background-color: #1e1e1e;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff6c;
+}
+
+.form-horizontal {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #141414;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 255, 108, 0.5);
+    border: 1px solid #00ff6c;
+}
+
+h2 {
+    color: #00ff6c;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px #00ff6c;
+}
+
+h4 {
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #00ff6c;
+    margin-bottom: 20px;
+}
+
+h6 {
+    color: #ff4757;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px #00ff6c;
+}
+
+.form-control {
+    background-color: #0d0d0d;
+    border: 1px solid #00ff6c;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #00ff6c;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #00ff6c;
+        box-shadow: 0 0 10px rgba(0, 255, 108, 0.7);
+    }
+
+.text-danger {
+    color: #ff4757;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border: 1px solid #00ff6c;
+    color: #00ff6c;
+    background-color: transparent;
+    box-shadow: 0 0 10px #00ff6c;
+}
+
+    .btn:hover {
+        background-color: #00ff6c;
+        color: #0d0d0d;
+        transform: scale(1.05);
+    }
+
+.btn-danger {
+    border: 1px solid #ff4757;
+    color: #ff4757;
+}
+
+    .btn-danger:hover {
+        background-color: #ff4757;
+        color: #0d0d0d;
+    }
+
+.col-md-offset-2 {
+    margin-left: 16.66666667%;
+}
+
+/* Input placeholder style */
+input::placeholder {
+    color: #4caf50;
+    font-style: italic;
+}
+
+/* Add cursor effect for hacker style */
+.form-control {
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 8px rgba(0, 255, 108, 0.7);
+}
+
+/* Styling for responsiveness */
+@media (max-width: 768px) {
+    .form-horizontal {
+        padding: 20px;
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .col-md-offset-2 {
+        margin-left: 0;
+    }
+}
+
+/* Add animation to header */
+h2 {
+    animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+        text-shadow: 0px 0px 5px #00ff6c, 0px 0px 10px #00ff6c;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Neon button effect */
+.btn {
+    position: relative;
+}
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #00ff6c, #00c3ff, #ff4757, #f39c12);
+        z-index: -1;
+        filter: blur(10px);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .btn:hover::before {
+        opacity: 1;
+    }

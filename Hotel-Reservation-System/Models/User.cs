@@ -32,6 +32,13 @@ namespace Hotel_Reservation_System.Models
         [DataType(DataType.Password)]
         [DisplayName("Password*")]
         public string Password { get; set; }
+        public DateTime EditedDate { get; set; }
+
+        [Required(ErrorMessage = "Phone number cannot be empty!")]
+        [Phone(ErrorMessage = "Please enter a valid phone number!")]
+        [DisplayName("Phone Number*")]
+        public string Phone { get; set; }
+
 
     }
 }

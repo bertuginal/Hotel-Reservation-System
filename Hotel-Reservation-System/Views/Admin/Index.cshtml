@@ -4,34 +4,51 @@
     ViewBag.Title = "Admin List";
 }
 
-<h2>ADMIN LIST</h2>
+<link href="~/Content/css-folder/account/admin/index.css" rel="stylesheet" type="text/css" />
+
+<h2>ADMIN DASHBOARD</h2>
 <hr />
 
 @Html.ActionLink("Create New Admin", "Create", null, new { @class = "btn btn-primary" })
-@Html.ActionLink("Create New Customer", "Create", "Customer", null, new { @class = "btn btn-primary" })
-@Html.ActionLink("Create New Hotel", "Create", "Hotel", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Create New Customer", "Create", "Customer", null, new { @class = "btn btn-danger" })
+@Html.ActionLink("Create New Hotel", "Create", "Hotel", null, new { @class = "btn btn-danger" })
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.First().FirstName)
+                #
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().LastName)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Email)
+                Last Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().CreatedDate)
+                E-mail
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Edited Date
+            </th>
+            <th>
+                Admin Settings
             </th>
         </tr>
     </thead>
     <tbody>
+         @{
+             int count = 1;
+         } 
         @foreach (var admin in Model)
         {
             <tr>
+                <td>
+                    @count
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => admin.FirstName)
                 </td>
@@ -42,12 +59,14 @@
                     @Html.DisplayFor(modelItem => admin.Email)
                 </td>
                 <td>@admin.CreatedDate.ToString("yyyy-MM-dd")</td>
+                <td>@admin.EditedDate.ToString("yyyy-MM-dd")</td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = admin.Id }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Details", "Details", new { id = admin.Id }, new { @class = "btn btn-info btn-sm" }) |
                     @Html.ActionLink("Delete", "Delete", new { id = admin.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
+            count++;
         }
     </tbody>
 </table>

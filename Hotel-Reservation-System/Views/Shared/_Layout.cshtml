@@ -6,6 +6,8 @@
     <title>ROOMIFY - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css-folder/layout/layouts.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -17,13 +19,11 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                   
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["UserId"] != null)
                     {
-
                         if (ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin)
                         {
                             <li>@Html.ActionLink("ADMIN LIST", "Index", "Admin")</li>
@@ -38,12 +38,26 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("LOGIN ADMIN", "LoginAdmin", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("REGISTER ADMIN", "RegisterAdmin", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("LOGIN CUSTOMER", "LoginCustomer", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("REGISTER CUSTOMER", "RegisterCustomer", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                        <!-- Register Dropdown -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('registerDropdown')">REGISTER</a>
+                            <ul id="registerDropdown" class="dropdown-menu" style="display: none;">
+                                <li>@Html.ActionLink("Customer", "RegisterCustomer", "Account")</li>
+                            </ul>
+                        </li>
+
+                        <!-- Login Dropdown -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('loginDropdown')">LOGIN</a>
+                            <ul id="loginDropdown" class="dropdown-menu" style="display: none;">
+                                <li>@Html.ActionLink("Admin", "LoginAdmin", "Account")</li>
+                                <li>@Html.ActionLink("Customer", "LoginCustomer", "Account")</li>
+                            </ul>
+                        </li>
                     }
                 </ul>
+
+
             </div>
         </div>
     </nav>
@@ -60,3 +74,32 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Dropdown tıklandığında açılacak
+        document.querySelectorAll('.dropdown-toggle').forEach(function (dropdown) {
+            dropdown.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var menu = this.nextElementSibling;
+                menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+
+        // Sayfanın başka bir yerine tıklandığında dropdown kapanacak
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
+                menu.style.display = 'none';
+            });
+        });
+
+        // Dropdown menünün içi tıklanırsa kapanmayı engelle
+        document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
+            menu.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    });
+
+</script>

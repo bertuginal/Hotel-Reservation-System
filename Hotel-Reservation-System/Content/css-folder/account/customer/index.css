@@ -1,0 +1,123 @@
+﻿
+body {
+	background-color: #f8f9fa; /* Açık arka plan */
+	font-family: 'Arial', sans-serif;
+	color: #212529; /* Daha koyu yazı rengi */
+}
+
+h2 {
+	color: #495057;
+	font-size: 26px;
+	text-align: center;
+	margin-bottom: 20px;
+	font-weight: 600;
+}
+
+hr {
+	border: none;
+	height: 2px;
+	background-color: #e9ecef;
+	margin-bottom: 20px;
+}
+
+.btn {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+	.btn:hover {
+		background-color: #0056b3;
+		box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+	}
+
+table {
+	width: 100%;
+	background-color: #fff;
+	border-collapse: collapse;
+	margin-top: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+	border: 1px solid #dee2e6;
+	padding: 15px;
+	text-align: left;
+	font-size: 16px;
+	color: #495057;
+}
+
+th {
+	background-color: #f1f3f5;
+	font-weight: 600;
+}
+
+td {
+	background-color: #ffffff;
+}
+
+tr:nth-child(even) {
+	background-color: #f8f9fa;
+}
+
+tr:hover {
+	background-color: #e9ecef;
+	transition: background-color 0.3s;
+}
+
+.btn-sm {
+	padding: 6px 12px;
+	font-size: 14px;
+}
+
+.btn-warning {
+	background-color: #ffc107;
+	color: #fff;
+}
+
+.btn-info {
+	background-color: #17a2b8;
+	color: #fff;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.btn-warning:hover {
+	background-color: #e0a800;
+}
+
+.btn-info:hover {
+	background-color: #138496;
+}
+
+.btn-danger:hover {
+	background-color: #c82333;
+}
+
+/* Mobil Uyumlu Tasarım */
+@media (max-width: 768px) {
+	table {
+		font-size: 14px;
+	}
+
+	.btn-sm {
+		font-size: 12px;
+	}
+
+	.form-horizontal {
+		padding: 15px;
+		margin: 0 auto;
+	}
+}

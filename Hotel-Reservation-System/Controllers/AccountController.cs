@@ -19,12 +19,18 @@ public class AccountController : Controller
     // POST: Account/RegisterAdmin
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult RegisterAdmin(Admin admin)
+    public ActionResult RegisterAdmin(Admin admin, string ConfirmPassword)
     {
         if (ModelState.IsValid)
         {
+            if (admin.Password != ConfirmPassword)
+            {
+                ViewBag.PasswordMismatch = "Passwords do not match!";
+                return View(admin);
+            }
             db.Admins.Add(admin);
             admin.CreatedDate = System.DateTime.Now;
+            admin.EditedDate = System.DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index", "Admin");
         }
@@ -40,11 +46,17 @@ public class AccountController : Controller
     // POST: Account/RegisterCustomer
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult RegisterCustomer(Customer customer)
+    public ActionResult RegisterCustomer(Customer customer, string ConfirmPassword)
     {
         if (ModelState.IsValid)
         {
+            if (customer.Password != ConfirmPassword)
+            {
+                ViewBag.PasswordMismatch = "Passwords do not match!";
+                return View(customer);
+            }
             db.Customers.Add(customer);
+            customer.EditedDate = System.DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("LoginCustomer");
         }

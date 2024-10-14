@@ -6,6 +6,7 @@
 
 <link href="~/Content/css-folder/account/admin/loginadmin.css" rel="stylesheet" type="text/css" />
 
+
 @using (Html.BeginForm("LoginAdmin", "Account", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
 {
     @Html.AntiForgeryToken()

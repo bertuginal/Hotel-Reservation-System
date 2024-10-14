@@ -4,6 +4,9 @@
     ViewBag.Title = "Register Customer";
 }
 
+<link href="~/Content/css-folder/account/customer/registercustomers.css" rel="stylesheet" type="text/css" />
+
+
 @using (Html.BeginForm("RegisterCustomer", "Account", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -48,6 +51,25 @@
     </div>
 
     <div class="form-group">
+        <label class="control-label col-md-2">Confirm Password*</label>
+        <div class="col-md-10">
+            <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            @if (ViewBag.PasswordMismatch != null)
+            {
+                <span class="text-danger">@ViewBag.PasswordMismatch</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-2" }) <!-- Telefon numarası etiketi -->
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone" }) <!-- Telefon numarası girişi -->
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address" })
@@ -60,4 +82,7 @@
             <input type="submit" value="Register" class="btn btn-success" />
         </div>
     </div>
+    <hr />
+    <p class="text-left">Already have an account? @Html.ActionLink("Sign In", "LoginCustomer")</p>
+
 }
