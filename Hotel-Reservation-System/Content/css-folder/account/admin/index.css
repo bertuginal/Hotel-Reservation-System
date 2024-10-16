@@ -36,6 +36,7 @@ hr {
     .btn:hover {
         background-color: #0056b3;
         box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        color: #fff;
     }
 
 table {
@@ -96,14 +97,17 @@ tr:hover {
 
 .btn-warning:hover {
     background-color: #e0a800;
+    color: #fff;
 }
 
 .btn-info:hover {
     background-color: #138496;
+    color: #fff;
 }
 
 .btn-danger:hover {
     background-color: #c82333;
+    color: #fff;
 }
 
 /* Mobil Uyumlu Tasarım */
@@ -121,5 +125,3 @@ tr:hover {
         margin: 0 auto;
     }
 }
-
-

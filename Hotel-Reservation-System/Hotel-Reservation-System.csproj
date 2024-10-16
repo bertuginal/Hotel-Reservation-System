@@ -236,6 +236,10 @@
     <Compile Include="Migrations\202410121448599_UserModelUpdated.Designer.cs">
       <DependentUpon>202410121448599_UserModelUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410161329453_HotelModelEdited1.cs" />
+    <Compile Include="Migrations\202410161329453_HotelModelEdited1.Designer.cs">
+      <DependentUpon>202410161329453_HotelModelEdited1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -263,6 +267,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css-folder\account\admin\create.css" />
+    <Content Include="Content\css-folder\account\admin\delete.css" />
+    <Content Include="Content\css-folder\account\admin\details.css" />
     <Content Include="Content\css-folder\account\admin\index.css" />
     <Content Include="Content\css-folder\account\admin\loginadmin.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
@@ -380,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410121448599_UserModelUpdated.resx">
       <DependentUpon>202410121448599_UserModelUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410161329453_HotelModelEdited1.resx">
+      <DependentUpon>202410161329453_HotelModelEdited1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

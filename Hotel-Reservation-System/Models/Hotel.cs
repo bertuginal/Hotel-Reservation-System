@@ -22,12 +22,11 @@ namespace Hotel_Reservation_System.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Hotel's title cannot be empty!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Hotel's title must be at least 3 characters!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Hotel's title must be at least 50 characters!")]
         [DisplayName("Hotel's Title*")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Hotel's location cannot be empty!")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Hotel's location must be at least 3 characters!")]
         [DisplayName("Location*")]
         public string Location { get; set; }
 

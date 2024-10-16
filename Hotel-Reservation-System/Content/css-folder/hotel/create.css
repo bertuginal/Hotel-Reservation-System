@@ -1,10 +1,13 @@
 ﻿/* Genel sayfa ayarları */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #4287f5;
     margin: 0;
     padding: 0;
     color: #333;
+}
+footer {
+    color: #d1d1d1;
 }
 
 /* Form genel stil */
@@ -36,10 +39,15 @@ h4, h6 {
 /* Input ve Label düzeni */
 .form-group {
     margin-bottom: 20px;
+    flex: 1;
 }
 
 label {
     font-weight: bold;
+    color: #555;
+}
+
+b {
     color: #555;
 }
 
@@ -114,3 +122,48 @@ input[type="file"] {
         width: 90%;
     }
 }
+
+textarea[name="Description"] {
+    width: 100%;
+    max-width: 100%; 
+    min-width: 120%;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding-top: 10px;
+}
+
+.col-md-6 {
+    width: 50%; /* Her bir sütun genişliğini %50 yapar */
+}
+
+/* Hide default radio button */
+input[type="radio"] {
+    display: none;
+}
+
+/* Custom radio button styling */
+.radio-inline {
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    color: #333;
+}
+
+    /* Hover effect */
+    .radio-inline:hover {
+        background-color: #f0f0f0;
+    }
+
+/* Selected radio button */
+input[type="radio"]:checked + .radio-inline {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+

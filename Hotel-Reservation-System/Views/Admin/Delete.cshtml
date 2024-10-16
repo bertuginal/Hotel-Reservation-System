@@ -4,60 +4,82 @@
     ViewBag.Title = "Delete Admin";
 }
 
-<div>
+<link href="~/Content/css-folder/account/admin/delete.css" rel="stylesheet" type="text/css" />
 
+<div class="delete-card">
     <h2>ADMIN DELETE</h2>
     <h4>Are you sure you want to delete "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)" admin?</h4>
     <hr />
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+    <div class="card">
+        <div class="card-content">
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>First Name:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.FirstName)</span>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Last Name:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.LastName)</span>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Email:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Email)</span>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Password:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Password)</span>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd>
-            @Model.CreatedDate.ToString("yyyy-MM-dd")
-        </dd>
-    </dl>
-</div>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Phone Number:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Phone)</span>
+                </div>
+            </div>
 
-@using (Html.BeginForm("Delete", "Admin", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Created Date:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Model.CreatedDate.ToString("yyyy-MM-dd")</span>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Cancel</a>
-
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Last Edited Date:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Model.EditedDate</span>
+                </div>
+            </div>
         </div>
     </div>
-}
+
+    <div class="form-actions">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
