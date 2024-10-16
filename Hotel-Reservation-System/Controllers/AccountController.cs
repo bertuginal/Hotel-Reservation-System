@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Hotel_Reservation_System.DAL;
 using Hotel_Reservation_System.Models;
 using System.Web.Security;
+using System.Web.ModelBinding;
 
 
 public class AccountController : Controller

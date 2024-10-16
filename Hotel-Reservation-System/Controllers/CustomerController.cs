@@ -17,7 +17,15 @@ namespace YourNamespace.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            // Tüm müşterileri listelemek için
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
             var customers = db.Customers.ToList();
             return View(customers);
         }
@@ -36,12 +44,31 @@ namespace YourNamespace.Controllers
             {
                 return HttpNotFound();
             }
+
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
             return View(customer);
         }
 
         // GET: Customer/Create
         public ActionResult Create()
         {
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
             return View();
         }
 
@@ -74,6 +101,16 @@ namespace YourNamespace.Controllers
             {
                 return HttpNotFound();
             }
+
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
 
             return View(customer);
         }
@@ -116,6 +153,16 @@ namespace YourNamespace.Controllers
             {
                 return HttpNotFound();
             }
+
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
 
             return View(customer);
         }

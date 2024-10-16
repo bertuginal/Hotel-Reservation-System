@@ -272,14 +272,15 @@
     <Content Include="Content\css-folder\account\admin\index.css" />
     <Content Include="Content\css-folder\account\admin\loginadmin.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
+    <Content Include="Content\css-folder\account\customer\create.css" />
     <Content Include="Content\css-folder\account\customer\index.css" />
     <Content Include="Content\css-folder\account\customer\logincustomer.css" />
     <Content Include="Content\css-folder\account\customer\registercustomers.css" />
     <Content Include="Content\css-folder\home-page\index.css" />
-    <Content Include="Content\css-folder\hotel\create.css" />
+    <Content Include="Content\css-folder\hotel\create-hot.css" />
     <Content Include="Content\css-folder\hotel\details.css" />
     <Content Include="Content\css-folder\hotel\index.css" />
-    <Content Include="Content\css-folder\layout\layouts.css" />
+    <Content Include="Content\css-folder\layout\layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

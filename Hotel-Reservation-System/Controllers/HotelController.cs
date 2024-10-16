@@ -21,6 +21,15 @@ public class HotelController : Controller
     // GET: Hotel/Create
     public ActionResult Create()
     {
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
         return View();
     }
 

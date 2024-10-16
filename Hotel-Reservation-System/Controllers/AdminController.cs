@@ -29,6 +29,16 @@ public class AdminController : Controller
     // GET: Admin/Create
     public ActionResult Create()
     {
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
         return View();
     }
 
@@ -37,6 +47,7 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult Create(Admin admin)
     {
+        
         if (ModelState.IsValid)
         {
             admin.CreatedDate = DateTime.Now;
