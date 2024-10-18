@@ -1,0 +1,88 @@
+﻿/* Genel Stil Ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Sayfa Başlığı */
+.page-header {
+    margin: 20px 0;
+}
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        color: #343a40;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        color: #6c757d;
+    }
+
+/* Tablo Ayarları */
+.table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.table-header th {
+    background-color: #ffc107;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-header th, .table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: center;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-image {
+    width: 50px; /* Resim boyutu ayarı */
+    height: auto; /* Orantıyı korur */
+    border-radius: 5px; /* Yuvarlatılmış kenar */
+}
+
+/* Buton Grupları */
+.button-group {
+    display: flex;
+    justify-content: center; /* Butonları ortalar */
+}
+
+    .button-group a {
+        text-decoration: none;
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 4px;
+    }
+
+    .button-group .btn-warning {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .button-group .btn-info {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .button-group .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Buton Hover Efektleri */
+    .button-group a:hover {
+        opacity: 0.9;
+    }
+
+/* Yanlış durumda metin rengi */
+.text-danger {
+    color: #dc3545;
+}

@@ -1,4 +1,9 @@
-﻿/* Ana konteyner */
+﻿body {
+    background-color: #d9dadb;
+}
+
+
+/* Ana konteyner */
 .homepage-container {
     max-width: 1200px; /* Maksimum genişlik */
     margin: 0 auto; /* Ortala */

@@ -8,7 +8,7 @@
 
 <div class="delete-card">
     <h2>ADMIN DELETE</h2>
-    <h4>Are you sure you want to delete "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)" admin?</h4>
+    <h4>Are you sure you want to delete the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"?</h4>
     <hr />
 
     <div class="card">
@@ -63,7 +63,7 @@
                     <strong>Created Date:</strong>
                 </div>
                 <div class="value-box">
-                    <span>@Model.CreatedDate.ToString("yyyy-MM-dd")</span>
+                    <span>@Model.CreatedDate</span>
                 </div>
             </div>
 

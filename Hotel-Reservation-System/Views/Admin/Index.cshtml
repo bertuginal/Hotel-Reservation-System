@@ -4,14 +4,10 @@
     ViewBag.Title = "Admin List";
 }
 
-<link href="~/Content/css-folder/account/admin/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/index-a.css" rel="stylesheet" type="text/css" />
 
 <h2>ADMIN DASHBOARD</h2>
 <hr />
-
-@Html.ActionLink("Create New Admin", "Create", null, new { @class = "btn btn-primary" })
-@Html.ActionLink("Create New Customer", "Create", "Customer", null, new { @class = "btn btn-danger" })
-@Html.ActionLink("Create New Hotel", "Create", "Hotel", null, new { @class = "btn btn-danger" })
 
 <table class="table table-striped">
     <thead>
@@ -58,8 +54,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => admin.Email)
                 </td>
-                <td>@admin.CreatedDate.ToString("yyyy-MM-dd")</td>
-                <td>@admin.EditedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                @admin.CreatedDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                @admin.EditedDate.ToString("yyyy-MM-dd")
+                </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = admin.Id }, new { @class = "btn btn-warning btn-sm" }) |
                     @Html.ActionLink("Details", "Details", new { id = admin.Id }, new { @class = "btn btn-info btn-sm" }) |

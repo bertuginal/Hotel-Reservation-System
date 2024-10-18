@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+
+@{
+    ViewBag.Title = "Hotels";
+}
+<link href="~/Content/css-folder/hotel/list.css" rel="stylesheet" type="text/css" />
+
+<div class="page-header text-center">
+    <h1>HOTELS DASHBOARD</h1>
+</div>
+<hr />
+
+<table class="table table-striped table-bordered hotel-table">
+    <thead class="table-header">
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Rating</th>
+            <th>Available Rooms</th>
+            <th>Price Per Night (₺)</th>
+            <th>Hotel Settings</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="table-image" />
+                </td>
+                <td>
+                    <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+                </td>
+                <td>
+                    ★@Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableRooms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerNight)
+                </td>
+                <td>
+                    <div class="button-group">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Details", "DetailHotel", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </div>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>

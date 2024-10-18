@@ -4,13 +4,11 @@
     ViewBag.Title = "Customer List";
 }
 
-<link href="~/Content/css-folder/account/customer/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/index-c.css" rel="stylesheet" type="text/css" />
 
 
 <h2>CUSTOMER DASHBOARD</h2>
 <hr />
-
-@Html.ActionLink("Create New Customer", "Create", null, new { @class = "btn btn-primary" })
 
 <table class="table table-striped">
     <thead>
@@ -43,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EditedDate)
+                    @item.EditedDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |

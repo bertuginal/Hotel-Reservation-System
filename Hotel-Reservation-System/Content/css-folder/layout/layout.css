@@ -1,57 +1,10 @@
 ﻿
-.navbar .dropdown .dropdown-toggle {
-	color: #333;
-	text-decoration: none;
-}
-
-
-		/* Dropdown menüdeki her bir <li> öğesi */
-		.navbar .dropdown .dropdown-menu li {
-			padding: 12px 20px; /* İçerik boşluğu */
-			border-radius: 8px;
-			border-bottom: 1px solid #ccc; /* Ortadan ayıran çizgi */
-			transition: background-color 0.3s ease, transform 0.3s ease; /* Hover'da animasyon */
-		}
-
-			/* Hover efektiyle arka plan rengi ve hafif büyüme */
-			.navbar .dropdown .dropdown-menu li:hover {
-				background-color: #017BFF; /* Mavi arka plan */
-				transform: scale(0.96); /* Hover'da hafif büyüme */
-				cursor: pointer;
-			}
-
-			/* <li> içindeki <a> link stilini düzenleme */
-			.navbar .dropdown .dropdown-menu li a {
-				color: #343a40; /* Koyu gri yazı rengi */
-				text-decoration: none; /* Alt çizgiyi kaldır */
-				display: block; /* Linki tam bloğa yay */
-				font-weight: 500; /* Yarı kalın yazı */
-				transition: color 0.3s ease; /* Renk geçişi */
-			}
-
-				/* Hover'da link rengini değiştir */
-				.navbar .dropdown .dropdown-menu li a:hover {
-					color: #ffffff;
-				}
-
-	/* Dropdown menü ve diğer menüler arasındaki boşluk */
-	.navbar .dropdown + .dropdown {
-		margin-left: 15px; /* Aralık açıldı */
-	}
-
-	/* Beyaz renkte dropdown menüler */
-	.navbar .dropdown .dropdown-toggle {
-		color: #fff; /* Beyaz yazı rengi */
-	}
-
-/* General navbar styles */
 .navbar-nav {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	justify-content: flex-end;
-
 	font-family: 'Arial', sans-serif;
 }
 
@@ -61,10 +14,72 @@
 
 	.navbar-nav a {
 		display: block;
-		padding: 6px 20px;
+		padding: 15px 13px;
 		text-decoration: none;
 		color: white;
-		font-weight: bold;
+		font-weight: 500;
 		transition: background-color 0.3s ease, color 0.3s ease;
 	}
 
+		.navbar-nav a:hover {
+			background-color: #017BFF;
+			color: white;
+			border-radius: 4px;
+		}
+
+	/* Dropdown menu styles */
+	.navbar-nav .dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background-color: #34495E;
+		min-width: 170px;
+		z-index: 1000;
+		display: none;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+	}
+
+		.navbar-nav .dropdown-menu li {
+			padding: 10px 15px;
+			border-bottom: 1px solid #2C3E50;
+		}
+
+			.navbar-nav .dropdown-menu li:last-child {
+				border-bottom: none;
+			}
+
+		.navbar-nav .dropdown-menu a {
+			color: white;
+			text-decoration: none;
+		}
+
+			.navbar-nav .dropdown-menu a:hover {
+				background-color: #017BFF;
+				color: white;
+			}
+
+	/* Show dropdown on hover */
+	.navbar-nav li:hover .dropdown-menu {
+		display: block;
+	}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+	.navbar-nav {
+		flex-direction: column;
+		background-color: #2C3E50;
+	}
+
+		.navbar-nav li {
+			text-align: center;
+			margin-bottom: 1px;
+		}
+
+		.navbar-nav .dropdown-menu {
+			position: relative;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+}

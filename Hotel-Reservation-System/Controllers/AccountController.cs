@@ -103,7 +103,7 @@ public class AccountController : Controller
             if (customer != null)
             {
                 Session["UserId"] = customer.Id;
-                return RedirectToAction("Index", "Hotel");
+                return RedirectToAction("Index", "Home");
             }else {
                 ModelState.AddModelError("", "Invalid e-mail or password!");
             }

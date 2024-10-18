@@ -1,0 +1,73 @@
+﻿/* Genel Stil Ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Açık arka plan rengi */
+}
+
+/* Başlık Ayarları */
+h2 {
+    text-align: center; /* Başlığı ortalar */
+    font-size: 2.5rem; /* Başlık boyutu */
+    color: #343a40; /* Koyu gri renk */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+
+/* Tablo Ayarları */
+.table {
+    width: 100%; /* Tablonun genişliği */
+    margin: 20px 0; /* Üst ve alt boşluk */
+    border-collapse: collapse; /* Kenarları birleştirir */
+}
+
+    .table th, .table td {
+        padding: 12px; /* Hücre içi boşluk */
+        text-align: center; /* Ortalı metin */
+        border: 1px solid #dee2e6; /* Hücre kenarları */
+    }
+
+    /* Tablo Başlık Renkleri */
+    .table thead th {
+        background-color: #0444AB; /* Sarı başlık rengi */
+        color: white; /* Beyaz metin rengi */
+    }
+
+    /* Satır Renkleri */
+    .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Alternatif satır rengi */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e2e3e5; /* Üzerine gelindiğinde arka plan rengi değişir */
+    }
+
+/* Buton Grupları */
+.btn {
+    text-decoration: none; /* Alt çizgi kaldırıldı */
+    padding: 5px 10px; /* Buton içi boşluk */
+    border-radius: 4px; /* Yuvarlatılmış kenar */
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Sarı renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Mavi renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Kırmızı renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+/* Buton Hover Efektleri */
+.btn:hover {
+    opacity: 0.9; /* Üzerine gelindiğinde opaklık azalır */
+}
+
+/* Yanlış durumda metin rengi */
+.text-danger {
+    color: #dc3545; /* Kırmızı renk */
+}

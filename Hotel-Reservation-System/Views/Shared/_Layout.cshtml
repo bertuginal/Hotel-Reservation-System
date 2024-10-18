@@ -26,13 +26,27 @@
                     {
                         if (ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin)
                         {
-                            <li>@Html.ActionLink("ADMIN LIST", "Index", "Admin")</li>
-                            <li>@Html.ActionLink("CUSTOMER LIST", "Index", "Customer")</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown('listsDropdown')">LISTS</a>
+                                <ul id="adminDropdown" class="dropdown-menu" style="display: none;">
+                                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                                    <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
+                                    <li>@Html.ActionLink("Hotel", "List", "Hotel")</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown('createDropdown')">CREATE</a>
+                                <ul id="createDropdown" class="dropdown-menu" style="display: none;">
+                                    <li>@Html.ActionLink("Admin", "Create", "Admin")</li>
+                                    <li>@Html.ActionLink("Customer", "Create", "Customer")</li>
+                                    <li>@Html.ActionLink("Hotel", "Create", "Hotel")</li>
+                                </ul>
+                            </li>
                             <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
                         }
                         else
                         {
-                            <li>@Html.ActionLink("HOTEL LIST", "Index", "Hotel")</li>
+                            <li>@Html.ActionLink("HOTELS", "Index", "Hotel")</li>
                             <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
                         }
                     }
@@ -42,7 +56,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" onclick="toggleDropdown('registerDropdown')">REGISTER</a>
                             <ul id="registerDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("Customer", "RegisterCustomer", "Account")</li>
+                                <li>@Html.ActionLink("☘︎ Customer", "RegisterCustomer", "Account")</li>
                             </ul>
                         </li>
 
@@ -50,8 +64,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" onclick="toggleDropdown('loginDropdown')">LOGIN</a>
                             <ul id="loginDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("Admin", "LoginAdmin", "Account")</li>
-                                <li>@Html.ActionLink("Customer", "LoginCustomer", "Account")</li>
+                                <li>@Html.ActionLink("✧ Admin", "LoginAdmin", "Account")</li>
+                                <li>@Html.ActionLink("☘︎ Customer", "LoginCustomer", "Account")</li>
                             </ul>
                         </li>
                     }

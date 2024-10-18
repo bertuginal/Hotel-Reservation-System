@@ -1,4 +1,7 @@
-﻿
+﻿body {
+    background-color: #d9dadb;
+}
+
 h2 {
     text-align: center; /* Başlığı ortala */
     color: #333; /* Başlık rengi */
@@ -67,3 +70,9 @@ h6 {
     .btn:hover {
         background-color: #218838; /* Hover durumundaki buton rengi */
     }
+
+.address-textarea {
+    width: 100%; /* Tam genişlik */
+    max-width: 100%; /* Maksimum genişliği sınırla */
+    box-sizing: border-box; /* Kenarlık ve padding'i genişliğe dahil et */
+}

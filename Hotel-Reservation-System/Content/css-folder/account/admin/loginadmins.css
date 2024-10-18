@@ -1,4 +1,7 @@
-﻿
+﻿body {
+    background-color: #d9dadb;
+}
+
 .login-page {
     background-color: #ffffff;
     padding: 30px;

@@ -45,11 +45,16 @@ public class AdminController : Controller
     // POST: Admin/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Admin admin)
+    public ActionResult Create(Admin admin, string ConfirmPassword)
     {
         
         if (ModelState.IsValid)
         {
+            if (admin.Password != ConfirmPassword)
+            {
+                ViewBag.PasswordMismatch = "Passwords do not match!";
+                return View(admin);
+            }
             admin.CreatedDate = DateTime.Now;
             db.Admins.Add(admin);
             db.SaveChanges();
@@ -66,6 +71,15 @@ public class AdminController : Controller
         {
             return HttpNotFound();
         }
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
         return View(admin);
     }
 
@@ -81,8 +95,8 @@ public class AdminController : Controller
             {
                 existingAdmin.FirstName = admin.FirstName;
                 existingAdmin.LastName = admin.LastName;
-                existingAdmin.Email = admin.Email;
-                existingAdmin.Password = admin.Password;
+                existingAdmin.Email = existingAdmin.Email;
+                existingAdmin.Password = existingAdmin.Password;
                 existingAdmin.Phone = admin.Phone;
                 existingAdmin.CreatedDate = existingAdmin.CreatedDate;
                 existingAdmin.EditedDate = DateTime.Now;
@@ -110,6 +124,16 @@ public class AdminController : Controller
         {
             return HttpNotFound();
         }
+
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
         return View(admin);
     }
 
@@ -132,6 +156,15 @@ public class AdminController : Controller
         {
             return HttpNotFound();
         }
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
         return View(admin);
     }
 

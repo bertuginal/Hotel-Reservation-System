@@ -18,6 +18,21 @@ public class HotelController : Controller
         return View(hotels);
     }
 
+    public ActionResult List()
+    {
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+        var hotels = db.Hotels.ToList();
+        return View(hotels);
+    }
+
     // GET: Hotel/Create
     public ActionResult Create()
     {

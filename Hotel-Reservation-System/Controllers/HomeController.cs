@@ -13,6 +13,25 @@ namespace Hotel_Reservation_System.Controllers
 
         public ActionResult Index()
         {
+            bool isAdmin = false;
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+                if(isAdmin)
+                {
+                    ViewBag.IsAdmin = isAdmin;
+                }
+                else if (isCustomer)
+                {
+                    ViewBag.isCustomer = isCustomer;
+                }
+            }
+
+            
             var hotels = db.Hotels.ToList();
             return View(hotels);
         }

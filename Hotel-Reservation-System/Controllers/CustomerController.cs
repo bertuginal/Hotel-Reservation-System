@@ -75,11 +75,15 @@ namespace YourNamespace.Controllers
         // POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(Customer customer, string ConfirmPassword)
         {
             if (ModelState.IsValid)
             {
-                // Yeni müşteri kaydı ekle
+                if (customer.Password != ConfirmPassword)
+                {
+                    ViewBag.PasswordMismatch = "Passwords do not match!";
+                    return View(customer);
+                }
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -111,7 +115,6 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
-
             return View(customer);
         }
 
@@ -121,23 +124,26 @@ namespace YourNamespace.Controllers
         public ActionResult Edit(Customer customer)
         {
             if (ModelState.IsValid)
+        {
+            var existingCustomer = db.Customers.SingleOrDefault(a => a.Id == customer.Id);
+
+            if (existingCustomer != null)
             {
-                var existingCustomer = db.Customers.SingleOrDefault(c => c.Id == customer.Id);
-                if (existingCustomer != null)
-                {
                     existingCustomer.FirstName = customer.FirstName;
                     existingCustomer.LastName = customer.LastName;
-                    existingCustomer.Email = customer.Email;
-                    existingCustomer.Password = customer.Password;  // Şifre şifreleme gerektirebilir
+                    existingCustomer.Email = existingCustomer.Email;
+                    existingCustomer.Password = existingCustomer.Password;
+                    existingCustomer.Phone = customer.Phone;
                     existingCustomer.Address = customer.Address;
+                    existingCustomer.EditedDate = DateTime.Now;
 
-                    db.Entry(existingCustomer).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+                db.Entry(existingCustomer).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-
-            return View(customer);
+        }
+        return View(customer);
         }
 
         // GET: Customer/Delete/5

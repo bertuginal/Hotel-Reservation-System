@@ -12,7 +12,7 @@
 
 <div class="form-horizontal">
 
-    <h2>ROOMIFY NEW CUSTOMER CREATE PANEL</h2>
+    <h2>ROOMIFY CUSTOMER CREATE PANEL</h2>
     <h4>Please fill in the information below to add a new customer!</h4>
     <hr />
     <h6>* are required areas!</h6>
@@ -22,37 +22,45 @@
     <div class="form-group row">
         <div class="col-md-6">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Name" } })
             @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-6">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Surname" } })
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-6">
-            <b>E-mail*</b>
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Your E-mail" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-6">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Please put a '0' in front!" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group">
-        <b>Phone Number*</b>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        <div class="col-md-6">
+            @Html.Label("Confirm Password*", new { @class = "control-label" })
+            <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            @if (ViewBag.PasswordMismatch != null)
+            {
+                <span class="text-danger">@ViewBag.PasswordMismatch</span>
+            }
         </div>
     </div>
 
@@ -60,7 +68,7 @@
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-12">
             <!-- Tam genişlik için col-md-12 -->
-            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4 })
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4 , placeholder = "Your Full Address" })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+﻿﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
 
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/homepage/index.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
@@ -21,22 +21,22 @@
                     <strong>📍@Html.DisplayFor(modelItem => hotel.Location)</strong>
                     <strong>★@Html.DisplayFor(modelItem => hotel.Rating)</strong>
                 </p>
-                    <div class="hotel-info">
-                        <h2>@hotel.Name</h2>
-                        <p>@hotel.Title</p>
-                        <hr />
-                        <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
-                        <p><strong>Price Per Night:</strong> @hotel.PricePerNight ₺</p>
-                        @if (hotel.AvailableRooms > 0)
-                        {
-                            <a href="@Url.Action("Create", "Reservation", new { hotelId = hotel.Id })" class="btn-reserve">Reservation</a>
-                        }
-                        else
-                        {
-                            <span class="no-availability">No Available Rooms</span>
-                        }
-                        @Html.ActionLink("Details", "Details", "Hotel", new { id = hotel.Id }, new { @class = "btn btn-info" })
-                    </div>
+                <div class="hotel-info">
+                    <h2>@hotel.Name</h2>
+                    <p>@hotel.Title</p>
+                    <hr />
+                    <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
+                    <p><strong>Price Per Night:</strong> @hotel.PricePerNight ₺</p>
+                    @if (hotel.AvailableRooms > 0)
+                    {
+                        <a href="@Url.Action("Create", "Reservation", new { hotelId = hotel.Id })" class="btn-reserve">Reservation</a>
+                    }
+                    else
+                    {
+                        <span class="no-availability">No Available Rooms</span>
+                    }
+                    @Html.ActionLink("Details", "Details", "Hotel", new { id = hotel.Id }, new { @class = "btn btn-info" })
+                </div>
             </div>
         }
     </div>
