@@ -4,46 +4,97 @@
     ViewBag.Title = "Create Reservation";
 }
 
+<link href="~/Content/css-folder/reservation/create-reser.css" rel="stylesheet" type="text/css" />
+
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.HotelId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
+    <div class="reservation-header">
         <h2>RESERVATION PANEL</h2>
         <h4>Please fill in the required fields completely and accurately!</h4>
         <hr />
         <h6>* are required areas!</h6>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CheckInDate, new { @class = "control-label col-md-2" })
+    <div class="row">
+        <div class="form-group col-md-4">
+            <b>Check In Date*</b>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CheckOutDate, new { @class = "control-label col-md-2" })
+        <div class="form-group col-md-4">
+            <b>Check Out Date*</b>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfGuests, new { @class = "control-label col-md-2" })
+        <div class="form-group col-md-4">
+            <b>Number Of Guests*</b>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOfGuests, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NumberOfGuests, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Reserve" class="btn btn-primary" />
+    <h4 class="hotel-details-header">HOTEL DETAILS</h4>
+
+    @if (Model?.Hotel != null)
+    {
+        <div class="hotel-details">
+            <img src="@Url.Content(Model.Hotel.ImageUrl)" alt="@Model.Hotel.Name" class="hotel-image" />
+            <div class="hotel-info">
+                <div class="hotel-name-rating">
+                    <p class="hotel-name">
+                        <a href="@Url.Action("Details", "Hotel", new { id = Model.HotelId })">@Model.Hotel.Name</a>
+                    </p>
+                    <p class="hotel-rating">
+                        @for (var i = 0; i < Model.Hotel.Rating; i++)
+                        {
+                            <span>★</span>
+                        }
+                    </p>
+                </div>
+                <p class="hotel-title">@Model.Hotel.Title</p>
+                <p class="hotel-location"> 📍 @Model.Hotel.Location</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Available Rooms:</strong> @Model.Hotel.AvailableRooms</p>
+                    </div>
+                    <div class="col-md-6 price-info">
+                        <p> @Model.Hotel.PricePerNight ₺</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="subtitle-info">
+                        <p>
+                            Price for 1 night <br />
+                            Taxes and fees included.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
+    }
+    else
+    {
+        <p>Hotel details are not available.</p>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Reserve" class="btn btn-primary" />
+        </div>
     </div>
+</div>
 }

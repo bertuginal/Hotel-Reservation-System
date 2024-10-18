@@ -286,6 +286,7 @@
     <Content Include="Content\css-folder\hotel\index.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layout.css" />
+    <Content Include="Content\css-folder\reservation\create-reser.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -18,6 +18,18 @@ public class ReservationController : Controller
     // GET: Reservation/Create
     public ActionResult Create(int hotelId)
     {
+        var hotel = db.Hotels.Find(hotelId);
+
+        if (hotel == null)
+        {
+            return HttpNotFound();
+        }
+
+        var reservationModel = new Reservation
+        {
+            HotelId = hotel.Id,
+            Hotel = hotel
+        };
 
         if (Session["UserId"] == null)
         {
@@ -34,7 +46,7 @@ public class ReservationController : Controller
 
         ViewBag.CustomerId = customer.Id;
         ViewBag.HotelId = hotelId;
-        return View();
+        return View(reservationModel);
     }
 
     // POST: Reservation/Create
