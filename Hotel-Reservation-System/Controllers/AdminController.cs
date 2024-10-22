@@ -22,6 +22,17 @@ public class AdminController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
+
         var admins = db.Admins.ToList();
         return View(admins);
     }
@@ -38,6 +49,16 @@ public class AdminController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
 
         return View();
     }
@@ -77,6 +98,15 @@ public class AdminController : Controller
         {
             var userId = (int)Session["UserId"];
             isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            if (admin != null)
+            {
+                ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+            }
         }
 
         ViewBag.IsAdmin = isAdmin;
@@ -134,6 +164,16 @@ public class AdminController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
         return View(admin);
     }
 
@@ -165,6 +205,16 @@ public class AdminController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
         return View(admin);
     }
 

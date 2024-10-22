@@ -46,6 +46,20 @@ public class ReservationController : Controller
 
         ViewBag.CustomerId = customer.Id;
         ViewBag.HotelId = hotelId;
+
+        if (Session["UserId"] != null)
+        {
+            var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+            if (admin != null)
+            {
+                ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+            }
+            if (customerId != null)
+            {
+                ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+            }
+        }
         return View(reservationModel);
     }
 

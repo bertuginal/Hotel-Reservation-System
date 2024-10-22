@@ -26,6 +26,7 @@
                     {
                         if (ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin)
                         {
+                            <li>@Html.ActionLink("HOTELS", "Index", "Hotel")</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" onclick="toggleDropdown('listsDropdown')">LISTS</a>
                                 <ul id="adminDropdown" class="dropdown-menu" style="display: none;">
@@ -42,12 +43,22 @@
                                     <li>@Html.ActionLink("Hotel", "Create", "Hotel")</li>
                                 </ul>
                             </li>
-                            <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown('accountDropdown')">@ViewBag.AdminName</a>
+                                <ul id="accountDropdown" class="dropdown-menu" style="display: none;">
+                                    <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
+                                </ul>
+                            </li>
                         }
                         else
                         {
                             <li>@Html.ActionLink("HOTELS", "Index", "Hotel")</li>
-                            <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown('accountDropdown')">@ViewBag.CustomerName</a>
+                                <ul id="accountDropdown" class="dropdown-menu" style="display: none;">
+                                    <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
+                                </ul>
+                            </li>
                         }
                     }
                     else

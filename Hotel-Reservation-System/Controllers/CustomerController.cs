@@ -26,6 +26,17 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
+
             var customers = db.Customers.ToList();
             return View(customers);
         }
@@ -54,6 +65,17 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
+
             return View(customer);
         }
 
@@ -69,6 +91,16 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
             return View();
         }
 
@@ -115,6 +147,17 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
+
             return View(customer);
         }
 
@@ -169,6 +212,16 @@ namespace YourNamespace.Controllers
             }
 
             ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
 
             return View(customer);
         }

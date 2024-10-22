@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/homepage/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home/index.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
@@ -16,28 +16,53 @@
         @foreach (var hotel in Model)
         {
             <div class="hotel-card">
-                <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
-                <p class="location-rating">
-                    <strong>📍@Html.DisplayFor(modelItem => hotel.Location)</strong>
-                    <strong>★@Html.DisplayFor(modelItem => hotel.Rating)</strong>
-                </p>
+                <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
+                    <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
+                    </a>
                 <div class="hotel-info">
-                    <h2>@hotel.Name</h2>
-                    <p>@hotel.Title</p>
+                    <div class="name-rating">
+                        <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
+                        <p>
+                            @for (var i = 0; i < hotel.Rating; i++)
+                            {
+                                <span>★</span>
+                            }
+                        </p>
+                    </div>
+                    <div class="title-area">
+                        <p>@hotel.Title</p>
+                    </div>
+                    <div class="location-area">
+                        <p>📍@Html.DisplayFor(modelItem => hotel.Location)</p>
+                    </div>
                     <hr />
+
                     <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
-                    <p><strong>Price Per Night:</strong> @hotel.PricePerNight ₺</p>
-                    @if (hotel.AvailableRooms > 0)
-                    {
-                        <a href="@Url.Action("Create", "Reservation", new { hotelId = hotel.Id })" class="btn-reserve">Reservation</a>
-                    }
-                    else
-                    {
-                        <span class="no-availability">No Available Rooms</span>
-                    }
-                    @Html.ActionLink("Details", "Details", "Hotel", new { id = hotel.Id }, new { @class = "btn btn-info" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            @if (hotel.AvailableRooms > 0)
+                            {
+                                <a href="@Url.Action("Create", "Reservation", new { hotelId = hotel.Id })" class="btn-reserve">Reservation</a>
+                            }
+                            else
+                            {
+                                <span class="no-availability">No Available Rooms</span>
+                            }
+                        </div>
+                        <div class="col-md-6 price-info">
+                            <p> @hotel.PricePerNight ₺</p>
+                            <div class="text-right">
+                                <div class="subtitle-info">
+                                    <p>
+                                        Price for 1 night <br />
+                                        Taxes and fees included.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+</div>
         }
     </div>
 </div>

@@ -14,6 +14,40 @@ public class HotelController : Controller
     // GET: Hotel
     public ActionResult Index()
     {
+        bool isAdmin = false;
+        bool isCustomer = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+            isCustomer = db.Customers.Any(a => a.Id == userId);
+            if (isAdmin)
+            {
+                ViewBag.IsAdmin = isAdmin;
+            }
+            else if (isCustomer)
+            {
+                ViewBag.isCustomer = isCustomer;
+            }
+        }
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+            if (admin != null)
+            {
+                ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+            }
+            if (customerId != null)
+            {
+                ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+            }
+        }
+
         var hotels = db.Hotels.ToList();
         return View(hotels);
     }
@@ -29,6 +63,17 @@ public class HotelController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
+
         var hotels = db.Hotels.ToList();
         return View(hotels);
     }
@@ -45,6 +90,16 @@ public class HotelController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
         return View();
     }
 
@@ -113,6 +168,31 @@ public class HotelController : Controller
         if (hotel == null)
         {
             return HttpNotFound();
+        }
+
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+            if (customerId != null)
+            {
+                ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+            }
         }
 
         return View(hotel);

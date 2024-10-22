@@ -1,4 +1,5 @@
 ﻿using Hotel_Reservation_System.DAL;
+using Hotel_Reservation_System.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Hotel_Reservation_System.Controllers
             if (Session["UserId"] != null)
             {
                 var userId = (int)Session["UserId"];
+
                 isAdmin = db.Admins.Any(a => a.Id == userId);
                 isCustomer = db.Customers.Any(a => a.Id == userId);
                 if(isAdmin)
@@ -28,6 +30,21 @@ namespace Hotel_Reservation_System.Controllers
                 else if (isCustomer)
                 {
                     ViewBag.isCustomer = isCustomer;
+                }
+            }
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+                var customer = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (admin != null)
+                {
+                    ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                }
+                if(customer != null)
+                {
+                    ViewBag.CustomerName = customer.FirstName + " " + customer.LastName;
                 }
             }
 

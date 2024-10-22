@@ -1,0 +1,234 @@
+﻿/* Genel sayfa düzeni */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.homepage-container {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 1200px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+hr {
+    width: 60px;
+    height: 4px;
+    background-color: #17a2b8;
+    border: none;
+    margin: 20px auto;
+}
+
+/* Otel kartları düzeni */
+.hotel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Otel kartı tasarımı (Yatay düzen) */
+.hotel-card {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    margin : 10px;
+}
+
+    .hotel-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+/* Resim düzeni */
+.hotel-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 20px;
+}
+
+/* Otel bilgisi */
+.hotel-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+    .hotel-info h2 {
+        font-size: 24px;
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .hotel-info p {
+        font-size: 16px;
+        color: #666;
+        margin: 8px 0;
+    }
+
+    .hotel-info hr {
+        width: 100%;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+    }
+
+/* Konum ve derecelendirme */
+.location-area p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #32459c;
+    margin-top: 8px;
+}
+
+/* Fiyat bilgisi ve müsaitlik */
+.price-info {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.no-availability {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Buton tasarımı */
+.btn-reserve {
+    background-color: #28a745;
+    color: white;
+    padding: 9px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+    .btn-reserve:hover {
+        background-color: #218838;
+        color: white;
+    }
+
+.btn.btn-info {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+    .btn.btn-info:hover {
+        background-color: #138496;
+        color: white;
+    }
+
+/* Duyarlı (Responsive) tasarım */
+@media (max-width: 768px) {
+    .hotel-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+
+    .hotel-info {
+        text-align: center;
+    }
+
+    .location-area {
+        justify-content: center;
+    }
+}
+.name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hotel-info p {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+.name-rating h2 a {
+    font-family: 'Lora', serif;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-size: 28px;
+    text-decoration: none;
+}
+
+.name-rating p {
+    margin: 0;
+    font-size: 22px;
+    color: #FFD700;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+}
+
+.price-info {
+    text-align: right;
+}
+
+    .price-info p {
+        text-align: right;
+        font-size: 22px;
+        font-weight: 600;
+        color: #d9534f;
+        margin-bottom: -3px;
+    }
+
+    .text-right {
+        text-align:right;
+    }
+
+.subtitle-info p {
+    margin-top: 1px;
+    color: #595959;
+    font-size: 11px;
+}
+
+.hotel-info .title-area p {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+}
+
