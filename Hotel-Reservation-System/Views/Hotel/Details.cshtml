@@ -4,53 +4,70 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-h.css" rel="stylesheet" type="text/css" />
 
-
-<div class="hotel-details">
-    <div class="hotel-image">
-        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" />
+<div class="hotel-details-container">
+    <div class="hotel-image-container">
+        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="hotel-image" />
     </div>
+    <div class="maximum-image">
+        <p>
+            Don't miss out on special offers from
+            <img src="~/Content/images/maximum.svg" alt="maximum" class="image-style">!
+        </p>
+    </div>
+    <hr />
     <div class="hotel-info">
-        <dl class="row">
-            <dt class="col-sm-2">Hotel :</dt>
-            <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="hotel-name">
+                    @Html.DisplayFor(model => model.Name)
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="hotel-rating">
+                    @for (var i = 0; i < Model.Rating; i++)
+                    {
+                        <span>★</span>
+                    }
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <p class="hotel-title">
+                    @Html.DisplayFor(model => model.Title)
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="hotel-available-rooms">
+                        @Html.DisplayFor(model => model.AvailableRooms)+ Rooms
+                </p>
+            </div>
+        </div>
 
-            <dt class="col-sm-2">Title :</dt>
-            <dd class="col-sm-10">@Html.DisplayFor(model => model.Title)</dd>
+        <div class="hotel-location">
+            <p>📍@Html.DisplayFor(model => model.Location)</p>
+        </div>
 
-            <dt class="col-sm-2">Features :</dt>
-            <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+        <div class="hotel-description">
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        </div>
 
-            <dt class="col-sm-2">Location :</dt>
-            <dd class="col-sm-10">📍@Html.DisplayFor(model => model.Location)</dd>
+        <div class="hotel-price">
+            <strong>Price Per Night: </strong>@Html.DisplayFor(model => model.PricePerNight) ₺
+        </div>
 
-            <dt class="col-sm-2">Rating :</dt>
-            <dd class="col-sm-10">
-                @for (var i = 0; i < Model.Rating; i++)
-                {
-                    <span>★</span>
-                }
-            </dd>
-
-            <dt class="col-sm-2">Available Rooms :</dt>
-            <dd class="col-sm-10">@Html.DisplayFor(model => model.AvailableRooms)</dd>
-
-            <dt class="col-sm-2">Price Per Night :</dt>
-            <dd class="col-sm-10">@Html.DisplayFor(model => model.PricePerNight) ₺</dd>
-        </dl>
-    </div>
-    <div class="hotel-actions">
-        @if (Model.AvailableRooms > 0)
-        {
-            @Html.ActionLink("Make a Reservation", "Create", "Reservation", new { hotelId = Model.Id }, new { @class = "btn btn-primary" })
-        }
-        else
-        {
-            <span>No Available Rooms</span>
-        }
+        <div class="hotel-actions">
+            @if (Model.AvailableRooms > 0)
+            {
+                @Html.ActionLink("Make a Reservation", "Create", "Reservation", new { hotelId = Model.Id }, new { @class = "btn btn-primary" })
+            }
+            else
+            {
+                <span class="no-availability">No Available Rooms</span>
+            }
+        </div>
     </div>
 </div>
-
-
-
