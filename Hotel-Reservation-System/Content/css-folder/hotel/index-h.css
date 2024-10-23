@@ -2,7 +2,7 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Kartları ortalar */
+    justify-content: center;
     padding: 20px;
 }
 
@@ -15,6 +15,7 @@
     transition: transform 0.3s, box-shadow 0.3s; 
     width: 350px; 
     overflow: hidden;
+
 }
 
    
@@ -36,25 +37,56 @@
 }
 
 
-.card-title {
+.card-title a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
-    font-size: 1.5em; 
-    margin: 0.5em 0; 
+    font-size: 25px;
+    margin: 0.5em 0;
     color: #34495e;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card-body h5 {
+    text-align: center;
 }
 
 
 .card-subtitle {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
     font-size: 1em;
     color: #7f8c8d;
+    font-weight: 500;
 }
 
 
-.card-text {
+
+.card-text .available-rooms-area {
     font-size: 0.9em; 
     color: #555;
     margin: 0.5em 0;
+}
+
+.card-text .price-per-night-area {
+    font-size: 18px;
+    text-align: right;
+    font-weight: 600;
+    color: #d9534f;
+}
+
+.card-text .price-per-night-area del {
+    font-size: 14px;
+    text-align: right;
+    font-weight: 600;
+    color: #d9534f;
+}
+
+.subtitle-info p {
+    text-align: right;
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: -15px;
 }
 
 
@@ -96,7 +128,7 @@
 
 .btn {
     border-radius: 5px; /* Buton köşe yuvarlama */
-    padding: 6px 10px; /* Buton içi boşluk */
+    padding: 6px 123px; /* Buton içi boşluk */
     font-size: 0.85em; /* Buton yazı boyutu */
     text-decoration: none; /* Alt çizgi kaldırma */
     transition: background-color 0.3s; /* Hover animasyonu */
@@ -106,6 +138,7 @@
 .btn-primary {
     background-color: #3498db; /* Mavi arka plan */
     color: white; /* Beyaz yazı */
+    border-color: #3498db;
 }
 
 .btn-warning {
@@ -133,6 +166,17 @@
     justify-content: space-between; /* Öğeleri uçlara yerleştir */
     align-items: center; /* Dikey ortalama */
 }
+
+.location-rating .rating-area {
+    font-size: 20px;
+    color: goldenrod;
+}
+
+    .location-rating .location-area {
+        font-size: 14px;
+        font-weight: 500;
+        color: #357CDC;
+    }
 
 .rating {
     margin-left: auto; /* Sağ tarafta yerleştirme */

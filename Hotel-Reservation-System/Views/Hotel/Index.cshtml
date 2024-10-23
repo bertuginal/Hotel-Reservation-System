@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Hotels";
 }
-<link href="~/Content/css-folder/hotel/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/index-h.css" rel="stylesheet" type="text/css" />
 
 
 <div class="page-header">
@@ -15,19 +15,41 @@
     @foreach (var item in Model)
     {
         <div class="card">
-            <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
+            <a href="@Url.Action("Details", "Hotel", new { id = item.Id })">
+                <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
+            </a>
             <div class="card-body">
-                <p class="location-rating">
-                    <strong>📍@Html.DisplayFor(modelItem => item.Location)</strong>
-                    <strong>★@Html.DisplayFor(modelItem => item.Rating)</strong>
-                </p>
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                <div class="location-rating">
+                    @{
+                        var locationParts = item.Location.Split(',');
+
+                        string city = "Unknown City";
+                        if (locationParts.Length >= 4)
+                        {
+                            city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                        }
+                    }
+                    <p class="location-area">📍@city</p>
+                    <p class="rating-area">
+                        @for (var i = 0; i < item.Rating; i++)
+                        {
+                            <span>★</span>
+                        }
+                    </p>
+                </div>
+                <h5 class="card-title"><a href="@Url.Action("Details", "Hotel", new { id = item.Id })">@item.Name</a></h5>
                 <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Title)</h6>
                 <hr />
-                <p class="card-text">
-                    <strong>Available Rooms:</strong> @Html.DisplayFor(modelItem => item.AvailableRooms) <br />
-                    <strong>Price Per Night:</strong> @Html.DisplayFor(modelItem => item.PricePerNight) ₺
-                </p>
+                <div class="card-text">
+                    <p class="available-rooms-area">Available Rooms: @Html.DisplayFor(modelItem => item.AvailableRooms) </p>
+                    <p class="price-per-night-area"><del>@(item.PricePerNight + 100) ₺</del> @Html.DisplayFor(modelItem => item.PricePerNight) ₺</p>
+                        <div class="subtitle-info">
+                            <p>
+                                Price for 1 night <br />
+                                Taxes and fees included.
+                            </p>
+                        </div>
+                </div>
                 <div class="card-actions">
                     <div class="button-group">
                         @if (item.AvailableRooms > 0)
@@ -38,7 +60,6 @@
                         {
                             <span class="text-danger">No Available Rooms!</span>
                         }
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
                     </div>
                 </div>
             </div>

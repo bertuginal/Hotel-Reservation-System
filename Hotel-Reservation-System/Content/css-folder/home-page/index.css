@@ -102,14 +102,6 @@ hr {
     margin-top: 8px;
 }
 
-/* Fiyat bilgisi ve müsaitlik */
-.price-info {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 10px;
-}
-
 .no-availability {
     color: red;
     font-weight: bold;
@@ -215,6 +207,15 @@ hr {
         font-weight: 600;
         color: #d9534f;
         margin-bottom: -3px;
+    }
+
+    .price-info del {
+        text-align: right;
+        font-size: 16px;
+        font-weight: 600;
+        color: #d9534f;
+        margin-bottom: -3px;
+        margin-right: 5px;
     }
 
     .text-right {

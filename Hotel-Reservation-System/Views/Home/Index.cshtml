@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
@@ -33,7 +33,16 @@
                         <p>@hotel.Title</p>
                     </div>
                     <div class="location-area">
-                        <p>📍@Html.DisplayFor(modelItem => hotel.Location)</p>
+                        @{
+                            var locationParts = hotel.Location.Split(',');
+
+                            string city = "Unknown City";
+                            if (locationParts.Length >= 4)
+                            {
+                                city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                            }
+                        }
+                        <p>📍@city</p>
                     </div>
                     <hr />
 
@@ -50,7 +59,7 @@
                             }
                         </div>
                         <div class="col-md-6 price-info">
-                            <p> @hotel.PricePerNight ₺</p>
+                            <p> <del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
                             <div class="text-right">
                                 <div class="subtitle-info">
                                     <p>
