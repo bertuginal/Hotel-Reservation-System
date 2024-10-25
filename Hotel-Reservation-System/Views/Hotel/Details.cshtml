@@ -4,7 +4,7 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-ho.css" rel="stylesheet" type="text/css" />
 
 <div class="hotel-details-container">
     <div class="hotel-image-container">
@@ -33,7 +33,7 @@
                 </p>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6">
                 <p class="hotel-title">
@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-6">
                 <p class="hotel-available-rooms">
-                        @Html.DisplayFor(model => model.AvailableRooms)+ Rooms
+                    @Html.DisplayFor(model => model.AvailableRooms) Rooms
                 </p>
             </div>
         </div>
@@ -54,20 +54,39 @@
         <div class="hotel-description">
             <p>@Html.DisplayFor(model => model.Description)</p>
         </div>
+    </div>
+</div>
 
-        <div class="hotel-price">
-            <strong>Price Per Night: </strong>@Html.DisplayFor(model => model.PricePerNight) ₺
-        </div>
+<hr />
 
-        <div class="hotel-actions">
-            @if (Model.AvailableRooms > 0)
-            {
-                @Html.ActionLink("Make a Reservation", "Create", "Reservation", new { hotelId = Model.Id }, new { @class = "btn btn-primary" })
-            }
-            else
-            {
-                <span class="no-availability">No Available Rooms</span>
-            }
-        </div>
+<div class="room-details-container">
+    <h3>Available Rooms</h3>
+    <div class="row">
+        @foreach (var room in Model.Rooms)
+        {
+            <div class="col-md-4">
+                <div class="card room-card">
+                    <img src="@Url.Content(room.ImageUrl)" alt="@room.Name" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">@room.Name</h5>
+                        <p class="card-type">@room.Type</p>
+                        <p class="card-capacity">✔ Room for @room.Capacity people</p>
+                        <p class="price-info">@room.PricePerNight ₺</p>
+                        <p class="subtitle-info">
+                            Price for 1 night <br />
+                            Taxes and fees included.
+                        </p>
+                        @if (room.Hotel.AvailableRooms > 0)
+                        {
+                            @Html.ActionLink("Reserve Room", "Create", "Reservation", new { roomId = room.Id }, new { @class = "btn btn-primary" })
+                        }
+                        else
+                        {
+                            <span class="no-availability">No Available</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>

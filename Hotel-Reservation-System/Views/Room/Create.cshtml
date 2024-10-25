@@ -1,0 +1,80 @@
+﻿@model Hotel_Reservation_System.Models.Room
+
+@{
+    ViewBag.Title = "Create Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css-folder/room/create-roo.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card room-card">
+        <div class="card-header">
+            <p class="room-title">ROOM CREATE PANEL</p>
+            <p class="room-info">Please fill in the required fields completely and accurately!</p>
+        </div>
+        <div class="card-body">
+            <p class="room-danger">* are required areas!</p>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Room's Name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Hotel The Room Belongs To*", htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownList("HotelId", null, "Select a Hotel ▼", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HotelId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.Type, (SelectList)ViewBag.RoomTypes, "Select Room Type ▼", new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", placeholder = "Customer Capacity" } })
+                    @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "form-label" })
+                    <input type="file" name="roomImage" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.PricePerNight, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control", placeholder = "₺" } })
+                    @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 4, placeholder = "Features..." })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            @Html.ActionLink("Room List", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

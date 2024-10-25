@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,12 +241,25 @@
     <Compile Include="Migrations\202410161329453_HotelModelEdited1.Designer.cs">
       <DependentUpon>202410161329453_HotelModelEdited1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410241433294_RoomModelDeleted.cs" />
+    <Compile Include="Migrations\202410241433294_RoomModelDeleted.Designer.cs">
+      <DependentUpon>202410241433294_RoomModelDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410242009401_RoomModelAdded.cs" />
+    <Compile Include="Migrations\202410242009401_RoomModelAdded.Designer.cs">
+      <DependentUpon>202410242009401_RoomModelAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410242041378_ImageAddedToRoom.cs" />
+    <Compile Include="Migrations\202410242041378_ImageAddedToRoom.Designer.cs">
+      <DependentUpon>202410242041378_ImageAddedToRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\ReservationStatus.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -282,11 +296,13 @@
     <Content Include="Content\css-folder\account\customer\registercustomer.css" />
     <Content Include="Content\css-folder\home-page\index.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
-    <Content Include="Content\css-folder\hotel\details-h.css" />
+    <Content Include="Content\css-folder\hotel\details-ho.css" />
     <Content Include="Content\css-folder\hotel\index-h.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layout.css" />
     <Content Include="Content\css-folder\reservation\create-reser.css" />
+    <Content Include="Content\css-folder\room\create-roo.css" />
+    <Content Include="Content\css-folder\room\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -338,10 +354,12 @@
     <Content Include="Views\Hotel\Create.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
     <Content Include="Views\Hotel\List.cshtml" />
+    <Content Include="Views\Room\Create.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
+    <Folder Include="Content\images\room-images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -397,6 +415,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410161329453_HotelModelEdited1.resx">
       <DependentUpon>202410161329453_HotelModelEdited1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241433294_RoomModelDeleted.resx">
+      <DependentUpon>202410241433294_RoomModelDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410242009401_RoomModelAdded.resx">
+      <DependentUpon>202410242009401_RoomModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410242041378_ImageAddedToRoom.resx">
+      <DependentUpon>202410242041378_ImageAddedToRoom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

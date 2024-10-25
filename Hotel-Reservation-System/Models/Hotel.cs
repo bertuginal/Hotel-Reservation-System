@@ -50,6 +50,8 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Price Per Night*")]
         public decimal PricePerNight { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+
 
     }
 }
