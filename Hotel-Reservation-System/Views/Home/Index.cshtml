@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-h.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
@@ -49,14 +49,7 @@
                     <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
                     <div class="row">
                         <div class="col-md-6">
-                            @if (hotel.AvailableRooms > 0)
-                            {
-                                <a href="@Url.Action("Create", "Reservation", new { hotelId = hotel.Id })" class="btn-reserve">Reservation</a>
-                            }
-                            else
-                            {
-                                <span class="no-availability">No Available Rooms</span>
-                            }
+                        
                         </div>
                         <div class="col-md-6 price-info">
                             <p> <del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>

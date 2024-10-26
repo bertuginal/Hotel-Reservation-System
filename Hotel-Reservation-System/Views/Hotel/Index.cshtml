@@ -54,7 +54,7 @@
                     <div class="button-group">
                         @if (item.AvailableRooms > 0)
                         {
-                            @Html.ActionLink("Reservation", "Create", "Reservation", new { hotelId = item.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Reservation", "Details", "Hotel", new { id = item.Id }, new { @class = "btn btn-primary" })
                         }
                         else
                         {

@@ -294,7 +294,7 @@
     <Content Include="Content\css-folder\account\customer\index-c.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer.css" />
-    <Content Include="Content\css-folder\home-page\index.css" />
+    <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\details-hote.css" />
     <Content Include="Content\css-folder\hotel\index-h.css" />
@@ -302,7 +302,9 @@
     <Content Include="Content\css-folder\layout\layout.css" />
     <Content Include="Content\css-folder\reservation\create-reser.css" />
     <Content Include="Content\css-folder\room\create-roo.css" />
+    <Content Include="Content\css-folder\room\delete-r.css" />
     <Content Include="Content\css-folder\room\details.css" />
+    <Content Include="Content\css-folder\room\edit-h.css" />
     <Content Include="Content\css-folder\room\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -358,6 +360,8 @@
     <Content Include="Views\Room\Create.cshtml" />
     <Content Include="Views\Room\Index.cshtml" />
     <Content Include="Views\Room\Details.cshtml" />
+    <Content Include="Views\Room\Delete.cshtml" />
+    <Content Include="Views\Room\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

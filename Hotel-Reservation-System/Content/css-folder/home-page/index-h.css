@@ -62,7 +62,7 @@ hr {
 
 /* Resim düzeni */
 .hotel-image {
-    width: 250px;
+    width: 330px;
     height: 250px;
     object-fit: cover;
     border-radius: 12px;
@@ -97,7 +97,7 @@ hr {
 .location-area p {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: #32459c;
     margin-top: 8px;
 }

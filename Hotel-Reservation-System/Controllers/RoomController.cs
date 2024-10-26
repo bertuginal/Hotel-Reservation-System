@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
@@ -66,6 +67,39 @@ namespace Hotel_Reservation_System.Controllers
         // GET: Room/Details/5
         public ActionResult Details(int? id)
         {
+            bool isAdmin = false;
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+                if (isAdmin)
+                {
+                    ViewBag.IsAdmin = isAdmin;
+                }
+                else if (isCustomer)
+                {
+                    ViewBag.isCustomer = isCustomer;
+                }
+            }
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+                var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (admin != null)
+                {
+                    ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                }
+                if (customerId != null)
+                {
+                    ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                }
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -144,50 +178,109 @@ namespace Hotel_Reservation_System.Controllers
         }
 
         // GET: Room/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+    public ActionResult Edit(int id)
+    {
+        var room = db.Rooms.Find(id);
+            bool isAdmin = false;
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var userId = (int)Session["UserId"];
+
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+                if (isAdmin)
+                {
+                    ViewBag.IsAdmin = isAdmin;
+                }
+                else if (isCustomer)
+                {
+                    ViewBag.isCustomer = isCustomer;
+                }
             }
 
-            Room room = db.Rooms.Find(id);
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+                var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (admin != null)
+                {
+                    ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                }
+                if (customerId != null)
+                {
+                    ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                }
+            }
 
             if (room == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name", room.HotelId);
-            return View(room);
+        {
+            return HttpNotFound();
         }
+
+        ViewBag.Hotels = new SelectList(db.Hotels, "Id", "Name", room.HotelId);
+        return View(room);
+    }
 
         // POST: Room/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Room room)
+        public ActionResult Edit(Room model, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(room).State = EntityState.Modified; // Oda güncelleniyor
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Veritabanından mevcut odayı alın
+                var existingRoom = db.Rooms.Find(model.Id);
+                if (existingRoom != null)
+                {
+                    // Güncellenmesi gereken alanları kopyalayın
+                    existingRoom.Name = model.Name;
+                    existingRoom.Type = model.Type;
+                    existingRoom.HotelId = model.HotelId;
+                    existingRoom.Capacity = model.Capacity;
+                    existingRoom.PricePerNight = model.PricePerNight;
+                    existingRoom.Description = model.Description;
+
+                    // Resim dosyası kontrolü
+                    if (ImageFile != null && ImageFile.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(ImageFile.FileName);
+                        var directoryPath = Server.MapPath("~/Content/room-images");
+
+                        // Dizin yoksa oluştur
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+
+                        var path = Path.Combine(directoryPath, fileName);
+                        ImageFile.SaveAs(path);
+                        existingRoom.ImageUrl = "~/Content/room-images/" + fileName; // URL'yi güncelle
+                    }
+
+                    db.SaveChanges(); // Değişiklikleri kaydedin
+                    return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name", room.HotelId); // Hatalı olursa listeyi doldur
-            return View(room);
+            // Eğer model geçersizse veya odayı bulamazsanız
+            ViewBag.Hotels = new SelectList(db.Hotels, "Id", "Name", model.HotelId);
+            return View(model);
         }
+
 
         // GET: Room/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            Room room = db.Rooms.Include(r => r.Hotel).FirstOrDefault(r => r.Id == id);
-
+            // Include the Hotel navigation property to show hotel name in the confirmation view
+            var room = db.Rooms.Include(r => r.Hotel).FirstOrDefault(r => r.Id == id);
             if (room == null)
             {
                 return HttpNotFound();
@@ -201,9 +294,14 @@ namespace Hotel_Reservation_System.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Room room = db.Rooms.Find(id);
-            db.Rooms.Remove(room);
-            db.SaveChanges();
+            var room = db.Rooms.Find(id);
+            if (room != null)
+            {
+                db.Rooms.Remove(room);
+                db.SaveChanges();
+            }
+
+            // Redirect back to the Index page after deletion
             return RedirectToAction("Index");
         }
 

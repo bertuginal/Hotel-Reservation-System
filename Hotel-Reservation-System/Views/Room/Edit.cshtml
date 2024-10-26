@@ -1,0 +1,83 @@
+﻿@model Hotel_Reservation_System.Models.Room
+
+@{
+    ViewBag.Title = "Edit Room";
+}
+
+<link href="~/Content/css-folder/room/edit-h.css" rel="stylesheet" type="text/css" />
+
+<div class="room-edit-container">
+    <div class="text-center">
+        <h2 class="page-title">ROOM EDIT</h2>
+        <h4 class="sub-title">You can update the information of the customer named!</h4>
+        <hr />
+    </div>
+    @using (Html.BeginForm("Edit", "Room", FormMethod.Post, new { @class = "form-horizontal", @role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Name</label>
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Hotel Name</label>
+                    @Html.DropDownList("HotelId", (SelectList)ViewBag.Hotels, "Select a Hotel", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.HotelId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Type</label>
+                    @Html.DropDownListFor(model => model.Type, new SelectList(new List<string> { "Standard Room", "Family Room", "Suite Room" }, Model.Type), "Select Room Type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Capacity</label>
+                    @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control", type = "number", placeholder = "Enter room capacity" })
+                    @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Upload Image</label>
+                    <input type="file" name="ImageFile" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Price Per Night</label>
+                    @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">Description</label>
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Enter room description", rows = 4 })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group form-actions">
+                <input type="submit" value="Save Changes" class="btn btn-secondary" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>
+
+
+
