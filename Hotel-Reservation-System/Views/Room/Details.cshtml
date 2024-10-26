@@ -1,0 +1,63 @@
+﻿@model Hotel_Reservation_System.Models.Room
+
+@{
+    ViewBag.Title = "Room Details";
+}
+
+<link href="~/Content/css-folder/room/details.css" rel="stylesheet" type="text/css" />
+
+<div class="room-details-container">
+    <div class="room-image-container">
+        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="room-image" />
+    </div>
+
+    <div class="room-info">
+        <div class="row name-type">
+            <div class="col-md-6">
+                <h1 class="room-name">@Html.DisplayFor(model => model.Name)</h1>
+            </div>
+            <div class="col-md-6">
+                <p class="room-type">@Html.DisplayFor(model => model.Type)</p>
+            </div>
+        </div>
+        <div class="row hotel-name-capacity">
+            <div class=" col-md-6">
+                <p class="hotel-name">@Html.DisplayFor(model => model.Hotel.Name)</p>
+            </div>
+            <div class=" col-md-6">
+                <p class="room-capacity">Max. @Html.DisplayFor(model => model.Capacity) Guests</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <p class="room-description">@Html.DisplayFor(model => model.Description)</p>
+
+        <div class="room-detail">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="room-price">@Html.DisplayFor(model => model.PricePerNight) ₺</p>
+                    <p class="taxes-info">
+                        Price for 1 night <br />
+                        Taxes and fees included.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="room-actions">
+                        @if (Model.Hotel.AvailableRooms > 0)
+                        {
+                            @Html.ActionLink("Book Now", "Create", "Reservation", new { roomId = Model.Id }, new { @class = "btn btn-primary" })
+                        }
+                        else
+                        {
+                            <span class="no-availability">This room is currently unavailable!</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="subtitle-text">Features marked with * are paid.</p>
+
+    </div>
+</div>
