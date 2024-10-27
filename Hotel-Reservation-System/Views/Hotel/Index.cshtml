@@ -28,6 +28,10 @@
                         {
                             city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
                         }
+                        else if(locationParts.Length < 4)
+                        {
+                            city = locationParts[locationParts.Length - 1].Trim();
+                        }
                     }
                     <p class="location-area">📍@city</p>
                     <p class="rating-area">

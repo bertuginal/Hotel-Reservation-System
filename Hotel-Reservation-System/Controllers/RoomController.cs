@@ -231,11 +231,9 @@ namespace Hotel_Reservation_System.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Veritabanından mevcut odayı alın
                 var existingRoom = db.Rooms.Find(model.Id);
                 if (existingRoom != null)
                 {
-                    // Güncellenmesi gereken alanları kopyalayın
                     existingRoom.Name = model.Name;
                     existingRoom.Type = model.Type;
                     existingRoom.HotelId = model.HotelId;
@@ -243,7 +241,6 @@ namespace Hotel_Reservation_System.Controllers
                     existingRoom.PricePerNight = model.PricePerNight;
                     existingRoom.Description = model.Description;
 
-                    // Resim dosyası kontrolü
                     if (ImageFile != null && ImageFile.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(ImageFile.FileName);
@@ -265,7 +262,6 @@ namespace Hotel_Reservation_System.Controllers
                 }
             }
 
-            // Eğer model geçersizse veya odayı bulamazsanız
             ViewBag.Hotels = new SelectList(db.Hotels, "Id", "Name", model.HotelId);
             return View(model);
         }
@@ -274,12 +270,31 @@ namespace Hotel_Reservation_System.Controllers
         // GET: Room/Delete/5
         public ActionResult Delete(int? id)
         {
+            bool isAdmin = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsAdmin = isAdmin;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+                if (adminId != null)
+                {
+                    ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                }
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            // Include the Hotel navigation property to show hotel name in the confirmation view
             var room = db.Rooms.Include(r => r.Hotel).FirstOrDefault(r => r.Id == id);
             if (room == null)
             {

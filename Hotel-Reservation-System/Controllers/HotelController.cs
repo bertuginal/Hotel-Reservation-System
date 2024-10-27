@@ -1,15 +1,23 @@
 ﻿using Hotel_Reservation_System.DAL;
 using Hotel_Reservation_System.Models;
+using System;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 public class HotelController : Controller
 {
     private ApplicationDbContext db = new ApplicationDbContext();
+
+    public HotelController()
+    {
+        db = new ApplicationDbContext();
+    }
 
     // GET: Hotel
     public ActionResult Index()
@@ -127,13 +135,9 @@ public class HotelController : Controller
     }
 
     // GET: Hotel/Edit/5
-    public ActionResult Edit(int? id)
+    public ActionResult Edit(int id)
     {
-        if (id == null)
-        {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        }
-        Hotel hotel = db.Hotels.Find(id);
+        var hotel = db.Hotels.Find(id);
         if (hotel == null)
         {
             return HttpNotFound();
@@ -144,16 +148,61 @@ public class HotelController : Controller
     // POST: Hotel/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(Hotel hotel)
+    public ActionResult Edit(Hotel hotel, HttpPostedFileBase ImageUrl)
     {
         if (ModelState.IsValid)
         {
-            db.Entry(hotel).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ImageUrl != null && ImageUrl.ContentLength > 0)
+            {
+                var fileName = System.IO.Path.GetFileName(ImageUrl.FileName);
+                var imagePath = $"~/Content/images/{fileName}";
+
+                string fullPath = Server.MapPath(imagePath);
+
+                try
+                {
+                    ImageUrl.SaveAs(fullPath);
+                    hotel.ImageUrl = imagePath;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Görsel yükleme sırasında hata oluştu: " + ex.Message);
+                }
+            }
+            else
+            {
+                var existingHotel = db.Hotels.Find(hotel.Id);
+                if (existingHotel != null)
+                {
+                    hotel.ImageUrl = existingHotel.ImageUrl;
+                }
+            }
+
+            var dbHotel = db.Hotels.Find(hotel.Id);
+            if (dbHotel != null)
+            {
+                dbHotel.Name = hotel.Name;
+                dbHotel.Title = hotel.Title;
+                dbHotel.Location = hotel.Location;
+                dbHotel.Description = hotel.Description;
+                dbHotel.Rating = hotel.Rating;
+                dbHotel.AvailableRooms = hotel.AvailableRooms;
+                dbHotel.PricePerNight = hotel.PricePerNight;
+                dbHotel.ImageUrl = hotel.ImageUrl;
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Otel bulunamadı.");
+            }
         }
+
         return View(hotel);
+
     }
+
 
     // GET: Hotel/Details/5
     public ActionResult Details(int? id)
@@ -201,6 +250,26 @@ public class HotelController : Controller
     // GET: Hotel/Delete/5
     public ActionResult Delete(int? id)
     {
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
+
         if (id == null)
         {
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -216,12 +285,16 @@ public class HotelController : Controller
     // POST: Hotel/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id)
+    public ActionResult Delete(int id)
     {
-        Hotel hotel = db.Hotels.Find(id);
-        db.Hotels.Remove(hotel);
-        db.SaveChanges();
-        return RedirectToAction("Index");
+        var hotel = db.Hotels.Find(id);
+        if (hotel != null)
+        {
+            db.Hotels.Remove(hotel);
+            db.SaveChanges();
+        }
+
+        return RedirectToAction("List");
     }
 
     protected override void Dispose(bool disposing)

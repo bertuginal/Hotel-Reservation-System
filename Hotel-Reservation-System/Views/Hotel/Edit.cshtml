@@ -1,0 +1,109 @@
+﻿@model Hotel_Reservation_System.Models.Hotel
+
+@{
+    ViewBag.Title = "Edit Hotel";
+}
+
+<link href="~/Content/css-folder/hotel/edit-h.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+<div class="hotel-edit-container">
+    <h2 class="page-title">HOTEL EDIT</h2>
+    <p class="sub-title">You can update the information of the hotel named "@Model.Name"!</p>
+
+    @using (Html.BeginForm("Edit", "Hotel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-body">
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Otel Adı" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Otel Başlığı" })
+            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Features*", new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Otel Özellikleri", rows = 5 })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.AvailableRooms, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.AvailableRooms, new { @class = "form-control", placeholder = "Mevcut Oda Sayısı", type = "number", min = "5" })
+            @Html.ValidationMessageFor(m => m.AvailableRooms, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.PricePerNight, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.PricePerNight, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PricePerNight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Rating, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Rating, new { @class = "form-control", placeholder = "Otel Puanı (1-5)", type = "number", min = "1", max = "5" })
+            @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.ImageUrl, new { @class = "control-label" })
+            <input type="file" name="ImageUrl" class="form-control" />
+            @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div id="map" style="height: 250px; width: 100%;"></div>
+        <br />
+        <div class="col-md-12">
+            <input type="text" id="location" name="Location" class="form-control location-area" value="@Model.Location" readonly />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-secondary">Save Changes</button>
+        @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-danger" })
+    </div>
+</div>
+    }
+</div>
+
+
+<script>
+    var map = L.map('map').setView([38.4237, 27.1428], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    var marker;
+
+    function onMapClick(e) {
+        if (marker) {
+            map.removeLayer(marker);
+        }
+        marker = L.marker(e.latlng).addTo(map);
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${e.latlng.lat}&lon=${e.latlng.lng}`)
+            .then(response => response.json())
+            .then(data => {
+                var address = data.display_name;
+                document.getElementById("location").value = address;
+            })
+            .catch(error => console.log(error));
+    }
+
+    map.on('click', onMapClick);
+</script>

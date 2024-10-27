@@ -296,7 +296,9 @@
     <Content Include="Content\css-folder\account\customer\registercustomer.css" />
     <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
+    <Content Include="Content\css-folder\hotel\delete.css" />
     <Content Include="Content\css-folder\hotel\details-hote.css" />
+    <Content Include="Content\css-folder\hotel\edit-h.css" />
     <Content Include="Content\css-folder\hotel\index-h.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layout.css" />
@@ -362,6 +364,8 @@
     <Content Include="Views\Room\Details.cshtml" />
     <Content Include="Views\Room\Delete.cshtml" />
     <Content Include="Views\Room\Edit.cshtml" />
+    <Content Include="Views\Hotel\Delete.cshtml" />
+    <Content Include="Views\Hotel\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -121,7 +121,7 @@
             .then(response => response.json())
             .then(data => {
                 var address = data.display_name;
-                document.getElementById("location").value = "📍" + address;
+                document.getElementById("location").value = address;
             })
             .catch(error => console.log(error));
     }
