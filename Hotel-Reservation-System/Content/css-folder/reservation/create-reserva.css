@@ -37,18 +37,12 @@
     max-width: 100%;
 }
 
-.hotel-image {
-    max-width: 250px;
-    border-radius: 8px;
-    margin-right: 20px;
-}
-
 .hotel-info {
     flex-grow: 1;
 }
 
 /* Hotel Name Styling */
-.hotel-name-rating .hotel-name a {
+.hotel-name-rating .room-name a {
     font-family: 'Lora', serif;
     font-size: 25px;
     font-weight: bold;
@@ -100,18 +94,19 @@
 
 /* Reservation Button */
 .btn-primary {
-    background-color: #007bff; /* Mavi arka plan */
-    border: none; /* Kenarlık yok */
-    color: white; /* Beyaz metin rengi */
-    padding: 10px 50px; /* İç boşluk */
-    border-radius: 5px; /* Köşe yuvarlama */
-    font-size: 1em; /* Yazı boyutu */
-    cursor: pointer; /* İşaretçi tipi */
-    transition: background-color 0.3s; /* Geçiş efekti */
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 50px; 
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
     .btn-primary:hover {
-        background-color: #0056b3; /* Hover durumu için daha koyu mavi */
+        background-color: #0056b3;
+        color: white;
     }
 
 /* Hotel Details Button */
@@ -178,9 +173,10 @@
 }
 
 .hotel-image {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     margin-right: 20px;
+    border-radius: 8px;
 }
 
 .hotel-info {
@@ -253,10 +249,12 @@
     font-size:11px;
 }
 
-.hotel-info .hotel-title {
+.hotel-info .room-type {
     font-family: 'Lora', serif;
     font-size: 16px;
+    font-weight: 600;
     margin-top: -8px;
+    color: #4fd9ff;
 }
 
 .alert-info {
@@ -275,3 +273,23 @@
     .alert-info strong {
         color: #004d40;
     }
+
+.hotel-name a {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #638BFF;
+}
+
+.hotel-info .room-description {
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    background-color: #f0f0f0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

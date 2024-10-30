@@ -4,7 +4,7 @@
     ViewBag.Title = "Create Reservation";
 }
 
-<link href="~/Content/css-folder/reservation/create-reserv.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/reservation/create-reserva.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
@@ -28,7 +28,7 @@
         <div class="form-group col-md-4">
             <b>Check In Date*</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "checkInDate" } })
+                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkInDate" } })
                 @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group col-md-4">
             <b>Check Out Date*</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "checkOutDate" } })
+                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkOutDate" } })
                 @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,6 +50,12 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Reserve" class="btn btn-primary" />
+        </div>
+    </div>
+
     <h4 class="hotel-details-header">ROOM DETAILS</h4>
 
     @if (Model.Room != null)
@@ -58,19 +64,16 @@
             <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="hotel-image" />
             <div class="hotel-info">
                 <div class="hotel-name-rating">
-                    <p class="hotel-name">
+                    <p class="room-name">
                         <a href="@Url.Action("Details", "Room", new { id = Model.RoomId })">@Model.Room.Name</a>
                     </p>
-                    <p class="hotel-rating">
-                        @for (var i = 0; i < Model.Room.Hotel.Rating; i++)
-                        {
-                            <span>★</span>
-                        }
+                    <p class="hotel-name">
+                        <a href="@Url.Action("Details", "Hotel", new { id = Model.Room.HotelId })">@Model.Room.Hotel.Name</a>
                     </p>
                 </div>
-                <p class="hotel-title">@Model.Room.Type</p>
+                <p class="room-type">@Model.Room.Type</p>
                 <p class="hotel-location"> 📍 @Model.Room.Hotel.Location</p>
-                <p class="hotel-description">@Model.Room.Description</p>
+                <p class="room-description">@Model.Room.Description</p>
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Available Rooms:</strong> @Model.Room.Hotel.AvailableRooms</p>
@@ -96,11 +99,6 @@
         <p>Hotel details are not available.</p>
     }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Reserve" class="btn btn-primary" />
-        </div>
-    </div>
 </div>
 }
 
