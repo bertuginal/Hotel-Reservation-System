@@ -253,6 +253,10 @@
     <Compile Include="Migrations\202410242041378_ImageAddedToRoom.Designer.cs">
       <DependentUpon>202410242041378_ImageAddedToRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202410301158178_RoomIdAddedToReservation.cs" />
+    <Compile Include="Migrations\202410301158178_RoomIdAddedToReservation.Designer.cs">
+      <DependentUpon>202410301158178_RoomIdAddedToReservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -434,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410242041378_ImageAddedToRoom.resx">
       <DependentUpon>202410242041378_ImageAddedToRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410301158178_RoomIdAddedToReservation.resx">
+      <DependentUpon>202410301158178_RoomIdAddedToReservation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

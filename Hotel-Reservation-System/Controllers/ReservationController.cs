@@ -16,26 +16,15 @@ public class ReservationController : Controller
     }
 
     // GET: Reservation/Create
-    public ActionResult Create(int hotelId)
+    public ActionResult Create(int roomId)
     {
-        var hotel = db.Hotels.Find(hotelId);
+        var room = db.Rooms.FirstOrDefault(r => r.Id == roomId);
         var userId = (int)Session["UserId"];
         var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
 
-        if (hotel == null)
+        if (room == null)
         {
             return HttpNotFound();
-        }
-
-        var reservationModel = new Reservation
-        {
-            HotelId = hotel.Id,
-            Hotel = hotel
-        };
-
-        if (Session["UserId"] == null)
-        {
-            return RedirectToAction("LoginCustomer", "Account");
         }
 
         if (customer == null)
@@ -43,8 +32,19 @@ public class ReservationController : Controller
             return RedirectToAction("Index", "Hotel");
         }
 
+        if (Session["UserId"] == null)
+        {
+            return RedirectToAction("LoginCustomer", "Account");
+        }
+
+        var reservationModel = new Reservation
+        {
+            RoomId = room.Id,
+            Room = room
+        };
+
         ViewBag.CustomerId = customer.Id;
-        ViewBag.HotelId = hotelId;
+        ViewBag.RoomId = roomId;
 
         if (Session["UserId"] != null)
         {
@@ -86,7 +86,7 @@ public class ReservationController : Controller
 
             reservation.CustomerId = customer.Id;
             reservation.Status = ReservationStatus.Confirmed;
-            reservation.HotelId = reservation.HotelId;
+            reservation.RoomId = reservation.RoomId;
 
             db.Reservations.Add(reservation);
             db.SaveChanges();
@@ -95,7 +95,7 @@ public class ReservationController : Controller
         }
 
         // ModelState geçerli değilse View'i tekrar göster
-        ViewBag.HotelId = reservation.HotelId;
+        ViewBag.RoomId = reservation.RoomId;
         return View(reservation);
     }
 
@@ -112,7 +112,7 @@ public class ReservationController : Controller
             return HttpNotFound();
         }
         ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", reservation.CustomerId);
-        ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name", reservation.HotelId);
+        ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Name", reservation.RoomId);
         return View(reservation);
     }
 
@@ -128,7 +128,7 @@ public class ReservationController : Controller
             return RedirectToAction("Index");
         }
         ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FirstName", reservation.CustomerId);
-        ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name", reservation.HotelId);
+        ViewBag.RoomId = new SelectList(db.Rooms, "Id", "Name", reservation.RoomId);
         return View(reservation);
     }
 

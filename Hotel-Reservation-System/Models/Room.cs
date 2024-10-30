@@ -43,6 +43,8 @@ namespace Hotel_Reservation_System.Models
 
         [ForeignKey("HotelId")]
         public virtual Hotel Hotel { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
 
     }
 }

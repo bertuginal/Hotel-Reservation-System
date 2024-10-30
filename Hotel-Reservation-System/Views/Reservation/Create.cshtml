@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.HotelId)
+    @Html.HiddenFor(model => model.RoomId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 <div class="form-horizontal">
@@ -46,32 +46,33 @@
         </div>
     </div>
 
-    <h4 class="hotel-details-header">HOTEL DETAILS</h4>
+    <h4 class="hotel-details-header">ROOM DETAILS</h4>
 
-    @if (Model.Hotel != null)
+    @if (Model.Room != null)
     {
         <div class="hotel-details">
-            <img src="@Url.Content(Model.Hotel.ImageUrl)" alt="@Model.Hotel.Name" class="hotel-image" />
+            <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="hotel-image" />
             <div class="hotel-info">
                 <div class="hotel-name-rating">
                     <p class="hotel-name">
-                        <a href="@Url.Action("Details", "Hotel", new { id = Model.HotelId })">@Model.Hotel.Name</a>
+                        <a href="@Url.Action("Details", "Room", new { id = Model.RoomId })">@Model.Room.Name</a>
                     </p>
                     <p class="hotel-rating">
-                        @for (var i = 0; i < Model.Hotel.Rating; i++)
+                        @for (var i = 0; i < Model.Room.Hotel.Rating; i++)
                         {
                             <span>★</span>
                         }
                     </p>
                 </div>
-                <p class="hotel-title">@Model.Hotel.Title</p>
-                <p class="hotel-location"> 📍 @Model.Hotel.Location</p>
+                <p class="hotel-title">@Model.Room.Type</p>
+                <p class="hotel-location"> 📍 @Model.Room.Hotel.Location</p>
+                <p class="hotel-description">@Model.Room.Description</p>
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Available Rooms:</strong> @Model.Hotel.AvailableRooms</p>
+                        <p><strong>Available Rooms:</strong> @Model.Room.Hotel.AvailableRooms</p>
                     </div>
                     <div class="col-md-6 price-info">
-                        <p> @Model.Hotel.PricePerNight ₺</p>
+                        <p> @Model.Room.PricePerNight ₺</p>
                     </div>
                 </div>
                 <div class="text-right">

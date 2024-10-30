@@ -36,12 +36,12 @@ namespace Hotel_Reservation_System.Models
         public int CustomerId { get; set; }
 
         [Required]
-        public int HotelId { get; set; }
+        public int RoomId { get; set; }
 
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
 
-        [ForeignKey("HotelId")]
-        public virtual Hotel Hotel { get; set; }
+        [ForeignKey("RoomId")]
+        public virtual Room Room { get; set; }
     }
 }
