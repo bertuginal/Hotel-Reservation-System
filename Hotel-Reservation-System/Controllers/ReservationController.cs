@@ -1,5 +1,7 @@
 ﻿using Hotel_Reservation_System.DAL;
 using Hotel_Reservation_System.Models;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -18,6 +20,11 @@ public class ReservationController : Controller
     // GET: Reservation/Create
     public ActionResult Create(int roomId)
     {
+        if (Session["UserId"] == null)
+        {
+            return RedirectToAction("LoginCustomer", "Account");
+        }
+
         var room = db.Rooms.FirstOrDefault(r => r.Id == roomId);
         var userId = (int)Session["UserId"];
         var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
@@ -30,11 +37,6 @@ public class ReservationController : Controller
         if (customer == null)
         {
             return RedirectToAction("Index", "Hotel");
-        }
-
-        if (Session["UserId"] == null)
-        {
-            return RedirectToAction("LoginCustomer", "Account");
         }
 
         var reservationModel = new Reservation
@@ -68,6 +70,16 @@ public class ReservationController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult Create(Reservation reservation)
     {
+        if (reservation.CheckInDate < DateTime.Now)
+        {
+            ModelState.AddModelError("CheckInDate", "Check-in date must be today or later!");
+        }
+
+        if (reservation.CheckOutDate < reservation.CheckInDate)
+        {
+            ModelState.AddModelError("CheckOutDate", "Check-out date must be after check-in date!");
+        }
+
         if (ModelState.IsValid)
         {
             if (Session["UserId"] == null)
@@ -77,6 +89,19 @@ public class ReservationController : Controller
 
             var userId = (int)Session["UserId"];
             var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
+            var room = db.Rooms.SingleOrDefault(r => r.Id == reservation.RoomId);
+
+            if (room == null)
+            {
+                ModelState.AddModelError("", "Room not found!");
+                return View(reservation);
+            }
+
+            if (room.Hotel.AvailableRooms <= 0)
+            {
+                ModelState.AddModelError("", "No available rooms for this reservation!");
+                return View(reservation);
+            }
 
             if (customer == null)
             {
@@ -87,14 +112,15 @@ public class ReservationController : Controller
             reservation.CustomerId = customer.Id;
             reservation.Status = ReservationStatus.Confirmed;
             reservation.RoomId = reservation.RoomId;
+            //room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
 
+            db.Entry(room).State = EntityState.Modified;
             db.Reservations.Add(reservation);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Hotel");
         }
 
-        // ModelState geçerli değilse View'i tekrar göster
         ViewBag.RoomId = reservation.RoomId;
         return View(reservation);
     }

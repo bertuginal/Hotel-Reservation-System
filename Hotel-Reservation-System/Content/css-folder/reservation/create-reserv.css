@@ -258,3 +258,20 @@
     font-size: 16px;
     margin-top: -8px;
 }
+
+.alert-info {
+    background-color: #e0f7fa;
+    border-left: 4px solid #00acc1;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    color: #006064;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .alert-info strong {
+        color: #004d40;
+    }

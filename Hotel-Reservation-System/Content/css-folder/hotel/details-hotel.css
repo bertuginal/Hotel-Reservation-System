@@ -73,10 +73,16 @@ body {
 }
 
 .hotel-description {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
     margin-bottom: 15px;
-    font-size: 13px;
+    margin-right: 45px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
     color: #555;
+    border-radius: 15px;
+    background-color: #ededed;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hotel-available-rooms {
@@ -135,13 +141,13 @@ hr {
 }
 
 .room-card {
-    margin: 5px;
-    border: none; /* Sınırları kaldırdık */
-    border-radius: 10px; /* Daha yuvarlak köşeler */
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
-    transition: transform 0.3s, box-shadow 0.3s; /* Daha yumuşak geçişler */
-    background-color: #ffffff; /* Beyaz arka plan */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #ffffff;
 }
 
     .room-card:hover {
@@ -227,4 +233,8 @@ hr {
     font-weight: 700;
     margin-top: -15px;
     margin-bottom: 10px;
+}
+
+.price-info del {
+    font-size: 17px;
 }

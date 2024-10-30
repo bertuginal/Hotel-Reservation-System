@@ -25,16 +25,16 @@ hr {
 	border-radius: 10px;
 }
 
-.name-type .room-type {
+.name-hotel .hotel-name {
 	text-align: right;
 	font-size: 18px;
 	font-weight: 600;
 	margin-top: 0px;
 	margin-right: 20px;
-	color: #4fd9ff;
+	color: #638BFF;
 }
 
-.name-type {
+.name-hotel {
 	margin-bottom: -10px;
 }
 
@@ -56,25 +56,25 @@ hr {
 	text-align: center;
 }
 
-.name-type .room-name {
+.name-hotel .room-name {
 	text-align: left;
 	font-size: 1.5em;
 	font-weight: 600;
 	color: #333;
 }
 
-.room-type, .room-capacity {
+.hotel-name, .room-capacity {
 	font-size: 1.1em;
 	color: #555;
 	margin: 10px 0;
 }
 
-.hotel-name-capacity .hotel-name {
+.hotel-name-capacity .room-type {
 	font-weight: 600;
 	text-align: left;
 	margin-top: 5px;
 	margin-left: 5px;
-	color: #638BFF;
+	color: #4fd9ff;
 }
 
 .room-description {
@@ -103,6 +103,11 @@ hr {
 		color: white;
 	}
 
+.room-actions {
+	text-align: right;
+	margin-right: 20px;
+}
+
 .no-availability {
 	color: #ff6666;
 	font-weight: bold;
@@ -112,6 +117,7 @@ hr {
 	font-size: 12px;
 	text-align: left;
 	color: #a3a3a3;
+	margin-top: 10px;
 }
 
 .room-detail {

@@ -4,7 +4,7 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-hote.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-hotel.css" rel="stylesheet" type="text/css" />
 
 <div class="hotel-details-container">
     <div class="hotel-image-container">
@@ -73,8 +73,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><a href="@Url.Action("Details", "Room", new { id = room.Id })">@room.Name</a></h5>
                         <p class="card-type">@room.Type</p>
-                        <p class="card-capacity">✔ Room for @room.Capacity people</p>
-                        <p class="price-info">@room.PricePerNight ₺</p>
+                        <p class="card-capacity">✔ Room for @room.Capacity guests</p>
+                        <p class="price-info"><del>@(room.PricePerNight + 100) ₺</del> @room.PricePerNight ₺</p>
                         <p class="subtitle-info">
                             Price for 1 night <br />
                             Taxes and fees included.

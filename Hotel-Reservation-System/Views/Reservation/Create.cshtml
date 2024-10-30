@@ -4,7 +4,7 @@
     ViewBag.Title = "Create Reservation";
 }
 
-<link href="~/Content/css-folder/reservation/create-reser.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/reservation/create-reserv.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
@@ -20,11 +20,15 @@
         <h6>* are required areas!</h6>
     </div>
 
+    <div id="numberOfNights" class="alert alert-info" style="display:none;">
+        <strong><span id="nightsCount">0</span> Nights - <span id="daysCount">0</span> Days Accommodation</strong>
+    </div>
+
     <div class="row">
         <div class="form-group col-md-4">
             <b>Check In Date*</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "checkInDate" } })
                 @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +36,7 @@
         <div class="form-group col-md-4">
             <b>Check Out Date*</b>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control", type = "date", id = "checkOutDate" } })
                 @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,3 +103,26 @@
     </div>
 </div>
 }
+
+<script>
+
+    //Calculate Check In-Out Day and Night
+    document.getElementById("checkInDate").addEventListener("change", calculateNights);
+    document.getElementById("checkOutDate").addEventListener("change", calculateNights);
+
+    function calculateNights() {
+        const checkInDate = new Date(document.getElementById("checkInDate").value);
+        const checkOutDate = new Date(document.getElementById("checkOutDate").value);
+
+        if (checkInDate && checkOutDate && checkOutDate > checkInDate) {
+            const timeDiff = checkOutDate - checkInDate;
+            const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            document.getElementById("nightsCount").textContent = nights;
+            document.getElementById("daysCount").textContent = nights + 1;
+            document.getElementById("numberOfNights").style.display = "block";
+        } else {
+            document.getElementById("numberOfNights").style.display = "none";
+        }
+    }
+
+</script>
