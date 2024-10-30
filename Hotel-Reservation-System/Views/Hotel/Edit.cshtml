@@ -34,7 +34,7 @@
 
     <div class="form-group">
         @Html.Label("Features*", new { @class = "control-label" })
-        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Otel Özellikleri", rows = 5 })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 5 })
         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
     </div>
 
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.Rating, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Rating, new { @class = "form-control", placeholder = "Otel Puanı (1-5)", type = "number", min = "1", max = "5" })
+            @Html.TextBoxFor(m => m.Rating, new { @class = "form-control", type = "number", min = "1", max = "5" })
             @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
@@ -82,6 +82,9 @@
 </div>
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 <script>
     var map = L.map('map').setView([38.4237, 27.1428], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

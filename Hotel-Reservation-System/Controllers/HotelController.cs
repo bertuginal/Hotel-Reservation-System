@@ -142,6 +142,27 @@ public class HotelController : Controller
         {
             return HttpNotFound();
         }
+
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
+
         return View(hotel);
     }
 

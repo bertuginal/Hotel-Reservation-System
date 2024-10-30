@@ -19,6 +19,8 @@ public class ReservationController : Controller
     public ActionResult Create(int hotelId)
     {
         var hotel = db.Hotels.Find(hotelId);
+        var userId = (int)Session["UserId"];
+        var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
 
         if (hotel == null)
         {
@@ -36,9 +38,6 @@ public class ReservationController : Controller
             return RedirectToAction("LoginCustomer", "Account");
         }
 
-        var userId = (int)Session["UserId"];
-        var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
-
         if (customer == null)
         {
             return RedirectToAction("Index", "Hotel");
@@ -51,6 +50,7 @@ public class ReservationController : Controller
         {
             var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
             var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+
             if (admin != null)
             {
                 ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
@@ -88,11 +88,9 @@ public class ReservationController : Controller
             reservation.Status = ReservationStatus.Confirmed;
             reservation.HotelId = reservation.HotelId;
 
-            // Rezervasyonu veritabanına kaydet
             db.Reservations.Add(reservation);
-            db.SaveChanges(); // Değişiklikleri kaydet
+            db.SaveChanges();
 
-            // Rezervasyon başarılıysa kullanıcıyı oteller sayfasına yönlendir
             return RedirectToAction("Index", "Hotel");
         }
 
