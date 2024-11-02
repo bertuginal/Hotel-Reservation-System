@@ -13,9 +13,38 @@ public class ReservationController : Controller
     // GET: Reservation
     public ActionResult Index()
     {
-        var reservations = db.Reservations.Include("Customer").Include("Hotel").ToList();
+        var userId = (int)Session["UserId"];
+
+        if (Session["UserId"] != null)
+        {
+            var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customer = db.Customers.FirstOrDefault(a => a.Id == userId);
+
+            if (admin != null)
+            {
+                ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+            }
+            if (customer != null)
+            {
+                ViewBag.CustomerName = customer.FirstName + " " + customer.LastName;
+            }
+        }
+
+        if (Session["UserId"] == null)
+        {
+            return RedirectToAction("LoginCustomer", "Account");
+        }
+
+        int customerId = (int)Session["UserId"];
+        var reservations = db.Reservations
+            .Include(r => r.Room)
+            .Include(r => r.Room.Hotel)
+            .Where(r => r.CustomerId == customerId)
+            .ToList();
+
         return View(reservations);
     }
+
 
     // GET: Reservation/Create
     public ActionResult Create(int roomId)
@@ -112,7 +141,7 @@ public class ReservationController : Controller
             reservation.CustomerId = customer.Id;
             reservation.Status = ReservationStatus.Confirmed;
             reservation.RoomId = reservation.RoomId;
-            //room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
+            room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
 
             db.Entry(room).State = EntityState.Modified;
             db.Reservations.Add(reservation);

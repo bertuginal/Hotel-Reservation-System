@@ -59,6 +59,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" onclick="toggleDropdown('accountDropdown')">@ViewBag.CustomerName</a>
                                 <ul id="accountDropdown" class="dropdown-menu" style="display: none;">
+                                    <li>@Html.ActionLink("🎫 MY RESERVATIONS", "Index", "Reservation")</li>
                                     <li>@Html.ActionLink("↪ LOG OUT", "Logout", "Account")</li>
                                 </ul>
                             </li>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Reservation>
+
+@{
+    ViewBag.Title = "My Reservations";
+}
+
+<link href="~/Content/css-folder/reservation/index.css" rel="stylesheet" type="text/css" />
+
+<div class="customer-reservations">
+    <p class="title-info">Hello, @ViewBag.CustomerName!</p>
+    <p class="subtitle-info">Your current reservations:</p>
+
+    @if (!Model.Any())
+    {
+        <div class="no-reservations">
+            <p>You have no reservations at the moment.</p>
+            @Html.ActionLink("Book Now", "Index", "Hotel", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+    else
+    {
+        <div class="reservations-grid">
+            @foreach (var reservation in Model)
+            {
+                <div class="reservation-card">
+                    <div class="card-header">
+                        <p class="status">@reservation.Status</p>
+                        <h3>@reservation.Room.Hotel.Name</h3>
+                        <p class="room-type">@reservation.Room.Type</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row hotel-date">
+                            <div class="col-md-6">
+                                <strong>Check-In:</strong>
+                                <p class="check-in-date">@reservation.CheckInDate.ToShortDateString()</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Check-Out:</strong>
+                                <p class="check-out-date">@reservation.CheckOutDate.ToShortDateString()</p>
+                            </div>
+                        </div>
+
+                        <p class="number-of-guests">@reservation.NumberOfGuests Guests</p>
+                        <p class="room-price">@(reservation.Room.PricePerNight * @reservation.NumberOfGuests) ₺</p>
+                    </div>
+                    <div class="card-footer">
+                        @Html.ActionLink("Details", "Details", new { id = reservation.Id }, new { @class = "btn btn-info" })
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

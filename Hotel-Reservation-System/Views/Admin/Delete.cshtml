@@ -6,80 +6,86 @@
 
 <link href="~/Content/css-folder/account/admin/delete.css" rel="stylesheet" type="text/css" />
 
-<div class="delete-card">
-    <h2>ADMIN DELETE</h2>
-    <h4>Are you sure you want to delete the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"?</h4>
-    <hr />
+@using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
 
-    <div class="card">
-        <div class="card-content">
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>First Name:</strong>
-                </div>
-                <div class="value-box">
-                    <span>@Html.DisplayFor(model => model.FirstName)</span>
-                </div>
-            </div>
+    <div class="delete-card">
+        <h2>ADMIN DELETE</h2>
+        <h4>Are you sure you want to delete the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"?</h4>
+        <hr />
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Last Name:</strong>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>First Name:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Html.DisplayFor(model => model.FirstName)</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Html.DisplayFor(model => model.LastName)</span>
-                </div>
-            </div>
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Email:</strong>
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Last Name:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Html.DisplayFor(model => model.LastName)</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Html.DisplayFor(model => model.Email)</span>
-                </div>
-            </div>
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Password:</strong>
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Email:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Html.DisplayFor(model => model.Email)</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Html.DisplayFor(model => model.Password)</span>
-                </div>
-            </div>
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Phone Number:</strong>
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Password:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Html.DisplayFor(model => model.Password)</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Html.DisplayFor(model => model.Phone)</span>
-                </div>
-            </div>
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Created Date:</strong>
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Phone Number:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Html.DisplayFor(model => model.Phone)</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Model.CreatedDate</span>
-                </div>
-            </div>
 
-            <div class="card-item">
-                <div class="label-box">
-                    <strong>Last Edited Date:</strong>
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Created Date:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Model.CreatedDate</span>
+                    </div>
                 </div>
-                <div class="value-box">
-                    <span>@Model.EditedDate</span>
+
+                <div class="card-item">
+                    <div class="label-box">
+                        <strong>Last Edited Date:</strong>
+                    </div>
+                    <div class="value-box">
+                        <span>@Model.EditedDate</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="form-actions">
 
-    <div class="form-actions">
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
-        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
     </div>
-</div>
+}

@@ -1,0 +1,155 @@
+﻿.customer-reservations {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+
+}
+
+.customer-reservations .title-info {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #4a90e2;
+}
+
+.customer-reservations .subtitle-info {
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.reservations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.reservation-card {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .reservation-card:hover {
+        transform: translateY(-5px);
+    }
+
+.card-header {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+    .card-header h3 {
+        font-size: 1.4em;
+        margin: 0;
+    }
+
+.card-header .status {
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #4fc456;
+    color: #333;
+    text-align: center;
+}
+
+.card-body {
+    padding: 15px;
+    color: #333;
+}
+
+    .card-body p {
+        margin: 8px 0;
+    }
+
+.card-footer {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.btn-info {
+    background-color: #4a90e2;
+    color: #fff;
+    margin-right: 5px;
+    width: 100%;
+}
+    .btn-info:hover {
+    color: #fff;
+    }
+
+.btn-danger {
+    background-color: #e94e77;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+    .btn-primary:hover {
+        background-color: #357ab7;
+    }
+
+.no-reservations {
+    font-size: 1.1em;
+    margin-top: 20px;
+    color: #555;
+}
+
+.card-header .room-type {
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 5px;
+    color: #ededed;
+}
+
+.card-body .check-in-date {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+
+.card-body .check-out-date {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.card-body .room-price {
+    color: #d9534f;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.card-body .number-of-guests {
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: -5px;
+}
+
+.card-body .hotel-date {
+    padding: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
+    border: dotted;
+    border-radius: 5px;
+    border-color: gray;
+}

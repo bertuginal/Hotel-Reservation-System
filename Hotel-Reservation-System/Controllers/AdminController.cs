@@ -77,6 +77,7 @@ public class AdminController : Controller
                 return View(admin);
             }
             admin.CreatedDate = DateTime.Now;
+            admin.EditedDate = DateTime.Now;
             db.Admins.Add(admin);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -149,7 +150,7 @@ public class AdminController : Controller
         {
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
-        Admin admin = db.Admins.Find(id);
+        var admin = db.Admins.Find(id);
         if (admin == null)
         {
             return HttpNotFound();
@@ -182,9 +183,15 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult DeleteConfirmed(int id)
     {
-        Admin admin = db.Admins.Find(id);
+        var admin = db.Admins.Find(id);
+        if (admin == null)
+        {
+            return HttpNotFound();
+        }
+
         db.Admins.Remove(admin);
         db.SaveChanges();
+
         return RedirectToAction("Index");
     }
 

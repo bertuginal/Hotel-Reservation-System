@@ -116,6 +116,7 @@ namespace YourNamespace.Controllers
                     ViewBag.PasswordMismatch = "Passwords do not match!";
                     return View(customer);
                 }
+                customer.EditedDate = DateTime.Now;
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
