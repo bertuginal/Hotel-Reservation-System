@@ -15,6 +15,11 @@ public class ReservationController : Controller
     {
         var userId = (int)Session["UserId"];
 
+        if (Session["UserId"] == null)
+        {
+            return RedirectToAction("LoginCustomer", "Account");
+        }
+
         if (Session["UserId"] != null)
         {
             var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
@@ -28,11 +33,6 @@ public class ReservationController : Controller
             {
                 ViewBag.CustomerName = customer.FirstName + " " + customer.LastName;
             }
-        }
-
-        if (Session["UserId"] == null)
-        {
-            return RedirectToAction("LoginCustomer", "Account");
         }
 
         int customerId = (int)Session["UserId"];
@@ -153,6 +153,49 @@ public class ReservationController : Controller
         ViewBag.RoomId = reservation.RoomId;
         return View(reservation);
     }
+
+    public ActionResult Details(int id)
+    {
+        bool isAdmin = false;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var userId = (int)Session["UserId"];
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+            if (customerId != null)
+            {
+                ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+            }
+        }
+
+        int customer = (int)Session["UserId"];
+        var reservation = db.Reservations
+            .Include(r => r.Room)
+            .Include(r => r.Room.Hotel)
+            .Where(r => r.CustomerId == customer)
+            .FirstOrDefault(r => r.Id == id);
+
+        if (reservation == null)
+        {
+            return HttpNotFound();
+        }
+
+        return View(reservation);
+    }
+
 
     // GET: Reservation/Edit/5
     public ActionResult Edit(int? id)

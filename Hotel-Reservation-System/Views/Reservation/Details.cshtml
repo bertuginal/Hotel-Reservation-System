@@ -1,0 +1,76 @@
+﻿@model Hotel_Reservation_System.Models.Reservation
+
+@{
+    ViewBag.Title = "Reservation Details";
+}
+
+<link href="~/Content/css-folder/reservation/details.css" rel="stylesheet" type="text/css" />
+
+<div class="reservation-details-container">
+    <div class="header">
+        <h2>HOTEL RESERVATION DETAILS</h2>
+        <p>Review your reservation information below</p>
+    </div>
+    <hr />
+
+    <div class="details-card">
+        <div class="room-image">
+            <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="image-thumbnail" />
+        </div>
+
+        <div class="card-header">
+            <h3>@Model.Room.Name</h3>
+            <p class="room-type">@Model.Room.Type</p>
+        </div>
+
+        <div class="card-content">
+
+            <div class="info-section">
+                <div class="info-item">
+                    <strong>Hotel Name:</strong>
+                    <span>@Model.Room.Hotel.Name</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>Customer:</strong>
+                    <span>@Model.Customer.FirstName @Model.Customer.LastName</span>
+                </div>
+            </div>
+
+            <div class="date-section">
+                <div class="date-item">
+                    <strong>Check-In Date:</strong>
+                    <span>@Model.CheckInDate.ToString("dd MMMM yyyy")</span>
+                </div>
+
+                <div class="date-item">
+                    <strong>Check-Out Date:</strong>
+                    <span>@Model.CheckOutDate.ToString("dd MMMM yyyy")</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <strong>Guests:</strong>
+                    <span>@Model.NumberOfGuests</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>Total Price:</strong>
+                    <span class="total-price">@(Model.Room.PricePerNight * Model.NumberOfGuests) ₺</span>
+                </div>
+
+                <div class="info-item status">
+                    <strong>Status:</strong>
+                    <span class="status-label @(Model.Status == Hotel_Reservation_System.Models.ReservationStatus.Confirmed ? "status-confirmed" : Model.Status == Hotel_Reservation_System.Models.ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
+                        @Model.Status
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            @Html.ActionLink("Back to My Reservations", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
