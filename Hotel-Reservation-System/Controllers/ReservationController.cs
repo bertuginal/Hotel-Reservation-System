@@ -14,16 +14,22 @@ public class ReservationController : Controller
     public ActionResult Index()
     {
         var userId = (int)Session["UserId"];
+        var customer = db.Customers.SingleOrDefault(c => c.Id == userId);
+
 
         if (Session["UserId"] == null)
         {
             return RedirectToAction("LoginCustomer", "Account");
         }
 
+        if (customer == null)
+        {
+            return RedirectToAction("List", "Reservation");
+        }
+
         if (Session["UserId"] != null)
         {
             var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
-            var customer = db.Customers.FirstOrDefault(a => a.Id == userId);
 
             if (admin != null)
             {
@@ -42,6 +48,31 @@ public class ReservationController : Controller
             .Where(r => r.CustomerId == customerId)
             .ToList();
 
+        return View(reservations);
+    }
+
+    public ActionResult List()
+    {
+        bool isAdmin = false;
+        var userId = (int)Session["UserId"];
+
+        if (Session["UserId"] != null)
+        {
+            isAdmin = db.Admins.Any(a => a.Id == userId);
+        }
+
+        ViewBag.IsAdmin = isAdmin;
+
+        if (Session["UserId"] != null)
+        {
+            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
+            if (adminId != null)
+            {
+                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+            }
+        }
+
+        var reservations = db.Reservations.ToList();
         return View(reservations);
     }
 
@@ -169,24 +200,36 @@ public class ReservationController : Controller
         if (Session["UserId"] != null)
         {
             var userId = (int)Session["UserId"];
-            var adminId = db.Admins.FirstOrDefault(a => a.Id == userId);
-            var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
-            if (adminId != null)
+            var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+            var customer = db.Customers.FirstOrDefault(c => c.Id == userId);
+
+            if (admin != null)
             {
-                ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
             }
-            if (customerId != null)
+            if (customer != null)
             {
-                ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                ViewBag.CustomerName = customer.FirstName + " " + customer.LastName;
             }
         }
 
-        int customer = (int)Session["UserId"];
-        var reservation = db.Reservations
-            .Include(r => r.Room)
-            .Include(r => r.Room.Hotel)
-            .Where(r => r.CustomerId == customer)
-            .FirstOrDefault(r => r.Id == id);
+        Reservation reservation;
+        if (isAdmin)
+        {
+            reservation = db.Reservations
+                .Include(r => r.Room)
+                .Include(r => r.Room.Hotel)
+                .FirstOrDefault(r => r.Id == id);
+        }
+        else
+        {
+            int customerId = (int)Session["UserId"];
+            reservation = db.Reservations
+                .Include(r => r.Room)
+                .Include(r => r.Room.Hotel)
+                .Where(r => r.CustomerId == customerId)
+                .FirstOrDefault(r => r.Id == id);
+        }
 
         if (reservation == null)
         {
@@ -195,6 +238,7 @@ public class ReservationController : Controller
 
         return View(reservation);
     }
+
 
 
     // GET: Reservation/Edit/5

@@ -1,0 +1,105 @@
+﻿/* Genel Stil Ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Başlık Ayarları */
+h2 {
+    text-align: center; /* Başlığı ortalar */
+    font-size: 2.5rem; /* Başlık boyutu */
+    color: #343a40; /* Koyu gri renk */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+
+/* Tablo Ayarları */
+.table {
+    width: 100%; /* Tablonun genişliği */
+    margin: 20px 0; /* Üst ve alt boşluk */
+    border-collapse: collapse; /* Kenarları birleştirir */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+    background-color: white; /* Beyaz arka plan */
+}
+
+    .table th, .table td {
+        padding: 12px; /* Hücre içi boşluk */
+        text-align: center; /* Ortalı metin */
+        border: 1px solid #dee2e6; /* Hücre kenarları */
+    }
+
+    .table thead th {
+        background-color: #178a21; /* Başlık rengi */
+        color: white; /* Beyaz metin rengi */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e2e3e5; /* Üzerine gelindiğinde arka plan rengi değişir */
+        cursor: pointer; /* İmleç el şekline dönüşür */
+    }
+
+/* Durum Etiketi */
+.status-label {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.status-confirmed {
+    background-color: #28a745; /* Onaylanmış renk */
+    color: #178a21;
+}
+
+.status-cancelled {
+    background-color: #dc3545; /* İptal edilmiş renk */
+    color: white;
+}
+
+.status-pending {
+    background-color: #ffc107; /* Bekleyen renk */
+    color: white;
+}
+
+/* Buton Grupları */
+.btn {
+    text-decoration: none; /* Alt çizgi kaldırıldı */
+    padding: 6px 12px; /* Buton içi boşluk */
+    border-radius: 4px; /* Yuvarlatılmış kenar */
+    margin: 2px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Sarı renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Mavi renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Kırmızı renk */
+    color: white; /* Beyaz metin rengi */
+}
+
+/* Buton Hover Efektleri */
+.btn:hover {
+    opacity: 0.9; /* Üzerine gelindiğinde opaklık azalır */
+}
+
+/* Metin Renkleri */
+.text-danger {
+    color: #dc3545; /* Kırmızı renk */
+}
+
+.text-info {
+    color: #17a2b8; /* Mavi renk */
+}
+
+.total-price {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #d9534f;
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Reservation>
+
+@{
+    ViewBag.Title = "Reservation List";
+}
+
+<link href="~/Content/css-folder/reservation/list.css" rel="stylesheet" type="text/css" />
+
+<h2>RESERVATION DASHBOARD</h2>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Hotel</th>
+            <th>Room</th>
+            <th>Guests</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Reservation Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 1;
+        }
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td><strong>@reservation.Customer.FirstName @reservation.Customer.LastName</strong></td>
+                <td>@reservation.Room.Hotel.Name</td>
+                <td>@reservation.Room.Type</td>
+                <td>@reservation.NumberOfGuests</td>
+                <td class="total-price">@(reservation.Room.PricePerNight * @reservation.NumberOfGuests) ₺</td>
+                <td class="status-label @(reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Confirmed ? "status-confirmed" : reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
+                    @reservation.Status
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = reservation.Id }, new { @class = "btn btn-info btn-sm" })
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
