@@ -31,7 +31,7 @@ namespace Hotel_Reservation_System.Models
         public string Location { get; set; }
 
         [Required(ErrorMessage = "Hotel's location cannot be empty!")]
-        [StringLength(200, MinimumLength = 10, ErrorMessage = "Hotel's description must be at least 10 characters!")]
+        [StringLength(5000, MinimumLength = 10, ErrorMessage = "Hotel's description must be at least 10 and maximum 5000 characters!")]
         [DisplayName("Features*")]
         public string Description { get; set; }
 
