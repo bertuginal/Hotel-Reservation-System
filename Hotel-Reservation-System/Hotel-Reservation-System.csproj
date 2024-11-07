@@ -320,7 +320,7 @@
     <Content Include="Content\css-folder\layout\layout.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />
     <Content Include="Content\css-folder\reservation\details.css" />
-    <Content Include="Content\css-folder\reservation\index.css" />
+    <Content Include="Content\css-folder\reservation\index-r.css" />
     <Content Include="Content\css-folder\reservation\list-r.css" />
     <Content Include="Content\css-folder\room\create-roo.css" />
     <Content Include="Content\css-folder\room\delete-r.css" />

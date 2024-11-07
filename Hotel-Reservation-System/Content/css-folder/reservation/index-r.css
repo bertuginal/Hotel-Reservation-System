@@ -62,6 +62,21 @@
     text-align: center;
 }
 
+.card-header .status-confirmed {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.card-header .status-cancelled {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.card-header .status-pending {
+    background-color: #ffc107;
+    color: #fff;
+}
+
 .card-body {
     padding: 15px;
     color: #333;

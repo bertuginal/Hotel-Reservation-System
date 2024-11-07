@@ -130,6 +130,7 @@ public class ReservationController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult Create(Reservation reservation)
     {
+
         if (reservation.CheckInDate < DateTime.Now)
         {
             ModelState.AddModelError("CheckInDate", "Check-in date must be today or later!");
@@ -138,6 +139,12 @@ public class ReservationController : Controller
         if (reservation.CheckOutDate < reservation.CheckInDate)
         {
             ModelState.AddModelError("CheckOutDate", "Check-out date must be after check-in date!");
+        }
+
+        var roomId = db.Rooms.Find(reservation.RoomId);
+        if (reservation.NumberOfGuests > roomId.Capacity)
+        {
+            ModelState.AddModelError("NumberOfGuests", "The number of guests cannot exceed the room capacity!");
         }
 
         if (ModelState.IsValid)

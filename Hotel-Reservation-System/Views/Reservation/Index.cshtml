@@ -4,7 +4,7 @@
     ViewBag.Title = "My Reservations";
 }
 
-<link href="~/Content/css-folder/reservation/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/reservation/index-r.css" rel="stylesheet" type="text/css" />
 
 <div class="customer-reservations">
     <p class="title-info">Hello, @ViewBag.CustomerName!</p>
@@ -24,7 +24,8 @@
             {
                 <div class="reservation-card">
                     <div class="card-header">
-                        <p class="status">@reservation.Status</p>
+                        <p class="status @(reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Confirmed ? "status-confirmed" : reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
+                    @reservation.Status</p>
                         <h3>@reservation.Room.Hotel.Name</h3>
                         <p class="room-type">@reservation.Room.Type</p>
                     </div>
