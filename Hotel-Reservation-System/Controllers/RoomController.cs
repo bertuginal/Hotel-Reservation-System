@@ -269,6 +269,7 @@ namespace Hotel_Reservation_System.Controllers
                     }
 
                     db.SaveChanges();
+                    UpdateAvailableRooms(model.HotelId);
                     return RedirectToAction("Index");
                 }
             }

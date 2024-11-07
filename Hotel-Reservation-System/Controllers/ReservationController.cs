@@ -172,8 +172,16 @@ public class ReservationController : Controller
             reservation.CustomerId = customer.Id;
             reservation.Status = ReservationStatus.Confirmed;
             reservation.RoomId = reservation.RoomId;
-            room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
-            room.NumberOfRooms = Math.Max(room.NumberOfRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
+
+            if (room.Hotel.AvailableRooms > 0 && room.NumberOfRooms > 0)
+            {
+                room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0);
+                room.NumberOfRooms = Math.Max(room.NumberOfRooms - 1, 0);
+            }
+            else
+            {
+                throw new InvalidOperationException("No available rooms for this reservation.");
+            }
 
             db.Entry(room).State = EntityState.Modified;
             db.Reservations.Add(reservation);

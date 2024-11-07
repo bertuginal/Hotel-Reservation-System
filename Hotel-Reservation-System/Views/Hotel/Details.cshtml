@@ -79,7 +79,7 @@
                             Price for 1 night <br />
                             Taxes and fees included.
                         </p>
-                        @if (room.Hotel.AvailableRooms > 0)
+                        @if (room.NumberOfRooms > 0)
                         {
                             @Html.ActionLink("Reserve Room", "Create", "Reservation", new { roomId = room.Id }, new { @class = "btn btn-primary" })
                         }

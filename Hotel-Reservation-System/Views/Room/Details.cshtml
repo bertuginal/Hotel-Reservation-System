@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="room-actions">
-                        @if (Model.Hotel.AvailableRooms > 0)
+                        @if (Model.NumberOfRooms > 0)
                         {
                             @Html.ActionLink("Book Now", "Create", "Reservation", new { roomId = Model.Id }, new { @class = "btn btn-primary" })
                         }

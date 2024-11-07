@@ -265,6 +265,10 @@
     <Compile Include="Migrations\202411071323055_AvailableRoomsEditedToHotelModel.Designer.cs">
       <DependentUpon>202411071323055_AvailableRoomsEditedToHotelModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411071609262_UpdatedProject.cs" />
+    <Compile Include="Migrations\202411071609262_UpdatedProject.Designer.cs">
+      <DependentUpon>202411071609262_UpdatedProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -462,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411071323055_AvailableRoomsEditedToHotelModel.resx">
       <DependentUpon>202411071323055_AvailableRoomsEditedToHotelModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411071609262_UpdatedProject.resx">
+      <DependentUpon>202411071609262_UpdatedProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
