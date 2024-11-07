@@ -122,10 +122,10 @@ public class HotelController : Controller
             if (hotelImage != null && hotelImage.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(hotelImage.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images/hotel-images"), fileName);
                 hotelImage.SaveAs(path);
 
-                hotel.ImageUrl = "~/Content/images/" + fileName;
+                hotel.ImageUrl = "~/Content/images/hotel-images/" + fileName;
             }
             db.Hotels.Add(hotel);
             db.SaveChanges();

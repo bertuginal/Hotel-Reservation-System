@@ -37,26 +37,35 @@ h2 {
         cursor: pointer; /* İmleç el şekline dönüşür */
     }
 
+.variable tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+.variable tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+
 /* Durum Etiketi */
 .status-label {
     font-weight: bold;
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
-.status-confirmed {
-    background-color: #28a745; /* Onaylanmış renk */
-    color: #178a21;
+.variable .status-confirmed {
+    background-color: #28a745;
+    color: #fff;
 }
 
-.status-cancelled {
-    background-color: #dc3545; /* İptal edilmiş renk */
-    color: white;
+.variable .status-cancelled {
+    background-color: #dc3545;
+    color: #fff;
 }
 
-.status-pending {
-    background-color: #ffc107; /* Bekleyen renk */
-    color: white;
+.variable .status-pending {
+    background-color: #ffc107;
+    color: #fff;
 }
 
 /* Buton Grupları */
@@ -103,3 +112,4 @@ h2 {
     font-weight: 500;
     color: #d9534f;
 }
+

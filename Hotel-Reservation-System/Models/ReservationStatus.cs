@@ -9,6 +9,7 @@ namespace Hotel_Reservation_System.Models
     public enum ReservationStatus
     {
         Confirmed,
-        Cancelled
+        Cancelled,
+        Pending
     }
 }

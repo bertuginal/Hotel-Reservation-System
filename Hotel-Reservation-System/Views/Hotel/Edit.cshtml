@@ -41,13 +41,13 @@
     <div class="row">
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.AvailableRooms, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.AvailableRooms, new { @class = "form-control", placeholder = "Mevcut Oda Sayısı", type = "number", min = "5" })
+            @Html.TextBoxFor(m => m.AvailableRooms, new { @class = "form-control", placeholder = "Mevcut Oda Sayısı", type = "number", min = "5", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.AvailableRooms, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.PricePerNight, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.PricePerNight, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.PricePerNight, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
         </div>
     </div>
 
