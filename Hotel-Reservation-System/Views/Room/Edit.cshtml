@@ -41,6 +41,12 @@
                 </div>
 
                 <div class="form-group col-md-6">
+                    <label class="control-label">Number Of Rooms</label>
+                    @Html.TextBoxFor(model => model.NumberOfRooms, new { @class = "form-control", type = "number", placeholder = "Enter number of rooms" })
+                    @Html.ValidationMessageFor(m => m.NumberOfRooms, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
                     <label class="control-label">Capacity</label>
                     @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control", type = "number", placeholder = "Enter room capacity" })
                     @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })

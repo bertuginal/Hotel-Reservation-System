@@ -23,6 +23,16 @@ namespace Hotel_Reservation_System.Controllers
             db = new ApplicationDbContext();
         }
 
+        private void UpdateAvailableRooms(int hotelId)
+        {
+            var hotel = db.Hotels.Include(h => h.Rooms).FirstOrDefault(h => h.Id == hotelId);
+            if (hotel != null)
+            {
+                hotel.AvailableRooms = hotel.Rooms.Sum(r => r.NumberOfRooms);
+                db.SaveChanges();
+            }
+        }
+
         // GET: Room
         public ActionResult Index()
         {
@@ -157,9 +167,9 @@ namespace Hotel_Reservation_System.Controllers
 
                         room.ImageUrl = "~/Content/images/room-images/" + fileName;
                 }
-
                 db.Rooms.Add(room);
                 db.SaveChanges();
+                UpdateAvailableRooms(room.HotelId);
                 return RedirectToAction("Index");
             }
 
@@ -238,6 +248,7 @@ namespace Hotel_Reservation_System.Controllers
                     existingRoom.Type = model.Type;
                     existingRoom.HotelId = model.HotelId;
                     existingRoom.Capacity = model.Capacity;
+                    existingRoom.NumberOfRooms = model.NumberOfRooms;
                     existingRoom.PricePerNight = model.PricePerNight;
                     existingRoom.Description = model.Description;
 
@@ -257,7 +268,7 @@ namespace Hotel_Reservation_System.Controllers
                         existingRoom.ImageUrl = "~/Content/room-images/" + fileName; // URL'yi güncelle
                     }
 
-                    db.SaveChanges(); // Değişiklikleri kaydedin
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
@@ -310,13 +321,24 @@ namespace Hotel_Reservation_System.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var room = db.Rooms.Find(id);
+            var hotel = db.Hotels.Find(room.HotelId);
+
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
             if (room != null)
             {
-                db.Rooms.Remove(room);
-                db.SaveChanges();
+                hotel.AvailableRooms -= room.NumberOfRooms;
+                if (hotel.AvailableRooms < 0)
+                {
+                    hotel.AvailableRooms = 0;
+                }
             }
 
-            // Redirect back to the Index page after deletion
+            db.Rooms.Remove(room);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

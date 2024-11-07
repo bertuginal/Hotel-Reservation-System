@@ -173,6 +173,7 @@ public class ReservationController : Controller
             reservation.Status = ReservationStatus.Confirmed;
             reservation.RoomId = reservation.RoomId;
             room.Hotel.AvailableRooms = Math.Max(room.Hotel.AvailableRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
+            room.NumberOfRooms = Math.Max(room.NumberOfRooms - 1, 0); // Rezervasyon yapınca oda sayısı düşme 
 
             db.Entry(room).State = EntityState.Modified;
             db.Reservations.Add(reservation);

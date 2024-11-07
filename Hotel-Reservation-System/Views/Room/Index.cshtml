@@ -20,6 +20,7 @@
             <th>Hotel's Name</th>
             <th>Type</th>
             <th>Capacity</th>
+            <th>Total Rooms</th>
             <th>Price (₺)</th>
             <th>Room Settings</th>
         </tr>
@@ -49,6 +50,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfRooms)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PricePerNight)

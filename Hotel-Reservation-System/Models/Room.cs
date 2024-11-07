@@ -37,6 +37,11 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Room's Capacity*")]
         public int Capacity { get; set; }
 
+        [Required(ErrorMessage = "Number of rooms cannot be empty!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Number of rooms must be at least 1!")]
+        [DisplayName("Number Of Rooms*")]
+        public int NumberOfRooms { get; set; }
+
         // Foreign key to Hotel
         [Required]
         public int HotelId { get; set; }

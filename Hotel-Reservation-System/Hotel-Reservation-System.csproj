@@ -257,6 +257,14 @@
     <Compile Include="Migrations\202410301158178_RoomIdAddedToReservation.Designer.cs">
       <DependentUpon>202410301158178_RoomIdAddedToReservation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411071216488_NumberOfRoomsCreatedToRoomModel.cs" />
+    <Compile Include="Migrations\202411071216488_NumberOfRoomsCreatedToRoomModel.Designer.cs">
+      <DependentUpon>202411071216488_NumberOfRoomsCreatedToRoomModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411071323055_AvailableRoomsEditedToHotelModel.cs" />
+    <Compile Include="Migrations\202411071323055_AvailableRoomsEditedToHotelModel.Designer.cs">
+      <DependentUpon>202411071323055_AvailableRoomsEditedToHotelModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -448,6 +456,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410301158178_RoomIdAddedToReservation.resx">
       <DependentUpon>202410301158178_RoomIdAddedToReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411071216488_NumberOfRoomsCreatedToRoomModel.resx">
+      <DependentUpon>202411071216488_NumberOfRoomsCreatedToRoomModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411071323055_AvailableRoomsEditedToHotelModel.resx">
+      <DependentUpon>202411071323055_AvailableRoomsEditedToHotelModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

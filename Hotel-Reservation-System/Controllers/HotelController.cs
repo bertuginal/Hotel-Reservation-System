@@ -86,6 +86,7 @@ public class HotelController : Controller
         return View(hotels);
     }
 
+
     // GET: Hotel/Create
     public ActionResult Create()
     {
@@ -126,7 +127,6 @@ public class HotelController : Controller
 
                 hotel.ImageUrl = "~/Content/images/" + fileName;
             }
-
             db.Hotels.Add(hotel);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -207,7 +207,6 @@ public class HotelController : Controller
                 dbHotel.Location = hotel.Location;
                 dbHotel.Description = hotel.Description;
                 dbHotel.Rating = hotel.Rating;
-                dbHotel.AvailableRooms = hotel.AvailableRooms;
                 dbHotel.PricePerNight = hotel.PricePerNight;
                 dbHotel.ImageUrl = hotel.ImageUrl;
 

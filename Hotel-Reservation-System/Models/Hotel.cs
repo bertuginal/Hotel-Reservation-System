@@ -40,10 +40,10 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Rating* (1 to 5)")]
         public int Rating { get; set; }
 
-        [Required(ErrorMessage = "Number of rooms available cannot be empty!")]
-        [Range(5, int.MaxValue, ErrorMessage = "Number of rooms available must be at least 5!")]
+
         [DisplayName("Number Of Rooms Available*")]
         public int AvailableRooms { get; set; }
+
 
         [Required(ErrorMessage = "Please enter the hotel price per night!")]
         [Range(0, int.MaxValue, ErrorMessage = "Hotel nightly rate cannot be less than 0!")]
