@@ -1,11 +1,9 @@
-﻿/* Genel stil ayarları */
-body {
-    background-color: #e9ecef; /* Açık gri arka plan */
+﻿body {
+    background-color: #e9ecef;
 }
 
-/* Form başlığı */
 h2 {
-    color: #28a745; /* Yeşil başlık rengi */
+    color: #28a745;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -14,11 +12,10 @@ b {
     color: #495057;
 }
 
-/* Form düzeni */
 .form-horizontal {
-    max-width: 700px; /* Form genişliği */
-    margin: 0 auto; /* Ortada konumlandırma */
-    background-color: #ffffff; /* Beyaz arka plan */
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #ffffff;
     padding: 40px; /* İçerik için boşluk */
     border-radius: 12px; /* Kenarları yuvarlat */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Gölge efekti */

@@ -314,7 +314,7 @@
     <Content Include="Content\css-folder\account\customer\index-c.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer.css" />
-    <Content Include="Content\css-folder\account\customer\settings-c.css" />
+    <Content Include="Content\css-folder\account\customer\settings-co.css" />
     <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />

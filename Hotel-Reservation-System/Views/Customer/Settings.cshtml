@@ -4,57 +4,95 @@
     ViewBag.Title = "Account Settings";
 }
 
-<link href="~/Content/css-folder/account/customer/settings-c.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/settings-co.css" rel="stylesheet" type="text/css" />
 
-<div class="card">
-    <div class="card-header">
-        <h3>ACCOUNT INFORMATION</h3>
+<div class="account-settings">
+    <h2>Account Settings</h2>
+    <p>Real-time information and activities of your property.</p>
+
+    <hr />
+
+    <div class="section profile-section">
+        <div class="profile-picture">
+            <img src="~/Content/images/hotel-images/perdikia-hill-resort.jpg" alt="Profile picture" class="profile-img" />
+            <div class="profile-info">
+                <p>Profile picture</p>
+                <span>PNG, JPEG under 15MB</span>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <button class="btn-upload">Upload new picture</button>
+            <button class="btn-delete">Delete</button>
+        </div>
     </div>
-    <div class="card-body">
+
+    <div class="section">
+        <label class="user-name">@Model.FirstName @Model.LastName</label>
+
+        <h2>Full Name</h2>
+        <span>Manage your first name and last name.</span>
 
         <div class="row">
-            <div class="col-md-6 form-group">
-                <label class="control-label">Email</label>
-                <p class="form-control-static">@Model.Email</p>
+            <div class="col">
+                <label>First Name</label>
+                <input type="text" value="@Model.FirstName" readonly class="form-control-static" />
             </div>
-            <div class="col-md-6 form-group">
-                <label class="control-label">Password</label>
-                <p class="form-control-static">@Model.Password</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label class="control-label">First Name</label>
-                <p class="form-control-static">@Model.FirstName</p>
-            </div>
-            <div class="col-md-6 form-group">
-                <label class="control-label">Last Name</label>
-                <p class="form-control-static">@Model.LastName</p>
+            <div class="col">
+                <label>Last Name</label>
+                <input type="text" value="@Model.LastName" readonly class="form-control-static" />
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label class="control-label">Phone Number</label>
-                <p class="form-control-static">@Model.Phone</p>
-            </div>
-            <div class="col-md-6 form-group">
+    <hr />
 
-            </div>
+    <div class="section">
+        <h2>Contact email</h2>
+        <span>Manage your accounts email address for the invoices.</span>
+
+        <label>Email</label>
+        <input type="email" value="✉️ @Model.Email" readonly class="form-control-static" />
+        @Html.ActionLink("➕ Add another email", "Update", "Customer", null, new { @class = "btn-add-email" })
+    </div>
+
+    <hr />
+
+    <div class="section">
+        <h2>Password</h2>
+        <span>Modify your current password.</span>
+        <label>Current Password</label>
+        <div class="password-field">
+            <input type="password" id="currentPassword" value="🔒 @Model.Password" readonly class="form-control-static password-input" placeholder="Current password" />
+            <span onclick="togglePassword('currentPassword')" class="toggle-password">👁️</span>
+            @Html.ActionLink("↩️ Change password", "Update", "Customer", null, new { @class = "btn-add-email" })
+
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="control-label-address">Full Address</label>
-            <p class="form-control-static-address">@Model.Address</p>
-        </div>
+    <hr />
 
-        <div class="form-group">
-            @Html.ActionLink("Update", "Update", "Customer", null, new { @class = "btn-update" })
-            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn-cancel" })
-        </div>
+    <div class="section">
+        <h2>Other Informations</h2>
+        <span>Manage your other informations for your account.</span>
+        @Html.ActionLink("📤 Update Informations", "Update", "Customer", null, new { @class = "btn-add-email" })
 
-        <p class="subtitle-info">*If you want to update your information, you can click the "Update" button!</p>
+        <label>Phone Number</label>
+        <input type="email" value="📞 @Model.Phone" readonly class="form-control-static" />
+    </div>
 
+    <div class="section">
+        <label>Address</label>
+        <textarea readonly class="form-control-static address-textarea">🏠︎ @Model.Address</textarea>
     </div>
 </div>
+
+<script>
+    function togglePassword(fieldId) {
+        var field = document.getElementById(fieldId);
+        if (field.type === "password") {
+            field.type = "text";
+        } else {
+            field.type = "password";
+        }
+    }
+</script>

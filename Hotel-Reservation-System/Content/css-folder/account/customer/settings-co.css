@@ -1,0 +1,178 @@
+﻿hr {
+    color: #bdbdbd;
+}
+.account-settings {
+    max-width: 900px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    width: 100%;
+}
+
+    .account-settings h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+.section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+    .account-settings p {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+.section {
+    margin-bottom: 25px;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-picture {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.profile-info p {
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.profile-info span {
+    color: #888;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.btn-upload, .btn-delete, .btn-add-email {
+    float: right;
+    padding: 6px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid #ebebeb;
+    text-decoration: none;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-upload {
+    background-color: #fff;
+    color: #333;
+}
+
+.btn-delete {
+    background-color: #F3F4F7;
+    color: #333;
+}
+
+.btn-add-email {
+    background-color: #fff;
+    color: #333;
+}
+
+.section label {
+    font-size: 12px;
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 3px;
+    margin-top: 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.col {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-control-static {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 15px;
+    color: #333;
+}
+
+
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.section .user-name {
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: -20px;
+    margin-left: 2px;
+    margin-bottom: 40px;
+}
+
+.section span {
+    color: #888;
+    font-size: 15px;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-input {
+    padding-right: 30px;
+}
+
+.toggle-password {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}
+
+    .toggle-password:hover {
+        color: #495057;
+    }
+
+.section .address-textarea {
+    width: 100%;
+    max-width: none;
+    height: 90px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
