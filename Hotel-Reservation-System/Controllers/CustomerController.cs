@@ -41,6 +41,39 @@ namespace YourNamespace.Controllers
             return View(customers);
         }
 
+        // GET: Customer/Settings
+        public ActionResult Settings()
+        {
+            int customerId = (int)Session["UserId"];
+            var customer = db.Customers.Find(customerId);
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsCustomer = isCustomer;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var customerID = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (customerID != null)
+                {
+                    ViewBag.CustomerName = customerID.FirstName + " " + customerID.LastName;
+                }
+            }
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(customer);
+        }
+
         // GET: Customer/Details/5
         public ActionResult Details(int? id)
         {

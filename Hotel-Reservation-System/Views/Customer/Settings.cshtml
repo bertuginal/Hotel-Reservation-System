@@ -1,0 +1,60 @@
+﻿@model Hotel_Reservation_System.Models.Customer
+
+@{
+    ViewBag.Title = "Account Settings";
+}
+
+<link href="~/Content/css-folder/account/customer/settings-c.css" rel="stylesheet" type="text/css" />
+
+<div class="card">
+    <div class="card-header">
+        <h3>ACCOUNT INFORMATION</h3>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label class="control-label">Email</label>
+                <p class="form-control-static">@Model.Email</p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="control-label">Password</label>
+                <p class="form-control-static">@Model.Password</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label class="control-label">First Name</label>
+                <p class="form-control-static">@Model.FirstName</p>
+            </div>
+            <div class="col-md-6 form-group">
+                <label class="control-label">Last Name</label>
+                <p class="form-control-static">@Model.LastName</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label class="control-label">Phone Number</label>
+                <p class="form-control-static">@Model.Phone</p>
+            </div>
+            <div class="col-md-6 form-group">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label-address">Full Address</label>
+            <p class="form-control-static-address">@Model.Address</p>
+        </div>
+
+        <div class="form-group">
+            @Html.ActionLink("Update", "Update", "Customer", null, new { @class = "btn-update" })
+            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn-cancel" })
+        </div>
+
+        <p class="subtitle-info">*If you want to update your information, you can click the "Update" button!</p>
+
+    </div>
+</div>

@@ -177,7 +177,7 @@ public class ReservationController : Controller
             }
 
             reservation.CustomerId = customer.Id;
-            reservation.Status = ReservationStatus.Confirmed;
+            reservation.Status = ReservationStatus.Pending;
             reservation.RoomId = reservation.RoomId;
 
             if (room.Hotel.AvailableRooms > 0 && room.NumberOfRooms > 0)

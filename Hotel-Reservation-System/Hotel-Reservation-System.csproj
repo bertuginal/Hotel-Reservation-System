@@ -314,6 +314,7 @@
     <Content Include="Content\css-folder\account\customer\index-c.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer.css" />
+    <Content Include="Content\css-folder\account\customer\settings-c.css" />
     <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
@@ -392,6 +393,7 @@
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Reservation\Details.cshtml" />
     <Content Include="Views\Reservation\List.cshtml" />
+    <Content Include="Views\Customer\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
