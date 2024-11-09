@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete Customer";
 }
 
-<link href="~/Content/css-folder/account/customer/delete.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/delete-c.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Delete", "Customer", FormMethod.Post))
 {
@@ -18,6 +18,9 @@
 
         <div class="card">
             <div class="card-content">
+                <div class="profile-picture">
+                    <img src="@Url.Content(Model.ImageUrl)" name="profilePicture" alt="Profile Picture" />
+                </div>
                 <div class="card-item">
                     <div class="label-box">
                         <strong>First Name:</strong>

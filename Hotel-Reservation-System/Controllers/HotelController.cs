@@ -176,7 +176,7 @@ public class HotelController : Controller
             if (ImageUrl != null && ImageUrl.ContentLength > 0)
             {
                 var fileName = System.IO.Path.GetFileName(ImageUrl.FileName);
-                var imagePath = $"~/Content/images/{fileName}";
+                var imagePath = $"~/Content/images/hotel-images/{fileName}";
 
                 string fullPath = Server.MapPath(imagePath);
 

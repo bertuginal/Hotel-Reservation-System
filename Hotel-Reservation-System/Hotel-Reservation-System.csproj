@@ -273,6 +273,14 @@
     <Compile Include="Migrations\202411072258459_DescriptionCharactersEdited.Designer.cs">
       <DependentUpon>202411072258459_DescriptionCharactersEdited.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411091016573_ProfilePictureAddedToCustomer.cs" />
+    <Compile Include="Migrations\202411091016573_ProfilePictureAddedToCustomer.Designer.cs">
+      <DependentUpon>202411091016573_ProfilePictureAddedToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411091137475_ProfilePictureUpdatedForRequired.cs" />
+    <Compile Include="Migrations\202411091137475_ProfilePictureUpdatedForRequired.Designer.cs">
+      <DependentUpon>202411091137475_ProfilePictureUpdatedForRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -308,12 +316,12 @@
     <Content Include="Content\css-folder\account\admin\loginadmins.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
     <Content Include="Content\css-folder\account\customer\create.css" />
-    <Content Include="Content\css-folder\account\customer\delete.css" />
-    <Content Include="Content\css-folder\account\customer\details.css" />
-    <Content Include="Content\css-folder\account\customer\edit.css" />
-    <Content Include="Content\css-folder\account\customer\index-c.css" />
+    <Content Include="Content\css-folder\account\customer\delete-c.css" />
+    <Content Include="Content\css-folder\account\customer\details-c.css" />
+    <Content Include="Content\css-folder\account\customer\edit-c.css" />
+    <Content Include="Content\css-folder\account\customer\index-cu.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
-    <Content Include="Content\css-folder\account\customer\registercustomer.css" />
+    <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-co.css" />
     <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
@@ -399,6 +407,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\hotel-images\" />
     <Folder Include="Content\images\logo\" />
+    <Folder Include="Content\images\profile-photos\" />
     <Folder Include="Content\images\room-images\" />
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +488,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411072258459_DescriptionCharactersEdited.resx">
       <DependentUpon>202411072258459_DescriptionCharactersEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411091016573_ProfilePictureAddedToCustomer.resx">
+      <DependentUpon>202411091016573_ProfilePictureAddedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411091137475_ProfilePictureUpdatedForRequired.resx">
+      <DependentUpon>202411091137475_ProfilePictureUpdatedForRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

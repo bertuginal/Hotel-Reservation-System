@@ -145,3 +145,9 @@ hr {
         padding: 10px 20px;
     }
 }
+
+.address-area {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}

@@ -6,7 +6,7 @@
 
 <link href="~/Content/css-folder/account/customer/create.css" rel="stylesheet" type="text/css" />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -18,6 +18,12 @@
     <h6>* are required areas!</h6>
 
     <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <input type="file" name="profilePicture" class="form-control" />
+        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+    </div>
 
     <div class="form-group row">
         <div class="col-md-6">
@@ -68,7 +74,7 @@
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-12">
             <!-- Tam genişlik için col-md-12 -->
-            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4 , placeholder = "Your Full Address" })
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>

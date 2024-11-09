@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Edit Customer";
 }
-<link href="~/Content/css-folder/account/customer/edit.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/edit-c.css" rel="stylesheet" type="text/css" />
 
 <div class="admin-edit-container">
     <div class="text-center">
@@ -11,7 +11,7 @@
         <h4 class="sub-title">You can update the information of the customer named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
         <hr />
     </div>
-    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
@@ -31,7 +31,6 @@
             </div>
 
             <div class="row">
-
                 <div class="form-group col-md-6">
                     <label class="control-label">First Name</label>
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
@@ -45,18 +44,24 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-12">
+            <div class="row">
+                <div class="form-group col-md-6">
                     <label class="control-label">Phone Number</label>
                     @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Profile Picture</label>
+                    <input type="file" name="profilePicture" class="form-control" />
+                    @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-12">
                     <label class="control-label">Address</label>
-                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>

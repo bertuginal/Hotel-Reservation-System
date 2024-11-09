@@ -59,12 +59,13 @@ h2 {
 
 .btn-danger {
     background-color: #dc3545; /* Kırmızı renk */
-    color: white; /* Beyaz metin rengi */
+    color: white;
 }
 
 /* Buton Hover Efektleri */
 .btn:hover {
     opacity: 0.9; /* Üzerine gelindiğinde opaklık azalır */
+    color: white;
 }
 
 /* Yanlış durumda metin rengi */

@@ -76,3 +76,25 @@ h6 {
     max-width: 100%; /* Maksimum genişliği sınırla */
     box-sizing: border-box; /* Kenarlık ve padding'i genişliğe dahil et */
 }
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-picture {
+    display: flex;
+}
+
+.profile-info p {
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.profile-info span {
+    color: #888;
+    font-size: 12px;
+    margin-left: 15px;
+}

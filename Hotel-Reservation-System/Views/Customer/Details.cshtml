@@ -4,12 +4,16 @@
     ViewBag.Title = "Customer Details";
 }
 
-<link href="~/Content/css-folder/account/customer/details.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/details-c.css" rel="stylesheet" type="text/css" />
 
 <div class="details-container">
     <h2>CUSTOMER DETAILS</h2>
     <h4>Showing detailed information of the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
     <hr />
+
+    <div class="profile-picture">
+        <img src="@Url.Content(Model.ImageUrl)" name="profilePicture" alt="Profile Picture" />
+    </div>
 
     <table class="table table-bordered table-striped">
         <tr>

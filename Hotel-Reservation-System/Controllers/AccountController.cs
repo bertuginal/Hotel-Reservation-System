@@ -5,6 +5,9 @@ using Hotel_Reservation_System.DAL;
 using Hotel_Reservation_System.Models;
 using System.Web.Security;
 using System.Web.ModelBinding;
+using System.IO;
+using System.Web;
+using System;
 
 
 public class AccountController : Controller
@@ -47,8 +50,10 @@ public class AccountController : Controller
     // POST: Account/RegisterCustomer
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult RegisterCustomer(Customer customer, string ConfirmPassword)
+    public ActionResult RegisterCustomer(Customer customer, string ConfirmPassword, HttpPostedFileBase profilePicture)
     {
+        ModelState.Remove("ImageUrl");
+
         if (ModelState.IsValid)
         {
             if (customer.Password != ConfirmPassword)
@@ -56,11 +61,28 @@ public class AccountController : Controller
                 ViewBag.PasswordMismatch = "Passwords do not match!";
                 return View(customer);
             }
+
+            if (profilePicture != null && profilePicture.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(profilePicture.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images/profile-photos"), fileName);
+                profilePicture.SaveAs(path);
+
+                customer.ImageUrl = "~/Content/images/profile-photos/" + fileName;
+            }
+            else
+            {
+                ModelState.AddModelError("ImageUrl", "You must upload your profile photo!");
+                return View(customer);
+            }
+
+            customer.EditedDate = DateTime.Now;
             db.Customers.Add(customer);
-            customer.EditedDate = System.DateTime.Now;
             db.SaveChanges();
+
             return RedirectToAction("LoginCustomer");
         }
+
         return View(customer);
     }
 

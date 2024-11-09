@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using Hotel_Reservation_System.Models;
 using Hotel_Reservation_System.DAL;
+using System.IO;
+using System.Web.UI.HtmlControls;
 
 namespace YourNamespace.Controllers
 {
@@ -140,8 +142,10 @@ namespace YourNamespace.Controllers
         // POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer, string ConfirmPassword)
+        public ActionResult Create(Customer customer, string ConfirmPassword, HttpPostedFileBase profilePicture)
         {
+            ModelState.Remove("ImageUrl");
+
             if (ModelState.IsValid)
             {
                 if (customer.Password != ConfirmPassword)
@@ -149,6 +153,21 @@ namespace YourNamespace.Controllers
                     ViewBag.PasswordMismatch = "Passwords do not match!";
                     return View(customer);
                 }
+
+                if (profilePicture != null && profilePicture.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(profilePicture.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/profile-photos"), fileName);
+                    profilePicture.SaveAs(path);
+
+                    customer.ImageUrl = "~/Content/images/profile-photos/" + fileName;
+                }
+                else
+                {
+                    ModelState.AddModelError("ImageUrl", "You must upload your profile photo!");
+                    return View(customer);
+                }
+
                 customer.EditedDate = DateTime.Now;
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -198,14 +217,43 @@ namespace YourNamespace.Controllers
         // POST: Customer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Customer customer)
+        public ActionResult Edit(Customer customer, HttpPostedFileBase profilePicture)
         {
+            ModelState.Remove("ImageUrl");
+
             if (ModelState.IsValid)
-        {
+            {
             var existingCustomer = db.Customers.SingleOrDefault(a => a.Id == customer.Id);
 
-            if (existingCustomer != null)
-            {
+                if (existingCustomer == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if (profilePicture != null && profilePicture.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(profilePicture.FileName);
+                    var imagePath = $"~/Content/images/profile-photos/{fileName}";
+                    string fullPath = Server.MapPath(imagePath);
+
+                    try
+                    {
+                        profilePicture.SaveAs(fullPath);
+                        existingCustomer.ImageUrl = imagePath;
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "Görsel yükleme sırasında hata oluştu: " + ex.Message);
+                        return View(customer);
+                    }
+                }
+                else
+                {
+                    customer.ImageUrl = existingCustomer.ImageUrl;
+                }
+
+                if (existingCustomer != null)
+                {
                     existingCustomer.FirstName = customer.FirstName;
                     existingCustomer.LastName = customer.LastName;
                     existingCustomer.Email = existingCustomer.Email;
@@ -218,7 +266,7 @@ namespace YourNamespace.Controllers
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
-            }
+                }
         }
         return View(customer);
         }
