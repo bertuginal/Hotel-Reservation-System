@@ -21,8 +21,9 @@
             </div>
         </div>
         <div class="profile-actions">
-            <button class="btn-upload">Upload new picture</button>
-            <button class="btn-delete">Delete</button>
+            <input type="file" id="profilePictureUpload" style="display:none;" accept="image/*" />
+            <button class="btn-upload" onclick="triggerUpload()">Upload new picture</button>
+            <button class="btn-delete" onclick="deleteProfileImage()">Delete</button>
         </div>
     </div>
 
@@ -93,6 +94,73 @@
             field.type = "text";
         } else {
             field.type = "password";
+        }
+    }
+
+function triggerUpload() {
+        document.getElementById('profilePictureUpload').click();
+    }
+
+    function uploadProfileImage() {
+        var formData = new FormData();
+        var fileInput = document.getElementById('profilePictureUpload');
+        var file = fileInput.files[0];
+
+        if (file) {
+            formData.append('profilePicture', file);
+            formData.append('customerId', @Model.Id);
+
+            $.ajax({
+                url: '@Url.Action("UploadProfilePicture", "Customer")',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        $('#profileImage').attr('src', response.newImageUrl);
+                        alert('Profile picture uploaded successfully!');
+                        location.reload();
+                    } else {
+                        alert('An error occurred while uploading the profile picture: ' + response.errorMessage);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + error);
+                }
+            });
+        } else {
+            alert('Please select an image to upload!');
+        }
+    }
+
+    document.getElementById('profilePictureUpload').addEventListener('change', uploadProfileImage);
+
+
+    function deleteProfileImage() {
+        var customerId = @Model.Id;
+        var confirmDelete = confirm("Are you sure you want to delete your profile picture?");
+
+        if (confirmDelete) {
+            $.ajax({
+                url: '@Url.Action("DeleteProfilePicture", "Customer")',
+                type: 'POST',
+                data: { customerId: customerId },
+                success: function (response) {
+                    if (response.success) {
+                        $('#profileImage').attr('src', '@Url.Content("~/Content/images/profile-photos/default.jpg")');
+                        alert('Profile picture deleted successfully!');
+                        location.reload();
+                    } else {
+                        alert('An error occurred while deleting the profile picture!');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred!');
+                }
+            });
+        } else {
+            alert('Profile picture deletion cancelled!');
         }
     }
 </script>
