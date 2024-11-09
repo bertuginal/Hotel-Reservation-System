@@ -272,6 +272,101 @@ namespace YourNamespace.Controllers
         return View(customer);
         }
 
+
+        // GET: Customer/Update/5
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var customer = db.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+            }
+
+            ViewBag.IsCustomer = isCustomer;
+
+            if (Session["UserId"] != null)
+            {
+                var userId = (int)Session["UserId"];
+                var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (customerId != null)
+                {
+                    ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                }
+            }
+
+            return View(customer);
+        }
+
+        // POST: Customer/Update/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(Customer customer, HttpPostedFileBase profilePicture)
+        {
+            ModelState.Remove("ImageUrl");
+
+            if (ModelState.IsValid)
+            {
+                var existingCustomer = db.Customers.SingleOrDefault(a => a.Id == customer.Id);
+
+                if (existingCustomer == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if (profilePicture != null && profilePicture.ContentLength > 0)
+                {
+                    var fileName = System.IO.Path.GetFileName(profilePicture.FileName);
+                    var imagePath = $"~/Content/images/profile-photos/{fileName}";
+                    string fullPath = Server.MapPath(imagePath);
+
+                    try
+                    {
+                        profilePicture.SaveAs(fullPath);
+                        existingCustomer.ImageUrl = imagePath;
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("", "Görsel yükleme sırasında hata oluştu: " + ex.Message);
+                        return View(customer);
+                    }
+                }
+                else
+                {
+                    customer.ImageUrl = existingCustomer.ImageUrl;
+                }
+
+                if (existingCustomer != null)
+                {
+                    existingCustomer.FirstName = customer.FirstName;
+                    existingCustomer.LastName = customer.LastName;
+                    existingCustomer.Email = customer.Email;
+                    existingCustomer.Password = customer.Password;
+                    existingCustomer.Phone = customer.Phone;
+                    existingCustomer.Address = customer.Address;
+                    existingCustomer.EditedDate = DateTime.Now;
+
+                    db.Entry(existingCustomer).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Settings");
+                }
+            }
+            return View(customer);
+        }
+
         // GET: Customer/Delete/5
         public ActionResult Delete(int? id)
         {
