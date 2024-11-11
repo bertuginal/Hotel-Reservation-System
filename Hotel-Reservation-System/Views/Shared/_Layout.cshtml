@@ -6,7 +6,7 @@
     <title>ROOMIFY - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/css-folder/layout/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css-folder/layout/layoutt.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="~/Content/images/logo/roomify-favicon.png" />
 
 </head>
@@ -97,8 +97,57 @@
         @RenderBody()
         
         <footer>
-            <hr />
-            <p>ROOMIFY &copy; @DateTime.Now.Year - All rights reserved.</p>
+
+            <div class="footer-top">
+                <h2>Get discounts instantly!</h2>
+                <p>To save you just have to log in to your account and look for the experiences with the green or yellow color code. On your first reservation you can enjoy a <strong>10% discount.</strong></p>
+                <div class="email-subscribe">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Get started</button>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div>
+                    <h4>Sign up for our newsletter</h4>
+                    <p>Don't worry, we reserve our newsletter for important news so we only send a few updates a year.</p>
+                </div>
+                <div class="link-area">
+                    <div>
+                        <h4>Help and services</h4>
+                        <p><a href="#">How does it work</a></p>
+                        <p><a href="#">FAQs</a></p>
+                        <p><a href="#">Contact</a></p>
+                    </div>
+                    <div>
+                        <h4>To explore</h4>
+                        <p><a href="#">Accommodations</a></p>
+                        <p><a href="#">Experiences</a></p>
+                        <p><a href="#">Blog</a></p>
+                    </div>
+                    <div>
+                        <h4>Other possibilities</h4>
+                        <p><a href="#">Give away</a></p>
+                        <p><a href="#">Subscribe</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <button>Subscribe</button>
+                <a href="#"><img src="~/Content\images\icon/download-app-store-icon.png" alt="App-Store"></a>
+                <a href="#"><img src="~/Content\images\icon/download-google-play-icon.png" alt="Google-Play"></a>
+            </div>
+
+            <!-- Alt Kısım: Telif Hakkı ve Sosyal Medya -->
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="~/Content\images\icon/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="~/Content\images\icon/x-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="~/Content\images\icon/instagram-icon.png" alt="Instagram"></a>
+                </div>
+            </div>
         </footer>
     </div>
 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Update Customer";
 }
-<link href="~/Content/css-folder/account/customer/update-cu.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/update-cus.css" rel="stylesheet" type="text/css" />
 
 <div class="admin-edit-container">
     @using (Html.BeginForm("Update", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -82,6 +82,8 @@
                 <div class="password-container">
                     @Html.TextBoxFor(model => model.Password, new { @class = "form-control password-area", id = "currentPassword", type = "password" })
                     <span onclick="togglePassword('currentPassword')" class="toggle-password">👁️</span>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
                 </div>
             </div>
         </div>

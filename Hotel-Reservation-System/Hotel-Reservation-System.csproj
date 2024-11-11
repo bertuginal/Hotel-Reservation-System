@@ -323,7 +323,7 @@
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
-    <Content Include="Content\css-folder\account\customer\update-cu.css" />
+    <Content Include="Content\css-folder\account\customer\update-cus.css" />
     <Content Include="Content\css-folder\home-page\index-h.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
@@ -331,7 +331,7 @@
     <Content Include="Content\css-folder\hotel\edit-h.css" />
     <Content Include="Content\css-folder\hotel\index-h.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
-    <Content Include="Content\css-folder\layout\layout.css" />
+    <Content Include="Content\css-folder\layout\layoutt.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />
     <Content Include="Content\css-folder\reservation\details.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />
@@ -408,6 +408,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\hotel-images\" />
+    <Folder Include="Content\images\icon\" />
     <Folder Include="Content\images\logo\" />
     <Folder Include="Content\images\profile-photos\" />
     <Folder Include="Content\images\room-images\" />

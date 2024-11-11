@@ -137,7 +137,7 @@ hr {
 .address-area {
     width: 100%;
     max-width: none;
-    height: 90px;
+    height: 180px;
     padding: 10px;
     box-sizing: border-box;
 }
