@@ -324,12 +324,12 @@
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
-    <Content Include="Content\css-folder\home-page\index-pag.css" />
+    <Content Include="Content\css-folder\home-page\index-page.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
     <Content Include="Content\css-folder\hotel\details-hotel.css" />
     <Content Include="Content\css-folder\hotel\edit-h.css" />
-    <Content Include="Content\css-folder\hotel\index-h.css" />
+    <Content Include="Content\css-folder\hotel\index-ho.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layoutt.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />

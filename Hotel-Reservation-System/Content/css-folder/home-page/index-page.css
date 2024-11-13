@@ -286,6 +286,7 @@ hr {
     justify-content: center;
     align-items: center;
     padding-top: 350px;
+    padding-left: -460px;
     z-index: 9999;
     background-image: url('C:\Users\bertu\source\repos\Hotel-Reservation-System\Hotel-Reservation-System\Content\images\icon\loading.gif');
     background-repeat: no-repeat;
@@ -296,6 +297,7 @@ hr {
     color: white;
     font-size: 18px;
     font-weight: bold;
+    margin-left: 15px;
 }
 
 

@@ -3,18 +3,31 @@
 @{
     ViewBag.Title = "Hotels";
 }
-<link href="~/Content/css-folder/hotel/index-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/index-ho.css" rel="stylesheet" type="text/css" />
 
 
 <div class="page-header">
     <h1>Discover Your Perfect Stay!</h1>
     <p>Explore our exquisite selection of hotels tailored just for you.</p>
 </div>
+
+<!-- Search bar -->
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Discover your perfect stay..." oninput="toggleSearchButton()" />
+    <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
+    <div class="loading-area" id="loadingMessage" style="display: none;">
+        <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
+        <p>Loading...</p>
+    </div>
+</div>
+
+
 <hr />
 <div class="card-container">
+    <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
     @foreach (var item in Model)
     {
-        <div class="card">
+        <div class="card" data-name="@item.Name @item.Title @item.Location @item.PricePerNight">
             <a href="@Url.Action("Details", "Hotel", new { id = item.Id })">
                 <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
             </a>
@@ -28,7 +41,7 @@
                         {
                             city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
                         }
-                        else if(locationParts.Length < 4)
+                        else if (locationParts.Length < 4)
                         {
                             city = locationParts[locationParts.Length - 1].Trim();
                         }
@@ -47,12 +60,12 @@
                 <div class="card-text">
                     <p class="available-rooms-area">Available Rooms: @Html.DisplayFor(modelItem => item.AvailableRooms) </p>
                     <p class="price-per-night-area"><del>@(item.PricePerNight + 100) ₺</del> @Html.DisplayFor(modelItem => item.PricePerNight) ₺</p>
-                        <div class="subtitle-info">
-                            <p>
-                                Price for 1 night <br />
-                                Taxes and fees included.
-                            </p>
-                        </div>
+                    <div class="subtitle-info">
+                        <p>
+                            Price for 1 night <br />
+                            Taxes and fees included.
+                        </p>
+                    </div>
                 </div>
                 <div class="card-actions">
                     <div class="button-group">
@@ -70,3 +83,48 @@
         </div>
     }
 </div>
+
+<script>
+    let searchTimeout;
+
+    function filterHotels() {
+        clearTimeout(searchTimeout);
+
+        document.getElementById("loadingMessage").style.display = "block";
+
+        searchTimeout = setTimeout(() => {
+            var input = document.getElementById("searchInput").value.trim().toLowerCase();
+            var hotelCards = document.getElementsByClassName("card");
+            let foundAny = false;
+
+            for (var i = 0; i < hotelCards.length; i++) {
+                var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
+                if (hotelName.includes(input)) {
+                    hotelCards[i].style.display = "flex";
+                    foundAny = true;
+                } else {
+                    hotelCards[i].style.display = "none";
+                }
+            }
+
+            document.getElementById("loadingMessage").style.display = "none";
+
+            if (!foundAny) {
+                document.getElementById("notFoundMessage").style.display = "block";
+            } else {
+                document.getElementById("notFoundMessage").style.display = "none";
+            }
+        }, 2500);
+    }
+
+    function toggleSearchButton() {
+        const input = document.getElementById("searchInput").value.trim();
+        const searchButton = document.getElementById("searchButton");
+        searchButton.disabled = input === "";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("searchInput").addEventListener("input", toggleSearchButton);
+        toggleSearchButton();
+    });
+</script>

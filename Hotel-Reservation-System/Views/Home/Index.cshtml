@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-pag.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-page.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
@@ -14,8 +14,8 @@
 
     <!-- Search bar -->
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Explore your hotels..." />
-        <button onclick="filterHotels()">Search</button>
+        <input type="text" id="searchInput" placeholder="Discover your perfect stay..." oninput="toggleSearchButton()" />
+        <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
         <div class="loading-area" id="loadingMessage" style="display: none;">
             <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
             <p>Loading...</p>
@@ -23,6 +23,7 @@
     </div>
 
     <div class="hotel-list" id="hotelList">
+        <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
         @foreach (var hotel in Model)
         {
             <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location @hotel.PricePerNight">
@@ -86,21 +87,42 @@
         document.getElementById("loadingMessage").style.display = "block";
 
         searchTimeout = setTimeout(() => {
-            var input = document.getElementById("searchInput").value.toLowerCase();
+            var input = document.getElementById("searchInput").value.trim().toLowerCase();
             var hotelCards = document.getElementsByClassName("hotel-card");
+            let foundAny = false;
 
             for (var i = 0; i < hotelCards.length; i++) {
                 var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
                 if (hotelName.includes(input)) {
                     hotelCards[i].style.display = "flex";
+                    foundAny = true;
                 } else {
                     hotelCards[i].style.display = "none";
                 }
             }
 
             document.getElementById("loadingMessage").style.display = "none";
+
+            if (!foundAny) {
+                document.getElementById("notFoundMessage").style.display = "block";
+            } else {
+                document.getElementById("notFoundMessage").style.display = "none";
+            }
         }, 2500);
     }
+
+    function toggleSearchButton() {
+        const input = document.getElementById("searchInput").value.trim();
+        const searchButton = document.getElementById("searchButton");
+        searchButton.disabled = input === "";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("searchInput").addEventListener("input", toggleSearchButton);
+        toggleSearchButton();
+    });
 </script>
+
+
 
 
