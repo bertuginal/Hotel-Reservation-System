@@ -1,24 +1,34 @@
-﻿﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
 
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-pag.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
     <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
     <p>⭐ Find your perfect hotel and make reservations with ease!</p>
     <hr />
 
-    <div class="hotel-list">
+    <!-- Search bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Explore your hotels..." />
+        <button onclick="filterHotels()">Search</button>
+        <div class="loading-area" id="loadingMessage" style="display: none;">
+            <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <div class="hotel-list" id="hotelList">
         @foreach (var hotel in Model)
         {
-            <div class="hotel-card">
+            <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location @hotel.PricePerNight">
                 <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
                     <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
-                    </a>
+                </a>
                 <div class="hotel-info">
                     <div class="name-rating">
                         <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
@@ -48,11 +58,9 @@
 
                     <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
                     <div class="row">
-                        <div class="col-md-6">
-                        
-                        </div>
+                        <div class="col-md-6"></div>
                         <div class="col-md-6 price-info">
-                            <p> <del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
+                            <p><del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
                             <div class="text-right">
                                 <div class="subtitle-info">
                                     <p>
@@ -64,7 +72,35 @@
                         </div>
                     </div>
                 </div>
-</div>
+            </div>
         }
     </div>
 </div>
+
+<script>
+    let searchTimeout;
+
+    function filterHotels() {
+        clearTimeout(searchTimeout);
+
+        document.getElementById("loadingMessage").style.display = "block";
+
+        searchTimeout = setTimeout(() => {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+            var hotelCards = document.getElementsByClassName("hotel-card");
+
+            for (var i = 0; i < hotelCards.length; i++) {
+                var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
+                if (hotelName.includes(input)) {
+                    hotelCards[i].style.display = "flex";
+                } else {
+                    hotelCards[i].style.display = "none";
+                }
+            }
+
+            document.getElementById("loadingMessage").style.display = "none";
+        }, 2500);
+    }
+</script>
+
+
