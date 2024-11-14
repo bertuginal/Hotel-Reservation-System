@@ -5,28 +5,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-page.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-ho.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
-    <h1>ROOMIFY ~ HOTEL RESERVATION SYSTEM</h1>
-    <p>⭐ Find your perfect hotel and make reservations with ease!</p>
-    <hr />
+    <h1>Save up to 40% on your next hotel stay!</h1>
+    <p>We compare hotel prices from 100s of sites</p>
 
-    <!-- Search bar -->
+    <!-- Price filter range -->
+    <div class="price-filter">
+        <span class="price-before">0.00 ₺</span>
+        <input type="range" id="priceRange" min="0" max="9999" step="1" value="0" oninput="updatePriceRange()" style="width: 100%;">
+        <span class="price-after" id="priceLabel">9999.00 ₺</span>
+        <button onclick="filterByPrice()">Filter by Price</button>
+    </div>
+
+    <!-- Filter area -->
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Discover your perfect stay..." oninput="toggleSearchButton()" />
+        <input type="text" id="searchInput" placeholder="Where to?" oninput="toggleSearchButton()" />
+
+        <input type="date" id="checkinDate" placeholder="Check-in Date" />
+        <input type="date" id="checkoutDate" placeholder="Check-out Date" />
+
+        <div class="guest-dropdown">
+            <button type="button" id="guestButton" onclick="toggleGuestDropdown()"><span id="guestCount">1 Adult, 0 Child, 0 Room 🡇</span></button>
+            <div class="guest-dropdown-content" id="guestDropdown" style="display: none;">
+                <div class="guest-type">
+                    <span>Adults</span>
+                    <button type="button" onclick="decrement('adultCount')">-</button>
+                    <span id="adultCount">1</span>
+                    <button type="button" onclick="increment('adultCount')">+</button>
+                </div>
+                <div class="guest-type">
+                    <span>Children</span>
+                    <button type="button" onclick="decrement('childCount')">-</button>
+                    <span id="childCount">0</span>
+                    <button type="button" onclick="increment('childCount')">+</button>
+                </div>
+                <div class="guest-type">
+                    <span>Rooms</span>
+                    <button type="button" onclick="decrement('roomCount')">-</button>
+                    <span id="roomCount">0</span>
+                    <button type="button" onclick="increment('roomCount')">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arama butonu -->
         <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
+
+        <!-- Yükleniyor mesajı alanı -->
         <div class="loading-area" id="loadingMessage" style="display: none;">
             <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
             <p>Loading...</p>
         </div>
     </div>
 
+
+
     <div class="hotel-list" id="hotelList">
         <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
         @foreach (var hotel in Model)
         {
-            <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location @hotel.PricePerNight">
+            <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location" data-price="@hotel.PricePerNight">
                 <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
                     <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
                 </a>
@@ -121,6 +161,85 @@
         document.getElementById("searchInput").addEventListener("input", toggleSearchButton);
         toggleSearchButton();
     });
+
+    let priceRange = document.getElementById("priceRange");
+    let priceLabel = document.getElementById("priceLabel");
+
+    function updatePriceRange() {
+        const range = document.getElementById("priceRange");
+        const priceLabel = document.getElementById("priceLabel");
+
+        const value = parseFloat(range.value);
+        const max = parseFloat(range.max);
+
+        const percentage = (value / max) * 100;
+
+        range.style.background = `linear-gradient(to right, #4CAF50 ${percentage}%, #ddd ${percentage}%)`;
+
+        priceLabel.textContent = `${value.toFixed(2)} ₺`;
+    }
+
+
+    function filterByPrice() {
+        clearTimeout(searchTimeout);
+
+        document.getElementById("loadingMessage").style.display = "block";
+
+        searchTimeout = setTimeout(() => {
+            let maxPrice = parseFloat(priceRange.value) || Infinity;
+            let minPrice = 0;
+            var hotelCards = document.getElementsByClassName("hotel-card");
+            let foundAny = false;
+
+            for (var i = 0; i < hotelCards.length; i++) {
+                var hotelPrice = parseFloat(hotelCards[i].getAttribute("data-price"));
+                if (hotelPrice >= minPrice && hotelPrice <= maxPrice) {
+                    hotelCards[i].style.display = "flex";
+                    foundAny = true;
+                } else {
+                    hotelCards[i].style.display = "none";
+                }
+            }
+
+            document.getElementById("loadingMessage").style.display = "none";
+
+            if (!foundAny) {
+                document.getElementById("notFoundMessage").style.display = "block";
+            } else {
+                document.getElementById("notFoundMessage").style.display = "none";
+            }
+        }, 2500);
+    }
+
+
+    //adult - children buttons
+    function toggleGuestDropdown() {
+        var dropdown = document.getElementById("guestDropdown");
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+
+    function increment(id) {
+        var count = document.getElementById(id);
+        count.innerText = parseInt(count.innerText) + 1;
+        updateGuestCount();
+    }
+
+    function decrement(id) {
+        var count = document.getElementById(id);
+        if (parseInt(count.innerText) > 0) {
+            count.innerText = parseInt(count.innerText) - 1;
+            updateGuestCount();
+        }
+    }
+
+    function updateGuestCount() {
+        var adults = document.getElementById("adultCount").innerText;
+        var children = document.getElementById("childCount").innerText;
+        var rooms = document.getElementById("roomCount").innerText;
+        document.getElementById("guestCount").innerText = `${adults} Adult${adults > 1 ? 's' : ''}, ${children} Child${children > 1 ? 'ren' : ''}, ${rooms} Room${rooms > 1 ? 's' : ''}`;
+    }
+
+
 </script>
 
 
