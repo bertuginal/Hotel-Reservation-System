@@ -121,6 +121,7 @@
 <script>
     let searchTimeout;
 
+    // search filter
     function filterHotels() {
         clearTimeout(searchTimeout);
 
@@ -129,13 +130,43 @@
         searchTimeout = setTimeout(() => {
             var input = document.getElementById("searchInput").value.trim().toLowerCase();
             var hotelCards = document.getElementsByClassName("hotel-card");
+            var checkinDate = new Date(document.getElementById("checkinDate").value);
+            var checkoutDate = new Date(document.getElementById("checkoutDate").value);
+            var adultCount = parseInt(document.getElementById("adultCount").textContent) || 1;
+            var childCount = parseInt(document.getElementById("childCount").textContent) || 0;
+            var roomCount = parseInt(document.getElementById("roomCount").textContent) || 1;
+
             let foundAny = false;
+
+            // Tarih farkını hesapla
+            var dayDifference = Math.max(
+                (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24), // Milisaniyeden güne çevir
+                0 // Negatif değerlerden kaçınmak için minimumu 0 yap
+            );
 
             for (var i = 0; i < hotelCards.length; i++) {
                 var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
+                var pricePerNight = parseFloat(hotelCards[i].getAttribute("data-price")) || 0;
+
+                // Toplam fiyatı hesapla
+                var totalPrice =
+                    dayDifference *
+                    pricePerNight *
+                    (adultCount + childCount) *
+                    roomCount;
+
                 if (hotelName.includes(input)) {
                     hotelCards[i].style.display = "flex";
                     foundAny = true;
+
+                    // subtitle-info fiyat bilgisini güncelle
+                    var subtitleInfo = hotelCards[i].querySelector(".subtitle-info p");
+                    if (subtitleInfo) {
+                        subtitleInfo.innerHTML = `
+                        Price for ${dayDifference} night(s): <strong>${totalPrice.toFixed(2)} ₺</strong><br />
+                        Taxes and fees included.
+                    `;
+                    }
                 } else {
                     hotelCards[i].style.display = "none";
                 }
@@ -151,16 +182,23 @@
         }, 2500);
     }
 
+
     function toggleSearchButton() {
         const input = document.getElementById("searchInput").value.trim();
+        const checkinDate = document.getElementById("checkinDate").value;
+        const checkoutDate = document.getElementById("checkoutDate").value;
         const searchButton = document.getElementById("searchButton");
-        searchButton.disabled = input === "";
+
+        searchButton.disabled = input === "" || !checkinDate || !checkoutDate;
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("searchInput").addEventListener("input", toggleSearchButton);
+        document.getElementById("checkinDate").addEventListener("change", toggleSearchButton);
+        document.getElementById("checkoutDate").addEventListener("change", toggleSearchButton);
         toggleSearchButton();
     });
+
 
     let priceRange = document.getElementById("priceRange");
     let priceLabel = document.getElementById("priceLabel");
@@ -179,7 +217,7 @@
         priceLabel.textContent = `${value.toFixed(2)} ₺`;
     }
 
-
+    // price range filter
     function filterByPrice() {
         clearTimeout(searchTimeout);
 
@@ -212,7 +250,7 @@
     }
 
 
-    //adult - children buttons
+    //adults - children - rooms buttons
     function toggleGuestDropdown() {
         var dropdown = document.getElementById("guestDropdown");
         dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
