@@ -6,12 +6,12 @@
     <title>ROOMIFY - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/css-folder/layout/layoutt.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css-folder/layout/layout.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="~/Content/images/logo/roomify-favicon.png" />
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white">
         <div class="container">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="~/Content/images/logo/roomify-logo.png" alt="Hotel Logo" style="height: 35px; width: auto;">
@@ -51,7 +51,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" onclick="toggleDropdown('accountDropdown')">@ViewBag.AdminName</a>
                                 <ul id="accountDropdown" class="dropdown-menu" style="display: none;">
-                                    <li>@Html.ActionLink("↪ Log Out", "Logout", "Account")</li>
+                                    <li class="logout">@Html.ActionLink("Log out", "Logout", "Account")</li>
                                 </ul>
                             </li>
                         }
@@ -61,9 +61,10 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" onclick="toggleDropdown('accountDropdown')">@ViewBag.CustomerName</a>
                                 <ul id="accountDropdown" class="dropdown-menu" style="display: none;">
-                                    <li>@Html.ActionLink("⚙️ Account Settings", "Settings", "Customer")</li>
-                                    <li>@Html.ActionLink("🎫 My Reservations", "Index", "Reservation")</li>
-                                    <li>@Html.ActionLink("↪ Log Out", "Logout", "Account")</li>
+                                    <li>@Html.ActionLink("Your account", "Settings", "Customer")</li>
+                                    <li>@Html.ActionLink("Reservations", "Index", "Reservation")</li>
+                                    <li>@Html.ActionLink("Help and support", "#", "#")</li>
+                                    <li class="logout">@Html.ActionLink("Log out", "Logout", "Account")</li>
                                 </ul>
                             </li>
                         }
@@ -72,18 +73,18 @@
                     {
                         <!-- Register Dropdown -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('registerDropdown')">REGISTER</a>
+                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('registerDropdown')">Sign Up</a>
                             <ul id="registerDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("☘︎ Customer", "RegisterCustomer", "Account")</li>
+                                <li>@Html.ActionLink("Customer", "RegisterCustomer", "Account")</li>
                             </ul>
                         </li>
 
                         <!-- Login Dropdown -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('loginDropdown')">LOGIN</a>
+                            <a href="#" class="dropdown-toggle" onclick="toggleDropdown('loginDropdown')">Log in</a>
                             <ul id="loginDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("✧ Admin", "LoginAdmin", "Account")</li>
-                                <li>@Html.ActionLink("☘︎ Customer", "LoginCustomer", "Account")</li>
+                                <li>@Html.ActionLink("Admin", "LoginAdmin", "Account")</li>
+                                <li>@Html.ActionLink("Customer", "LoginCustomer", "Account")</li>
                             </ul>
                         </li>
                     }

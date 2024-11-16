@@ -1,7 +1,7 @@
 ﻿/* Genel sayfa düzeni */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f7fa;
+    background-color: #FAFAFA;
     margin: 0;
     padding: 0;
 }
@@ -239,6 +239,8 @@ hr {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 
     .search-bar input[type="text"],
@@ -261,7 +263,7 @@ hr {
     }
 
     .search-bar input[type="date"] {
-        width: 200px;
+        width: 270px;
         text-align: center;
         cursor: pointer;
     }
@@ -301,7 +303,7 @@ hr {
     background-color: white;
     cursor: pointer;
     transition: border-color 0.3s;
-    width: 280px;
+    width: 410px;
 }
 
     #guestButton:focus,
@@ -510,4 +512,43 @@ input[type="range"] {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
+.partner-logos {
+    display: flex;
+    align-items: center;
+    gap: 27px; 
+    overflow: hidden;
+}
+
+    .partner-logos .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        gap: 20px;
+        margin-left: 40px;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+        .partner-logos .logo img {
+            height: 20px;
+            width: auto;
+        }
+
+        .partner-logos .logo:hover {
+            color: #0073e6; /* Hover sırasında yazı rengi */
+        }
+
+    .partner-logos .more {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #555;
+        white-space: nowrap;
+        margin-left: 40px;
+        margin-top: 40px;
+        margin-bottom: 15px;
+    }
 

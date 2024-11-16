@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-ho.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-hom.css" rel="stylesheet" type="text/css" />
 
 <div class="homepage-container">
-    <h1>Save up to 40% on your next hotel stay!</h1>
+    <h3>Save up to 40% on your next hotel stay!</h3>
     <p>We compare hotel prices from 100s of sites</p>
 
     <!-- Price filter range -->
@@ -23,11 +23,11 @@
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Where to?" oninput="toggleSearchButton()" />
 
-        <input type="date" id="checkinDate" placeholder="Check-in Date" />
-        <input type="date" id="checkoutDate" placeholder="Check-out Date" />
+        <input type="date" id="checkinDate" placeholder="Check-in Date" min="" onchange="validateDates()" />
+        <input type="date" id="checkoutDate" placeholder="Check-out Date" min="" onchange="validateDates()" />
 
         <div class="guest-dropdown">
-            <button type="button" id="guestButton" onclick="toggleGuestDropdown()"><span id="guestCount">1 Adult, 0 Child, 0 Room 🡇</span></button>
+            <button type="button" id="guestButton" onclick="toggleGuestDropdown()"><span id="guestCount">1 Adult, 0 Child, 1 Room 🡇</span></button>
             <div class="guest-dropdown-content" id="guestDropdown" style="display: none;">
                 <div class="guest-type">
                     <span>Adults</span>
@@ -44,26 +44,53 @@
                 <div class="guest-type">
                     <span>Rooms</span>
                     <button type="button" onclick="decrement('roomCount')">-</button>
-                    <span id="roomCount">0</span>
+                    <span id="roomCount">1</span>
                     <button type="button" onclick="increment('roomCount')">+</button>
                 </div>
             </div>
         </div>
 
-        <!-- Arama butonu -->
         <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
 
-        <!-- Yükleniyor mesajı alanı -->
         <div class="loading-area" id="loadingMessage" style="display: none;">
             <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
             <p>Loading...</p>
         </div>
     </div>
 
+    <!-- Errors -->
+    <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
+    <p id="errorMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❗️Check-out date cannot be earlier than or the same as check-in date!</p>
+
+    <div class="partner-logos">
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/booking.png")" alt="Booking.com" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/expedia.png")" alt="Expedia" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/hotels.png")" alt="Hotels.com" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/vrbo.png")" alt="Vrbo" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/accor.png")" alt="Accor" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/trip.png")" alt="Trip.com" />
+        </a>
+        <a href="#" class="logo">
+            <img src="@Url.Content("~/Content/images/partners/priceline.png")" alt="Priceline" />
+        </a>
+        <span class="more">+100s more</span>
+    </div>
+
+
 
 
     <div class="hotel-list" id="hotelList">
-        <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
         @foreach (var hotel in Model)
         {
             <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location" data-price="@hotel.PricePerNight">
@@ -138,17 +165,15 @@
 
             let foundAny = false;
 
-            // Tarih farkını hesapla
             var dayDifference = Math.max(
-                (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24), // Milisaniyeden güne çevir
-                0 // Negatif değerlerden kaçınmak için minimumu 0 yap
+                (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24),
+                0
             );
 
             for (var i = 0; i < hotelCards.length; i++) {
                 var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
                 var pricePerNight = parseFloat(hotelCards[i].getAttribute("data-price")) || 0;
 
-                // Toplam fiyatı hesapla
                 var totalPrice =
                     dayDifference *
                     pricePerNight *
@@ -159,7 +184,6 @@
                     hotelCards[i].style.display = "flex";
                     foundAny = true;
 
-                    // subtitle-info fiyat bilgisini güncelle
                     var subtitleInfo = hotelCards[i].querySelector(".subtitle-info p");
                     if (subtitleInfo) {
                         subtitleInfo.innerHTML = `
@@ -197,9 +221,34 @@
         document.getElementById("checkinDate").addEventListener("change", toggleSearchButton);
         document.getElementById("checkoutDate").addEventListener("change", toggleSearchButton);
         toggleSearchButton();
+
+        const today = new Date().toISOString().split('T')[0];
+        const checkinDate = document.getElementById("checkinDate");
+        const checkoutDate = document.getElementById("checkoutDate");
+
+        checkinDate.min = today;
+        checkoutDate.min = today;
     });
 
+    function validateDates() {
+        const checkinDateValue = document.getElementById("checkinDate").value;
+        const checkoutDateValue = document.getElementById("checkoutDate").value;
+        const errorMessage = document.getElementById("errorMessage");
 
+        if (checkinDateValue && checkoutDateValue) {
+            const checkinDate = new Date(checkinDateValue);
+            const checkoutDate = new Date(checkoutDateValue);
+
+            if (checkoutDate <= checkinDate) {
+                errorMessage.style.display = "block";
+                document.getElementById("checkoutDate").value = "";
+            }else {
+                errorMessage.style.display = "none";
+            }
+        }
+    }
+
+    // price range filter
     let priceRange = document.getElementById("priceRange");
     let priceLabel = document.getElementById("priceLabel");
 
@@ -217,7 +266,6 @@
         priceLabel.textContent = `${value.toFixed(2)} ₺`;
     }
 
-    // price range filter
     function filterByPrice() {
         clearTimeout(searchTimeout);
 
@@ -255,6 +303,7 @@
         var dropdown = document.getElementById("guestDropdown");
         dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
     }
+
 
     function increment(id) {
         var count = document.getElementById(id);
