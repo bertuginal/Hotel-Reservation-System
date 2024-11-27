@@ -4,7 +4,7 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-ho.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-6">
                 <p class="hotel-available-rooms">
-                    @Html.DisplayFor(model => model.AvailableRooms) Rooms
+                    <i class="fa fa-bed" aria-hidden="true"></i> @Html.DisplayFor(model => model.AvailableRooms) Rooms
                 </p>
             </div>
         </div>
@@ -62,7 +62,17 @@
 <hr />
 
 <div class="room-details-container">
-    <h3>Available Rooms</h3>
+    <div class="header-container">
+        <div class="capacity-filter">
+            <button type="button" class="capacity-btn active" onclick="filterByCapacity(0)">All Rooms</button>
+            <button type="button" class="capacity-btn" onclick="filterByCapacity(1)">1 Bed</button>
+            <button type="button" class="capacity-btn" onclick="filterByCapacity(2)">2 Beds</button>
+            <button type="button" class="capacity-btn" onclick="filterByCapacity(3)">3+ Beds</button>
+        </div>
+        <h3>Showing <span id="filteredCount">0</span>/<span id="totalCount">0</span> rooms</h3>
+
+    </div>
+
     <div class="row">
         @foreach (var room in Model.Rooms)
         {
@@ -76,16 +86,19 @@
                         <h5 class="card-title"><a href="@Url.Action("Details", "Room", new { id = room.Id })">@room.Name</a></h5>
                         <p class="card-type">@room.Type</p>
                         <div class="rooms-features">
+                            <p class="card-coffee"><i class="fa fa-coffee" aria-hidden="true"></i> Free breakfast</p>
                             <p class="card-parking"><i class="fa fa-car" aria-hidden="true"></i> Free self parking</p>
                             <p class="card-capacity"><i class="fa fa-users" aria-hidden="true"></i> Max. @room.Capacity guests</p>
                             <p class="card-wifi"><i class="fa fa-wifi" aria-hidden="true"></i> Free wireless internet</p>
-                            <p class="card-meters"><i class="fa fa-expand" aria-hidden="true"></i> @room.SquareMeters m²</p>
+                            <p class="card-meters"><i class="fa fa-expand" aria-hidden="true"></i> @room.SquareMeters m² room</p>
                         </div>
                         <p class="price-info"><del>@(room.PricePerNight + 100) ₺</del> @room.PricePerNight ₺</p>
                         <p class="subtitle-info">
                             Price for 1 night <br />
                             Taxes and fees included.
                         </p>
+                        <p class="number-of-rooms">@room.NumberOfRooms rooms left</p>
+
                         @if (room.NumberOfRooms > 0)
                         {
                             @Html.ActionLink("Reserve Room", "Create", "Reservation", new { roomId = room.Id }, new { @class = "btn btn-primary" })
@@ -100,3 +113,46 @@
         }
     </div>
 </div>
+
+<script>
+    const roomCards = document.querySelectorAll('.room-card'); // Tüm oda kartlarını seç
+    const totalCountElement = document.getElementById('totalCount');
+    const filteredCountElement = document.getElementById('filteredCount');
+    const buttons = document.querySelectorAll('.capacity-btn'); // Tüm kapasite butonlarını seç
+
+    // Başlangıçta toplam oda sayısını göster
+    totalCountElement.textContent = roomCards.length;
+    filteredCountElement.textContent = roomCards.length;
+
+    // Kapasiteye göre filtreleme fonksiyonu
+    function filterByCapacity(capacity) {
+        let visibleCount = 0;
+
+        // Aktif butonu belirlemek için önce tüm butonlardan "active" sınıfını kaldır
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Seçilen kapasitenin butonuna "active" sınıfını ekle
+        buttons.forEach(button => {
+            const btnCapacity = parseInt(button.textContent.match(/\d+/)?.[0]) || 0;
+            if (capacity === 0 || capacity === btnCapacity || (capacity === 3 && btnCapacity >= 3)) {
+                button.classList.add("active");
+            }
+        });
+
+        // Oda kartlarını filtrele
+        roomCards.forEach(card => {
+            const roomCapacity = parseInt(card.querySelector('.card-capacity').textContent.match(/\d+/)[0]); // Kapasiteyi al
+            if (capacity === 0 || roomCapacity === capacity || (capacity === 3 && roomCapacity >= 3)) {
+                card.style.display = ''; // Eşleşenleri göster
+                visibleCount++;
+            } else {
+                card.style.display = 'none'; // Eşleşmeyenleri gizle
+            }
+        });
+
+        // Filtrelenmiş oda sayısını güncelle
+        filteredCountElement.textContent = visibleCount;
+    }
+</script>
+
+

@@ -3,31 +3,63 @@
 @{
     ViewBag.Title = "Hotels";
 }
-<link href="~/Content/css-folder/hotel/index-ho.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/index-hot.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <div class="page-header">
-    <h1>Discover Your Perfect Stay!</h1>
-    <p>Explore our exquisite selection of hotels tailored just for you.</p>
+    <h1>Earn up to 50% off your next hotel stay!</h1>
+    <p>We compare hotel prices from 100s of sites.</p>
 </div>
 
 <!-- Search bar -->
 <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Discover your perfect stay..." oninput="toggleSearchButton()" />
+    <input type="text" id="searchInput" placeholder="Where to?" oninput="toggleSearchButton()" />
+
+    <input type="date" id="checkinDate" placeholder="Check-in Date" min="" onchange="validateDates()" />
+    <input type="date" id="checkoutDate" placeholder="Check-out Date" min="" onchange="validateDates()" />
+
+    <div class="guest-dropdown">
+        <button type="button" id="guestButton" onclick="toggleGuestDropdown()"><span id="guestCount">1 Adult, 0 Child, 1 Room 🡇</span></button>
+        <div class="guest-dropdown-content" id="guestDropdown" style="display: none;">
+            <div class="guest-type">
+                <span>Adults</span>
+                <button type="button" onclick="decrement('adultCount')">-</button>
+                <span id="adultCount">1</span>
+                <button type="button" onclick="increment('adultCount')">+</button>
+            </div>
+            <div class="guest-type">
+                <span>Children</span>
+                <button type="button" onclick="decrement('childCount')">-</button>
+                <span id="childCount">0</span>
+                <button type="button" onclick="increment('childCount')">+</button>
+            </div>
+            <div class="guest-type">
+                <span>Rooms</span>
+                <button type="button" onclick="decrement('roomCount')">-</button>
+                <span id="roomCount">1</span>
+                <button type="button" onclick="increment('roomCount')">+</button>
+            </div>
+        </div>
+    </div>
+
     <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
+
     <div class="loading-area" id="loadingMessage" style="display: none;">
-        <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
         <p>Loading...</p>
     </div>
 </div>
 
+<!-- Errors -->
+<p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
+<p id="errorMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❗️Check-out date cannot be earlier than or the same as check-in date!</p>
 
-<hr />
 <div class="card-container">
     <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
     @foreach (var item in Model)
     {
-        <div class="card" data-name="@item.Name @item.Title @item.Location @item.PricePerNight">
+        <div class="card" data-name="@item.Name @item.Title @item.Location" data-price="@item.PricePerNight">
             <a href="@Url.Action("Details", "Hotel", new { id = item.Id })">
                 <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
             </a>
@@ -87,6 +119,7 @@
 <script>
     let searchTimeout;
 
+    // search filter
     function filterHotels() {
         clearTimeout(searchTimeout);
 
@@ -95,13 +128,40 @@
         searchTimeout = setTimeout(() => {
             var input = document.getElementById("searchInput").value.trim().toLowerCase();
             var hotelCards = document.getElementsByClassName("card");
+            var checkinDate = new Date(document.getElementById("checkinDate").value);
+            var checkoutDate = new Date(document.getElementById("checkoutDate").value);
+            var adultCount = parseInt(document.getElementById("adultCount").textContent) || 1;
+            var childCount = parseInt(document.getElementById("childCount").textContent) || 0;
+            var roomCount = parseInt(document.getElementById("roomCount").textContent) || 1;
+
             let foundAny = false;
+
+            var dayDifference = Math.max(
+                (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24),
+                0
+            );
 
             for (var i = 0; i < hotelCards.length; i++) {
                 var hotelName = hotelCards[i].getAttribute("data-name").toLowerCase();
+                var pricePerNight = parseFloat(hotelCards[i].getAttribute("data-price")) || 0;
+
+                var totalPrice =
+                    dayDifference *
+                    pricePerNight *
+                    (adultCount + childCount) *
+                    roomCount;
+
                 if (hotelName.includes(input)) {
                     hotelCards[i].style.display = "flex";
                     foundAny = true;
+
+                    var subtitleInfo = hotelCards[i].querySelector(".subtitle-info p");
+                    if (subtitleInfo) {
+                        subtitleInfo.innerHTML = `
+                    Price for ${dayDifference} night(s): <strong>${totalPrice.toFixed(2)} ₺</strong><br />
+                    Taxes and fees included.
+                `;
+                    }
                 } else {
                     hotelCards[i].style.display = "none";
                 }
@@ -117,14 +177,74 @@
         }, 2500);
     }
 
+
     function toggleSearchButton() {
         const input = document.getElementById("searchInput").value.trim();
+        const checkinDate = document.getElementById("checkinDate").value;
+        const checkoutDate = document.getElementById("checkoutDate").value;
         const searchButton = document.getElementById("searchButton");
-        searchButton.disabled = input === "";
+
+        searchButton.disabled = input === "" || !checkinDate || !checkoutDate;
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("searchInput").addEventListener("input", toggleSearchButton);
+        document.getElementById("checkinDate").addEventListener("change", toggleSearchButton);
+        document.getElementById("checkoutDate").addEventListener("change", toggleSearchButton);
         toggleSearchButton();
+
+        const today = new Date().toISOString().split('T')[0];
+        const checkinDate = document.getElementById("checkinDate");
+        const checkoutDate = document.getElementById("checkoutDate");
+
+        checkinDate.min = today;
+        checkoutDate.min = today;
     });
+
+    function validateDates() {
+        const checkinDateValue = document.getElementById("checkinDate").value;
+        const checkoutDateValue = document.getElementById("checkoutDate").value;
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (checkinDateValue && checkoutDateValue) {
+            const checkinDate = new Date(checkinDateValue);
+            const checkoutDate = new Date(checkoutDateValue);
+
+            if (checkoutDate <= checkinDate) {
+                errorMessage.style.display = "block";
+                document.getElementById("checkoutDate").value = "";
+            } else {
+                errorMessage.style.display = "none";
+            }
+        }
+    }
+
+    //adults - children - rooms buttons
+    function toggleGuestDropdown() {
+        var dropdown = document.getElementById("guestDropdown");
+        dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+
+
+    function increment(id) {
+        var count = document.getElementById(id);
+        count.innerText = parseInt(count.innerText) + 1;
+        updateGuestCount();
+    }
+
+    function decrement(id) {
+        var count = document.getElementById(id);
+        if (parseInt(count.innerText) > 0) {
+            count.innerText = parseInt(count.innerText) - 1;
+            updateGuestCount();
+        }
+    }
+
+    function updateGuestCount() {
+        var adults = document.getElementById("adultCount").innerText;
+        var children = document.getElementById("childCount").innerText;
+        var rooms = document.getElementById("roomCount").innerText;
+        document.getElementById("guestCount").innerText = `${adults} Adult${adults > 1 ? 's' : ''}, ${children} Child${children > 1 ? 'ren' : ''}, ${rooms} Room${rooms > 1 ? 's' : ''}`;
+    }
+
 </script>

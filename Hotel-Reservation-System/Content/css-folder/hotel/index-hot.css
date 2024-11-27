@@ -1,4 +1,8 @@
-﻿
+﻿body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -183,18 +187,20 @@
 }
 
 .page-header {
-    text-align: center; /* Metni ortala */
+    text-align: left; /* Metni ortala */
     margin: 30px 0; /* Üst ve alt boşluk */
 }
 
     .page-header h1 {
-        font-size: 2.5rem; /* Başlık boyutu */
+        font-size: 1.6rem; /* Başlık boyutu */
+        font-weight: 600;
         color: #007bff; /* Başlık rengi */
     }
 
     .page-header p {
-        font-size: 1.2rem; /* Alt metin boyutu */
+        font-size: 1rem; /* Alt metin boyutu */
         color: #6c757d; /* Alt metin rengi */
+        margin-top: -5px;
     }
 
 .search-bar {
@@ -203,43 +209,140 @@
     margin: 20px 0;
 }
 
-#searchInput {
-    width: 300px;
-    padding: 10px 15px;
-    border: 2px solid #ddd;
-    border-radius: 25px 0 0 25px;
-    outline: none;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+/* Genel arama çubuğu stilleri */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 
-    #searchInput:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    .search-bar input[type="text"],
+    .search-bar input[type="date"] {
+        padding: 15px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        transition: border-color 0.3s;
     }
 
-.search-bar button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 0 25px 25px 0;
-    background-color: #007bff;
+        .search-bar input[type="text"]:focus,
+        .search-bar input[type="date"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+    .search-bar input[type="text"] {
+        border-radius: 20px 0 0 20px;
+        width: 350px;
+    }
+
+    .search-bar input[type="date"] {
+        width: 270px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+#searchButton {
+    padding: 15px 20px;
+    font-size: 16px;
     color: white;
-    font-size: 16px;
+    background-color: #017BFF;
+    border: 1px solid #017BFF;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+    border-radius: 0 20px 20px 0;
+    width: 100px;
 }
 
-    .search-bar button:hover {
-        background-color: #0056b3;
+    #searchButton:disabled {
+        background-color: #bdc3c7;
+        border: 1px solid #bdc3c7;
+        cursor: not-allowed;
     }
 
-    .search-bar button:focus {
+    #searchButton:not(:disabled):hover {
+        background-color: #0156B3;
+        border: 1px solid #0156B3;
+    }
+
+.guest-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#guestButton {
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    width: 410px;
+}
+
+    #guestButton:focus,
+    #guestButton:hover {
+        border-color: #3498db;
+        font-weight: bold;
         outline: none;
     }
 
+.guest-dropdown:focus-within #guestButton {
+    font-weight: bold;
+}
 
-#loadingMessage {
+
+.guest-dropdown-content {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+    .guest-dropdown-content .guest-type {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+        .guest-dropdown-content .guest-type label {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .guest-dropdown-content .guest-type button {
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            color: #3498db;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .guest-dropdown-content .guest-type button:hover {
+                background-color: #3498db;
+                color: white;
+            }
+
+/* Açılır menü görünümü */
+.guest-dropdown:hover .guest-dropdown-content {
+    display: block;
+}
+
+.loading-area {
     position: fixed;
     top: 0;
     left: 0;
@@ -247,19 +350,26 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding-top: 350px;
-    padding-left: 480px;
+    justify-content: center;
     z-index: 9999;
-    background-image: url('C:\Users\bertu\source\repos\Hotel-Reservation-System\Hotel-Reservation-System\Content\images\icon\loading.gif');
-    background-repeat: no-repeat;
-    background-position: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 350px;
+    padding-left: 700px;
+    display: none;
+    flex-direction: column;
 }
 
-.search-bar .loading-area p {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: -10px;
-}
+    .loading-area i {
+        font-size: 50px;
+    }
+
+    .loading-area p {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: -10px;
+    }
+

@@ -1,6 +1,6 @@
 ﻿/* Genel düzenleme */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Playfair Display', serif;
     background-color: #f5f7fa;
     margin: 0;
     padding: 0;
@@ -11,12 +11,6 @@ body {
     max-width: 2000px;
     margin: 30px auto;
     padding: 0;
-}
-
-.room-details-container h3 {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 25px;
 }
 
 /* Otel resmi düzeni */
@@ -219,7 +213,7 @@ hr {
     text-align: left;
 }
 
-.rooms-features .card-parking {
+.rooms-features .card-parking, .rooms-features .card-coffee {
     color: #227950;
 }
 .card-body .price-info {
@@ -242,3 +236,57 @@ hr {
 .price-info del {
     font-size: 17px;
 }
+
+.card-body .number-of-rooms {
+    text-align: right;
+    color: #AD4B47;
+    margin-top: -5px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Alanı başlık ve butonlar arasında böler */
+    margin-bottom: 20px;
+}
+
+    .header-container h3 {
+        font-size: 16px;
+        margin-top: 10px;
+        margin-right: 15px;
+        font-weight: 500;
+        color: #333;
+    }
+
+.capacity-filter {
+    display: flex;
+    gap: 8px;
+}
+
+.capacity-btn {
+    margin-left: 15px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+    .capacity-btn:hover {
+        background-color: #017BFF;
+        color: white;
+    }
+
+    .capacity-btn.active {
+        background-color: #0156B3;
+        color: white;
+        border-color: #0156B3;
+    }
+
