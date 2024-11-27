@@ -248,6 +248,7 @@ namespace Hotel_Reservation_System.Controllers
                     existingRoom.Type = model.Type;
                     existingRoom.HotelId = model.HotelId;
                     existingRoom.Capacity = model.Capacity;
+                    existingRoom.SquareMeters = model.SquareMeters;
                     existingRoom.NumberOfRooms = model.NumberOfRooms;
                     existingRoom.PricePerNight = model.PricePerNight;
                     existingRoom.Description = model.Description;

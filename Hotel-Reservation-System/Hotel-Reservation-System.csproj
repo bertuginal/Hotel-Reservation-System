@@ -281,6 +281,10 @@
     <Compile Include="Migrations\202411091137475_ProfilePictureUpdatedForRequired.Designer.cs">
       <DependentUpon>202411091137475_ProfilePictureUpdatedForRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202411271938460_SquareMetersAddedToRoomModel.cs" />
+    <Compile Include="Migrations\202411271938460_SquareMetersAddedToRoomModel.Designer.cs">
+      <DependentUpon>202411271938460_SquareMetersAddedToRoomModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -324,10 +328,10 @@
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
-    <Content Include="Content\css-folder\home-page\index-hom.css" />
+    <Content Include="Content\css-folder\home-page\index-home.css" />
     <Content Include="Content\css-folder\hotel\create.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
-    <Content Include="Content\css-folder\hotel\details-hotel.css" />
+    <Content Include="Content\css-folder\hotel\details-h.css" />
     <Content Include="Content\css-folder\hotel\edit-h.css" />
     <Content Include="Content\css-folder\hotel\index-ho.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
@@ -497,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411091137475_ProfilePictureUpdatedForRequired.resx">
       <DependentUpon>202411091137475_ProfilePictureUpdatedForRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411271938460_SquareMetersAddedToRoomModel.resx">
+      <DependentUpon>202411271938460_SquareMetersAddedToRoomModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -4,7 +4,9 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-hotel.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-h.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <div class="hotel-details-container">
     <div class="hotel-image-container">
@@ -69,11 +71,16 @@
                     <a href="@Url.Action("Details", "Room", new { id = room.Id })">
                         <img src="@Url.Content(room.ImageUrl)" alt="@room.Name" class="card-img-top" />
                     </a>
-                    
+
                     <div class="card-body">
                         <h5 class="card-title"><a href="@Url.Action("Details", "Room", new { id = room.Id })">@room.Name</a></h5>
                         <p class="card-type">@room.Type</p>
-                        <p class="card-capacity">✔ Room for @room.Capacity guests</p>
+                        <div class="rooms-features">
+                            <p class="card-parking"><i class="fa fa-car" aria-hidden="true"></i> Free self parking</p>
+                            <p class="card-capacity"><i class="fa fa-users" aria-hidden="true"></i> Max. @room.Capacity guests</p>
+                            <p class="card-wifi"><i class="fa fa-wifi" aria-hidden="true"></i> Free wireless internet</p>
+                            <p class="card-meters"><i class="fa fa-expand" aria-hidden="true"></i> @room.SquareMeters m²</p>
+                        </div>
                         <p class="price-info"><del>@(room.PricePerNight + 100) ₺</del> @room.PricePerNight ₺</p>
                         <p class="subtitle-info">
                             Price for 1 night <br />

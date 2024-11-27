@@ -213,11 +213,15 @@ hr {
     color: #4fd9ff;
 }
 
-.card-body .card-capacity {
+.card-body .rooms-features {
     font-family: 'Playfair Display', serif;
     font-weight: 500;
+    text-align: left;
 }
 
+.rooms-features .card-parking {
+    color: #227950;
+}
 .card-body .price-info {
     text-align: right;
     font-size: 22px;

@@ -40,6 +40,11 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Number Of Rooms*")]
         public int NumberOfRooms { get; set; }
 
+        [Required(ErrorMessage = "Room's square meters cannot be empty!")]
+        [Range(10, int.MaxValue, ErrorMessage = "Room square meters must be at least 10m²!")]
+        [DisplayName("Room Square Meters*")]
+        public int SquareMeters { get; set; }
+
         // Foreign key to Hotel
         [Required]
         public int HotelId { get; set; }

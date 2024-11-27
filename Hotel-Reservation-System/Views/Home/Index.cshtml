@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-hom.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-home.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <div class="homepage-container">
     <h3>Save up to 40% on your next hotel stay!</h3>
@@ -53,7 +55,7 @@
         <button id="searchButton" onclick="filterHotels()" disabled>Search</button>
 
         <div class="loading-area" id="loadingMessage" style="display: none;">
-            <img src="@Url.Content("~/Content/images/icon/loading.gif")" alt="Loading..." />
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
             <p>Loading...</p>
         </div>
     </div>
@@ -242,7 +244,7 @@
             if (checkoutDate <= checkinDate) {
                 errorMessage.style.display = "block";
                 document.getElementById("checkoutDate").value = "";
-            }else {
+            } else {
                 errorMessage.style.display = "none";
             }
         }

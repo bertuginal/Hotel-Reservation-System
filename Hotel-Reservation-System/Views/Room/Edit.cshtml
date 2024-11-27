@@ -51,6 +51,11 @@
                     @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control", type = "number", placeholder = "Enter room capacity" })
                     @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Square Meters</label>
+                    @Html.TextBoxFor(model => model.SquareMeters, new { @class = "form-control", type = "number", placeholder = "Enter room square meters" })
+                    @Html.ValidationMessageFor(m => m.SquareMeters, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <div class="row">
