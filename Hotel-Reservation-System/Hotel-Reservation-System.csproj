@@ -336,8 +336,8 @@
     <Content Include="Content\css-folder\home-page\index-home.css" />
     <Content Include="Content\css-folder\hotel\create-h.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
-    <Content Include="Content\css-folder\hotel\details-ho.css" />
-    <Content Include="Content\css-folder\hotel\edit-h.css" />
+    <Content Include="Content\css-folder\hotel\details-h.css" />
+    <Content Include="Content\css-folder\hotel\edit-ho.css" />
     <Content Include="Content\css-folder\hotel\index-hot.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layout.css" />

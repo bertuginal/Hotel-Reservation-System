@@ -290,3 +290,25 @@ hr {
         border-color: #0156B3;
     }
 
+.hotel-facilities ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    gap: 5px;
+}
+
+.hotel-facilities .facility-area {
+    flex: 1 1 calc(30% - 10px); /* 5 öğe için genişlik (100% / 5) ve boşluk dengesi */
+    text-align: center; /* Ortala */
+    padding: 5px; /* İç boşluk */
+    margin-bottom: 10px;
+}
+
+    .hotel-facilities .facility-area i {
+        font-size: 18px;
+        margin-bottom: 3px;
+        display: block;
+        color: #555;
+    }

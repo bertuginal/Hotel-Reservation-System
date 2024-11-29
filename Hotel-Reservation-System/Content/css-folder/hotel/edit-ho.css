@@ -166,3 +166,119 @@ textarea[name="Description"] {
 	max-width: none;
 	box-sizing: border-box;
 }
+
+/* Temel yapı */
+.facility-group {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+/* Flex düzeni ile checkboxları hizalayalım */
+.form-check {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+	/* Checkbox'ı gizleme */
+	.form-check input[type="checkbox"] {
+		display: none;
+	}
+
+	/* Custom Checkbox */
+	.form-check label {
+		position: relative;
+		padding-left: 30px;
+		cursor: pointer;
+		font-size: 14px;
+		display: flex;
+		align-items: center;
+		transition: color 0.3s ease;
+	}
+
+		/* Custom checkbox */
+		.form-check label:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 20px;
+			height: 20px;
+			border: 2px solid #FEC108;
+			border-radius: 4px;
+			background-color: #fff;
+			transition: background-color 0.3s, border-color 0.3s;
+		}
+
+		/* Hover efekti */
+		.form-check label:hover:before {
+			border-color: #f0b70a;
+		}
+
+	/* Checked durumu */
+	.form-check input[type="checkbox"]:checked + label:before {
+		background-color: #FEC108;
+		border-color: #FEC108;
+		box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+	}
+
+	/* Tick işareti (Checkbox işaretlendiğinde) */
+	.form-check input[type="checkbox"]:checked + label:after {
+		content: "\2713";
+		position: absolute;
+		left: 3px;
+		top: 0;
+		color: white;
+		font-size: 16px;
+	}
+
+	/* Focus efekti */
+	.form-check input[type="checkbox"]:focus + label:before {
+		border-color: #0056b3;
+		box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+	}
+
+
+.rating-group {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: flex-start; /* Yıldızları sola yasla */
+	margin-top: 10px;
+}
+
+	.rating-group input[type="radio"] {
+		display: none; /* Radyo butonlarını gizle */
+	}
+
+	.rating-group label {
+		font-size: 24px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #ccc;
+		color: white;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	.rating-group input[type="radio"]:checked + label {
+		background-color: #FEC108; /* Seçili olduğunda arka plan rengini değiştir */
+		color: white; /* Yazı rengini beyaz yap */
+	}
+
+		.rating-group input[type="radio"]:checked + label:hover {
+			background-color: #FEC108; /* Hover sırasında da aynı renk */
+		}
+
+	.rating-group label:hover {
+		background-color: #F5A623; /* Hover sırasında arka plan rengi değişir */
+		color: white; /* Hover sırasında yazı rengini beyaz yap */
+	}
+

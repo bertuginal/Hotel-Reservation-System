@@ -177,13 +177,16 @@ public class HotelController : Controller
             }
         }
 
+        ViewBag.AllFacilities = Enum.GetValues(typeof(Facility)).Cast<Facility>()
+        .Where(f => f != Facility.None).ToList();
+
         return View(hotel);
     }
 
     // POST: Hotel/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(Hotel hotel, HttpPostedFileBase ImageUrl)
+    public ActionResult Edit(Hotel hotel, HttpPostedFileBase ImageUrl, int[] SelectedFacilities)
     {
         if (ModelState.IsValid)
         {
@@ -224,6 +227,16 @@ public class HotelController : Controller
                 dbHotel.PricePerNight = hotel.PricePerNight;
                 dbHotel.ImageUrl = hotel.ImageUrl;
 
+                if (SelectedFacilities != null && SelectedFacilities.Any())
+                {
+                    dbHotel.Facilities = SelectedFacilities.Aggregate(Facility.None, (current, facility) => current | (Facility)facility);
+                }
+                else
+                {
+                    dbHotel.Facilities = Facility.None;
+                }
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -232,6 +245,9 @@ public class HotelController : Controller
                 ModelState.AddModelError("", "Otel bulunamadı.");
             }
         }
+
+        ViewBag.AllFacilities = Enum.GetValues(typeof(Facility)).Cast<Facility>()
+        .Where(f => f != Facility.None).ToList();
 
         return View(hotel);
 

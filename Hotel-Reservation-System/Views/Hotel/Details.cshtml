@@ -6,7 +6,7 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-ho.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-h.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -60,26 +60,30 @@
             <p>@Html.DisplayFor(model => model.Description)</p>
         </div>
 
-
-        <div class="hotel-facilities">
-            <ul>
-                @foreach (Facility facility in Enum.GetValues(typeof(Facility)))
-                {
-                    if (facility != Facility.None && Model.Facilities.HasFlag(facility))
-                    {
-                        var displayName = FacilityExtensions.GetEnumDisplayName(facility);
-                        var iconClass = FacilityIcons.GetIcon(facility);
-
-                        <p>
-                            @if (!string.IsNullOrEmpty(iconClass))
+        <div class="row">
+            <div class="col-md-6">
+                <div class="hotel-facilities">
+                    <ul>
+                        @foreach (Facility facility in Enum.GetValues(typeof(Facility)))
+                        {
+                            if (facility != Facility.None && Model.Facilities.HasFlag(facility))
                             {
-                                <i class="@iconClass" aria-hidden="true"></i>
+                                var displayName = FacilityExtensions.GetEnumDisplayName(facility);
+                                var iconClass = FacilityIcons.GetIcon(facility);
+
+                                <li class="facility-area">
+                                    @if (!string.IsNullOrEmpty(iconClass))
+                                    {
+                                        <i class="@iconClass" aria-hidden="true"></i>
+                                    }
+                                    <span>@displayName</span>
+                                </li>
                             }
-                            @displayName
-                        </p>
-                    }
-                }
-            </ul>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
         </div>
 
     </div>

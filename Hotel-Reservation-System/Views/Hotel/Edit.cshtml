@@ -1,10 +1,11 @@
 ﻿@model Hotel_Reservation_System.Models.Hotel
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Edit Hotel";
 }
 
-<link href="~/Content/css-folder/hotel/edit-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/edit-ho.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -17,67 +18,91 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="form-body">
-    <div class="row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Otel Adı" })
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-        </div>
+        <div class="form-body">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Otel Adı" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Title, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Otel Başlığı" })
-            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Otel Başlığı" })
+                    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.Label("Features*", new { @class = "control-label" })
-        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 5 })
-        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-    </div>
+            <div class="form-group">
+                @Html.Label("Features*", new { @class = "control-label" })
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.AvailableRooms, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.AvailableRooms, new { @class = "form-control", placeholder = "Mevcut Oda Sayısı", type = "number", min = "5", @readonly = "readonly" })
-            @Html.ValidationMessageFor(m => m.AvailableRooms, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.PricePerNight, new { @class = "control-label" })
-            @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.AvailableRooms, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.AvailableRooms, new { @class = "form-control", placeholder = "Mevcut Oda Sayısı", type = "number", min = "5", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.AvailableRooms, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.PricePerNight, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.PricePerNight, new { @class = "form-control", value = String.Format("{0:N0}", Model.PricePerNight) })
+                    @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.Rating, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Rating, new { @class = "form-control", type = "number", min = "1", max = "5" })
-            @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.ImageUrl, new { @class = "control-label" })
-            <input type="file" name="ImageUrl" class="form-control" />
-            @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.Rating, new { @class = "control-label" })
+                    <div class="rating-group">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" id="rating-@i" name="Rating" value="@i" @(Model.Rating == i ? "checked" : "") />
+                            <label class="radio-inline" for="rating-@i">@i</label>
+                        }
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div id="map" style="height: 250px; width: 100%;"></div>
-        <br />
-        <div class="col-md-12">
-            <input type="text" id="location" name="Location" class="form-control location-area" value="@Model.Location" readonly />
-        </div>
-    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.ImageUrl, new { @class = "control-label" })
+                    <input type="file" name="ImageUrl" class="form-control" />
+                    @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-secondary">Save Changes</button>
-        @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-danger" })
-    </div>
-</div>
+            <div class="form-group">
+                <div class="facility-group">
+                    @foreach (var facility in Enum.GetValues(typeof(Hotel_Reservation_System.Models.Facility)).Cast<Hotel_Reservation_System.Models.Facility>())
+                    {
+                        if (facility != Facility.None)
+                        {
+                            var facilityValue = (int)facility;
+                            var displayName = FacilityExtensions.GetEnumDisplayName(facility);
+                            <div class="form-check">
+                                <input type="checkbox" name="SelectedFacilities" value="@facilityValue" id="facility-@facilityValue"
+                                       @(Model.Facilities.HasFlag(facility) ? "checked" : "") />
+                                <label for="facility-@facilityValue" class="form-check-label">@displayName</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div id="map" style="height: 250px; width: 100%;"></div>
+                <br />
+                <div class="col-md-12">
+                    <input type="text" id="location" name="Location" class="form-control location-area" value="@Model.Location" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary">Save Changes</button>
+                @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
     }
 </div>
 
