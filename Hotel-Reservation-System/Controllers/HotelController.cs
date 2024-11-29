@@ -109,13 +109,16 @@ public class HotelController : Controller
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
             }
         }
+
+        ViewBag.Facilities = Enum.GetValues(typeof(Facility)).Cast<Facility>().ToList();
+
         return View();
     }
 
     // POST: Hotel/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Hotel hotel, HttpPostedFileBase hotelImage)
+    public ActionResult Create(Hotel hotel, HttpPostedFileBase hotelImage, int[] SelectedFacilities)
     {
         if (ModelState.IsValid)
         {
@@ -127,10 +130,21 @@ public class HotelController : Controller
 
                 hotel.ImageUrl = "~/Content/images/hotel-images/" + fileName;
             }
+
+            if (SelectedFacilities != null && SelectedFacilities.Any())
+            {
+                hotel.Facilities = SelectedFacilities.Aggregate(Facility.None, (current, value) => current | (Facility)value);
+            }
+            else
+            {
+                hotel.Facilities = Facility.None;
+            }
             db.Hotels.Add(hotel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        ViewBag.Facilities = Enum.GetValues(typeof(Facility)).Cast<Facility>().ToList();
+
         return View(hotel);
     }
 

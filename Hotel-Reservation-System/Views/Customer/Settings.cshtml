@@ -5,6 +5,7 @@
 }
 
 <link href="~/Content/css-folder/account/customer/settings-cu.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="account-settings">
     <h2>Account Settings</h2>
@@ -64,7 +65,7 @@
         <label>Current Password</label>
         <div class="password-field">
             <input type="password" id="currentPassword" value="🔒 @Model.Password" readonly class="form-control-static password-input" placeholder="Current password" />
-            <span onclick="togglePassword('currentPassword')" class="toggle-password">👁️</span>
+            <span id="passwordToggle" onclick="togglePassword('currentPassword')" class="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></span>
             @Html.ActionLink("↩️ Change password", "Update", "Customer", new { id = Model.Id }, new { @class = "btn-add-email" })
 
         </div>
@@ -95,10 +96,14 @@
 <script>
     function togglePassword(fieldId) {
         var field = document.getElementById(fieldId);
+        var toggleElement = document.getElementById("passwordToggle");
+
         if (field.type === "password") {
             field.type = "text";
+            toggleElement.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
         } else {
             field.type = "password";
+            toggleElement.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
         }
     }
 

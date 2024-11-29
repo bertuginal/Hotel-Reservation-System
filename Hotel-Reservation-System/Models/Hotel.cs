@@ -49,6 +49,9 @@ namespace Hotel_Reservation_System.Models
         [Range(0, int.MaxValue, ErrorMessage = "Hotel nightly rate cannot be less than 0!")]
         [DisplayName("Price Per Night*")]
         public decimal PricePerNight { get; set; }
+
+        [DisplayName("Facilities")]
+        public Facility Facilities { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
 
 
