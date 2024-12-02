@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-hom.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -124,35 +124,41 @@
                                 city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
                             }
                         }
-                        <p>📍@city</p>
+                        <p><i class="fa-solid fa-location-dot"></i> @city</p>
                     </div>
                     <hr />
 
-                    @{
-                        var allFacilities = Enum.GetValues(typeof(FacilityHotel))
-                                                 .Cast<FacilityHotel>()
-                                                 .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
-                                                 .ToList();
+                    <div class="row">
+                        <div class="col-md-4">
+                            @{
+                                var allFacilities = Enum.GetValues(typeof(FacilityHotel))
+                                                         .Cast<FacilityHotel>()
+                                                         .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
+                                                         .ToList();
 
-                        var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(6);
-                    }
-                    <div class="hotel-facilities">
-                        <ul>
-                            @foreach (var facility in randomFacilities)
-                            {
-                                var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
-                                var iconClass = FacilityIcons.GetHotelIcon(facility);
-
-                                <li class="facility-area">
-                                    @if (!string.IsNullOrEmpty(iconClass))
-                                    {
-                                        <i class="@iconClass" aria-hidden="true"></i>
-                                    }
-                                    <span>@displayName</span>
-                                </li>
+                                var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(2);
                             }
-                        </ul>
+                            <div class="hotel-facilities">
+                                <ul>
+                                    @foreach (var facility in randomFacilities)
+                                    {
+                                        var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
+                                        var iconClass = FacilityIcons.GetHotelIcon(facility);
+
+                                        <li class="facility-area">
+                                            @if (!string.IsNullOrEmpty(iconClass))
+                                            {
+                                                <i class="@iconClass" aria-hidden="true"></i>
+                                            }
+                                            <span>@displayName</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8"></div>
                     </div>
+                    
 
                     <div class="row">
                         <div class="col-md-6"></div>

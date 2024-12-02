@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Hotels";
 }
-<link href="~/Content/css-folder/hotel/index-hot.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/index-hote.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="page-header">
     <h1>Earn up to 50% off your next hotel stay!</h1>
@@ -78,7 +79,7 @@
                             city = locationParts[locationParts.Length - 1].Trim();
                         }
                     }
-                    <p class="location-area">📍@city</p>
+                    <p class="location-area"><i class="fa-solid fa-location-dot"></i> @city</p>
                     <p class="rating-area">
                         @for (var i = 0; i < item.Rating; i++)
                         {
@@ -90,7 +91,33 @@
                 <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Title)</h6>
                 <hr />
                 <div class="card-text">
-                    <p class="available-rooms-area">Available Rooms: @Html.DisplayFor(modelItem => item.AvailableRooms) </p>
+
+                    @{
+                        var allFacilities = Enum.GetValues(typeof(FacilityHotel))
+                                                 .Cast<FacilityHotel>()
+                                                 .Where(facility => facility != FacilityHotel.None && item.Facilities.HasFlag(facility))
+                                                 .ToList();
+
+                        var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(3);
+                    }
+                    <div class="hotel-facilities">
+                        <ul>
+                            @foreach (var facility in randomFacilities)
+                            {
+                                var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
+                                var iconClass = FacilityIcons.GetHotelIcon(facility);
+
+                                <li class="facility-area">
+                                    @if (!string.IsNullOrEmpty(iconClass))
+                                    {
+                                        <i class="@iconClass" aria-hidden="true"></i>
+                                    }
+                                    <span>@displayName</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
                     <p class="price-per-night-area"><del>@(item.PricePerNight + 100) ₺</del> @Html.DisplayFor(modelItem => item.PricePerNight) ₺</p>
                     <div class="subtitle-info">
                         <p>

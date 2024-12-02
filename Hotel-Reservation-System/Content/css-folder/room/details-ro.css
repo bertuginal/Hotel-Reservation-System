@@ -125,6 +125,7 @@ hr {
 	background-color: #fff;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	padding-bottom: 10px;
 }
 
 .room-detail .room-price {
@@ -136,6 +137,10 @@ hr {
 	text-align: left;
 
 }
+	.room-detail .room-price del {
+		font-size: 15px;
+		font-weight: 500;
+	}
 
 .room-detail .taxes-info {
     text-align: left;
@@ -146,3 +151,62 @@ hr {
 	color: #363636;
 }
 
+	.room-detail .room-options {
+		border: 1px solid #DFE0E4;
+		border-radius: 8px;
+		margin: 15px;
+	}
+
+	.room-options .title {
+		text-align: left;
+		padding: 20px;
+		font-size: 18px;
+		font-weight: 600;
+		color: #333;
+	}
+	.room-options .number-of-rooms {
+		text-align: right;
+		margin-bottom: -25px;
+		margin-left: -20px;
+		font-size: 10px;
+		font-weight: 500;
+		color: #A95362;
+	}
+	.room-options .warning {
+		text-align: right;
+		margin-top: -25px;
+		margin-left: -20px;
+		font-size: 12px;
+		font-weight: 500;
+		color: #333;
+	}
+
+
+.room-facilities ul {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+	padding: 0;
+	margin-top: 30px;
+	gap: 5px;
+}
+
+.room-facilities .facility-area {
+	flex: 1 1 calc(20% - 10px);
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+	.room-facilities .facility-area i {
+		font-size: 15px;
+		margin-bottom: 3px;
+		display: block;
+		color: #555;
+	}
+
+	.room-facilities .facility-area span {
+		font-size: 13px;
+		color: #555;
+	}

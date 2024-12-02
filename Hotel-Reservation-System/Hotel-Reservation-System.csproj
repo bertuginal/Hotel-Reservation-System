@@ -337,12 +337,12 @@
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
-    <Content Include="Content\css-folder\home-page\index-hom.css" />
+    <Content Include="Content\css-folder\home-page\index.css" />
     <Content Include="Content\css-folder\hotel\create-h.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
     <Content Include="Content\css-folder\hotel\details-hot.css" />
     <Content Include="Content\css-folder\hotel\edit-ho.css" />
-    <Content Include="Content\css-folder\hotel\index-hot.css" />
+    <Content Include="Content\css-folder\hotel\index-hote.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
     <Content Include="Content\css-folder\layout\layout.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />
@@ -351,7 +351,7 @@
     <Content Include="Content\css-folder\reservation\list-r.css" />
     <Content Include="Content\css-folder\room\create-room.css" />
     <Content Include="Content\css-folder\room\delete-r.css" />
-    <Content Include="Content\css-folder\room\details-h.css" />
+    <Content Include="Content\css-folder\room\details-ro.css" />
     <Content Include="Content\css-folder\room\edit-h.css" />
     <Content Include="Content\css-folder\room\index.css" />
     <Content Include="favicon.ico" />

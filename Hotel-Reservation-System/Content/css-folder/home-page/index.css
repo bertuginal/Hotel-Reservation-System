@@ -65,7 +65,8 @@ hr {
     width: 330px;
     height: 280px;
     object-fit: cover;
-    border-radius: 12px;
+    border-start-start-radius: 12px;
+    border-end-start-radius: 12px;
     margin-right: 20px;
 }
 
@@ -97,8 +98,8 @@ hr {
 .location-area p {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    font-weight: 600;
-    color: #32459c;
+    font-weight: 500;
+    color: #357CDC;
     margin-top: 8px;
 }
 
@@ -555,19 +556,23 @@ input[type="range"] {
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
-    margin-top: 15px;
+    margin-top: 10px;
     gap: 1px;
 }
 
 .hotel-facilities .facility-area {
     flex: 1 1 calc(5% - 5px);
-    text-align: center;
+    text-align: left;
     padding: 5px;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
     .hotel-facilities .facility-area i {
-        font-size: 14px;
+        font-size: 16px;
         margin-bottom: 3px;
         display: block;
         color: #555;
@@ -576,4 +581,5 @@ input[type="range"] {
     .hotel-facilities .facility-area span {
         font-size: 12px;
         color: #555;
+        white-space: nowrap;
     }

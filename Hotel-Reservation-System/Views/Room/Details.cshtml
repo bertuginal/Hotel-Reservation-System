@@ -5,7 +5,7 @@
     ViewBag.Title = "Room Details";
 }
 
-<link href="~/Content/css-folder/room/details-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/room/details-ro.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -57,29 +57,34 @@
                     }
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="room-price">@Html.DisplayFor(model => model.PricePerNight) ₺</p>
-                    <p class="taxes-info">
-                        Price for 1 night <br />
-                        Taxes and fees included.
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <div class="room-actions">
-                        @if (Model.NumberOfRooms > 0)
-                        {
-                            @Html.ActionLink("Book Now", "Create", "Reservation", new { roomId = Model.Id }, new { @class = "btn btn-primary" })
-                        }
-                        else
-                        {
-                            <span class="no-availability">This room is currently unavailable!</span>
-                        }
+
+            <div class="room-options">
+                <p class="title">Room options</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="room-price">@Html.DisplayFor(model => model.PricePerNight) ₺ <del>@(Model.PricePerNight + 100) ₺</del></p>
+                        <p class="taxes-info">
+                            Price for 1 night <br />
+                            Taxes and fees included.
+                        </p>
                     </div>
+                    <div class="col-md-6">
+                        <div class="room-actions">
+                            <p class="number-of-rooms">@Model.NumberOfRooms rooms left</p>
+                            @if (Model.NumberOfRooms > 0)
+                            {
+                                @Html.ActionLink("Book Now", "Create", "Reservation", new { roomId = Model.Id }, new { @class = "btn btn-primary" })
+                            }
+                            else
+                            {
+                                <span class="no-availability">This room is currently unavailable!</span>
+                            }
+                        </div>
+                    </div>
+                    <p class="warning">*You will not be charged yet</p>
                 </div>
             </div>
         </div>
-
         <p class="subtitle-text">Features marked with * are paid.</p>
 
     </div>
