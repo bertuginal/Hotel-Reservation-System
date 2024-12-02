@@ -299,16 +299,66 @@ hr {
     gap: 5px;
 }
 
+.hotel-facilities .facility-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.hotel-facilities .facility-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: -15px;
+    margin-left: 30px;
+}
+
 .hotel-facilities .facility-area {
-    flex: 1 1 calc(30% - 10px); /* 5 öğe için genişlik (100% / 5) ve boşluk dengesi */
-    text-align: center; /* Ortala */
-    padding: 5px; /* İç boşluk */
+    flex: 1 1 calc(30% - 10px);
+    text-align: center;
+    padding: 5px;
     margin-bottom: 10px;
 }
 
     .hotel-facilities .facility-area i {
-        font-size: 18px;
+        font-size: 15px;
         margin-bottom: 3px;
         display: block;
         color: #555;
     }
+
+    .hotel-facilities .facility-area span {
+        font-size: 13px;
+        color: #555;
+    }
+
+
+.location-info {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.location-map {
+    height: 200px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.location-address {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 0;
+}
+
+    .location-address a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .location-address a:hover {
+            text-decoration: underline;
+        }
+

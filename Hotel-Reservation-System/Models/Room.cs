@@ -45,6 +45,9 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Room Square Meters*")]
         public int SquareMeters { get; set; }
 
+        [DisplayName("Facilities")]
+        public FacilityRoom Facilities { get; set; }
+
         // Foreign key to Hotel
         [Required]
         public int HotelId { get; set; }

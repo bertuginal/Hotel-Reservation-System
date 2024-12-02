@@ -289,6 +289,10 @@
     <Compile Include="Migrations\202411291356411_FacilityModelAdded.Designer.cs">
       <DependentUpon>202411291356411_FacilityModelAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412021409073_FacilityAddedToRoomModel.cs" />
+    <Compile Include="Migrations\202412021409073_FacilityAddedToRoomModel.Designer.cs">
+      <DependentUpon>202412021409073_FacilityAddedToRoomModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -333,10 +337,10 @@
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
-    <Content Include="Content\css-folder\home-page\index-home.css" />
+    <Content Include="Content\css-folder\home-page\index-hom.css" />
     <Content Include="Content\css-folder\hotel\create-h.css" />
     <Content Include="Content\css-folder\hotel\delete.css" />
-    <Content Include="Content\css-folder\hotel\details-h.css" />
+    <Content Include="Content\css-folder\hotel\details-hot.css" />
     <Content Include="Content\css-folder\hotel\edit-ho.css" />
     <Content Include="Content\css-folder\hotel\index-hot.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
@@ -345,7 +349,7 @@
     <Content Include="Content\css-folder\reservation\details.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />
     <Content Include="Content\css-folder\reservation\list-r.css" />
-    <Content Include="Content\css-folder\room\create-roo.css" />
+    <Content Include="Content\css-folder\room\create-room.css" />
     <Content Include="Content\css-folder\room\delete-r.css" />
     <Content Include="Content\css-folder\room\details-h.css" />
     <Content Include="Content\css-folder\room\edit-h.css" />
@@ -512,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411291356411_FacilityModelAdded.resx">
       <DependentUpon>202411291356411_FacilityModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412021409073_FacilityAddedToRoomModel.resx">
+      <DependentUpon>202412021409073_FacilityAddedToRoomModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

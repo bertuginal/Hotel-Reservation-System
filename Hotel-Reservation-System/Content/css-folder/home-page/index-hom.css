@@ -63,7 +63,7 @@ hr {
 /* Resim düzeni */
 .hotel-image {
     width: 330px;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
     border-radius: 12px;
     margin-right: 20px;
@@ -183,8 +183,8 @@ hr {
 
 .name-rating p {
     margin: 0;
-    font-size: 22px;
-    color: #FFD700;
+    font-size: 25px;
+    color: goldenrod;
 }
 
 .row {
@@ -550,3 +550,30 @@ input[type="range"] {
         margin-bottom: 15px;
     }
 
+.hotel-facilities ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+    gap: 1px;
+}
+
+.hotel-facilities .facility-area {
+    flex: 1 1 calc(5% - 5px);
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+    .hotel-facilities .facility-area i {
+        font-size: 14px;
+        margin-bottom: 3px;
+        display: block;
+        color: #555;
+    }
+
+    .hotel-facilities .facility-area span {
+        font-size: 12px;
+        color: #555;
+    }

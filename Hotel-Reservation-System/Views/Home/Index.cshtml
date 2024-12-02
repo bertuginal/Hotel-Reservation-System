@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-home.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-hom.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
 <div class="homepage-container">
@@ -126,7 +128,32 @@
                     </div>
                     <hr />
 
-                    <p><strong>Available Rooms:</strong> @hotel.AvailableRooms</p>
+                    @{
+                        var allFacilities = Enum.GetValues(typeof(FacilityHotel))
+                                                 .Cast<FacilityHotel>()
+                                                 .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
+                                                 .ToList();
+
+                        var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(6);
+                    }
+                    <div class="hotel-facilities">
+                        <ul>
+                            @foreach (var facility in randomFacilities)
+                            {
+                                var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
+                                var iconClass = FacilityIcons.GetHotelIcon(facility);
+
+                                <li class="facility-area">
+                                    @if (!string.IsNullOrEmpty(iconClass))
+                                    {
+                                        <i class="@iconClass" aria-hidden="true"></i>
+                                    }
+                                    <span>@displayName</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6 price-info">

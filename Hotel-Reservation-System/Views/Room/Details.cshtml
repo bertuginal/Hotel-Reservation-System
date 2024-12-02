@@ -1,10 +1,13 @@
 ﻿@model Hotel_Reservation_System.Models.Room
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Room Details";
 }
 
 <link href="~/Content/css-folder/room/details-h.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="room-details-container">
     <div class="room-image-container">
@@ -34,6 +37,26 @@
         <p class="room-description">@Html.DisplayFor(model => model.Description)</p>
 
         <div class="room-detail">
+            <div class="room-facilities">
+                <ul>
+                    @foreach (FacilityRoom facility in Enum.GetValues(typeof(FacilityRoom)))
+                    {
+                        if (facility != FacilityRoom.None && Model.Facilities.HasFlag(facility))
+                        {
+                            var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                            var iconClass = FacilityIcons.GetRoomIcon(facility);
+
+                            <li class="facility-area">
+                                @if (!string.IsNullOrEmpty(iconClass))
+                                {
+                                    <i class="@iconClass" aria-hidden="true"></i>
+                                }
+                                <span>@displayName</span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <p class="room-price">@Html.DisplayFor(model => model.PricePerNight) ₺</p>

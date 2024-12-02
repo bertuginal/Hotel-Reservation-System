@@ -110,7 +110,7 @@ public class HotelController : Controller
             }
         }
 
-        ViewBag.Facilities = Enum.GetValues(typeof(Facility)).Cast<Facility>().ToList();
+        ViewBag.Facilities = Enum.GetValues(typeof(FacilityHotel)).Cast<FacilityHotel>().ToList();
 
         return View();
     }
@@ -133,17 +133,17 @@ public class HotelController : Controller
 
             if (SelectedFacilities != null && SelectedFacilities.Any())
             {
-                hotel.Facilities = SelectedFacilities.Aggregate(Facility.None, (current, value) => current | (Facility)value);
+                hotel.Facilities = SelectedFacilities.Aggregate(FacilityHotel.None, (current, value) => current | (FacilityHotel)value);
             }
             else
             {
-                hotel.Facilities = Facility.None;
+                hotel.Facilities = FacilityHotel.None;
             }
             db.Hotels.Add(hotel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        ViewBag.Facilities = Enum.GetValues(typeof(Facility)).Cast<Facility>().ToList();
+        ViewBag.Facilities = Enum.GetValues(typeof(FacilityHotel)).Cast<FacilityHotel>().ToList();
 
         return View(hotel);
     }
@@ -177,8 +177,8 @@ public class HotelController : Controller
             }
         }
 
-        ViewBag.AllFacilities = Enum.GetValues(typeof(Facility)).Cast<Facility>()
-        .Where(f => f != Facility.None).ToList();
+        ViewBag.AllFacilities = Enum.GetValues(typeof(FacilityHotel)).Cast<FacilityHotel>()
+        .Where(f => f != FacilityHotel.None).ToList();
 
         return View(hotel);
     }
@@ -229,11 +229,11 @@ public class HotelController : Controller
 
                 if (SelectedFacilities != null && SelectedFacilities.Any())
                 {
-                    dbHotel.Facilities = SelectedFacilities.Aggregate(Facility.None, (current, facility) => current | (Facility)facility);
+                    dbHotel.Facilities = SelectedFacilities.Aggregate(FacilityHotel.None, (current, facility) => current | (FacilityHotel)facility);
                 }
                 else
                 {
-                    dbHotel.Facilities = Facility.None;
+                    dbHotel.Facilities = FacilityHotel.None;
                 }
 
 
@@ -246,8 +246,8 @@ public class HotelController : Controller
             }
         }
 
-        ViewBag.AllFacilities = Enum.GetValues(typeof(Facility)).Cast<Facility>()
-        .Where(f => f != Facility.None).ToList();
+        ViewBag.AllFacilities = Enum.GetValues(typeof(FacilityHotel)).Cast<FacilityHotel>()
+        .Where(f => f != FacilityHotel.None).ToList();
 
         return View(hotel);
 

@@ -76,12 +76,17 @@
 
         <div class="form-group">
             <div class="facility-group">
-                @foreach (Facility facility in (List<Facility>)ViewBag.Facilities)
+                @foreach (FacilityHotel facility in (List<FacilityHotel>)ViewBag.Facilities)
                 {
                     var facilityValue = (int)facility;
-                    var displayName = FacilityExtensions.GetEnumDisplayName(facility);
+                    var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
                     <div class="form-check">
-                        <input type="checkbox" name="SelectedFacilities" value="@facilityValue" id="facility-@facilityValue" />
+                        <input type="checkbox"
+                               name="SelectedFacilities"
+                               value="@facilityValue"
+                               id="facility-@facilityValue"
+                               class="facility-checkbox @((facility == FacilityHotel.None) ? "facility-none" : "")" 
+                               @(facility == FacilityHotel.None ? "checked" : "")/>
                         <label for="facility-@facilityValue" class="form-check-label">@displayName</label>
                     </div>
                 }
@@ -115,6 +120,41 @@
 }
 
 <script>
+
+    //facility-none
+    document.addEventListener("DOMContentLoaded", function () {
+        const noneCheckbox = document.querySelector(".facility-none");
+        const allCheckboxes = document.querySelectorAll(".facility-checkbox");
+
+        noneCheckbox.addEventListener("change", function () {
+            if (noneCheckbox.checked) {
+                allCheckboxes.forEach(cb => {
+                    if (!cb.classList.contains("facility-none")) {
+                        cb.checked = false;
+                        cb.disabled = true;
+                    }
+                });
+            } else {
+                allCheckboxes.forEach(cb => {
+                    if (!cb.classList.contains("facility-none")) {
+                        cb.disabled = false;
+                    }
+                });
+            }
+        });
+
+        allCheckboxes.forEach(cb => {
+            if (!cb.classList.contains("facility-none")) {
+                cb.addEventListener("change", function () {
+                    if (cb.checked) {
+                        noneCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+
+    //map
     var map = L.map('map').setView([38.4237, 27.1428], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,

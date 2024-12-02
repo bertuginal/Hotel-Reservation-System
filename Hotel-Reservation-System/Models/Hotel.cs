@@ -51,7 +51,7 @@ namespace Hotel_Reservation_System.Models
         public decimal PricePerNight { get; set; }
 
         [DisplayName("Facilities")]
-        public Facility Facilities { get; set; }
+        public FacilityHotel Facilities { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
 
 

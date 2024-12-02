@@ -149,13 +149,16 @@ namespace Hotel_Reservation_System.Controllers
             }
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name");
             ViewBag.RoomTypes = new SelectList(new List<string> {"Standard Room", "Family Room", "Suite Room" });
+
+            ViewBag.Facilities = Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>().ToList();
+
             return View();
         }
 
         // POST: Room/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Room room, HttpPostedFileBase roomImage)
+        public ActionResult Create(Room room, HttpPostedFileBase roomImage, int[] SelectedFacilities)
         {
             if (ModelState.IsValid)
             {
@@ -166,6 +169,14 @@ namespace Hotel_Reservation_System.Controllers
                         roomImage.SaveAs(path);
 
                         room.ImageUrl = "~/Content/images/room-images/" + fileName;
+                }
+                if (SelectedFacilities != null && SelectedFacilities.Any())
+                {
+                    room.Facilities = SelectedFacilities.Aggregate(FacilityRoom.None, (current, value) => current | (FacilityRoom)value);
+                }
+                else
+                {
+                    room.Facilities = FacilityRoom.None;
                 }
                 db.Rooms.Add(room);
                 db.SaveChanges();
@@ -184,6 +195,9 @@ namespace Hotel_Reservation_System.Controllers
             })).ToList();
 
             ViewBag.RoomTypes = new SelectList(new List<string> { "Standard Room", "Family Room", "Suite Room" });
+
+            ViewBag.Facilities = Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>().ToList();
+
             return View(room);
         }
 
