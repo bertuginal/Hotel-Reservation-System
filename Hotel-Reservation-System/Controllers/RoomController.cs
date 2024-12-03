@@ -3,6 +3,7 @@ using Hotel_Reservation_System.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -245,13 +246,17 @@ namespace Hotel_Reservation_System.Controllers
         }
 
         ViewBag.Hotels = new SelectList(db.Hotels, "Id", "Name", room.HotelId);
+
+        ViewBag.AllFacilities = Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>()
+        .Where(f => f != FacilityRoom.None).ToList();
+
         return View(room);
     }
 
         // POST: Room/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Room model, HttpPostedFileBase ImageFile)
+        public ActionResult Edit(Room model, HttpPostedFileBase ImageFile, int[] SelectedFacilities)
         {
             if (ModelState.IsValid)
             {
@@ -283,6 +288,15 @@ namespace Hotel_Reservation_System.Controllers
                         existingRoom.ImageUrl = "~/Content/room-images/" + fileName; // URL'yi güncelle
                     }
 
+                    if (SelectedFacilities != null && SelectedFacilities.Any())
+                    {
+                        existingRoom.Facilities = SelectedFacilities.Aggregate(FacilityRoom.None, (current, facility) => current | (FacilityRoom)facility);
+                    }
+                    else
+                    {
+                        existingRoom.Facilities = FacilityRoom.None;
+                    }
+
                     db.SaveChanges();
                     UpdateAvailableRooms(model.HotelId);
                     return RedirectToAction("Index");
@@ -290,6 +304,10 @@ namespace Hotel_Reservation_System.Controllers
             }
 
             ViewBag.Hotels = new SelectList(db.Hotels, "Id", "Name", model.HotelId);
+
+            ViewBag.AllFacilities = Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>()
+            .Where(f => f != FacilityRoom.None).ToList();
+
             return View(model);
         }
 

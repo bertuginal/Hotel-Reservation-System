@@ -1,10 +1,11 @@
 ﻿@model Hotel_Reservation_System.Models.Room
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Edit Room";
 }
 
-<link href="~/Content/css-folder/room/edit-h.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/room/edit-ho.css" rel="stylesheet" type="text/css" />
 
 <div class="room-edit-container">
     <div class="text-center">
@@ -69,6 +70,25 @@
                     <label class="control-label">Price Per Night</label>
                     @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="facility-group">
+                    @foreach (var facility in Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>())
+                    {
+                        var facilityValue = (int)facility;
+                        var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                        <div class="form-check">
+                            <input type="checkbox"
+                                   name="SelectedFacilities"
+                                   value="@facilityValue"
+                                   id="facility-@facilityValue"
+                                   class="facility-checkbox @((facility == FacilityRoom.None) ? "facility-none" : "")"
+                                   @(Model.Facilities.HasFlag(facility) ? "checked" : "") />
+                            <label for="facility-@facilityValue" class="form-check-label">@displayName</label>
+                        </div>
+                    }
                 </div>
             </div>
 
