@@ -5,7 +5,7 @@
     ViewBag.Title = "Room Details";
 }
 
-<link href="~/Content/css-folder/room/details-ro.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/room/details-roo.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -38,25 +38,81 @@
 
         <div class="room-detail">
             <div class="room-facilities">
-                <ul>
-                    @foreach (FacilityRoom facility in Enum.GetValues(typeof(FacilityRoom)))
-                    {
-                        if (facility != FacilityRoom.None && Model.Facilities.HasFlag(facility))
-                        {
-                            var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
-                            var iconClass = FacilityIcons.GetRoomIcon(facility);
-
-                            <li class="facility-area">
-                                @if (!string.IsNullOrEmpty(iconClass))
+                <div class="facility-group">
+                    <!-- Bathroom Facilities -->
+                    <div class="facility-group-item">
+                        <div class="facility-group-title">Bathroom Facilities</div>
+                        <ul>
+                            @foreach (FacilityRoom facility in Enum.GetValues(typeof(FacilityRoom)))
+                            {
+                                if (facility != FacilityRoom.None && Model.Facilities.HasFlag(facility) &&
+                                    (RoomFacilityGroups.BathroomFacilities & facility) == facility)
                                 {
-                                    <i class="@iconClass" aria-hidden="true"></i>
+                                    var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                                    var iconClass = FacilityIcons.GetRoomIcon(facility);
+
+                                    <li class="facility-area">
+                                        @if (!string.IsNullOrEmpty(iconClass))
+                                        {
+                                            <i class="@iconClass" aria-hidden="true"></i>
+                                        }
+                                        <span>@displayName</span>
+                                    </li>
                                 }
-                                <span>@displayName</span>
-                            </li>
-                        }
-                    }
-                </ul>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Bedroom Facilities -->
+                    <div class="facility-group-item">
+                        <div class="facility-group-title">Bedroom Facilities</div>
+                        <ul>
+                            @foreach (FacilityRoom facility in Enum.GetValues(typeof(FacilityRoom)))
+                            {
+                                if (facility != FacilityRoom.None && Model.Facilities.HasFlag(facility) &&
+                                    (RoomFacilityGroups.BedroomFacilities & facility) == facility)
+                                {
+                                    var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                                    var iconClass = FacilityIcons.GetRoomIcon(facility);
+
+                                    <li class="facility-area">
+                                        @if (!string.IsNullOrEmpty(iconClass))
+                                        {
+                                            <i class="@iconClass" aria-hidden="true"></i>
+                                        }
+                                        <span>@displayName</span>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Saloon Facilities -->
+                    <div class="facility-group-item">
+                        <div class="facility-group-title">Saloon Facilities</div>
+                        <ul>
+                            @foreach (FacilityRoom facility in Enum.GetValues(typeof(FacilityRoom)))
+                            {
+                                if (facility != FacilityRoom.None && Model.Facilities.HasFlag(facility) &&
+                                    (RoomFacilityGroups.SaloonFacilities & facility) == facility)
+                                {
+                                    var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                                    var iconClass = FacilityIcons.GetRoomIcon(facility);
+
+                                    <li class="facility-area">
+                                        @if (!string.IsNullOrEmpty(iconClass))
+                                        {
+                                            <i class="@iconClass" aria-hidden="true"></i>
+                                        }
+                                        <span>@displayName</span>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div>
+
 
             <div class="room-options">
                 <p class="title">Room options</p>

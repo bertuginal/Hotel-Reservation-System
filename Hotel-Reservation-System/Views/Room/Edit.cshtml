@@ -111,4 +111,38 @@
 </div>
 
 
+<script>
 
+    //facility-none
+    document.addEventListener("DOMContentLoaded", function () {
+        const noneCheckbox = document.querySelector(".facility-none");
+        const allCheckboxes = document.querySelectorAll(".facility-checkbox");
+
+        noneCheckbox.addEventListener("change", function () {
+            if (noneCheckbox.checked) {
+                allCheckboxes.forEach(cb => {
+                    if (!cb.classList.contains("facility-none")) {
+                        cb.checked = false;
+                        cb.disabled = true;
+                    }
+                });
+            } else {
+                allCheckboxes.forEach(cb => {
+                    if (!cb.classList.contains("facility-none")) {
+                        cb.disabled = false;
+                    }
+                });
+            }
+        });
+
+        allCheckboxes.forEach(cb => {
+            if (!cb.classList.contains("facility-none")) {
+                cb.addEventListener("change", function () {
+                    if (cb.checked) {
+                        noneCheckbox.checked = false;
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -182,31 +182,56 @@ hr {
 	}
 
 
-.room-facilities ul {
+
+/* Genel stil */
+.room-facilities {
+	font-family: Arial, sans-serif;
+	margin: 20px 0;
+}
+
+/* Grup başlıklarını ve özelliklerini yatay yerleştirmek için flexbox */
+.facility-group {
 	display: flex;
 	flex-wrap: wrap;
-	list-style-type: none;
-	padding: 0;
-	margin-top: 30px;
-	gap: 5px;
+	justify-content: space-between;
+	margin-bottom: 20px;
 }
 
-.room-facilities .facility-area {
-	flex: 1 1 calc(20% - 10px);
+/* Her grup için düzen */
+.facility-group-item {
+	flex: 1 1 30%; /* Her grup %30 genişliğinde olacak */
+	margin: 10px 10px;
+	padding: 15px;
+}
+
+/* Grup başlıkları */
+.facility-group-title {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #2c3e50;
 	text-align: center;
-	padding: 5px;
-	margin-bottom: 10px;
-	margin-top: 20px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	border-bottom: 2px solid #3498db;
+	padding-bottom: 5px;
 }
 
-	.room-facilities .facility-area i {
-		font-size: 15px;
-		margin-bottom: 3px;
-		display: block;
-		color: #555;
+/* Özellik listesi */
+.room-facilities .facility-area {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #34495e;
+}
+
+	.facility-area i {
+		margin-right: 8px;
+		font-size: 1.1rem;
+		color: #3498db;
 	}
 
-	.room-facilities .facility-area span {
-		font-size: 13px;
-		color: #555;
+	.facility-area span {
+		color: #2c3e50;
 	}
