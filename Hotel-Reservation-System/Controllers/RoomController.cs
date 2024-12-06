@@ -64,10 +64,14 @@ namespace Hotel_Reservation_System.Controllers
                 if (admin != null)
                 {
                     ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                    ViewBag.AdminEmail = admin.Email;
+
                 }
                 if (customerId != null)
                 {
                     ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                    ViewBag.CustomerEmail = customerId.Email;
+
                 }
             }
 
@@ -105,10 +109,14 @@ namespace Hotel_Reservation_System.Controllers
                 if (admin != null)
                 {
                     ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                    ViewBag.AdminEmail = admin.Email;
+
                 }
                 if (customerId != null)
                 {
                     ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                    ViewBag.CustomerEmail = customerId.Email;
+
                 }
             }
             if (id == null)
@@ -146,6 +154,8 @@ namespace Hotel_Reservation_System.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Name");
@@ -233,10 +243,14 @@ namespace Hotel_Reservation_System.Controllers
                 if (admin != null)
                 {
                     ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                    ViewBag.AdminEmail = admin.Email;
+
                 }
                 if (customerId != null)
                 {
                     ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                    ViewBag.CustomerEmail = customerId.Email;
+
                 }
             }
 
@@ -332,6 +346,8 @@ namespace Hotel_Reservation_System.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
 

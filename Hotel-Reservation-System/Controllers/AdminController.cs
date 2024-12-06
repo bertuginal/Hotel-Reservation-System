@@ -30,6 +30,8 @@ public class AdminController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 
@@ -57,6 +59,8 @@ public class AdminController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 
@@ -107,6 +111,8 @@ public class AdminController : Controller
             if (admin != null)
             {
                 ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                ViewBag.AdminEmail = admin.Email;
+
             }
         }
 
@@ -173,6 +179,8 @@ public class AdminController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = admin.Email;
+
             }
         }
         return View(admin);
@@ -220,6 +228,8 @@ public class AdminController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
         return View(admin);

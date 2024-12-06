@@ -49,10 +49,14 @@ public class HotelController : Controller
             if (admin != null)
             {
                 ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                ViewBag.AdminEmail = admin.Email;
+
             }
             if (customerId != null)
             {
                 ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                ViewBag.CustomerEmail = customerId.Email;
+
             }
         }
 
@@ -79,6 +83,8 @@ public class HotelController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 
@@ -107,6 +113,8 @@ public class HotelController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 
@@ -174,6 +182,8 @@ public class HotelController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 
@@ -287,10 +297,14 @@ public class HotelController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
             if (customerId != null)
             {
                 ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                ViewBag.CustomerEmail = customerId.Email;
+
             }
         }
 
@@ -317,6 +331,8 @@ public class HotelController : Controller
             if (adminId != null)
             {
                 ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                ViewBag.AdminEmail = adminId.Email;
+
             }
         }
 

@@ -37,6 +37,8 @@ namespace YourNamespace.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
 
@@ -66,6 +68,8 @@ namespace YourNamespace.Controllers
                 if (customerID != null)
                 {
                     ViewBag.CustomerName = customerID.FirstName + " " + customerID.LastName;
+                    ViewBag.CustomerEmail = customerID.Email;
+
                 }
             }
 
@@ -109,6 +113,8 @@ namespace YourNamespace.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
 
@@ -135,6 +141,8 @@ namespace YourNamespace.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
             return View();
@@ -209,6 +217,8 @@ namespace YourNamespace.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
 
@@ -304,6 +314,8 @@ namespace YourNamespace.Controllers
                 if (customerId != null)
                 {
                     ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                    ViewBag.CustomerEmail = customerId.Email;
+
                 }
             }
 
@@ -398,6 +410,8 @@ namespace YourNamespace.Controllers
                 if (adminId != null)
                 {
                     ViewBag.AdminName = adminId.FirstName + " " + adminId.LastName;
+                    ViewBag.AdminEmail = adminId.Email;
+
                 }
             }
 

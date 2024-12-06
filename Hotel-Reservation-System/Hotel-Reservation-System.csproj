@@ -344,7 +344,7 @@
     <Content Include="Content\css-folder\hotel\edit-ho.css" />
     <Content Include="Content\css-folder\hotel\index-hote.css" />
     <Content Include="Content\css-folder\hotel\list.css" />
-    <Content Include="Content\css-folder\layout\layout-c.css" />
+    <Content Include="Content\css-folder\layout\layout-cs.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />
     <Content Include="Content\css-folder\reservation\details.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />

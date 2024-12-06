@@ -41,10 +41,13 @@ namespace Hotel_Reservation_System.Controllers
                 if (admin != null)
                 {
                     ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                    ViewBag.AdminEmail = admin.Email;
+
                 }
-                if(customer != null)
+                if (customer != null)
                 {
                     ViewBag.CustomerName = customer.FirstName + " " + customer.LastName;
+                    ViewBag.CustomerEmail = customer.Email;
                 }
             }
 

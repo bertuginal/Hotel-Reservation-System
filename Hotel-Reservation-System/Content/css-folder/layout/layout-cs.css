@@ -302,3 +302,29 @@ footer {
 	}
 }
 
+.user-container {
+	border-bottom: 1px solid #D9D8D6;
+}
+
+.user-info {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.user-name {
+	font-size: 16px;
+	font-weight: 600;
+	color: #404040;
+	margin: 0;
+}
+
+.user-email {
+	font-size: 12px;
+	font-weight: 500;
+	color: #333;
+}
+
+.dropdown > a.dropdown-toggle[onclick*="accountDropdown"] > .fa-user {
+	color: #E2B145;
+}
+
