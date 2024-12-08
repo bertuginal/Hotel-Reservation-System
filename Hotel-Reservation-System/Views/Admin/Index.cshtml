@@ -4,10 +4,53 @@
     ViewBag.Title = "Admin List";
 }
 
-<link href="~/Content/css-folder/account/admin/index-a.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/index-ad.css" rel="stylesheet" type="text/css" />
 
 <h2>ADMIN DASHBOARD</h2>
-<hr />
+
+<div class="dashboard-cards">
+    <div class="card card-app">
+        <div class="card-content">
+            <i class="fa-solid fa-calendar"></i>
+            <p>Applications</p>
+            <span>41 / 100</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" style="width: 41%;"></div>
+        </div>
+    </div>
+    <div class="card card-active-users">
+        <div class="card-content">
+            <i class="fa-solid fa-user"></i>
+            <p>Active Users</p>
+            <span>1 / @Model.Count()</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" style="width: 4%;"></div>
+        </div>
+    </div>
+    <div class="card card-transactions">
+        <div class="card-content">
+            <i class="fa-solid fa-arrows-alt"></i>
+            <p>Transactions</p>
+            <span>1</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" style="width: 10%;"></div>
+        </div>
+    </div>
+    <div class="card card-channels">
+        <div class="card-content">
+            <i class="fa-solid fa-globe"></i>
+            <p>Channels</p>
+            <span>9</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" style="width: 90%;"></div>
+        </div>
+    </div>
+</div>
+
 
 <table class="table table-striped">
     <thead>
@@ -36,9 +79,9 @@
         </tr>
     </thead>
     <tbody>
-         @{
-             int count = 1;
-         } 
+        @{
+            int count = 1;
+        }
         @foreach (var admin in Model)
         {
             <tr>
@@ -55,10 +98,10 @@
                     @Html.DisplayFor(modelItem => admin.Email)
                 </td>
                 <td>
-                @admin.CreatedDate.ToString("yyyy-MM-dd")
+                    @admin.CreatedDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
-                @admin.EditedDate.ToString("yyyy-MM-dd")
+                    @admin.EditedDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = admin.Id }, new { @class = "btn btn-warning btn-sm" }) |

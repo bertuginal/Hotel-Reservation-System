@@ -328,3 +328,22 @@ footer {
 	color: #E2B145;
 }
 
+.sign-container {
+	border-bottom: 1px solid #D9D8D6;
+}
+
+.sign-info {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.sign-desc {
+	color: #191E3B;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.sign-feedback {
+	border-top: 1px solid #D9D8D6;
+	font-size: 11px !important;
+}

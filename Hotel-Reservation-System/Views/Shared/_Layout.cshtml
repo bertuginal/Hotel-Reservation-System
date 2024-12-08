@@ -6,7 +6,7 @@
     <title>ROOMIFY - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/css-folder/layout/layout-cs.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css-folder/layout/layout-css.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="~/Content/images/logo/roomify-fav.png" />
@@ -59,7 +59,7 @@
                                             <p class="user-email">@ViewBag.AdminEmail</p>
                                         </div>
                                     </li>
-                                    <li>@Html.ActionLink("Settings", "Edit", "Admin", new { id = Session["UserId"] }, null)</li>
+                                    <li>@Html.ActionLink("Account settings", "Edit", "Admin", new { id = Session["UserId"] }, null)</li>
                                     <li class="logout"><a href="@Url.Action("Logout", "Account")"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a></li>
                                 </ul>
                             </li>
@@ -91,7 +91,13 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" onclick="toggleDropdown('registerDropdown')"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
                             <ul id="registerDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("Customer", "RegisterCustomer", "Account")</li>
+                                <li class="sign-container">
+                                    <div class="sign-info">
+                                        <p class="sign-desc">Get 10% or more off when you sign up!!</p>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("RegisterCustomer", "Account")"><i class="fa-solid fa-unlock"></i> Customer</a></li>
+                                <li class="sign-feedback">@Html.ActionLink("Feedback", "#", "#")</li>
                             </ul>
                         </li>
 
@@ -99,8 +105,14 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" onclick="toggleDropdown('loginDropdown')"><i class="fa-regular fa-user"></i> Log in</a>
                             <ul id="loginDropdown" class="dropdown-menu" style="display: none;">
-                                <li>@Html.ActionLink("Admin", "LoginAdmin", "Account")</li>
-                                <li>@Html.ActionLink("Customer", "LoginCustomer", "Account")</li>
+                                <li class="sign-container">
+                                    <div class="sign-info">
+                                        <p class="sign-desc">Earn 10% or more on over 100,000 hotels when you sign in!</p>
+                                    </div>
+                                </li>
+                                <li><a href="@Url.Action("LoginAdmin", "Account")"><i class="fa-solid fa-lock"></i> Admin</a></li>
+                                <li><a href="@Url.Action("LoginCustomer", "Account")"><i class="fa-solid fa-unlock"></i> Customer</a></li>
+                                <li class="sign-feedback">@Html.ActionLink("Feedback", "#", "#")</li>
                             </ul>
                         </li>
                     }
