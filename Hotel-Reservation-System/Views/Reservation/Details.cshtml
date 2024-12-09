@@ -57,7 +57,7 @@
 
                 <div class="info-item">
                     <strong>Total Price:</strong>
-                    <span class="total-price">@(Model.Room.PricePerNight * Model.NumberOfGuests) ₺</span>
+                    <span class="total-price">@(Model.Room.PricePerNight * Model.NumberOfGuests * (decimal)(Model.CheckOutDate - Model.CheckInDate).TotalDays) ₺</span>
                 </div>
 
                 <div class="info-item status">

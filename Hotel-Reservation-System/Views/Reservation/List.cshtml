@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Hotel_Reservation_System.Models.Reservation>
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Reservation List";
@@ -12,8 +13,8 @@
     <div class="card card-app">
         <div class="card-content">
             <i class="fa-solid fa-calendar"></i>
-            <p>Applications</p>
-            <span>41 / 100</span>
+            <p>Total Reservations</p>
+            <span>@Model.Count()</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 41%;"></div>
@@ -21,9 +22,9 @@
     </div>
     <div class="card card-active-users">
         <div class="card-content">
-            <i class="fa-solid fa-id-card"></i>
-            <p>Total Reservations</p>
-            <span>@Model.Count()</span>
+            <i class="fa-solid fa-check"></i>
+            <p>Confirmed</p>
+            <span>@Model.Count(r => r.Status == ReservationStatus.Confirmed)</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 4%;"></div>
@@ -31,9 +32,11 @@
     </div>
     <div class="card card-transactions">
         <div class="card-content">
-            <i class="fa-solid fa-arrows-alt"></i>
-            <p>Transactions</p>
-            <span>1</span>
+            <i class="fa-solid fa-spinner"></i>
+            <p>Pending</p>
+            <span>
+                @Model.Count(r => r.Status == ReservationStatus.Pending)
+            </span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 10%;"></div>
@@ -41,9 +44,11 @@
     </div>
     <div class="card card-channels">
         <div class="card-content">
-            <i class="fa-solid fa-globe"></i>
-            <p>Channels</p>
-            <span>9</span>
+            <i class="fa-solid fa-ban"></i>
+            <p>Cancelled</p>
+            <span>
+                @Model.Count(r => r.Status == ReservationStatus.Cancelled)
+            </span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 90%;"></div>
@@ -76,8 +81,8 @@
                 <td>@reservation.Room.Hotel.Name</td>
                 <td>@reservation.Room.Type</td>
                 <td>@reservation.NumberOfGuests</td>
-                <td class="total-price">@(reservation.Room.PricePerNight * @reservation.NumberOfGuests) ₺</td>
-                <td class="status-label @(reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Confirmed ? "status-confirmed" : reservation.Status == Hotel_Reservation_System.Models.ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
+                <td class="total-price">@(reservation.Room.PricePerNight * @reservation.NumberOfGuests * (decimal)(reservation.CheckOutDate - reservation.CheckInDate).TotalDays) ₺</td>
+                <td class="status-label @(reservation.Status == ReservationStatus.Confirmed ? "status-confirmed" : reservation.Status == ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
                     @reservation.Status
                 </td>
                 <td>

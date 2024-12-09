@@ -5,6 +5,8 @@
 }
 
 <link href="~/Content/css-folder/room/index-r.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="page-header text-center">
     <h1>ROOMS DASHBOARD</h1>
@@ -13,9 +15,9 @@
 <div class="dashboard-cards">
     <div class="card card-app">
         <div class="card-content">
-            <i class="fa-solid fa-calendar"></i>
-            <p>Applications</p>
-            <span>41 / 100</span>
+            <i class="fa-solid fa-hotel"></i>
+            <p>Total Rooms</p>
+            <span>@Model.Count()</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 41%;"></div>
@@ -24,8 +26,8 @@
     <div class="card card-active-users">
         <div class="card-content">
             <i class="fa-solid fa-bed"></i>
-            <p>Total Rooms</p>
-            <span>@Model.Count()</span>
+            <p>Standard Room</p>
+            <span>@Model.Count(r => r.Type == "Standard Room")</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 4%;"></div>
@@ -33,9 +35,9 @@
     </div>
     <div class="card card-transactions">
         <div class="card-content">
-            <i class="fa-solid fa-arrows-alt"></i>
-            <p>Transactions</p>
-            <span>1</span>
+            <i class="fa-solid fa-bed"></i>
+            <p>Family Room</p>
+            <span>@Model.Count(r => r.Type == "Family Room")</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 10%;"></div>
@@ -43,9 +45,9 @@
     </div>
     <div class="card card-channels">
         <div class="card-content">
-            <i class="fa-solid fa-globe"></i>
-            <p>Channels</p>
-            <span>9</span>
+            <i class="fa-solid fa-bed"></i>
+            <p>Suit Room</p>
+            <span>@Model.Count(r => r.Type == "Suite Room")</span>
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 90%;"></div>
