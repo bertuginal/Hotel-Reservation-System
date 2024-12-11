@@ -1,0 +1,170 @@
+﻿
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-image-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+.hotel-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: -10px;
+}
+
+    .hotel-name a {
+        text-decoration: none;
+        color: #333;
+    }
+
+.hotel-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: -5px;
+    color: #333;
+}
+
+.card-location {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #8C97A8;
+    margin-left: 10px;
+}
+
+    .card-location i {
+        color: red;
+    }
+
+.card-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #D9534F;
+    margin-top: 8px;
+}
+
+.btn {
+    display: inline-block;
+}
+
+    .btn-trash {
+        color: #303030;
+        margin-top: -4px;
+    }
+
+        .btn-trash:hover {
+            color: #DC3545;
+        }
+
+    .trash-wishlist {
+        text-align: right;
+        margin-right: -5px;
+    }
+
+.available-rooms {
+    text-align: right;
+}
+
+.btn-book {
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid #e3a622;
+    border-radius: 10px;
+    background-color: #E4B03F;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+    .btn-book:hover {
+        color: #fff;
+        background-color: #c7952a;
+    }
+
+.text-danger {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.text-danger i {
+    margin-right: 35px;
+    margin-bottom: 3px;
+    font-size: 15px;
+
+}
+
+.rating-area {
+    color: goldenrod;
+    font-size: 1.3em;
+}
+
+.subtitle-info {
+    text-align: center;
+    margin-top: 30px;
+}
+
+        .subtitle-text {
+            font-weight: 600;
+            font-size: 35px;
+        }
+
+        .count-hotels {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+    .no-saved {
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 150px;
+    }
+        .no-saved i {
+            color: #000;
+            font-size: 40px;
+            background-color: #FBF7FC;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .no-saved .no-hotel {
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 25px;
+        }
+            .no-hotel a {
+                text-decoration: none;
+            }

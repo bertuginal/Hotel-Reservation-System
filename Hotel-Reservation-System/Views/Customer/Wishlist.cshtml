@@ -4,15 +4,103 @@
     ViewBag.Title = "Wishlist";
 }
 
-<h1>Your Wishlist</h1>
+<link href="~/Content/css-folder/account/customer/wishlist-ho.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="subtitle-info">
+    <h1 class="subtitle-text">Wishlist</h1>
+    <p class="count-hotels">@Model.Count() item</p>
+</div>
+
+<!-- Message if the wishlist is empty -->
+@if (!Model.Any())
+{
+    <div class="no-saved">
+        <i class="fa-regular fa-heart"></i>
+        <p class="no-hotel">
+            There is no saved hotel yet! <br />
+            Explore your favorite <a href="@Url.Action("Index", "Hotel")">hotels</a> for your next vacation plans.
+        </p>
+    </div>
+}
+
 <div class="card-container">
     @foreach (var item in Model)
     {
         <div class="card">
-            <img src="@item.ImageUrl" alt="@item.Name" />
-            <h5>@item.Name</h5>
-            <p>@item.Location</p>
-            <p>@item.PricePerNight ₺</p>
+            <!-- Hotel image -->
+            <div class="card-image-container">
+                <a href="@Url.Action("Details", "Hotel", new { id = item.Id })" class="card-link">
+                    <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
+                </a>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="rating-area">
+                            @for (var i = 0; i < item.Rating; i++)
+                            {
+                                <span>★</span>
+                            }
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="trash-wishlist">
+                            <form action="@Url.Action("ToggleWishlist", "Customer", new { referer = Request.Url.PathAndQuery })" method="post">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-trash">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="hotel-name"><a href="@Url.Action("Details", "Hotel", new { id = item.Id })">@item.Name</a></h5>
+                <h5 class="hotel-title">@item.Title</h5>
+                @{
+                    var locationParts = item.Location.Split(',');
+
+                    string city = "Unknown City";
+                    if (locationParts.Length >= 4)
+                    {
+                        city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                    }
+                    else if (locationParts.Length < 4)
+                    {
+                        city = locationParts[locationParts.Length - 1].Trim();
+                    }
+                }
+                <p class="card-location"><i class="fa-solid fa-location-dot"></i> @city</p>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <p class="card-price">@item.PricePerNight ₺ / night</p>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="available-rooms">
+                            <div class="btn-group">
+                                @if (item.AvailableRooms > 0)
+                                {
+                                    @Html.ActionLink("Book", "Details", "Hotel", new { id = item.Id }, new { @class = "btn btn-book" })
+                                }
+                                else
+                                {
+                                    <span class="text-danger">
+                                        <i class="fa-solid fa-circle-exclamation"></i> <br />
+                                        No Available Rooms!
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     }
 </div>

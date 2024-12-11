@@ -494,10 +494,15 @@ namespace YourNamespace.Controllers
 
         public ActionResult Wishlist()
         {
-            var userId = (int)Session["UserId"];
+            var userId = Session["UserId"] != null ? (int)Session["UserId"] : 0;
             var user = db.Users.Include(u => u.WishlistedHotels).FirstOrDefault(u => u.Id == userId);
             bool isAdmin = false;
             bool isCustomer = false;
+
+            if (userId == 0)
+            {
+                return RedirectToAction("LoginCustomer", "Account");
+            }
 
             if (Session["UserId"] != null)
             {
@@ -540,7 +545,7 @@ namespace YourNamespace.Controllers
         }
 
 
-        public ActionResult ToggleWishlist(int id)
+        public ActionResult ToggleWishlist(int id, string referer)
         {
             var userId = Session["UserId"] != null ? (int)Session["UserId"] : 0;
 
@@ -573,7 +578,15 @@ namespace YourNamespace.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Hotel");
+            if (!string.IsNullOrEmpty(referer) && referer.Contains("Hotel"))
+            {
+                return RedirectToAction("Index", "Hotel");
+            }
+            else
+            {
+                return RedirectToAction("Wishlist", "Customer");
+            }
+
         }
 
 

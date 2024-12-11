@@ -80,7 +80,7 @@
 
                 </a>
 
-                <form id="wishlistForm-@item.Id" action="@Url.Action("ToggleWishlist", "Customer")" method="post" style="display: none;">
+                <form id="wishlistForm-@item.Id" action="@Url.Action("ToggleWishlist", "Customer", new { referer = Request.Url.PathAndQuery })" method="post" style="display: none;">
                     <input type="hidden" name="id" value="@item.Id" />
                 </form>
             </div>
