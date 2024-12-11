@@ -54,6 +54,7 @@ namespace Hotel_Reservation_System.Models
         public FacilityHotel Facilities { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
 
+        public virtual ICollection<User> UsersWhoWishlisted { get; set; } = new List<User>();
 
     }
 }

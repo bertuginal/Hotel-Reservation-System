@@ -491,6 +491,92 @@ namespace YourNamespace.Controllers
         }
 
 
+
+        public ActionResult Wishlist()
+        {
+            var userId = (int)Session["UserId"];
+            var user = db.Users.Include(u => u.WishlistedHotels).FirstOrDefault(u => u.Id == userId);
+            bool isAdmin = false;
+            bool isCustomer = false;
+
+            if (Session["UserId"] != null)
+            {
+                isAdmin = db.Admins.Any(a => a.Id == userId);
+                isCustomer = db.Customers.Any(a => a.Id == userId);
+                if (isAdmin)
+                {
+                    ViewBag.IsAdmin = isAdmin;
+                }
+                else if (isCustomer)
+                {
+                    ViewBag.isCustomer = isCustomer;
+                }
+            }
+
+            if (Session["UserId"] != null)
+            {
+                var admin = db.Admins.FirstOrDefault(a => a.Id == userId);
+                var customerId = db.Customers.FirstOrDefault(a => a.Id == userId);
+                if (admin != null)
+                {
+                    ViewBag.AdminName = admin.FirstName + " " + admin.LastName;
+                    ViewBag.AdminEmail = admin.Email;
+
+                }
+                if (customerId != null)
+                {
+                    ViewBag.CustomerName = customerId.FirstName + " " + customerId.LastName;
+                    ViewBag.CustomerEmail = customerId.Email;
+
+                }
+            }
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View(user.WishlistedHotels);
+        }
+
+
+        public ActionResult ToggleWishlist(int id)
+        {
+            var userId = Session["UserId"] != null ? (int)Session["UserId"] : 0;
+
+            if (userId == 0)
+            {
+                return RedirectToAction("LoginCustomer", "Account");
+            }
+
+            var user = db.Users.Include(u => u.WishlistedHotels).FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("LoginCustomer", "Account");
+            }
+
+            var hotel = db.Hotels.Find(id);
+            if (hotel == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (user.WishlistedHotels.Contains(hotel))
+            {
+                user.WishlistedHotels.Remove(hotel);
+            }
+            else
+            {
+                user.WishlistedHotels.Add(hotel);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Hotel");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

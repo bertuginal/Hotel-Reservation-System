@@ -1,4 +1,5 @@
 ﻿@model Hotel_Reservation_System.Models.Reservation
+@using Hotel_Reservation_System.Models
 
 @{
     ViewBag.Title = "Reservation Details";
@@ -62,7 +63,7 @@
 
                 <div class="info-item status">
                     <strong>Status:</strong>
-                    <span class="status-label @(Model.Status == Hotel_Reservation_System.Models.ReservationStatus.Confirmed ? "status-confirmed" : Model.Status == Hotel_Reservation_System.Models.ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
+                    <span class="status-label @(Model.Status == ReservationStatus.Confirmed ? "status-confirmed" : Model.Status == ReservationStatus.Cancelled ? "status-cancelled" : "status-pending")">
                         @Model.Status
                     </span>
                 </div>

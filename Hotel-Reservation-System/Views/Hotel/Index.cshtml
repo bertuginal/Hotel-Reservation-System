@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Hotels";
 }
-<link href="~/Content/css-folder/hotel/index-hote.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/index-hh.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -61,9 +61,32 @@
     @foreach (var item in Model)
     {
         <div class="card" data-name="@item.Name @item.Title @item.Location" data-price="@item.PricePerNight">
-            <a href="@Url.Action("Details", "Hotel", new { id = item.Id })">
-                <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
-            </a>
+            <div class="card-link-container">
+                <a href="@Url.Action("Details", "Hotel", new { id = item.Id })" class="card-link">
+                    <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" class="card-image" />
+                </a>
+
+                <a href="javascript:void(0)" class="wishlist-icon" onclick="document.getElementById('wishlistForm-@item.Id').submit();">
+                    @{ var currentUserId = Session["UserId"] != null ? (int)Session["UserId"] : 0; }
+                    @if (item.UsersWhoWishlisted.Any(u => u.Id == currentUserId))
+                    {
+                        <i class="fa-solid fa-heart text-danger"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-heart"></i>
+                    }
+
+
+                </a>
+
+                <form id="wishlistForm-@item.Id" action="@Url.Action("ToggleWishlist", "Customer")" method="post" style="display: none;">
+                    <input type="hidden" name="id" value="@item.Id" />
+                </form>
+            </div>
+
+
+
             <div class="card-body">
                 <div class="location-rating">
                     @{

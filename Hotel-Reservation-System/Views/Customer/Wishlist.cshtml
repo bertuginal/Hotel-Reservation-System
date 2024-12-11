@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Hotel>
+
+@{
+    ViewBag.Title = "Wishlist";
+}
+
+<h1>Your Wishlist</h1>
+<div class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <img src="@item.ImageUrl" alt="@item.Name" />
+            <h5>@item.Name</h5>
+            <p>@item.Location</p>
+            <p>@item.PricePerNight ₺</p>
+        </div>
+    }
+</div>

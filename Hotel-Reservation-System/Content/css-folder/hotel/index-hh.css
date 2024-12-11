@@ -401,3 +401,30 @@
         font-size: 12px;
         color: #555;
     }
+
+
+.card-link-container {
+    position: relative; /* İkon ve resim aynı konteynerde */
+    display: inline-block;
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 12px; /* Resmin üst kısmında */
+    right: 12px; /* Sağ üst köşede */
+    color: red;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none; /* Link alt çizgisi kaldır */
+}
+
+    .wishlist-icon:hover {
+        color: darkred;
+    }

@@ -293,6 +293,10 @@
     <Compile Include="Migrations\202412021409073_FacilityAddedToRoomModel.Designer.cs">
       <DependentUpon>202412021409073_FacilityAddedToRoomModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412111350151_AddWishlistRelaction.cs" />
+    <Compile Include="Migrations\202412111350151_AddWishlistRelaction.Designer.cs">
+      <DependentUpon>202412111350151_AddWishlistRelaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -342,7 +346,7 @@
     <Content Include="Content\css-folder\hotel\delete.css" />
     <Content Include="Content\css-folder\hotel\details-hot.css" />
     <Content Include="Content\css-folder\hotel\edit-ho.css" />
-    <Content Include="Content\css-folder\hotel\index-hote.css" />
+    <Content Include="Content\css-folder\hotel\index-hh.css" />
     <Content Include="Content\css-folder\hotel\list-h.css" />
     <Content Include="Content\css-folder\layout\layout-css.css" />
     <Content Include="Content\css-folder\reservation\create-reservat.css" />
@@ -417,6 +421,7 @@
     <Content Include="Views\Reservation\List.cshtml" />
     <Content Include="Views\Customer\Settings.cshtml" />
     <Content Include="Views\Customer\Update.cshtml" />
+    <Content Include="Views\Customer\Wishlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -519,6 +524,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412021409073_FacilityAddedToRoomModel.resx">
       <DependentUpon>202412021409073_FacilityAddedToRoomModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412111350151_AddWishlistRelaction.resx">
+      <DependentUpon>202412111350151_AddWishlistRelaction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

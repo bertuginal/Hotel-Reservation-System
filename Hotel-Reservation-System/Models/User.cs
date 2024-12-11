@@ -39,6 +39,7 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Phone Number*")]
         public string Phone { get; set; }
 
+        public virtual ICollection<Hotel> WishlistedHotels { get; set; } = new List<Hotel>();
 
     }
 }
