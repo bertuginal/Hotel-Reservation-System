@@ -6,9 +6,11 @@
     ViewBag.Title = "Hotel Details";
 }
 
-<link href="~/Content/css-folder/hotel/details-hot.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/details-hote.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 
 <div class="hotel-details-container">
@@ -85,8 +87,56 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="location-features">
+                    <h2>Explore the area</h2>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="place"><i class="fa-solid fa-location-dot"></i> Asansör</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="distance">13 minutes</p>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="place"><i class="fa-solid fa-location-dot"></i> İzmir Saat Kulesi</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="distance">8 minutes</p>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="place"><i class="fa-solid fa-location-dot"></i> Goethe-Institut</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="distance">10 minutes</p>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="place"><i class="fa-solid fa-plane"></i> İzmir (ADB-Adnan Menderes)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="distance">23 minutes</p>
+
+                        </div>
+                    </div>
+                    <a href="#">View more information about this area <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="map"></div>
+            </div>
+
         </div>
 
     </div>
@@ -186,6 +236,36 @@
         // Filtrelenmiş oda sayısını güncelle
         filteredCountElement.textContent = visibleCount;
     }
+
+
+    async function getCoordinates(location) {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1`);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+            const latitude = parseFloat(data[0].lat);
+            const longitude = parseFloat(data[0].lon);
+            return { latitude, longitude };
+        } else {
+            console.error("Location not found");
+            return null;
+        }
+    }
+
+    // Map initialization
+    const map = L.map('map').setView([38.4192, 27.1287], 13); // İzmir koordinatları
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Add a marker
+    const marker = L.marker([38.4192, 27.1287]).addTo(map)
+        .bindPopup("<b>@Model.Location</b>")
+        .openPopup();
 </script>
+
+
 
 

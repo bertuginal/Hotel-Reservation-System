@@ -362,3 +362,55 @@ hr {
             text-decoration: underline;
         }
 
+
+#map {
+    height: 300px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.location-features h2 {
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.location-features .place {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 50px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.location-features .distance {
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.location-features i {
+    margin-right: 8px;
+}
+
+.location-features a {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 50px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+.location-features a i {
+    font-size: 10px;
+}
