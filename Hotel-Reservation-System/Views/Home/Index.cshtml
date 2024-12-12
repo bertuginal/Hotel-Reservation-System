@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -98,86 +98,104 @@
         @foreach (var hotel in Model)
         {
             <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location" data-price="@hotel.PricePerNight">
-                <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
-                    <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
-                </a>
-                <div class="hotel-info">
-                    <div class="name-rating">
-                        <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
-                        <p>
-                            @for (var i = 0; i < hotel.Rating; i++)
-                            {
-                                <span>★</span>
-                            }
-                        </p>
-                    </div>
-                    <div class="title-area">
-                        <p>@hotel.Title</p>
-                    </div>
-                    <div class="location-area">
-                        @{
-                            var locationParts = hotel.Location.Split(',');
+                <div class="card-link-container">
+                    <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
+                        <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
+                    </a>
 
-                            string city = "Unknown City";
-                            if (locationParts.Length >= 4)
-                            {
-                                city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
-                            }
+                    <a href="javascript:void(0)" class="wishlist-icon" onclick="document.getElementById('wishlistForm-@hotel.Id').submit();">
+                        @{ var currentUserId = Session["UserId"] != null ? (int)Session["UserId"] : 0; }
+                        @if (hotel.UsersWhoWishlisted.Any(u => u.Id == currentUserId))
+                        {
+                            <i class="fa-solid fa-heart text-danger"></i>
                         }
-                        <p><i class="fa-solid fa-location-dot"></i> @city</p>
-                    </div>
-                    <hr />
+                        else
+                        {
+                            <i class="fa-regular fa-heart"></i>
+                        }
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            @{
-                                var allFacilities = Enum.GetValues(typeof(FacilityHotel))
-                                                         .Cast<FacilityHotel>()
-                                                         .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
-                                                         .ToList();
-
-                                var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(2);
-                            }
-                            <div class="hotel-facilities">
-                                <ul>
-                                    @foreach (var facility in randomFacilities)
-                                    {
-                                        var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
-                                        var iconClass = FacilityIcons.GetHotelIcon(facility);
-
-                                        <li class="facility-area">
-                                            @if (!string.IsNullOrEmpty(iconClass))
-                                            {
-                                                <i class="@iconClass" aria-hidden="true"></i>
-                                            }
-                                            <span>@displayName</span>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
+                        <form id="wishlistForm-@hotel.Id" action="@Url.Action("ToggleWishlist", "Customer", new { referer = Request.Url.PathAndQuery })" method="post" style="display: none;">
+                            <input type="hidden" name="id" value="@hotel.Id" />
+                        </form>
+                    </a>
+                </div>
+                    <div class="hotel-info">
+                        <div class="name-rating">
+                            <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
+                            <p>
+                                @for (var i = 0; i < hotel.Rating; i++)
+                                {
+                                    <span>★</span>
+                                }
+                            </p>
                         </div>
-                        <div class="col-md-8"></div>
-                    </div>
-                    
+                        <div class="title-area">
+                            <p>@hotel.Title</p>
+                        </div>
+                        <div class="location-area">
+                            @{
+                                var locationParts = hotel.Location.Split(',');
 
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6 price-info">
-                            <p><del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
-                            <div class="text-right">
-                                <div class="subtitle-info">
-                                    <p>
-                                        Price for 1 night <br />
-                                        Taxes and fees included.
-                                    </p>
+                                string city = "Unknown City";
+                                if (locationParts.Length >= 4)
+                                {
+                                    city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                                }
+                            }
+                            <p><i class="fa-solid fa-location-dot"></i> @city</p>
+                        </div>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @{
+                                    var allFacilities = Enum.GetValues(typeof(FacilityHotel))
+                                                             .Cast<FacilityHotel>()
+                                                             .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
+                                                             .ToList();
+
+                                    var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(2);
+                                }
+                                <div class="hotel-facilities">
+                                    <ul>
+                                        @foreach (var facility in randomFacilities)
+                                        {
+                                            var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
+                                            var iconClass = FacilityIcons.GetHotelIcon(facility);
+
+                                            <li class="facility-area">
+                                                @if (!string.IsNullOrEmpty(iconClass))
+                                                {
+                                                    <i class="@iconClass" aria-hidden="true"></i>
+                                                }
+                                                <span>@displayName</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-8"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6 price-info">
+                                <p><del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
+                                <div class="text-right">
+                                    <div class="subtitle-info">
+                                        <p>
+                                            Price for 1 night <br />
+                                            Taxes and fees included.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
-        }
-    </div>
 </div>
 
 <script>

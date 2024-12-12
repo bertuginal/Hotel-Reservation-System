@@ -578,13 +578,17 @@ namespace YourNamespace.Controllers
 
             db.SaveChanges();
 
-            if (!string.IsNullOrEmpty(referer) && referer.Contains("Hotel"))
+            if(!string.IsNullOrEmpty(referer) && referer.Contains("Wishlist"))
+            {
+                return RedirectToAction("Wishlist", "Customer");
+            }
+            else if (!string.IsNullOrEmpty(referer) && referer.Contains("Hotel"))
             {
                 return RedirectToAction("Index", "Hotel");
             }
             else
             {
-                return RedirectToAction("Wishlist", "Customer");
+                return RedirectToAction("Index", "Home");
             }
 
         }

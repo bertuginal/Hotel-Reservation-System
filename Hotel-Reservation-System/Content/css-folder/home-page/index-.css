@@ -68,7 +68,34 @@ hr {
     border-start-start-radius: 12px;
     border-end-start-radius: 12px;
     margin-right: 20px;
+    display: block;
 }
+
+.card-link-container {
+    position: relative; /* Relative positioning for the container */
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    color: red; /* Default color for the icon */
+    font-size: 18px; /* Adjust the size of the icon */
+    background: #fff; /* Semi-transparent background */
+    border-radius: 50%; /* Make the background circular */
+    padding: 10px; /* Space around the icon */
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 4px;
+    padding-bottom: 1px;
+}
+
+    .wishlist-icon:hover {
+        color: darkred;
+    }
+
 
 /* Otel bilgisi */
 .hotel-info {
