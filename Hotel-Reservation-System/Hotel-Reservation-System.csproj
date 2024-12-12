@@ -327,7 +327,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css-folder\account\admin\create.css" />
     <Content Include="Content\css-folder\account\admin\delete.css" />
-    <Content Include="Content\css-folder\account\admin\details.css" />
+    <Content Include="Content\css-folder\account\admin\details-a.css" />
     <Content Include="Content\css-folder\account\admin\edit.css" />
     <Content Include="Content\css-folder\account\admin\index-ad.css" />
     <Content Include="Content\css-folder\account\admin\loginadmins.css" />

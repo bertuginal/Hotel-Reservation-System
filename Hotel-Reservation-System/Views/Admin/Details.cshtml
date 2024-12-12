@@ -4,47 +4,64 @@
     ViewBag.Title = "Admin Details";
 }
 
-<link href="~/Content/css-folder/account/admin/details.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/details-a.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="details-container">
-    <h2>ADMIN DETAILS</h2>
-    <h4>Showing detailed information of the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
-    <hr />
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>First Name</th>
-            <td>@Html.DisplayFor(model => model.FirstName)</td>
-        </tr>
-        <tr>
-            <th>Last Name</th>
-            <td>@Html.DisplayFor(model => model.LastName)</td>
-        </tr>
-        <tr>
-            <th>E-mail</th>
-            <td>@Html.DisplayFor(model => model.Email)</td>
-        </tr>
-        <tr>
-            <th>Password</th>
-            <td>@Html.DisplayFor(model => model.Password)</td>
-        </tr>
-        <tr>
-            <th>Phone Number</th>
-            <td>@Html.DisplayFor(model => model.Phone)</td>
-        </tr>
-        <tr>
-            <th>Created Date</th>
-            <td>@Model.CreatedDate</td>
-        </tr>
-        <tr>
-            <th>Last Edited Date</th>
-            <td>@Model.EditedDate</td>
-        </tr>
-    </table>
+    <div class="card">
+        <div class="card-header">
+            <span>Account Information</span>
+            <a href="@Url.Action("Edit", "Admin", new { id = Model.Id })" class="btn btn-warning btn-edit-account">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="card-row">
+                <label>E-mail</label>
+                <span>@Model.Email</span>
+            </div>
+            <div class="card-row">
+                <label>Password</label>
+                <span>@Model.Password</span>
+            </div>
+            <div class="card-row">
+                <label>User Role</label>
+                <span>Admin</span>
+            </div>
+            <div class="card-row">
+                <label>Created Date</label>
+                <span>@Model.CreatedDate</span>
+            </div>
+            <div class="card-row">
+                <label>Last Edited Date</label>
+                <span>@Model.EditedDate</span>
+            </div>
+        </div>
+    </div>
 
-    <div class="actions">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+
+    <div class="card">
+        <div class="card-header">
+            <span>Personal Information</span>
+            <a href="@Url.Action("Edit", "Admin", new { id = Model.Id })" class="btn btn-warning btn-edit-personal">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="card-row">
+                <label>First Name</label>
+                <span>@Html.DisplayFor(model => model.FirstName)</span>
+            </div>
+            <div class="card-row">
+                <label>Last Name</label>
+                <span>@Html.DisplayFor(model => model.LastName)</span>
+            </div>
+            <div class="card-row">
+                <label>Phone Number</label>
+                <span>@Html.DisplayFor(model => model.Phone)</span>
+            </div>
+        </div>
     </div>
 </div>

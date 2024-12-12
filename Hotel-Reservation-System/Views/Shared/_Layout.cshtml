@@ -59,7 +59,7 @@
                                             <p class="user-email">@ViewBag.AdminEmail</p>
                                         </div>
                                     </li>
-                                    <li>@Html.ActionLink("Account settings", "Edit", "Admin", new { id = Session["UserId"] }, null)</li>
+                                    <li>@Html.ActionLink("Account settings", "Details", "Admin", new { id = Session["UserId"] }, null)</li>
                                     <li class="logout"><a href="@Url.Action("Logout", "Account")"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a></li>
                                 </ul>
                             </li>
