@@ -3,76 +3,90 @@
 @{
     ViewBag.Title = "Edit Customer";
 }
-<link href="~/Content/css-folder/account/customer/edit-c.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/edit-cu.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<div class="admin-edit-container">
-    <div class="text-center">
-        <h2 class="page-title">CUSTOMER EDIT</h2>
-        <h4 class="sub-title">You can update the information of the customer named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
-        <hr />
-    </div>
-    @using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Id)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-body">
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">E-mail</label>
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="admin-edit-container">
+        <div class="left-panel">
+            <div class="profile-picture-container">
+                <div class="profile-picture-wrapper">
+                    <img src="@Url.Content(Model.ImageUrl)" alt="Profile Picture" class="profile-picture" />
+                    <button class="btn btn-camera">
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label">Password</label>
-                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @readonly = "readonly" })
-                </div>
+                <p class="left-email">@Model.Email</p>
+                <p class="last-edited">Last edited date: @Model.EditedDate</p>
+                <button class="btn btn-copy">Copy ID</button>
+                <ul class="actions-list">
+                    <li><button class="btn btn-link"><i class="fa-solid fa-lock"></i> Change Password</button></li>
+                    <li><button class="btn btn-banned"><i class="fa-solid fa-ban"></i> Ban User</button></li>
+                </ul>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">First Name</label>
-                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="right-panel">
+            <div class="form-body">
+                <h3 class="section-title">Personal Information</h3>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>First Name</label>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>E-mail Address</label>
+                        <div class="input-wrapper">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+                            <span class="status-badge verified">Verified</span>
+                        </div>
+                    </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Phone Number</label>
+                        <div class="input-wrapper">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                            <span class="status-badge verified">Verified</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label class="control-label">Last Name</label>
-                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Phone Number</label>
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label>Address</label>
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4 })
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label class="control-label">Profile Picture</label>
-                    <input type="file" name="profilePicture" class="form-control" />
-                    @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label class="control-label">Address</label>
-                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group form-actions">
-                <input type="submit" value="Save Changes" class="btn btn-secondary" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                <div class="form-actions">
+                    <input type="submit" value="Save Changes" class="btn btn-save" />
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-cancel" })
+                </div>
             </div>
         </div>
-    }
-</div>
 
+    </div>
+
+}
 
 

@@ -1,0 +1,222 @@
+﻿body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.admin-edit-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+}
+
+.left-panel {
+    flex: 1;
+    max-width: 300px;
+    text-align: left;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 60px;
+}
+
+.profile-picture-container {
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-camera {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+    .btn-camera i {
+        font-size: 12px;
+        color: #333;
+    }
+
+    .btn-camera:hover {
+        background-color: #f0f0f0;
+    }
+
+
+.left-email {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.last-edited {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: -13px;
+}
+
+.actions-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+    .actions-list li {
+        margin-bottom: 5px;
+    }
+
+    .actions-list li i {
+        margin-right: 5px;
+    }
+
+.btn-banned {
+    color: #ff0000;
+    font-size: 13px;
+    font-weight: 500;
+}
+    .btn-banned:hover {
+        color: #cf0202;
+    }
+
+.btn-link {
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        color: #4a4a4a;
+    }
+
+.right-panel {
+    max-width: 800px;
+    flex: 3;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    .input-wrapper .form-control {
+        padding-right: 80px;
+    }
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    border-radius: 30px;
+    border: 1px solid #84d195;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+    .status-badge.verified {
+        position: absolute;
+        right: 10px;
+        top: 13px;
+        transform: translateY(-50%);
+        background-color: #f2fff5;
+        color: #0e992d;
+        pointer-events: none;
+    }
+
+.form-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn-save {
+    border: 1px solid #fc9403;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 5px;
+    color: #fff;
+    background-color: #fc9403;
+}
+
+    .btn-save:hover {
+        color: #fff;
+        background-color: #e68600;
+        border: 1px solid #e68600;
+    }
+
+.btn-cancel {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 5px;
+    color: #595959;
+    background-color: #F5F5F5;
+}
+
+    .btn-cancel:hover {
+        color: #fff;
+        background-color: #ff0000;
+        border: 1px solid #ff0000;
+    }
+
+.form-body label {
+    margin-top: 20px;
+    margin-bottom: 3px;
+    margin-left: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.form-control {
+    font-size: 15px;
+    font-weight: 600;
+    color: #525252;
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+}
+
+textarea[rows="4"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    resize: horizontal;
+}
+
+.form-group .form-control {
+    width: 100%;
+    max-width: 100%; /* Maksimum genişlik sınırlaması */
+    box-sizing: border-box; /* Padding ve border genişliği dahil */
+}
