@@ -335,7 +335,7 @@
     <Content Include="Content\css-folder\account\customer\create.css" />
     <Content Include="Content\css-folder\account\customer\delete-c.css" />
     <Content Include="Content\css-folder\account\customer\details-cu.css" />
-    <Content Include="Content\css-folder\account\customer\edit-cu.css" />
+    <Content Include="Content\css-folder\account\customer\edit-cus.css" />
     <Content Include="Content\css-folder\account\customer\index-cus.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />

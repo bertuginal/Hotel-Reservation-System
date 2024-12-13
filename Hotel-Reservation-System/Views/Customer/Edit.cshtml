@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Edit Customer";
 }
-<link href="~/Content/css-folder/account/customer/edit-cu.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/edit-cus.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
-@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+@using (Html.BeginForm("Edit", "Customer", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
@@ -19,16 +19,25 @@
             <div class="profile-picture-container">
                 <div class="profile-picture-wrapper">
                     <img src="@Url.Content(Model.ImageUrl)" alt="Profile Picture" class="profile-picture" />
-                    <button class="btn btn-camera">
+                    <button type="button" class="btn btn-camera" id="uploadButton">
                         <i class="fa-solid fa-camera"></i>
                     </button>
+                    <input type="file" id="fileInput" name="profilePicture" accept="image/*" style="display: none;" />
                 </div>
                 <p class="left-email">@Model.Email</p>
                 <p class="last-edited">Last edited date: @Model.EditedDate</p>
-                <button class="btn btn-copy">Copy ID</button>
+                <div class="copy-user-id">
+                    <p class="user-id"><b class="title">User ID :</b> @Model.Id</p>
+                    <button class="btn btn-copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
                 <ul class="actions-list">
+                    <li><button class="btn btn-link"><i class="fa-solid fa-envelope"></i> Change E-mail</button></li>
                     <li><button class="btn btn-link"><i class="fa-solid fa-lock"></i> Change Password</button></li>
-                    <li><button class="btn btn-banned"><i class="fa-solid fa-ban"></i> Ban User</button></li>
+                    <li>
+                        <a href="@Url.Action("Delete", "Customer", new { id = Model.Id })" class="btn btn-banned">
+                            <i class="fa-solid fa-ban"></i> Ban User
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -86,7 +95,35 @@
         </div>
 
     </div>
-
 }
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const uploadButton = document.getElementById("uploadButton");
+        const fileInput = document.getElementById("fileInput");
+        const profilePreview = document.getElementById("profilePreview");
+
+        uploadButton.addEventListener("click", function () {
+            fileInput.click(); // Dosya seçme penceresini aç
+        });
+
+        fileInput.addEventListener("change", function () {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                // Mevcut görüntüyü temizle
+                profilePreview.src = "";
+
+                // Yeni görüntüyü yükle ve göster
+                reader.onload = function (e) {
+                    profilePreview.src = e.target.result; // Yeni yol
+                };
+                reader.readAsDataURL(file); // Yeni dosya için yol oluştur
+            }
+        });
+    });
+
+
+</script>
 
