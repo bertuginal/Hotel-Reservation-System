@@ -4,51 +4,106 @@
     ViewBag.Title = "Customer Details";
 }
 
-<link href="~/Content/css-folder/account/customer/details-c.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/details-cu.css" rel="stylesheet" type="text/css" />
 
 <div class="details-container">
-    <h2>CUSTOMER DETAILS</h2>
-    <h4>Showing detailed information of the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
-    <hr />
 
-    <div class="profile-picture">
-        <img src="@Url.Content(Model.ImageUrl)" name="profilePicture" alt="Profile Picture" />
+    <div class="card">
+        <div class="card-body-header">
+            <div class="profile-picture">
+                <img src="@Url.Content(Model.ImageUrl)" name="profilePicture" alt="Profile Picture" />
+            </div>
+            <div class="card-details">
+                <div class="card-row-header">
+                    <span class="full-name">@Model.FirstName @Model.LastName</span>
+                </div>
+                <div class="card-row-header">
+                    <span class="role">Customer</span>
+                </div>
+                <div class="card-row-header">
+                    <span class="role"></span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>First Name</th>
-            <td>@Html.DisplayFor(model => model.FirstName)</td>
-        </tr>
-        <tr>
-            <th>Last Name</th>
-            <td>@Html.DisplayFor(model => model.LastName)</td>
-        </tr>
-        <tr>
-            <th>E-mail</th>
-            <td>@Html.DisplayFor(model => model.Email)</td>
-        </tr>
-        <tr>
-            <th>Password</th>
-            <td>@Html.DisplayFor(model => model.Password)</td>
-        </tr>
-        <tr>
-            <th>Phone Number</th>
-            <td>@Html.DisplayFor(model => model.Phone)</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>@Html.DisplayFor(model => model.Address)</td>
-        </tr>
-        <tr>
-            <th>Last Edited Date</th>
-            <td>@Model.EditedDate</td>
-        </tr>
-    </table>
-
-    <div class="actions">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    <div class="card">
+        <div class="card-header">
+            <span>Account Information</span>
+        </div>
+        <div class="card-body">
+            <div class="card-row">
+                <label>User Role</label>
+                <span>Customer</span>
+            </div>
+            <div class="card-row">
+                <label>Created Date</label>
+                <span></span>
+            </div>
+            <div class="card-row">
+                <label>Last Edited Date</label>
+                <span>@Model.EditedDate</span>
+            </div>
+        </div>
     </div>
-</div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Personal Information</span>
+                <a href="@Url.Action("Edit", "Customer", new { id = Model.Id })" class="btn btn-warning btn-edit-personal">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="card-row">
+                    <label>First Name</label>
+                    <span>@Html.DisplayFor(model => model.FirstName)</span>
+                </div>
+                <div class="card-row">
+                    <label>Last Name</label>
+                    <span>@Html.DisplayFor(model => model.LastName)</span>
+                </div>
+                <div class="card-row">
+                    <label>Phone Number</label>
+                    <span>@Html.DisplayFor(model => model.Phone)</span>
+                </div>
+                <div class="card-row">
+                    <label>E-mail</label>
+                    <span>@Model.Email</span>
+                </div>
+                <div class="card-row">
+                    <label>Password</label>
+                    <span>@Model.Password</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Address Information</span>
+                <a href="@Url.Action("Edit", "Customer", new { id = Model.Id })" class="btn btn-warning btn-edit-regular">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="card-row">
+                    <label>Country</label>
+                    <span></span>
+                </div>
+                <div class="card-row">
+                    <label>City</label>
+                    <span></span>
+                </div>
+                <div class="card-row">
+                    <label>Postal Code</label>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-address">
+                <div class="card-row">
+                    <label>Full Address</label>
+                    <span>@Html.DisplayFor(model => model.Address)</span>
+                </div>
+            </div>
+        </div>
+    </div>

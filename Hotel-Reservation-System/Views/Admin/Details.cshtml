@@ -4,7 +4,7 @@
     ViewBag.Title = "Admin Details";
 }
 
-<link href="~/Content/css-folder/account/admin/details-a.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/details-ad.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -13,19 +13,8 @@
     <div class="card">
         <div class="card-header">
             <span>Account Information</span>
-            <a href="@Url.Action("Edit", "Admin", new { id = Model.Id })" class="btn btn-warning btn-edit-account">
-                <i class="fas fa-edit"></i> Edit
-            </a>
         </div>
         <div class="card-body">
-            <div class="card-row">
-                <label>E-mail</label>
-                <span>@Model.Email</span>
-            </div>
-            <div class="card-row">
-                <label>Password</label>
-                <span>@Model.Password</span>
-            </div>
             <div class="card-row">
                 <label>User Role</label>
                 <span>Admin</span>
@@ -61,6 +50,14 @@
             <div class="card-row">
                 <label>Phone Number</label>
                 <span>@Html.DisplayFor(model => model.Phone)</span>
+            </div>
+            <div class="card-row">
+                <label>E-mail</label>
+                <span>@Model.Email</span>
+            </div>
+            <div class="card-row">
+                <label>Password</label>
+                <span>@Model.Password</span>
             </div>
         </div>
     </div>

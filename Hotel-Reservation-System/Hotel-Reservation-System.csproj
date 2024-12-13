@@ -327,14 +327,14 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css-folder\account\admin\create.css" />
     <Content Include="Content\css-folder\account\admin\delete.css" />
-    <Content Include="Content\css-folder\account\admin\details-a.css" />
+    <Content Include="Content\css-folder\account\admin\details-ad.css" />
     <Content Include="Content\css-folder\account\admin\edit.css" />
     <Content Include="Content\css-folder\account\admin\index-ad.css" />
     <Content Include="Content\css-folder\account\admin\loginadmins.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
     <Content Include="Content\css-folder\account\customer\create.css" />
     <Content Include="Content\css-folder\account\customer\delete-c.css" />
-    <Content Include="Content\css-folder\account\customer\details-c.css" />
+    <Content Include="Content\css-folder\account\customer\details-cu.css" />
     <Content Include="Content\css-folder\account\customer\edit-c.css" />
     <Content Include="Content\css-folder\account\customer\index-cus.css" />
     <Content Include="Content\css-folder\account\customer\logincustomers.css" />
