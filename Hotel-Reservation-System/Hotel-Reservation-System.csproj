@@ -328,7 +328,7 @@
     <Content Include="Content\css-folder\account\admin\create.css" />
     <Content Include="Content\css-folder\account\admin\delete.css" />
     <Content Include="Content\css-folder\account\admin\details-ad.css" />
-    <Content Include="Content\css-folder\account\admin\edit.css" />
+    <Content Include="Content\css-folder\account\admin\edit-a.css" />
     <Content Include="Content\css-folder\account\admin\index-ad.css" />
     <Content Include="Content\css-folder\account\admin\loginadmins.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />

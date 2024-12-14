@@ -4,60 +4,117 @@
     ViewBag.Title = "Edit Admin";
 }
 
-<link href="~/Content/css-folder/account/admin/edit.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/edit-a.css" rel="stylesheet" type="text/css" />
 
-<div class="admin-edit-container">
-    <div class="text-center">
-        <h2 class="page-title">ADMIN EDIT</h2>
-        <h4 class="sub-title">You can update the information of the admin named "@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)"!</h4>
-        <hr />
-    </div>
-        @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.Id)
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+    <div class="admin-edit-container">
+        <div class="left-panel">
+            <div class="profile-picture-container">
+                <div class="profile-picture-wrapper">
+                    <img src="~/Content/images/profile-photos/default.jpg" alt="Profile Picture" class="profile-picture" />
+                    <button type="button" class="btn btn-camera" id="uploadButton">
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+                    <input type="file" id="fileInput" name="profilePicture" accept="image/*" style="display: none;" />
+                </div>
+                <p class="left-email">@Model.Email</p>
+                <p class="last-edited">Created date: @Model.CreatedDate</p>
+                <p class="last-edited">Last edited date: @Model.EditedDate</p>
+                <div class="copy-user-id">
+                    <p class="user-id"><b class="title">User ID :</b> @Model.Id</p>
+                    <button class="btn btn-copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <ul class="actions-list">
+                    <li><button class="btn btn-link"><i class="fa-solid fa-envelope"></i> Change E-mail</button></li>
+                    <li><button class="btn btn-link"><i class="fa-solid fa-lock"></i> Change Password</button></li>
+                    <li>
+                        <a href="@Url.Action("Delete", "Admin", new { id = Model.Id })" class="btn btn-banned">
+                            <i class="fa-solid fa-ban"></i> Ban User
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="right-panel">
             <div class="form-body">
+                <h3 class="section-title">Personal Information</h3>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="control-label">E-mail</label>
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Password</label>
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="form-group col-md-6">
-                        <label class="control-label">First Name</label>
+                        <label>First Name</label>
                         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Last Name</label>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>E-mail Address</label>
+                        <div class="input-wrapper">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+                            <span class="status-badge verified">Verified</span>
+                        </div>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label class="control-label">Last Name</label>
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                        <label>Password</label>
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Phone Number</label>
+                        <div class="input-wrapper">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                            <span class="status-badge verified">Verified</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label class="control-label">Phone Number</label>
-                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group form-actions">
-                    <input type="submit" value="Save Changes" class="btn btn-secondary" />
-                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                <div class="form-actions">
+                    <input type="submit" value="Save Changes" class="btn btn-save" />
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-cancel" })
                 </div>
             </div>
-        }
+        </div>
+
     </div>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const uploadButton = document.getElementById("uploadButton");
+        const fileInput = document.getElementById("fileInput");
+        const profilePreview = document.getElementById("profilePreview");
+
+        uploadButton.addEventListener("click", function () {
+            fileInput.click(); // Dosya seçme penceresini aç
+        });
+
+        fileInput.addEventListener("change", function () {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                // Mevcut görüntüyü temizle
+                profilePreview.src = "";
+
+                // Yeni görüntüyü yükle ve göster
+                reader.onload = function (e) {
+                    profilePreview.src = e.target.result; // Yeni yol
+                };
+                reader.readAsDataURL(file); // Yeni dosya için yol oluştur
+            }
+        });
+    });
+
+
+</script>
