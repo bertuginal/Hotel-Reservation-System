@@ -343,7 +343,7 @@
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
     <Content Include="Content\css-folder\home-page\index-.css" />
     <Content Include="Content\css-folder\hotel\create-h.css" />
-    <Content Include="Content\css-folder\hotel\delete.css" />
+    <Content Include="Content\css-folder\hotel\delete-h.css" />
     <Content Include="Content\css-folder\hotel\details-hote.css" />
     <Content Include="Content\css-folder\hotel\edit-ho.css" />
     <Content Include="Content\css-folder\hotel\index-hh.css" />

@@ -4,93 +4,100 @@
     ViewBag.Title = "Delete Hotel";
 }
 
-<link href="~/Content/css-folder/hotel/delete.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/hotel/delete-h.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Delete", "Hotel", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.Id)
     @Html.AntiForgeryToken()
 
-    <div class="delete-card">
-        <h2>HOTEL DELETE</h2>
-        <h4>Are you sure you want to delete the hotel named "@Model.Name"?</h4>
-        <hr />
-        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="hotel-image" />
-        <div class="card">
-            <div class="card-content">
+<div class="delete-card">
+    <div class="delete-action">
+        <div class="line"></div>
+        <div class="icon-container">
+            <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <div class="line"></div>
+    </div>
 
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>NAME:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span>@Html.DisplayFor(model => model.Name)</span>
-                    </div>
+    <h2>Delete Hotel?</h2>
+    <h4>Are you sure you want to delete the hotel named "@Model.Name"?</h4>
+    <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="hotel-image" />
+    <div class="card">
+        <div class="card-content">
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Hotel Name:</strong>
                 </div>
-
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>TITLE:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span>@Html.DisplayFor(model => model.Title)</span>
-                    </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Name)</span>
                 </div>
+            </div>
 
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>LOCATION:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span>@Html.DisplayFor(model => model.Location)</span>
-                    </div>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Title:</strong>
                 </div>
-
-
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>RATING:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span class="rating-star">
-                            @for (var i = 0; i < Model.Rating; i++)
-                            {
-                                <span>★</span>
-                            }
-                        </span>
-                    </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Title)</span>
                 </div>
+            </div>
 
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>AVAILABLE ROOMS:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span>@Html.DisplayFor(model => model.AvailableRooms) Guests</span>
-                    </div>
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Location:</strong>
                 </div>
-
-                <div class="card-item">
-                    <div class="label-box">
-                        <strong>PRICE PER NIGHT:</strong>
-                    </div>
-                    <div class="value-box">
-                        <span>@Html.DisplayFor(model => model.PricePerNight) ₺</span>
-                    </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Location)</span>
                 </div>
+            </div>
 
-                <div class="card-item">
-                    <div class="value-box">
-                        <p class="description-text"><strong>DESCRIPTION</strong></p>
-                        <span>@Html.DisplayFor(model => model.Description)</span>
-                    </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Rating:</strong>
+                </div>
+                <div class="value-box">
+                    <span class="rating-star">
+                        @for (var i = 0; i < Model.Rating; i++)
+                        {
+                            <span>★</span>
+                        }
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Available Rooms:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.AvailableRooms) Guests</span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Price Per Night:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.PricePerNight) ₺</span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="value-box">
+                    <p class="description-text"><strong>Description:</strong></p>
+                    <span>@Html.DisplayFor(model => model.Description)</span>
                 </div>
             </div>
         </div>
-
-        <div class="form-actions">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-            <a href="@Url.Action("List", "Hotel")" class="btn btn-secondary">Cancel</a>
-        </div>
     </div>
+
+    <div class="form-actions">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a href="@Url.Action("List", "Hotel")" class="btn btn-cancel">Cancel</a>
+    </div>
+</div>
 }
