@@ -4,7 +4,7 @@
     ViewBag.Title = "Customer Details";
 }
 
-<link href="~/Content/css-folder/account/customer/details-cu.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/details-cus.css" rel="stylesheet" type="text/css" />
 
 <div class="details-container">
 
@@ -30,6 +30,9 @@
     <div class="card">
         <div class="card-header">
             <span>Account Information</span>
+            <a href="@Url.Action("Delete", "Customer", new { id = Model.Id })" class="btn-delete">
+                <i class="fa-solid fa-trash"></i>
+            </a>
         </div>
         <div class="card-body">
             <div class="card-row">
