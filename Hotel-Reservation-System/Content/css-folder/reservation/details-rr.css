@@ -1,27 +1,34 @@
-﻿/* Main Container */
+﻿
+body {
+    background-color: #f7f9ff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .reservation-details-container {
     max-width: 850px;
     margin: 20px auto;
     padding: 25px;
-    background: linear-gradient(145deg, #f3f3f3, #e9e9e9);
+    background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header h2 {
-    color: #444;
-    font-size: 1.8em;
+    font-size: 1.5rem;
+    color: #1E3050;
+    font-weight: bold;
     text-align: center;
     margin-bottom: 8px;
 }
 
 .header p {
-    color: #666;
     text-align: center;
-    margin-bottom: 30px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #8a8a8a;
+    font-weight: 500;
 }
 
-/* Details Card */
 .details-card {
     background-color: #ffffff;
     border-radius: 12px;
@@ -32,7 +39,6 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Room Image Styling */
 .room-image {
     display: flex;
     justify-content: center;
@@ -48,7 +54,6 @@
     margin-top: 15px;
 }
 
-/* Card Header */
 .card-header {
     text-align: center;
     color: #1d3e73;
@@ -68,14 +73,12 @@
     margin-top: 3px;
 }
 
-/* Card Content */
 .card-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Info and Date sections */
 .info-section, .date-section {
     display: flex;
     flex-wrap: wrap;
@@ -98,11 +101,11 @@
 }
 
     .info-item strong, .date-item strong {
-        color: #333;
+        font-size: 13px;
         font-weight: 600;
+        color: #1E3050;
     }
 
-/* Status Styling */
 .status .status-label {
     padding: 5px 12px;
     border-radius: 20px;
@@ -124,28 +127,24 @@
     background-color: #ffc107;
 }
 
-/* Actions Button */
 .actions {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin-top: 15px;
 }
 
-.btn.btn-secondary {
-    background-color: #444;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 30px;
+.btn.btn-back {
+    color: #333;
+    font-weight: 600;
+    padding: 5px 20px;
     font-size: 0.95em;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-    .btn.btn-secondary:hover {
-        background-color: #222;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        transform: translateY(-3px);
+    .btn.btn-back:hover {
+        color: #1B97F3;
+        transform: translateX(-3px);
     }
 
 .info-item .total-price {
@@ -155,6 +154,48 @@
 }
 
 .info-item span {
+    font-size: 15px;
     font-weight: 500;
-    color: #1d3e73;
+    color: #5a669e;
 }
+
+.date-item span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #5a669e;
+}
+
+
+.detail-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #1B97F3;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1B97F3;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    margin: 0 -25px;
+    border: 2px solid #1B97F3;
+}
+
+    .icon-container .fa-info {
+        color: #fff;
+        font-size: 24px;
+    }

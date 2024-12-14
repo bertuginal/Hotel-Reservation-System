@@ -5,24 +5,36 @@
     ViewBag.Title = "Reservation Details";
 }
 
-<link href="~/Content/css-folder/reservation/details.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/reservation/details-rr.css" rel="stylesheet" type="text/css" />
 
 <div class="reservation-details-container">
+    <div class="actions">
+        <a href="@Url.Action("Index", "Reservation")" class="btn btn-back"><i class="fa-solid fa-arrow-left-long"></i> Back to Reservations</a>
+    </div>
     <div class="header">
+
+        <div class="detail-action">
+            <div class="line"></div>
+            <div class="icon-container">
+                <i class="fa-solid fa-info"></i>
+            </div>
+            <div class="line"></div>
+        </div>
+
         <h2>HOTEL RESERVATION DETAILS</h2>
         <p>Review your reservation information below</p>
     </div>
-    <hr />
+
+    <div class="room-image">
+        <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="image-thumbnail" />
+    </div>
+
+    <div class="card-header">
+        <h3>@Model.Room.Name</h3>
+        <p class="room-type">@Model.Room.Type</p>
+    </div>
 
     <div class="details-card">
-        <div class="room-image">
-            <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="image-thumbnail" />
-        </div>
-
-        <div class="card-header">
-            <h3>@Model.Room.Name</h3>
-            <p class="room-type">@Model.Room.Type</p>
-        </div>
 
         <div class="card-content">
 
@@ -68,10 +80,6 @@
                     </span>
                 </div>
             </div>
-        </div>
-
-        <div class="actions">
-            @Html.ActionLink("Back to Reservations", "Index", null, new { @class = "btn btn-secondary" })
         </div>
     </div>
 </div>

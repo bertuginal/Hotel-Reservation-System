@@ -212,8 +212,6 @@
 textarea[rows="4"] {
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
-    resize: horizontal;
 }
 
 .form-group .form-control {

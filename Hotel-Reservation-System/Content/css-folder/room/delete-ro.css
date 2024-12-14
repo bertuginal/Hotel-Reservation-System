@@ -1,5 +1,6 @@
 ﻿body {
-	background-color: #520202;
+	background-color: #f7f9ff;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 footer {
@@ -7,26 +8,29 @@ footer {
 }
 
 .delete-card {
-	max-width: 650px;
+	max-width: 800px;
 	margin: 50px auto;
 	padding-left: 60px;
 	padding-right: 60px;
 	padding-top: 40px;
 	padding-block-end: 40px;
-	background-color: #f7f7f7;
+	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 	text-align: center;
 }
 
 	.delete-card h2 {
-		font-size: 2.2rem;
-		color: #dc3545;
+		font-size: 1.5rem;
+		color: #1E3050;
+		font-weight: bold;
 	}
 
 	.delete-card h4 {
-		font-size: 1.3rem;
+		font-size: 1rem;
 		margin-bottom: 20px;
+		color: #8a8a8a;
+		font-weight: 500;
 	}
 
 hr {
@@ -37,7 +41,7 @@ hr {
 }
 
 .card {
-	background-color: white;
+	background-color: #f7f9ff;
 	border-radius: 10px;
 	padding: 15px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -72,13 +76,15 @@ hr {
 }
 
 .label-box strong {
+	font-size: 13px;
 	font-weight: 600;
-	color: #333;
+	color: #1E3050;
 }
 
 .value-box span {
-	color: #555;
+	font-size: 15px;
 	font-weight: 500;
+	color: #5a669e;
 }
 
 .form-actions {
@@ -86,7 +92,7 @@ hr {
 }
 
 	.form-actions .btn {
-		padding: 10px 20px;
+		padding: 3px 40px;
 		font-size: 1rem;
 		border-radius: 5px;
 		text-decoration: none;
@@ -94,7 +100,7 @@ hr {
 
 .btn-danger {
 	background-color: #dc3545;
-	color: white;
+	color: #fff;
 	border: none;
 }
 
@@ -102,15 +108,14 @@ hr {
 		background-color: #c82333;
 	}
 
-.btn-secondary {
-	background-color: #6c757d;
-	color: white;
-	border: none;
+.btn-cancel {
+	color: #333;
 	margin-left: 10px;
+	font-weight: 600;
 }
 
-	.btn-secondary:hover {
-		background-color: #5a6268;
+	.btn-cancel:hover {
+		color: #dc3545;
 	}
 
 .room-image {
@@ -118,10 +123,46 @@ hr {
 	height: 250px;
 	margin-bottom: 30px;
 	border-radius: 10px;
+	border: px solid #5a669e;
 }
 
 .description-text {
 	text-align: center;
-	font-weight: 400;
-	color: #333;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1E3050;
 }
+
+.delete-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.line {
+	flex-grow: 1;
+	height: 2px;
+	background-color: #e63946;
+}
+
+.icon-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #e63946;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	position: relative;
+	z-index: 2;
+	margin: 0 -25px;
+	border: 2px solid #e63946;
+}
+
+	.icon-container .fa-trash-can {
+		color: #fff;
+		font-size: 24px;
+	}
