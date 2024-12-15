@@ -21,7 +21,7 @@ body {
 /* Kart Stili */
 .card {
     border: 1px solid #dddddd;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-bottom: 20px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -51,11 +51,18 @@ body {
     gap: 15px;
 }
 
+.card-body-address {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
 .card-row {
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
+
 
     .card-row label {
         text-align: left;
@@ -72,6 +79,53 @@ body {
         font-size: 15px;
     }
 
+
+.card-body-header {
+    margin-left: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-picture img {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Hafif gölge */
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-row-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    .card-row-header span {
+        font-size: 14px;
+        color: #333;
+        margin-left: 15px;
+    }
+
+    .card-row-header .full-name {
+        font-size: 18px;
+        color: #2C5F50;
+        font-weight: 600;
+    }
+
+    .card-row-header .role {
+        font-size: 14px;
+        color: #787878;
+        font-weight: 500;
+        margin-top: -10px;
+    }
 
 .btn-edit-personal {
     text-decoration: none;
@@ -90,7 +144,6 @@ body {
         background-color: #e68600;
         border: 1px solid #e68600;
     }
-
 
 .btn-edit-regular {
     text-decoration: none;
@@ -119,9 +172,10 @@ body {
     transition: color 0.3s ease;
 }
 
-.btn-delete:hover {
-    color: #cc0202;
-}
+    .btn-delete:hover {
+        color: #cc0202;
+    }
+
 
 /* Mobil Uyum */
 @media (max-width: 768px) {
@@ -143,3 +197,24 @@ body {
             text-align: center;
         }
 }
+
+
+.copy-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-copy {
+    margin-top: -10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-copy i {
+        font-size: 14px;
+        color: #333;
+    }

@@ -1,6 +1,7 @@
 ﻿/* Genel kart tasarımı */
 body {
-    background-color: #4fd9ff;
+    background-color: #f7f9ff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .room-card {
@@ -16,8 +17,11 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+.card-header {
+    background-color: #fff;
+}
+
     .room-card .card-header .room-title {
-        background-color: transparent;
         text-align: center;
         font-size: 2rem;
         color: #4FD9FF;

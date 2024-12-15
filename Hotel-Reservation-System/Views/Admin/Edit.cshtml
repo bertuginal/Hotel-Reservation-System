@@ -26,9 +26,14 @@
                 <p class="last-edited">Created date: @Model.CreatedDate</p>
                 <p class="last-edited">Last edited date: @Model.EditedDate</p>
                 <div class="copy-user-id">
-                    <p class="user-id"><b class="title">User ID :</b> @Model.Id</p>
-                    <button class="btn btn-copy"><i class="fa-solid fa-copy"></i></button>
+                    <p class="user-id">
+                        <b class="title">User ID :</b> @Model.Id
+                    </p>
+                    <button type="button" class="btn btn-copy" onclick="copyUserId(this)">
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
                 </div>
+
                 <ul class="actions-list">
                     <li><button class="btn btn-link"><i class="fa-solid fa-envelope"></i> Change E-mail</button></li>
                     <li><button class="btn btn-link"><i class="fa-solid fa-lock"></i> Change Password</button></li>
@@ -115,6 +120,29 @@
             }
         });
     });
+
+
+    function copyUserId(button) {
+
+        const userIdText = button.parentElement.querySelector('.user-id').innerText;
+
+        const userId = userIdText.replace("User ID :", "").trim();
+
+        navigator.clipboard.writeText(userId).then(() => {
+
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-copy');
+            icon.classList.add('fa-check');
+
+            setTimeout(() => {
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-copy');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+
 
 
 </script>

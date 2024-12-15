@@ -4,7 +4,7 @@
     ViewBag.Title = "Customer Details";
 }
 
-<link href="~/Content/css-folder/account/customer/details-cus.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/details-cuss.css" rel="stylesheet" type="text/css" />
 
 <div class="details-container">
 
@@ -21,7 +21,12 @@
                     <span class="role">Customer</span>
                 </div>
                 <div class="card-row-header">
-                    <span class="role"></span>
+                    <div class="copy-id">
+                        <span class="role" id="userId"><b>User ID:</b> @Model.Id</span>
+                        <button class="btn btn-copy" onclick="copyUserId(this)">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,3 +115,28 @@
             </div>
         </div>
     </div>
+
+
+<script>
+    function copyUserId(button) {
+
+        const userIdText = document.getElementById('userId').innerText;
+
+        const userId = userIdText.replace("User ID:", "").trim();
+
+        navigator.clipboard.writeText(userId).then(() => {
+
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-copy');
+            icon.classList.add('fa-check');
+
+            setTimeout(() => {
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-copy');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+
+</script>

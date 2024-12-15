@@ -4,7 +4,7 @@
     ViewBag.Title = "Create Customer";
 }
 
-<link href="~/Content/css-folder/account/customer/create.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/create-.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -15,7 +15,7 @@
     <h2>ROOMIFY CUSTOMER CREATE PANEL</h2>
     <h4>Please fill in the information below to add a new customer!</h4>
     <hr />
-    <h6>* are required areas!</h6>
+    <h6 class="danger-text">* are required areas!</h6>
 
     <br />
 
@@ -28,13 +28,13 @@
     <div class="form-group row">
         <div class="col-md-6">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Name" } })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
             @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-6">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Surname" } })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Surname" } })
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -42,7 +42,7 @@
     <div class="form-group row">
         <div class="col-md-6">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Your E-mail" } })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
 
@@ -56,7 +56,7 @@
     <div class="form-group row">
         <div class="col-md-6">
             @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Your Password" } })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
 
@@ -74,15 +74,15 @@
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-12">
             <!-- Tam genişlik için col-md-12 -->
-            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Full Address" })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-offset-2 col-md-12 button-actions">
             <input type="submit" value="Create" class="btn btn-success" />
-            @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-cancel" })
         </div>
     </div>
 </div>

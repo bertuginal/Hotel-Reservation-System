@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete Admin";
 }
 
-<link href="~/Content/css-folder/account/admin/delete-a.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/delete-ad.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
 {
@@ -24,6 +24,11 @@
 
     <div class="card">
         <div class="card-content">
+
+            <div class="profile-picture">
+                <img src="~/Content/images/profile-photos/default.jpg" name="profilePicture" alt="Profile Picture" />
+            </div>
+
             <div class="card-item">
                 <div class="label-box">
                     <strong>First Name:</strong>

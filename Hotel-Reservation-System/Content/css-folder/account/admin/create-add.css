@@ -1,8 +1,7 @@
 ﻿
 body {
     background-color: #1e1e1e;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00ff6c;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .form-horizontal {
@@ -26,7 +25,7 @@ h2 {
 
 h4 {
     color: #ffffff;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -43,6 +42,7 @@ h6 {
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
+    font-size: 12px;
 }
 
 .form-group {
@@ -53,6 +53,8 @@ h6 {
     color: #ffffff;
     font-weight: bold;
     text-shadow: 0px 0px 5px #00ff6c;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .form-control {
@@ -77,15 +79,15 @@ h6 {
 }
 
 .btn {
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 5px 25px;
+    font-size: 14px;
     border-radius: 4px;
     text-transform: uppercase;
     transition: all 0.3s;
     border: 1px solid #00ff6c;
     color: #00ff6c;
     background-color: transparent;
-    box-shadow: 0 0 10px #00ff6c;
+    margin-top: 15px;
 }
 
     .btn:hover {
@@ -94,9 +96,15 @@ h6 {
         transform: scale(1.05);
     }
 
+.btn-success {
+    box-shadow: 0 0 10px #00ff6c;
+    margin-right: 15px;
+}
+
 .btn-danger {
     border: 1px solid #ff4757;
     color: #ff4757;
+    box-shadow: 0 0 10px #ff4757;
 }
 
     .btn-danger:hover {

@@ -1,0 +1,125 @@
+﻿body {
+    background-color: #f7f9ff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2 {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+b {
+    color: #495057;
+}
+
+.form-horizontal {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 10px;
+}
+
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    }
+
+.text-danger {
+    font-size: 0.9em;
+    color: #dc3545;
+}
+
+h4 {
+    text-align: center;
+    color: #6c757d;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.danger-text {
+    text-align: center;
+    color: #dc3545;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-actions {
+    text-align: center;
+}
+
+.btn {
+    flex: 1;
+    margin-right: 10px;
+    padding: 5px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.0em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    .btn:last-child {
+        margin-right: 0;
+    }
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+.btn-cancel {
+    color: #333;
+    transition: color 0.3s;
+}
+
+    .btn-cancel:hover {
+        color: #dc3545;
+    }
+
+.btn-action-link {
+
+    display: block;
+    margin-top: 15px; 
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+    .btn-action-link:hover {
+        color: #fff;
+    }
+
+.address-area {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}

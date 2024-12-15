@@ -4,11 +4,35 @@
     ViewBag.Title = "Admin Details";
 }
 
-<link href="~/Content/css-folder/account/admin/details-adm.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/admin/details-add.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="details-container">
+
+    <div class="card">
+        <div class="card-body-header">
+            <div class="profile-picture">
+                <img src="~/Content/images/profile-photos/default.jpg" name="profilePicture" alt="Profile Picture" />
+            </div>
+            <div class="card-details">
+                <div class="card-row-header">
+                    <span class="full-name">@Model.FirstName @Model.LastName</span>
+                </div>
+                <div class="card-row-header">
+                    <span class="role">Admin</span>
+                </div>
+                <div class="card-row-header">
+                    <div class="copy-id">
+                        <span class="role" id="userId"><b>User ID:</b> @Model.Id</span>
+                        <button class="btn btn-copy" onclick="copyUserId(this)">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="card">
         <div class="card-header">
@@ -65,3 +89,28 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function copyUserId(button) {
+
+        const userIdText = document.getElementById('userId').innerText;
+
+        const userId = userIdText.replace("User ID:", "").trim();
+
+        navigator.clipboard.writeText(userId).then(() => {
+
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-copy');
+            icon.classList.add('fa-check');
+
+            setTimeout(() => {
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-copy');
+            }, 1500);
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+
+</script>

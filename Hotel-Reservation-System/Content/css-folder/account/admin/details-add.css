@@ -21,7 +21,7 @@ body {
 /* Kart Stili */
 .card {
     border: 1px solid #dddddd;
-    border-radius: 15px;
+    border-radius: 10px;
     margin-bottom: 20px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -51,18 +51,11 @@ body {
     gap: 15px;
 }
 
-.card-body-address {
-    padding: 15px;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-}
-
 .card-row {
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-
 
     .card-row label {
         text-align: left;
@@ -78,7 +71,6 @@ body {
         color: #333;
         font-size: 15px;
     }
-
 
 .card-body-header {
     margin-left: 20px;
@@ -127,6 +119,7 @@ body {
         margin-top: -10px;
     }
 
+
 .btn-edit-personal {
     text-decoration: none;
     padding: 5px 15px;
@@ -173,10 +166,9 @@ body {
     transition: color 0.3s ease;
 }
 
-    .btn-delete:hover {
-        color: #cc0202;
-    }
-
+.btn-delete:hover {
+    color: #cc0202;
+}
 
 /* Mobil Uyum */
 @media (max-width: 768px) {
@@ -198,3 +190,24 @@ body {
             text-align: center;
         }
 }
+
+
+.copy-id {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-copy {
+    margin-top: -10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-copy i {
+        font-size: 14px;
+        color: #333;
+    }
