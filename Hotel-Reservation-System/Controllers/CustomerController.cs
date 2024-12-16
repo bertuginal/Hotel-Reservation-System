@@ -582,6 +582,10 @@ namespace YourNamespace.Controllers
             {
                 return RedirectToAction("Wishlist", "Customer");
             }
+            else if (!string.IsNullOrEmpty(referer) && referer.Contains("Hotel/Details"))
+            {
+                return RedirectToAction("Details", "Hotel", new { id = hotel.Id });
+            }
             else if (!string.IsNullOrEmpty(referer) && referer.Contains("Hotel"))
             {
                 return RedirectToAction("Index", "Hotel");

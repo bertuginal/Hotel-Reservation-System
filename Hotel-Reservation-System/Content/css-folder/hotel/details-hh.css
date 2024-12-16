@@ -122,9 +122,14 @@ body {
     }
 }
 
+.maximum-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -15px;
+}
+
 .maximum-image p {
-    margin-top: 25px;
-    margin-bottom: 25px;
     font-size: 12px;
     width: 100%;
     height: auto;
@@ -414,3 +419,24 @@ hr {
 .location-features a i {
     font-size: 10px;
 }
+
+
+.wishlist-icon {
+    color: red;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 4px;
+    padding-bottom: 1px;
+    margin-right: 10px;
+    margin-top: -10px;
+    
+}
+
+    .wishlist-icon:hover {
+        color: darkred;
+    }
