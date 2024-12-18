@@ -5,6 +5,9 @@
 }
 
 <link href="~/Content/css-folder/reservation/create-reservat.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
@@ -12,102 +15,137 @@
     @Html.HiddenFor(model => model.RoomId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div class="form-horizontal">
-    <div class="reservation-header">
-        <h2>RESERVATION PANEL</h2>
-        <h4>Please fill in the required fields completely and accurately!</h4>
-        <hr />
-        <h6>* are required areas!</h6>
-    </div>
-
-    <div id="numberOfNights" class="alert alert-info" style="display:none;">
-        <strong><span id="nightsCount">0</span> Nights - <span id="daysCount">0</span> Days Accommodation</strong>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-4">
-            <b>Check In Date*</b>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkInDate" } })
-                @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-horizontal">
+        <div class="reservation-header">
+            <h2>RESERVATION PANEL</h2>
+            <h4>Please fill in the required fields completely and accurately!</h4>
+            <hr />
+            <h6>* are required areas!</h6>
         </div>
 
-        <div class="form-group col-md-4">
-            <b>Check Out Date*</b>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkOutDate" } })
-                @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
-            </div>
+        <div id="numberOfNights" class="alert alert-info" style="display:none;">
+            <strong><span id="nightsCount">0</span> Nights - <span id="daysCount">0</span> Days Accommodation</strong>
         </div>
 
-        <div class="form-group col-md-4">
-            <b>Number Of Guests*</b>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumberOfGuests, new { htmlAttributes = new { @class = "form-control", id = "numberOfGuests" } })
-                @Html.ValidationMessageFor(model => model.NumberOfGuests, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                <b>Check In Date*</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkInDate" } })
+                    @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Reserve" class="btn btn-primary" />
+            <div class="form-group col-md-4">
+                <b>Check Out Date*</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.Now.ToString("yyyy-MM-dd"), id = "checkOutDate" } })
+                    @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <b>Number Of Guests*</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NumberOfGuests, new { htmlAttributes = new { @class = "form-control", id = "numberOfGuests" } })
+                    @Html.ValidationMessageFor(model => model.NumberOfGuests, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <div id="totalCost" class="alert alert-success mt-3" style="display: none;">
-                <strong>TOTAL PRICE: <span id="totalPrice">0</span> ₺</strong>
-            </div>
-        </div>
-    </div>
 
-    <h4 class="hotel-details-header">ROOM DETAILS</h4>
-
-    @if (Model.Room != null)
-    {
-        <div class="hotel-details">
-            <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="hotel-image" />
-            <div class="hotel-info">
-                <div class="hotel-name-rating">
-                    <p class="room-name">
-                        <a href="@Url.Action("Details", "Room", new { id = Model.RoomId })">@Model.Room.Name</a>
-                    </p>
-                    <p class="hotel-name">
-                        <a href="@Url.Action("Details", "Hotel", new { id = Model.Room.HotelId })">@Model.Room.Hotel.Name</a>
-                    </p>
-                </div>
-                <p class="room-type">@Model.Room.Type</p>
-                <p class="hotel-location"> 📍 @Model.Room.Hotel.Location</p>
-                <p class="room-description">@Model.Room.Description</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Number Of Rooms:</strong> @Model.Room.NumberOfRooms</p>
-                    </div>
-                    <div class="col-md-6 price-info">
-                        <p id="pricePerNight">@Model.Room.PricePerNight ₺</p>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Reserve" class="btn btn-primary" onclick="openPaymentModal()" />
                     </div>
                 </div>
-                <div class="text-right">
-                    <div class="subtitle-info">
-                        <p>
-                            Price for 1 night <br />
-                            Taxes and fees included.
+            </div>
+            <div class="col-md-8">
+                <div id="totalCost" class="alert alert-success mt-3" style="display: none;">
+                    <strong>TOTAL PRICE: <span id="totalPrice">0</span> ₺</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">Payment Page</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Total Price: <span id="modalTotalPrice">0</span></p>
+                        <input type="hidden" id="modalTotalPriceValue" name="Amount" value="0">
+
+                        <div class="mb-3">
+                            <label for="CardNumber" class="form-label">Card Number</label>
+                            <input type="text" name="Payment.CardNumber" class="form-control" id="CardNumber" placeholder="1234 5678 9012 3456" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="ExpirationDate" class="form-label">Expiration Date</label>
+                            <input type="text" name="Payment.ExpirationDate" class="form-control" id="ExpirationDate" placeholder="MM/YY" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CVV" class="form-label">CVV</label>
+                            <input type="text" name="Payment.CVV" class="form-control" id="CVV" placeholder="123" />
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Pay</button>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <h4 class="hotel-details-header">ROOM DETAILS</h4>
+
+        @if (Model.Room != null)
+        {
+            <div class="hotel-details">
+                <img src="@Url.Content(Model.Room.ImageUrl)" alt="@Model.Room.Name" class="hotel-image" />
+                <div class="hotel-info">
+                    <div class="hotel-name-rating">
+                        <p class="room-name">
+                            <a href="@Url.Action("Details", "Room", new { id = Model.RoomId })">@Model.Room.Name</a>
+                        </p>
+                        <p class="hotel-name">
+                            <a href="@Url.Action("Details", "Hotel", new { id = Model.Room.HotelId })">@Model.Room.Hotel.Name</a>
                         </p>
                     </div>
+                    <p class="room-type">@Model.Room.Type</p>
+                    <p class="hotel-location"> 📍 @Model.Room.Hotel.Location</p>
+                    <p class="room-description">@Model.Room.Description</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Number Of Rooms:</strong> @Model.Room.NumberOfRooms</p>
+                        </div>
+                        <div class="col-md-6 price-info">
+                            <p id="pricePerNight">@Model.Room.PricePerNight ₺</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="subtitle-info">
+                            <p>
+                                Price for 1 night <br />
+                                Taxes and fees included.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-    else
-    {
-        <p>Hotel details are not available.</p>
-    }
+        }
+        else
+        {
+            <p>Hotel details are not available.</p>
+        }
 
-</div>
+    </div>
 }
 
 <script>
@@ -141,6 +179,23 @@
         const totalPrice = nights * numberOfGuests * pricePerNight;
         document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
         document.getElementById("totalCost").style.display = (totalPrice > 0) ? "block" : "none";
+    }
+
+    //payment poppup
+    function openPaymentModal() {
+        const totalPrice = parseFloat(document.getElementById("totalPrice").textContent) || 0;
+        document.getElementById("modalTotalPrice").textContent = totalPrice.toFixed(2);
+        document.getElementById("modalTotalPriceValue").value = totalPrice.toFixed(2);
+
+        const paymentModal = new bootstrap.Modal(document.getElementById("paymentModal"));
+        paymentModal.show();
+    }
+
+
+    function processPayment() {
+        // Ödeme işlemleri burada yapılır (örneğin: doğrulama, API çağrısı vb.)
+        alert("Payment successful!");
+        location.reload(); // Sayfayı yenileyerek işlemi tamamlar
     }
 
 </script>

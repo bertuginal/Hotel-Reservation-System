@@ -199,6 +199,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
@@ -297,11 +298,20 @@
     <Compile Include="Migrations\202412111350151_AddWishlistRelaction.Designer.cs">
       <DependentUpon>202412111350151_AddWishlistRelaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412181346124_AddPaymentModel.cs" />
+    <Compile Include="Migrations\202412181346124_AddPaymentModel.Designer.cs">
+      <DependentUpon>202412181346124_AddPaymentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412181455006_PaymentModelUpdated.cs" />
+    <Compile Include="Migrations\202412181455006_PaymentModelUpdated.Designer.cs">
+      <DependentUpon>202412181455006_PaymentModelUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Facility.cs" />
     <Compile Include="Models\Hotel.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\ReservationStatus.cs" />
     <Compile Include="Models\Room.cs" />
@@ -423,6 +433,11 @@
     <Content Include="Views\Customer\Settings.cshtml" />
     <Content Include="Views\Customer\Update.cshtml" />
     <Content Include="Views\Customer\Wishlist.cshtml" />
+    <Content Include="Views\Payments\Create.cshtml" />
+    <Content Include="Views\Payments\Delete.cshtml" />
+    <Content Include="Views\Payments\Details.cshtml" />
+    <Content Include="Views\Payments\Edit.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -528,6 +543,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412111350151_AddWishlistRelaction.resx">
       <DependentUpon>202412111350151_AddWishlistRelaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412181346124_AddPaymentModel.resx">
+      <DependentUpon>202412181346124_AddPaymentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412181455006_PaymentModelUpdated.resx">
+      <DependentUpon>202412181455006_PaymentModelUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

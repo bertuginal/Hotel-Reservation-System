@@ -138,7 +138,7 @@ public class ReservationController : Controller
     // POST: Reservation/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Reservation reservation)
+    public ActionResult Create(Reservation reservation, Payment payment)
     {
 
         if (reservation.CheckInDate < DateTime.Now)
@@ -202,6 +202,17 @@ public class ReservationController : Controller
 
             db.Entry(room).State = EntityState.Modified;
             db.Reservations.Add(reservation);
+            db.SaveChanges();
+
+            //payment
+            payment.ReservationId = reservation.Id;
+            payment.CardNumber = payment.CardNumber;
+            payment.CVV = payment.CVV;
+            payment.ExpirationDate = payment.ExpirationDate;
+            payment.Amount = room.PricePerNight * (reservation.CheckOutDate - reservation.CheckInDate).Days;
+            payment.PaymentDate = DateTime.Now;
+
+            db.Payments.Add(payment);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Hotel");
