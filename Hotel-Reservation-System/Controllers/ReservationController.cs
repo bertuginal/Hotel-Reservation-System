@@ -209,7 +209,7 @@ public class ReservationController : Controller
             payment.CardNumber = payment.CardNumber;
             payment.CVV = payment.CVV;
             payment.ExpirationDate = payment.ExpirationDate;
-            payment.Amount = room.PricePerNight * (reservation.CheckOutDate - reservation.CheckInDate).Days;
+            payment.Amount = room.PricePerNight * (reservation.CheckOutDate - reservation.CheckInDate).Days * reservation.NumberOfGuests;
             payment.PaymentDate = DateTime.Now;
 
             db.Payments.Add(payment);
