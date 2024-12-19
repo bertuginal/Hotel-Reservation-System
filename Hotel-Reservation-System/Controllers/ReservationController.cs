@@ -140,6 +140,17 @@ public class ReservationController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult Create(Reservation reservation, Payment payment)
     {
+        if(!ModelState.IsValid)
+        {
+            ViewBag.RoomId = reservation.RoomId;
+            return View(reservation);
+        }
+
+        if (reservation == null)
+        {
+            ModelState.AddModelError("", "Reservation not found!");
+            return View(reservation);
+        }
 
         if (reservation.CheckInDate < DateTime.Now)
         {
@@ -186,6 +197,12 @@ public class ReservationController : Controller
                 return View(reservation);
             }
 
+            if (payment == null)
+            {
+                ModelState.AddModelError("", "Payment is empty!");
+                return View(reservation);
+            }
+
             reservation.CustomerId = customer.Id;
             reservation.Status = ReservationStatus.Pending;
             reservation.RoomId = reservation.RoomId;
@@ -206,6 +223,8 @@ public class ReservationController : Controller
 
             //payment
             payment.ReservationId = reservation.Id;
+            payment.FirstName = payment.FirstName;
+            payment.LastName = payment.LastName;
             payment.CardNumber = payment.CardNumber;
             payment.CVV = payment.CVV;
             payment.ExpirationDate = payment.ExpirationDate;

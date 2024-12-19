@@ -306,6 +306,10 @@
     <Compile Include="Migrations\202412181455006_PaymentModelUpdated.Designer.cs">
       <DependentUpon>202412181455006_PaymentModelUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412192011178_FirstNameandLastNameAddedToPaymentModel.cs" />
+    <Compile Include="Migrations\202412192011178_FirstNameandLastNameAddedToPaymentModel.Designer.cs">
+      <DependentUpon>202412192011178_FirstNameandLastNameAddedToPaymentModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -359,7 +363,7 @@
     <Content Include="Content\css-folder\hotel\index-hh.css" />
     <Content Include="Content\css-folder\hotel\list-h.css" />
     <Content Include="Content\css-folder\layout\layout-css.css" />
-    <Content Include="Content\css-folder\reservation\create-reservat.css" />
+    <Content Include="Content\css-folder\reservation\create-reservatio.css" />
     <Content Include="Content\css-folder\reservation\details-rr.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />
     <Content Include="Content\css-folder\reservation\list-re.css" />
@@ -549,6 +553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412181455006_PaymentModelUpdated.resx">
       <DependentUpon>202412181455006_PaymentModelUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412192011178_FirstNameandLastNameAddedToPaymentModel.resx">
+      <DependentUpon>202412192011178_FirstNameandLastNameAddedToPaymentModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

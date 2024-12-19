@@ -14,13 +14,19 @@ namespace Hotel_Reservation_System.Models
         public int ReservationId { get; set; }
         public virtual Reservation Reservation { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "First name cannot be empty!")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last name cannot be empty!")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Card number cannot be empty!")]
         public string CardNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Expiration date cannot be empty!")]
         public string ExpirationDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "CVV cannot be empty!")]
         public string CVV { get; set; }
 
         [Required]

@@ -4,12 +4,11 @@
     ViewBag.Title = "Create Reservation";
 }
 
-<link href="~/Content/css-folder/reservation/create-reservat.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/reservation/create-reservatio.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 
 @using (Html.BeginForm("Create", "Reservation", FormMethod.Post))
 {
@@ -19,7 +18,7 @@
 
     <div class="form-horizontal">
         <div class="reservation-header">
-            <h2>@Model.Room.Hotel.Name</h2>
+            <h2>RES</h2>
             <h4>Please fill in the required fields completely and accurately!</h4>
             <hr />
             <h6>* are required areas!</h6>
@@ -72,26 +71,29 @@
 
         <!-- Modal -->
         <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="paymentModalLabel"><i class="fa-solid fa-user"></i> Step 1: Your Information</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <p class="required-text">* required areas</p>
                     <div class="modal-body">
-                        <p class="title-text">First Name*</p>
+                        <p class="required-text"><span class="req">*</span> required fields to be filled</p>
+
+                        <p class="title-text">First Name<span class="req">*</span></p>
                         <p class="subtitle-text">Please enter the name of one of the guests staying in this room.</p>
                         <input type="text" name="FirstName" class="form-control input-info" id="FirstName" />
 
-                        <p class="title-text">Last Name*</p>
+                        <p class="title-text">Last Name<span class="req">*</span></p>
+                        <p class="subtitle-text"></p>
                         <input type="text" name="LastName" class="form-control input-info" id="LastName" />
 
-                        <p class="title-text">E-mail Address*</p>
+                        <p class="title-text">E-mail Address<span class="req">*</span></p>
                         <p class="subtitle-text">Your confirmation email address.</p>
                         <input type="text" name="Email" class="form-control input-info" id="Email" />
 
-                        <p class="title-text">Phone Number*</p>
+                        <p class="title-text">Phone Number<span class="req">*</span></p>
                         <p class="subtitle-text">Please provide your contact phone number.</p>
 
                         <input type="text" name="Phone" class="form-control input-info" id="Phone" />
@@ -103,39 +105,50 @@
                     </div>
                     <div class="modal-body">
                         <p class="facilities-text">Accommodation highlights</p>
-                        @Model.Room.Facilities
                     </div>
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="paymentModalLabel"><i class="fa-solid fa-lock"></i> Step 3: Payment details</h5>
+                        <h5 class="modal-title" id="paymentModalLabel"><i class="fa-regular fa-credit-card"></i> Step 3: Payment details</h5>
                     </div>
                     <div class="modal-body">
-                        <p class="required-text">* required areas</p>
+                        <p class="never-card-fees"><i class="fa-solid fa-circle-check"></i> We <b>never</b> charge any card fees</p>
+                        <p class="required-text"><span class="req">*</span> required fields to be filled</p>
 
                         <input type="hidden" id="modalTotalPriceValue" name="Amount" value="0">
 
                         <div class="mb-3">
-                            <label for="CardNumber" class="form-label">First Name*</label>
-                            <input type="text" name="FirstName" class="form-control" id="FirstName" />
+                            <label for="FirstName" class="title-text">First Name<span class="req">*</span></label>
+                            <input type="text" name="Payment.FirstName" class="form-control" id="FirstName" />
                         </div>
 
                         <div class="mb-3">
-                            <label for="CardNumber" class="form-label">Last Name*</label>
-                            <input type="text" name="LastName" class="form-control" id="LastName" />
+                            <label for="LastName" class="title-text">Last Name<span class="req">*</span></label>
+                            <input type="text" name="Payment.LastName" class="form-control" id="LastName" />
                         </div>
 
                         <div class="mb-3">
-                            <label for="CardNumber" class="form-label">Card Number*</label>
-                            <input type="text" name="Payment.CardNumber" class="form-control" id="CardNumber" placeholder="0000 0000 0000 0000" />
+                            <label for="CardNumber" class="title-text">Card Number<span class="req">*</span></label>
+                            <input type="text" name="Payment.CardNumber" class="form-control" id="CardNumber" placeholder="0000 0000 0000 0000" maxlength="19" />
                         </div>
                         <div class="mb-3">
-                            <label for="ExpirationDate" class="form-label">Expiration Date*</label>
-                            <input type="text" name="Payment.ExpirationDate" class="form-control" id="ExpirationDate" placeholder="MM/YY" />
+                            <label for="ExpirationDate" class="title-text">Expiration Date<span class="req">*</span></label>
+                            <div class="d-flex gap-2">
+                                <input type="text" name="Month" class="form-control expiration-input" id="ExpirationMonth" placeholder="MM" maxlength="2" /> <p class="slash">/</p>
+                                <input type="text" name="Year" class="form-control expiration-input" id="ExpirationYear" placeholder="YY" maxlength="2" />
+                            </div>
+                            <input type="hidden" name="Payment.ExpirationDate" id="ExpirationDate" />
                         </div>
+
                         <div class="mb-3">
-                            <label for="CVV" class="form-label">CVV*</label>
-                            <input type="text" name="Payment.CVV" class="form-control" id="CVV" placeholder="123" />
+                            <label for="CVV" class="title-text">CVV<span class="req">*</span></label>
+                            <div class="d-flex align-items-center">
+                                <input type="text" name="Payment.CVV" class="form-control input-cvv" id="CVV" placeholder="123" maxlength="4" />
+                                <button type="button" class="btn btn-info ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="CVV (Card Verification Value) is a 3 or 4 digit security code located on the back of your credit or debit card.">
+                                    <i class="fa-regular fa-circle-question"></i>
+                                </button>
+                            </div>
                         </div>
+
 
 
                     </div>
@@ -148,16 +161,56 @@
                     </div>
 
                     <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel"><i class="fa-solid fa-circle-check"></i> Confirm payment</h5>
                     </div>
                     <div class="modal-body">
-                        <strong><span id="modalNightsCount">0</span> Nights - <span id="daysCount">0</span> Days Accommodation</strong>
 
-                        <p>Total Price: <span id="modalTotalPrice">0</span></p>
+                        <p class="last-step">You're so close! This is the last step.</p>
+
+                        <div class="checkdate-details">
+                            <div class="col-md-3">
+                                <p class="check-date-text">Check-in Date</p>
+                            </div>
+                            <div class="col-md-3 check-date">
+                                <span id="modalCheckInDate">N/A</span>
+                            </div>
+                            <div class="col-md-3">
+                                <p class="check-date-text">Check-out Date</p>
+                            </div>
+                            <div class="col-md-3 check-date">
+                                <span id="modalCheckOutDate">N/A</span>
+                            </div>
+                        </div>
+
+                        <div class="nights-days-wrapper">
+                            <div class="nights-days-count">
+                                <span id="modalNightsCount">0</span> Nights - <span id="modalDaysCount">0</span> Days
+                            </div>
+                        </div>
+
+
+                        <div class="totalprice-details">
+
+                            <div class="col-md-3 ">
+                                <p class="text">Total Price</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="total-price">
+                                    <span id="modalTotalPrice">0</span> TRY
+                                </div>
+                            </div>
+                            <div class="col-md-3 ">
+                            </div>
+                            <div class="col-md-3 ">
+                            </div>
+                        </div>
 
                         <hr />
 
+                        <p class="pay-back"><i class="fa-solid fa-circle-check"></i> Full refund if plans change</p>
+
                         <p class="booking-conditions-title">Booking Conditions</p>
-                        <p class="booking-conditions-desc">By clicking “Confirm purchase” you confirm that you have read and agreed to our <a href="#">Terms and Conditions</a> , <a href="#">Privacy Policy</a> and <a href="#">Official Travel Advisories.</a></p>
+                        <p class="booking-conditions-desc">By clicking “Confirm purchase” you confirm that you have read and agreed to our <a href="#">Terms and Conditions<i class="fa-regular fa-copy"></i></a> , <a href="#">Privacy Policy<i class="fa-regular fa-copy"></i></a> and <a href="#">Official Travel Advisories<i class="fa-regular fa-copy"></i>.</a></p>
                         <button type="submit" class="btn btn-success"><i class="fa-solid fa-lock"></i> Confirm purchase</button>
 
                     </div>
@@ -249,11 +302,59 @@
     //payment poppup
     function openPaymentModal() {
         const totalPrice = parseFloat(document.getElementById("totalPrice").textContent) || 0;
-        document.getElementById("modalTotalPrice").textContent = totalPrice.toFixed(2);
-        document.getElementById("modalTotalPriceValue").value = totalPrice.toFixed(2);
+        const nightsCount = parseInt(document.getElementById("nightsCount").textContent) || 0;
+        const daysCount = parseInt(document.getElementById("daysCount").textContent) || 0;
+        const checkInDate = document.getElementById("checkInDate").value || "N/A";
+        const checkOutDate = document.getElementById("checkOutDate").value || "N/A";
+
+
+        document.getElementById("modalTotalPrice").textContent = totalPrice
+            .toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("modalNightsCount").textContent = nightsCount;
+        document.getElementById("modalDaysCount").textContent = daysCount;
+        document.getElementById("modalCheckInDate").textContent = checkInDate;
+        document.getElementById("modalCheckOutDate").textContent = checkOutDate;
 
 
         const paymentModal = new bootstrap.Modal(document.getElementById("paymentModal"));
         paymentModal.show();
     }
+
+
+
+    // Ay ve yıl inputlarını birleştirip tek bir veri haline getirme
+    document.getElementById("ExpirationMonth").addEventListener("input", updateExpirationDate);
+    document.getElementById("ExpirationYear").addEventListener("input", updateExpirationDate);
+
+    function updateExpirationDate() {
+        const month = document.getElementById("ExpirationMonth").value.padStart(2, '0');
+        const year = document.getElementById("ExpirationYear").value.padStart(2, '0');
+
+        if (month.length === 2 && year.length === 2) {
+            document.getElementById("ExpirationDate").value = `${month}/${year}`;
+        }
+    }
+
+    // card number için 4 karakterde 1 boşluk
+    document.getElementById("CardNumber").addEventListener("input", formatCardNumber);
+
+    function formatCardNumber(event) {
+        const input = event.target;
+        let value = input.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        input.value = value;
+
+        // Form gönderiminde temiz veri için (isteğe bağlı)
+        const cleanValue = value.replace(/\s/g, '');
+        console.log("Clean Card Number:", cleanValue);
+    }
+
+    // Initialize all tooltips
+        var tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+
+
 </script>

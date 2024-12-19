@@ -1,0 +1,641 @@
+﻿/* General Styles for Reservation Panel */
+.form-horizontal {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .form-horizontal h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .form-horizontal h4 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .form-horizontal h6 {
+        font-size: 14px;
+        color: #888;
+    }
+
+/* Hotel Details Section */
+.hotel-details {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.hotel-info {
+    flex-grow: 1;
+}
+
+/* Hotel Name Styling */
+.hotel-name-rating .room-name a {
+    font-family: 'Lora', serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Hotel Location Styling */
+.hotel-location {
+    font-size: 14px;
+    color: #007bff; /* Blue color for location */
+    margin-bottom: 10px;
+}
+
+/* Other Hotel Info */
+.hotel-info p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+    .hotel-info p strong {
+        color: #555;
+    }
+
+.price-info p {
+    text-align: right;
+    font-size: 22px;
+    font-weight: 600;
+    color: #d9534f;
+    margin-bottom: -3px;
+}
+
+/* Form Elements Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group .form-control {
+        border-radius: 5px;
+    }
+
+/* Reservation Button */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+/* Hotel Details Button */
+.btn-info {
+    background-color: #17a2b8; /* Turkuaz arka plan */
+    border: none; /* Kenarlık yok */
+    color: white; /* Beyaz metin rengi */
+    padding: 5px 15px; /* İç boşluk */
+    border-radius: 5px; /* Köşe yuvarlama */
+    font-size: 1em; /* Yazı boyutu */
+    cursor: pointer; /* İşaretçi tipi */
+    transition: background-color 0.3s; /* Geçiş efekti */
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hotel-info .hotel-location {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #5594fa;
+    margin-top: 8px;
+}
+
+.btn-info:hover {
+    background-color: #138496; /* Hover durumu için daha koyu turkuaz */
+    color: white;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hotel-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hotel-image {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .hotel-info p {
+        text-align: center;
+    }
+}
+
+/* Hotel Rating Styling */
+.hotel-rating span {
+    font-size: 22px;
+    color: #f39c12;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Optional: Adjust spacing between stars */
+.hotel-rating span {
+    margin-right: 2px;
+}
+
+.hotel-details {
+    display: flex;
+    margin-top: 20px;
+}
+
+.hotel-image {
+    width: 250px;
+    height: 250px;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.hotel-info {
+    flex: 1;
+}
+
+.hotel-name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.hotel-location {
+    font-size: 14px;
+    color: #3498db; /* Blue color for location */
+    margin-top: 5px;
+}
+
+.reservation-header {
+    text-align: center;
+    margin-bottom: 30px; /* Below the header */
+}
+
+    .reservation-header h2 {
+        font-size: 36px; /* Main title size */
+        color: #2c3e50; /* Dark blue color */
+        font-weight: bold; /* Bold title */
+        margin-bottom: 10px; /* Space below the title */
+    }
+
+    .reservation-header h4 {
+        font-size: 20px; /* Sub-title size */
+        color: #34495e; /* Slightly lighter color */
+        margin-bottom: 5px; /* Space below the sub-title */
+    }
+
+    .reservation-header hr {
+        border: 1px solid #3498db; /* Blue border for the horizontal line */
+        margin-bottom: 10px; /* Space below the line */
+    }
+
+    .reservation-header h6 {
+        font-size: 14px; /* Small font size for the note */
+        color: #e74c3c; /* Red color for required fields note */
+        margin-top: 0; /* Remove top margin */
+    }
+
+.hotel-details-header {
+    font-size: 28px; /* Başlık boyutu */
+    color: #2c3e50; /* Koyu lacivert renk */
+    font-weight: 700; /* Daha kalın yazı */
+    text-align: left; /* Sola hizala */
+    margin: 20px 0; /* Üst ve alt boşluk */
+    padding: 10px 0; /* İç boşluk */
+    border-bottom: 3px solid #3498db; /* Mavi alt kenar çizgisi */
+    text-transform: uppercase; /* Tüm harfleri büyük yap */
+    letter-spacing: 1px; /* Harfler arası boşluk */
+    transition: all 0.3s ease; /* Geçiş efekti */
+}
+
+    .hotel-details-header:hover {
+        color: #3498db; /* Hover durumunda mavi renk */
+        border-bottom: 3px solid #2c3e50; /* Hover durumunda kenar rengi değişimi */
+    }
+
+.subtitle-info p {
+    margin-top: 1px;
+    color: #000;
+    font-size: 11px;
+}
+
+.hotel-info .room-type {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: -8px;
+    color: #4fd9ff;
+}
+
+.alert-info {
+    background-color: #e0f7fa;
+    border-left: 4px solid #00acc1;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    color: #006064;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .alert-info strong {
+        color: #004d40;
+    }
+
+.hotel-name a {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #638BFF;
+}
+
+.hotel-info .room-description {
+    font-size: 15px;
+    font-weight: 400;
+    color: #333;
+    background-color: #f0f0f0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Total Price Modern Style */
+#totalCost {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 15px 25px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    background-image: linear-gradient(135deg, #4A90E2, #50E3C2);
+    color: #333;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 90%;
+}
+
+    #totalCost:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    #totalCost span#totalPrice {
+        font-size: 1.5em;
+        color: #ffffff;
+        font-weight: 700;
+        margin-left: 8px;
+    }
+
+
+
+.modal-dialog {
+    max-width: 60% !important; /* Modal genişliğini arttır */
+    margin: 30px auto; /* Ortalamak için */
+}
+
+/* Modal container */
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    background-color: #fff;
+    padding: 20px;
+    transition: transform 0.3s ease-out;
+}
+
+/* Modal header */
+.modal-header {
+    border-bottom: 2px solid #f1f1f1;
+    padding: 15px;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .modal-header i {
+        margin-right: 10px;
+    }
+
+    .modal-header .btn-close {
+        border: none;
+        background: transparent;
+        color: #888;
+        font-size: 1.5rem;
+    }
+
+/* Modal body */
+.modal-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+    /* Modal body inputs */
+    .modal-body .form-control {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 7px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        transition: border-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 123, 255, 0.5);
+    }
+
+        .modal-body .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+    .modal-body .input-cvv {
+        max-width: 60px;
+    }
+
+    .modal-body .expiration-input {
+        width: 50px;
+        text-align: center;
+    }
+
+    .modal-body .slash {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+
+    /* Step title styles */
+    .modal-header h5 {
+        font-size: 1.3rem;
+        color: #333;
+    }
+
+.modal-body .required-text {
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.modal-body .req {
+    color: #990000;
+}
+
+.modal-body .title-text {
+    font-size: 0.90rem;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: -3px;
+}
+
+.modal-body .subtitle-text {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.modal-body .facilities-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Button styling */
+button[type="submit"] {
+    background-color: #28a745;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 20px;
+    font-size: 1rem;
+    width: 250px;
+    transition: background-color 0.3s ease;
+}
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+    button[type="submit"] i {
+        margin-right: 5px;
+    }
+
+button[type="button"].btn-close {
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.booking-conditions-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.booking-conditions-desc {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 50px;
+}
+
+    .booking-conditions-desc a {
+        text-decoration: none;
+    }
+
+    .booking-conditions-desc a i{
+        font-size: 10px;
+        margin-left: 3px;
+    }
+
+.checkdate-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.checkdate-details .check-date-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #333;
+    margin-top: 15px;
+}
+
+.checkdate-details .check-date {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+.totalprice-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+    .totalprice-details .text {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #333;
+        margin-top: 15px;
+    }
+
+.totalprice-details .total-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-left: auto;
+    text-align: right;
+}
+
+
+
+.nights-days-wrapper {
+    margin-left: 390px;
+}
+
+.modal-body .nights-days-count {
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #218838;
+    border-radius: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+}
+
+/* Modal footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+/* Modal backdrops */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease-out;
+}
+
+
+
+
+/* Bilgi butonuna stil ekleyelim */
+.modal-body .btn-info {
+    padding: 5px 10px;
+    color: #333;
+    background-color: #fafafa;
+    border: 1px solid #fafafa;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    margin-top: -15px;
+}
+
+    .modal-body .btn-info:hover {
+        background-color: #fafafa;
+        border: 1px solid #fafafa;
+        cursor: pointer;
+    }
+
+    .modal-body  .btn-info:focus {
+        outline: none;
+    }
+
+/* Tooltip kısmı için bir stil */
+.tooltip-inner {
+    background-color: #444 !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    padding: 15px 5px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+
+.modal-body .last-step {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-body .pay-back {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+    .modal-body .pay-back i {
+        font-size: 16px;
+        color: #227950;
+        margin-right: 5px;
+    }
+
+
+.modal-body .never-card-fees {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    .modal-body .never-card-fees i {
+        font-size: 16px;
+        color: #227950;
+        margin-right: 5px;
+    }
