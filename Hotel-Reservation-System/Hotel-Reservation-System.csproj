@@ -363,7 +363,7 @@
     <Content Include="Content\css-folder\hotel\index-hh.css" />
     <Content Include="Content\css-folder\hotel\list-h.css" />
     <Content Include="Content\css-folder\layout\layout-css.css" />
-    <Content Include="Content\css-folder\reservation\create-reservatio.css" />
+    <Content Include="Content\css-folder\reservation\create-rre.css" />
     <Content Include="Content\css-folder\reservation\details-rr.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />
     <Content Include="Content\css-folder\reservation\list-re.css" />
