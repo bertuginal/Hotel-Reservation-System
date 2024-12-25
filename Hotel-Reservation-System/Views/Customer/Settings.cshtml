@@ -84,7 +84,25 @@
     </div>
 
     <div class="section">
-        <label>Address</label>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Country</label>
+                <input type="text" value="@Model.Country" readonly class="form-control-static" />
+
+            </div>
+            <div class="col-md-3">
+                <label>City</label>
+                <input type="text" value="@Model.City" readonly class="form-control-static" />
+            </div>
+            <div class="col-md-3">
+                <label>Postal Code</label>
+                <input type="text" value="@Model.PostalCode" readonly class="form-control-static" />
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Full Address</label>
         <textarea readonly class="form-control-static address-textarea">🏠︎ @Model.Address</textarea>
     </div>
 

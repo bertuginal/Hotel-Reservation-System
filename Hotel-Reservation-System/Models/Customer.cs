@@ -14,9 +14,22 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Address*")]
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Country cannot be empty!")]
+        [DisplayName("Country*")]
+        public string Country { get; set; }
+
+        [Required(ErrorMessage = "City cannot be empty!")]
+        [DisplayName("City*")]
+        public string City { get; set; }
+
+        [Required(ErrorMessage = "Postal code cannot be empty!")]
+        [DisplayName("Postal Code*")]
+        public int PostalCode { get; set; }
+
         [Required(ErrorMessage = "You must upload your profile photo!")]
         [DisplayName("Profile Picture*")]
         public string ImageUrl { get; set; }
+
         public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

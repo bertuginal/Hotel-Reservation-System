@@ -70,11 +70,11 @@
                         </div>
                     </div>
 
-                        <div class="form-group col-md-6">
-                            <label>Password</label>
-                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @readonly = "readonly" })
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label>Password</label>
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @readonly = "readonly" })
                     </div>
+                </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label>Phone Number</label>
@@ -82,6 +82,23 @@
                             @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
                             <span class="status-badge verified">Verified</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Country</label>
+                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>City</label>
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Postal Code</label>
+                        @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
                     </div>
                 </div>
 

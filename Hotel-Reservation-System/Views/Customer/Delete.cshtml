@@ -75,7 +75,34 @@
 
             <div class="card-item">
                 <div class="label-box">
-                    <strong>Address:</strong>
+                    <strong>Country:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.Country)</span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>City:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.City)</span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Postal Code:</strong>
+                </div>
+                <div class="value-box">
+                    <span>@Html.DisplayFor(model => model.PostalCode)</span>
+                </div>
+            </div>
+
+            <div class="card-item">
+                <div class="label-box">
+                    <strong>Full Address:</strong>
                 </div>
                 <div class="value-box">
                     <span>@Html.DisplayFor(model => model.Address)</span>

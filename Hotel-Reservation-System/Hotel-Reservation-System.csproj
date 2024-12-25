@@ -310,6 +310,10 @@
     <Compile Include="Migrations\202412192011178_FirstNameandLastNameAddedToPaymentModel.Designer.cs">
       <DependentUpon>202412192011178_FirstNameandLastNameAddedToPaymentModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412251828346_CountryCityPostalCodeAddedToCustomer.cs" />
+    <Compile Include="Migrations\202412251828346_CountryCityPostalCodeAddedToCustomer.Designer.cs">
+      <DependentUpon>202412251828346_CountryCityPostalCodeAddedToCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -556,6 +560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412192011178_FirstNameandLastNameAddedToPaymentModel.resx">
       <DependentUpon>202412192011178_FirstNameandLastNameAddedToPaymentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412251828346_CountryCityPostalCodeAddedToCustomer.resx">
+      <DependentUpon>202412251828346_CountryCityPostalCodeAddedToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

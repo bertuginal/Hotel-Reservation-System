@@ -145,6 +145,8 @@ namespace YourNamespace.Controllers
 
                 }
             }
+            ViewBag.CountryName = new SelectList(new List<string> { "Turkey", "ABD", "Germany", "Italy" });
+
             return View();
         }
 
@@ -271,6 +273,9 @@ namespace YourNamespace.Controllers
                     existingCustomer.Password = existingCustomer.Password;
                     existingCustomer.Phone = customer.Phone;
                     existingCustomer.Address = customer.Address;
+                    existingCustomer.Country = customer.Country;
+                    existingCustomer.City = customer.City;
+                    existingCustomer.PostalCode = customer.PostalCode;
                     existingCustomer.EditedDate = DateTime.Now;
 
                 db.Entry(existingCustomer).State = EntityState.Modified;
@@ -368,6 +373,9 @@ namespace YourNamespace.Controllers
                     existingCustomer.Password = customer.Password;
                     existingCustomer.Phone = customer.Phone;
                     existingCustomer.Address = customer.Address;
+                    existingCustomer.Country = customer.Country;
+                    existingCustomer.City = customer.City;
+                    existingCustomer.PostalCode = customer.PostalCode;
                     existingCustomer.EditedDate = DateTime.Now;
 
                     db.Entry(existingCustomer).State = EntityState.Modified;
