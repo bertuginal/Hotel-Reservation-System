@@ -74,8 +74,19 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="control-label">Country</label>
-                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-
+                    <select id="Country" name="Country" class="form-control">
+                        <option value="@Model.Country">@(!string.IsNullOrEmpty(Model.Country) ? Model.Country : "Select Country")</option>
+                        @if (ViewBag.CountryName != null)
+                        {
+                            foreach (var country in ViewBag.CountryName as IEnumerable<SelectListItem>)
+                            {
+                                if (country.Value != Model.Country)
+                                {
+                                    <option value="@country.Value">@country.Text</option>
+                                }
+                            }
+                        }
+                    </select>
                 </div>
                 <div class="col-md-4">
                     <label class="control-label">City</label>

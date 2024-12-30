@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="DAL\CountryDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -316,6 +317,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Facility.cs" />
     <Compile Include="Models\Hotel.cs" />

@@ -32,65 +32,98 @@
         </div>
     </div>
 
-        <div class="form-group row">
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
-                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name" })
-                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group row">
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name" })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Please put '0' in front." })
-                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group row">
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group row">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-6">
+            @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Please put '0' in front." })
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-            <div class="col-md-6">
-                @Html.Label("Confirm Password*", new { @class = "control-label" })
-                <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
-                @if (ViewBag.PasswordMismatch != null)
+    <div class="form-group row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.Label("Confirm Password*", new { @class = "control-label" })
+            <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+            @if (ViewBag.PasswordMismatch != null)
+            {
+                <span class="text-danger">@ViewBag.PasswordMismatch</span>
+            }
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.Country, new { @class = "control-label" })
+            <select id="Country" name="Country" class="form-control">
+                <option value="">Select Country</option>
+                @if (ViewBag.CountryName != null)
                 {
-                    <span class="text-danger">@ViewBag.PasswordMismatch</span>
+                    foreach (var country in (List<string>)ViewBag.CountryName)
+                    {
+                        <option value="@country">@country</option>
+                    }
                 }
-            </div>
+                else
+                {
+                    <option value="">No countries available</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.TextAreaFor(m => m.Address, new { @class = "form-control address-textarea", placeholder = "Address", rows = 3 })
-                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.City, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City" })
+            @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-success" />
-            </div>
+        <div class="col-md-4">
+            @Html.LabelFor(m => m.PostalCode, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control", placeholder = "Postal Code" })
+            @Html.ValidationMessageFor(m => m.PostalCode, "", new { @class = "text-danger" })
         </div>
-        <hr />
-        <p class="text-left">Already have an account? @Html.ActionLink("Sign In", "LoginCustomer")</p>
+    </div>
 
-        }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.TextAreaFor(m => m.Address, new { @class = "form-control address-textarea", placeholder = "Address", rows = 3 })
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Register" class="btn btn-success" />
+        </div>
+    </div>
+    <hr />
+    <p class="text-left">Already have an account? @Html.ActionLink("Sign In", "LoginCustomer")</p>
+
+}

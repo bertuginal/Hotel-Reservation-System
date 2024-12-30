@@ -145,7 +145,12 @@ namespace YourNamespace.Controllers
 
                 }
             }
-            ViewBag.CountryName = new SelectList(new List<string> { "Turkey", "ABD", "Germany", "Italy" });
+
+            using (var countryDb = new CountryDbContext())
+            {
+                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = countries;
+            }
 
             return View();
         }
@@ -177,6 +182,12 @@ namespace YourNamespace.Controllers
                 {
                     ModelState.AddModelError("ImageUrl", "You must upload your profile photo!");
                     return View(customer);
+                }
+
+                using (var countryDb = new CountryDbContext())
+                {
+                    var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                    ViewBag.CountryName = countries;
                 }
 
                 customer.EditedDate = DateTime.Now;
@@ -224,6 +235,12 @@ namespace YourNamespace.Controllers
                 }
             }
 
+            using (var countryDb = new CountryDbContext())
+            {
+                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = new SelectList(countries, customer.Country);
+            }
+
             return View(customer);
         }
 
@@ -236,7 +253,7 @@ namespace YourNamespace.Controllers
 
             if (ModelState.IsValid)
             {
-            var existingCustomer = db.Customers.SingleOrDefault(a => a.Id == customer.Id);
+                var existingCustomer = db.Customers.SingleOrDefault(a => a.Id == customer.Id);
 
                 if (existingCustomer == null)
                 {
@@ -278,13 +295,20 @@ namespace YourNamespace.Controllers
                     existingCustomer.PostalCode = customer.PostalCode;
                     existingCustomer.EditedDate = DateTime.Now;
 
-                db.Entry(existingCustomer).State = EntityState.Modified;
-                db.SaveChanges();
+                    db.Entry(existingCustomer).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
-        }
-        return View(customer);
+            }
+
+            using (var countryDb = new CountryDbContext())
+            {
+                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = new SelectList(countries, customer.Country);
+            }
+
+            return View(customer);
         }
 
 
@@ -322,6 +346,12 @@ namespace YourNamespace.Controllers
                     ViewBag.CustomerEmail = customerId.Email;
 
                 }
+            }
+
+            using (var countryDb = new CountryDbContext())
+            {
+                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = new SelectList(countries, customer.Country);
             }
 
             return View(customer);
@@ -383,6 +413,11 @@ namespace YourNamespace.Controllers
 
                     return RedirectToAction("Settings");
                 }
+            }
+            using (var countryDb = new CountryDbContext())
+            {
+                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = new SelectList(countries, customer.Country);
             }
             return View(customer);
         }
@@ -586,7 +621,7 @@ namespace YourNamespace.Controllers
 
             db.SaveChanges();
 
-            if(!string.IsNullOrEmpty(referer) && referer.Contains("Wishlist"))
+            if (!string.IsNullOrEmpty(referer) && referer.Contains("Wishlist"))
             {
                 return RedirectToAction("Wishlist", "Customer");
             }
