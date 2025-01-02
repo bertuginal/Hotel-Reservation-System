@@ -4,7 +4,9 @@
     ViewBag.Title = "Login Customer";
 }
 
-<link href="~/Content/css-folder/account/customer/logincustomers.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/logincustomerss.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 @using (Html.BeginForm("LoginCustomer", "Account", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
 {
@@ -12,60 +14,81 @@
 
     <div class="login-page">
         <div class="form-horizontal">
-            <h2>SIGN IN CUSTOMER</h2>
-            <h4>Please enter your e-mail and password!</h4>
-            <hr />
-            <h6>* are required areas!</h6>
+            <h2>Welcome back</h2>
+            <h4>Please enter your informations</h4>
             <br />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Your e-mail" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
 
 
             <div class="form-group">
-                <div class="input-group-append">
-                    @Html.Label("Password*", new { @class = "control-label col-md-2" })
-                    <button type="button" class="btn btn" id="togglePassword" onclick="togglePasswordVisibility()">
-                        🙈
-                    </button>
-                </div>
+                <label for="passwordInput" class="control-label col-md-2">Password*</label>
                 <div class="col-md-10">
-                    <div class="input-group">
-                        <input type="password" id="passwordInput" name="password" class="form-control" placeholder="Your password" />
+                    <div class="input-group password-wrapper">
+                        <input type="password" id="passwordInput" name="password" class="form-control" />
+                        <i class="fa-solid fa-eye-slash password-icon" id="togglePasswordIcon" onclick="togglePasswordVisibility()"></i>
                     </div>
                 </div>
             </div>
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group ">
+                <div class="forgot-remember">
+                    <div class="col-md-6">
+                        <p class="remember-me"><input type="checkbox" /> Remember for 30 days</p>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="forgot-password">Forgot password</a>
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-dark" />
+                    <input type="submit" value="Sign in" class="btn btn-dark" />
                 </div>
             </div>
-            <hr />
-            <p class="text-left">Don't have an account? @Html.ActionLink("Sign Up", "RegisterCustomer")</p>
+
+            <div class="separator">
+                <hr />
+                <span>or sign up with</span>
+                <hr />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-google">
+                        <img src="~/Content/images/icon/google-icon.png" alt="Google Icon" class="google-icon" />
+                        Sign in with Google
+                    </button>
+                </div>
+            </div>
+
+            <p class="sign-up-text">Don't have an account? @Html.ActionLink("Sign Up", "RegisterCustomer")</p>
         </div>
     </div>
 }
 
-<!-- JavaScript -->
 <script>
     function togglePasswordVisibility() {
         var passwordInput = document.getElementById("passwordInput");
-        var toggleBtn = document.getElementById("togglePassword");
+        var toggleBtnIcon = document.getElementById("togglePasswordIcon");
 
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            toggleBtn.innerText = "🙉"; 
+            toggleBtnIcon.classList.remove("fa-eye-slash");
+            toggleBtnIcon.classList.add("fa-eye");
         } else {
             passwordInput.type = "password";
-            toggleBtn.innerText = "🙈";
+            toggleBtnIcon.classList.remove("fa-eye");
+            toggleBtnIcon.classList.add("fa-eye-slash");
         }
     }
 </script>

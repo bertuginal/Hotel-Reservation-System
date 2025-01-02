@@ -362,7 +362,7 @@
     <Content Include="Content\css-folder\account\customer\details-cuss.css" />
     <Content Include="Content\css-folder\account\customer\edit-cust.css" />
     <Content Include="Content\css-folder\account\customer\index-cus.css" />
-    <Content Include="Content\css-folder\account\customer\logincustomers.css" />
+    <Content Include="Content\css-folder\account\customer\logincustomerss.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
