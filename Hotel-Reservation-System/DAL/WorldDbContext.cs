@@ -7,12 +7,13 @@ using System.Web;
 
 namespace Hotel_Reservation_System.DAL
 {
-    public class CountryDbContext : DbContext
+    public class WorldDbContext : DbContext
     {
-        public CountryDbContext() : base("CountryConnection")
+        public WorldDbContext() : base("WorldConnection")
         {
         }
 
         public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
     }
 }

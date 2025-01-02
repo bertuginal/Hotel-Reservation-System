@@ -203,7 +203,7 @@
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
-    <Compile Include="DAL\CountryDbContext.cs" />
+    <Compile Include="DAL\WorldDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -315,8 +315,13 @@
     <Compile Include="Migrations\202412251828346_CountryCityPostalCodeAddedToCustomer.Designer.cs">
       <DependentUpon>202412251828346_CountryCityPostalCodeAddedToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202412301235574_AddCitiesTable.cs" />
+    <Compile Include="Migrations\202412301235574_AddCitiesTable.Designer.cs">
+      <DependentUpon>202412301235574_AddCitiesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Facility.cs" />
@@ -565,6 +570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412251828346_CountryCityPostalCodeAddedToCustomer.resx">
       <DependentUpon>202412251828346_CountryCityPostalCodeAddedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412301235574_AddCitiesTable.resx">
+      <DependentUpon>202412301235574_AddCitiesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

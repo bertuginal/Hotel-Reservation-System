@@ -146,9 +146,9 @@ namespace YourNamespace.Controllers
                 }
             }
 
-            using (var countryDb = new CountryDbContext())
+            using (var worldDb = new WorldDbContext())
             {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = countries;
             }
 
@@ -182,12 +182,6 @@ namespace YourNamespace.Controllers
                 {
                     ModelState.AddModelError("ImageUrl", "You must upload your profile photo!");
                     return View(customer);
-                }
-
-                using (var countryDb = new CountryDbContext())
-                {
-                    var countries = countryDb.Countries.Select(c => c.Name).ToList();
-                    ViewBag.CountryName = countries;
                 }
 
                 customer.EditedDate = DateTime.Now;
@@ -235,10 +229,10 @@ namespace YourNamespace.Controllers
                 }
             }
 
-            using (var countryDb = new CountryDbContext())
+            using (var worldDb = new WorldDbContext())
             {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
-                ViewBag.CountryName = new SelectList(countries, customer.Country);
+                var countries = worldDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = countries;
             }
 
             return View(customer);
@@ -302,9 +296,9 @@ namespace YourNamespace.Controllers
                 }
             }
 
-            using (var countryDb = new CountryDbContext())
+            using (var worldDb = new WorldDbContext())
             {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = new SelectList(countries, customer.Country);
             }
 
@@ -348,10 +342,10 @@ namespace YourNamespace.Controllers
                 }
             }
 
-            using (var countryDb = new CountryDbContext())
+            using (var worldDb = new WorldDbContext())
             {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
-                ViewBag.CountryName = new SelectList(countries, customer.Country);
+                var countries = worldDb.Countries.Select(c => c.Name).ToList();
+                ViewBag.CountryName = countries;
             }
 
             return View(customer);
@@ -414,9 +408,9 @@ namespace YourNamespace.Controllers
                     return RedirectToAction("Settings");
                 }
             }
-            using (var countryDb = new CountryDbContext())
+            using (var worldDb = new WorldDbContext())
             {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
+                var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = new SelectList(countries, customer.Country);
             }
             return View(customer);
@@ -640,6 +634,32 @@ namespace YourNamespace.Controllers
 
         }
 
+        [HttpGet]
+        public JsonResult GetCitiesByCountry(string countryName)
+        {
+            using (var worldDb = new WorldDbContext())
+            {
+                // Ülke adına göre ID al
+                var countryId = worldDb.Countries
+                    .Where(c => c.Name.Equals(countryName, StringComparison.OrdinalIgnoreCase))
+                    .Select(c => c.Id)
+                    .FirstOrDefault();
+
+                // Eğer ülke bulunamazsa boş bir liste döndür
+                if (countryId == 0)
+                {
+                    return Json(new List<string>(), JsonRequestBehavior.AllowGet);
+                }
+
+                // Şehirleri al
+                var cities = worldDb.Cities
+                    .Where(c => c.CountryId == countryId)
+                    .Select(c => c.Name)
+                    .ToList();
+
+                return Json(cities, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

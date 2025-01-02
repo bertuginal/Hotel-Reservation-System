@@ -75,7 +75,7 @@
             <div class="col-md-4">
                 @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label" })
                 <select id="Country" name="Country" class="form-control">
-                    <option value="">Select Country</option>
+                    <option value="" disabled selected>Select Country ⏷</option>
                     @if (ViewBag.CountryName != null)
                     {
                         foreach (var country in (List<string>)ViewBag.CountryName)
@@ -85,18 +85,30 @@
                     }
                     else
                     {
-                        <option value="">No countries available</option>
+                        <option value="" disabled>No countries available</option>
                     }
                 </select>
                 @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-
-
 
             </div>
 
             <div class="col-md-4">
                 @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", placeholder = "City" } })
+                <select id="City" name="City" class="form-control">
+                    <option value="" disabled selected>Select City ⏷</option>
+                    @if (ViewBag.CityName != null && ((List<string>)ViewBag.CityName).Count > 0)
+                    {
+                        foreach (var city in (List<string>)ViewBag.CityName)
+                        {
+                            <option value="@city">@city</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="" disabled>No cities available</option>
+                    }
+                </select>
+
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
 
@@ -125,4 +137,36 @@
     </div>
 }
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#Country').change(function () {
+            var selectedCountry = $(this).val(); // Seçilen ülkeyi al
 
+            if (selectedCountry) {
+                $.ajax({
+                    url: '@Url.Action("GetCitiesByCountry", "Customer")',
+                    type: 'GET',
+                    data: { countryName: selectedCountry },
+                    success: function (cities) {
+                        // Şehir dropdown'ını temizle
+                        $('#City').empty();
+                        $('#City').append('<option value="" disabled selected>Select City ⏷</option>');
+
+                        // Gelen şehirleri dropdown'a ekle
+                        $.each(cities, function (index, city) {
+                            $('#City').append('<option value="' + city + '">' + city + '</option>');
+                        });
+                    },
+                    error: function () {
+                        alert('Failed to retrieve cities. Please try again.');
+                    }
+                });
+            } else {
+                // Eğer hiçbir ülke seçilmediyse, şehir dropdown'ını temizle
+                $('#City').empty();
+                $('#City').append('<option value="" disabled selected>Select City ⏷</option>');
+            }
+        });
+    });
+</script>

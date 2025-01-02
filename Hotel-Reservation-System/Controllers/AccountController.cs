@@ -44,7 +44,7 @@ public class AccountController : Controller
     // GET: Account/RegisterCustomer
     public ActionResult RegisterCustomer()
     {
-        using (var countryDb = new CountryDbContext())
+        using (var countryDb = new WorldDbContext())
         {
             var countries = countryDb.Countries.Select(c => c.Name).ToList();
             ViewBag.CountryName = countries;
@@ -81,7 +81,7 @@ public class AccountController : Controller
                 return View(customer);
             }
 
-            using (var countryDb = new CountryDbContext())
+            using (var countryDb = new WorldDbContext())
             {
                 var countries = countryDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = countries;

@@ -14,119 +14,137 @@
         @Html.HiddenFor(model => model.Id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-body">
-        <div class="row">
-            <div class="form-group col-md-10">
-                <p class="page-title">EDIT PROFILE</p>
-                <hr />
-            </div>
-            <div class="form-group col-md-2">
-                <div class="current-image">
-                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                    {
-                        <img src="@Url.Content(Model.ImageUrl)" alt="Profile Picture" class="img-thumbnail" />
-                    }
-                    else
-                    {
-                        <p>No profile picture uploaded.</p>
-                    }
-                </div>
-                @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label">First Name</label>
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="form-group col-md-6">
-                <label class="control-label">Last Name</label>
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-12">
-                <label class="control-label">E-mail</label>
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control email-area" })
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label">Contact Number</label>
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="form-group col-md-6">
-                <label class="control-label">Update Profile Picture</label>
-                <input type="file" name="profilePicture" class="form-control upload-image-area" />
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-body">
             <div class="row">
-                <div class="col-md-4">
-                    <label class="control-label">Country</label>
-                    <select id="Country" name="Country" class="form-control">
-                        <option value="@Model.Country">@(!string.IsNullOrEmpty(Model.Country) ? Model.Country : "Select Country")</option>
-                        @if (ViewBag.CountryName != null)
+                <div class="form-group col-md-10">
+                    <p class="page-title">EDIT PROFILE</p>
+                    <hr />
+                </div>
+                <div class="form-group col-md-2">
+                    <div class="current-image">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
                         {
-                            foreach (var country in ViewBag.CountryName as IEnumerable<SelectListItem>)
+                            <img src="@Url.Content(Model.ImageUrl)" alt="Profile Picture" class="img-thumbnail" />
+                        }
+                        else
+                        {
+                            <p>No profile picture uploaded.</p>
+                        }
+                    </div>
+                    @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">First Name</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Last Name</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">E-mail</label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control email-area" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Contact Number</label>
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label">Update Profile Picture</label>
+                    <input type="file" name="profilePicture" class="form-control upload-image-area" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Country</label>
+                        <select id="Country" name="Country" class="form-control">
+                            <option value="@Model.Country">@(!string.IsNullOrEmpty(Model.Country) ? Model.Country : "Select Country ⏷")</option>
+                            @if (ViewBag.CountryName != null)
                             {
-                                if (country.Value != Model.Country)
+                                foreach (var country in (List<string>)ViewBag.CountryName)
                                 {
-                                    <option value="@country.Value">@country.Text</option>
+                                    if (country != Model.Country)
+                                    {
+                                        <option value="@country">@country</option>
+                                    }
                                 }
                             }
-                        }
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label class="control-label">City</label>
-                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-                <div class="col-md-4">
-                    <label class="control-label">Postal Code</label>
-                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-        </div>
+                        </select>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-12">
-                <label class="control-label">Address</label>
-                @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="col-md-4">
+                        <label class="control-label">City</label>
+                        <select id="City" name="City" class="form-control">
+                            <option value="@Model.City">@(!string.IsNullOrEmpty(Model.City) ? Model.City : "Select City ⏷")</option>
 
-        <div class="form-group">
-            <div class="col-md-12">
-                <label class="control-label">Password</label>
-                <div class="password-container">
-                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control password-area", id = "currentPassword", type = "password" })
-                    <span id="passwordToggle" onclick="togglePassword('currentPassword')" class="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @if (ViewBag.CityName != null && ((List<string>)ViewBag.CityName).Count > 0)
+                            {
+                                foreach (var city in (List<string>)ViewBag.CityName)
+                                {
+                                    <option value="@city">@city</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="" disabled>No cities available</option>
+                            }
+                        </select>
+                    </div>
 
+                    <div class="col-md-4">
+                        <label class="control-label">Postal Code</label>
+                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group form-actions">
-            @Html.ActionLink("Cancel", "Settings", null, new { @class = "btn btn-danger" })
-            <input type="submit" value="Save Changes" class="btn btn-secondary" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">Address</label>
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">Password</label>
+                    <div class="password-container">
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control password-area", id = "currentPassword", type = "password" })
+                        <span id="passwordToggle" onclick="togglePassword('currentPassword')" class="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-actions">
+                @Html.ActionLink("Cancel", "Settings", null, new { @class = "btn btn-danger" })
+                <input type="submit" value="Save Changes" class="btn btn-secondary" />
+            </div>
         </div>
-    </div>
     }
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function togglePassword(fieldId) {
         var field = document.getElementById(fieldId);
@@ -140,4 +158,66 @@
             toggleElement.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
         }
     }
+
+
+    $(document).ready(function () {
+    // Sayfa yüklendiğinde seçilmiş ülkeye göre şehirleri yükle
+    var selectedCountry = $('#Country').val(); // Mevcut seçilmiş ülkeyi al
+    var selectedCity = '@Model.City'; // Seçilmiş şehir (Model'den geliyor)
+
+    if (selectedCountry) {
+        $.ajax({
+            url: '@Url.Action("GetCitiesByCountry", "Customer")',
+            type: 'GET',
+            data: { countryName: selectedCountry },
+            success: function (cities) {
+                // Şehir dropdown'ını temizle
+                $('#City').empty();
+                $('#City').append('<option value="" disabled>Select City ⏷</option>');
+
+                // Gelen şehirleri dropdown'a ekle
+                $.each(cities, function (index, city) {
+                    if (city === selectedCity) {
+                        $('#City').append('<option value="' + city + '" selected>' + city + '</option>');
+                    } else {
+                        $('#City').append('<option value="' + city + '">' + city + '</option>');
+                    }
+                });
+            },
+            error: function () {
+                alert('Failed to retrieve cities. Please try again.');
+            }
+        });
+    }
+
+    // Ülke değiştirildiğinde şehirleri dinamik olarak yükle
+    $('#Country').change(function () {
+        var newSelectedCountry = $(this).val(); // Yeni seçilen ülkeyi al
+
+        if (newSelectedCountry) {
+            $.ajax({
+                url: '@Url.Action("GetCitiesByCountry", "Customer")',
+                type: 'GET',
+                data: { countryName: newSelectedCountry },
+                success: function (cities) {
+                    // Şehir dropdown'ını temizle
+                    $('#City').empty();
+                    $('#City').append('<option value="" disabled selected>Select City ⏷</option>');
+
+                    // Gelen şehirleri dropdown'a ekle
+                    $.each(cities, function (index, city) {
+                        $('#City').append('<option value="' + city + '">' + city + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Failed to retrieve cities. Please try again.');
+                }
+            });
+        } else {
+            // Eğer hiçbir ülke seçilmediyse, şehir dropdown'ını temizle
+            $('#City').empty();
+            $('#City').append('<option value="" disabled selected>Select City ⏷</option>');
+        }
+    });
+});
 </script>
