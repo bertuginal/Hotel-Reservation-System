@@ -1,0 +1,213 @@
+﻿body {
+    background-color: #F5F7FA;
+}
+
+.login-page {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: auto;
+    padding-left: 115px;
+}
+
+/* Headings styling */
+h2 {
+    color: #343a40;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+h4 {
+    color: #A2A4A6;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: -5px;
+}
+
+h5 {
+    color: #E0B23C;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-horizontal {
+    text-align: left;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #495057;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* Input fields styling */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 12px;
+    transition: border-color 0.3s ease;
+    max-width: 360px;
+}
+
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+    }
+
+/* Validation message styling */
+.text-danger {
+    color: #dc3545;
+    font-size: 14px;
+}
+
+/* Button styling */
+.btn-dark {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 360px;
+}
+
+    .btn-dark:hover {
+        background-color: #0056b3;
+    }
+
+
+.btn-google {
+    background-color: #fff;
+    color: #333;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 2px solid #EFEFEF;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 360px;
+}
+
+    .btn-google:hover {
+        border: 2px solid #EFEFEF;
+        background-color: #e6e6e6;
+    }
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+
+.sign-up-text {
+    color: #A2A4A6;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 95px;
+
+}
+
+
+.forgot-remember {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+.remember-me {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+/* Checkbox stilini gizle */
+.remember-me input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 5px;
+}
+
+
+    .remember-me input[type="checkbox"]:hover {
+        box-shadow: 0 1px 4px rgba(0, 123, 255, 0.4);
+        position: relative;
+    }
+
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    margin-right: 100px;
+}
+
+    .separator hr {
+        flex: 1;
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 0 10px;
+    }
+
+    .separator span {
+        font-size: 14px;
+        font-weight: 400;
+        color: #A2A4A6;
+    }
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    top: 50%;
+    right: 30px; /* Sağ tarafta input'un içine yerleştirilir */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d; /* İkona hafif gri bir renk ver */
+    font-size: 1rem;
+    z-index: 10;
+}

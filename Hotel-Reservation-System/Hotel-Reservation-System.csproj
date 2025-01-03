@@ -355,14 +355,14 @@
     <Content Include="Content\css-folder\account\admin\details-add.css" />
     <Content Include="Content\css-folder\account\admin\edit-a.css" />
     <Content Include="Content\css-folder\account\admin\index-ad.css" />
-    <Content Include="Content\css-folder\account\admin\loginadmins.css" />
+    <Content Include="Content\css-folder\account\admin\loginadminn.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
     <Content Include="Content\css-folder\account\customer\create-.css" />
     <Content Include="Content\css-folder\account\customer\delete-cus.css" />
     <Content Include="Content\css-folder\account\customer\details-cuss.css" />
     <Content Include="Content\css-folder\account\customer\edit-cust.css" />
     <Content Include="Content\css-folder\account\customer\index-cus.css" />
-    <Content Include="Content\css-folder\account\customer\logincustomerss.css" />
+    <Content Include="Content\css-folder\account\customer\logincustomerv.css" />
     <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
