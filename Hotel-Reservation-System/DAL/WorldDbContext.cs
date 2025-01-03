@@ -15,5 +15,6 @@ namespace Hotel_Reservation_System.DAL
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<AreaCode> AreaCodes { get; set; }
     }
 }

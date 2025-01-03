@@ -4,7 +4,7 @@
     ViewBag.Title = "Register Customer";
 }
 
-<link href="~/Content/css-folder/account/customer/registercustomer-c.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/registercustomerr.css" rel="stylesheet" type="text/css" />
 
 
 @using (Html.BeginForm("RegisterCustomer", "Account", FormMethod.Post, new { @class = "form-horizontal", @role = "form", enctype = "multipart/form-data" }))
@@ -12,58 +12,83 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <h2>SIGN UP CUSTOMER</h2>
-    <h4>Please enter your information correctly!</h4>
-    <hr />
-    <h6>* are required areas!</h6>
+    <h2>Let's get you started</h2>
+    <h4>Enter your detais to get going</h4>
     <br />
 
-    <div class="section profile-section">
-        <div class="profile-picture">
-            <div class="form-group">
-                @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-6" })
-                <input type="file" name="profilePicture" class="form-control" />
-                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="profile-info">
-            <p>Upload Profile Photo</p>
-            <span>PNG, JPEG under 15MB</span>
-        </div>
-    </div>
+    <p class="info-text">Personal Informations</p>
+    <hr />
 
     <div class="form-group row">
+
+        <div class="section profile-section">
+            <div class="profile-picture">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <input type="file" name="profilePicture" class="form-control" />
+                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="profile-info">
+                <p>Upload Profile Photo</p>
+                <span>PNG, JPEG under 15MB</span>
+            </div>
+        </div>
+
         <div class="col-md-6">
             @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter your First Name" })
             @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-6">
             @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name" })
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter your Last Name" })
             @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group row">
-        <div class="col-md-6">
-            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        <div class="col-md-3 phone-area">
+            @Html.LabelFor(m => m.AreaCode, new { @class = "control-label" })
+            <select id="AreaCode" name="AreaCode" class="form-control">
+                <option value="" disabled selected>Select Area Code ⏷</option>
+                @if (ViewBag.AreaCodeName != null)
+                {
+                    foreach (var areaCode in (List<string>)ViewBag.AreaCodeName)
+                    {
+                        <option value="@areaCode">@areaCode</option>
+                    }
+                }
+                else
+                {
+                    <option value="" disabled>No area code available</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(m => m.AreaCode, "", new { @class = "text-danger" })
         </div>
-
-        <div class="col-md-6">
+        <div class="col-md-9 phone-area">
             @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Please put '0' in front." })
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Enter your Phone Number" })
             @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <p class="info-text">Account Informations</p>
+    <hr />
+
+    <div class="form-group">
+        <div class="email-area">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your E-mail address" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-6">
             @Html.LabelFor(model => model.Password, new { @class = "control-label" })
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Password" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
 
@@ -76,6 +101,9 @@
             }
         </div>
     </div>
+
+    <p class="info-text">Address Informations</p>
+    <hr />
 
     <div class="form-group row">
         <div class="col-md-4">
@@ -126,18 +154,33 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-12" })
         <div class="col-md-12">
-            @Html.TextAreaFor(m => m.Address, new { @class = "form-control address-textarea", placeholder = "Address", rows = 3 })
+            @Html.TextAreaFor(m => m.Address, new { @class = "form-control address-textarea", placeholder = "Enter your Full Address", rows = 4 })
             @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Register" class="btn btn-success" />
+        <div class="button-class col-md-12">
+            <input type="submit" value="Sign up" class="btn btn-sign-in" />
         </div>
     </div>
-    <hr />
-    <p class="text-left">Already have an account? @Html.ActionLink("Sign In", "LoginCustomer")</p>
+
+    <div class="separator">
+        <hr />
+        <span>or sign up with</span>
+        <hr />
+    </div>
+
+    <div class="form-group">
+        <div class="button-class col-md-12">
+            <button class="btn btn-google">
+                <img src="~/Content/images/icon/google-icon.png" alt="Google Icon" class="google-icon" />
+                Sign in with Google
+            </button>
+        </div>
+    </div>
+
+    <p class="sign-in-text">Already have an account? @Html.ActionLink("Sign In", "LoginCustomer")</p>
 
 }
 

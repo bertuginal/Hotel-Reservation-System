@@ -44,10 +44,13 @@ public class AccountController : Controller
     // GET: Account/RegisterCustomer
     public ActionResult RegisterCustomer()
     {
-        using (var countryDb = new WorldDbContext())
+        using (var worldDb = new WorldDbContext())
         {
-            var countries = countryDb.Countries.Select(c => c.Name).ToList();
+            var countries = worldDb.Countries.Select(c => c.Name).ToList();
             ViewBag.CountryName = countries;
+
+            var areaCodes = worldDb.AreaCodes.Select(a => a.Name).ToList();
+            ViewBag.AreaCodeName = areaCodes;
         }
         return View();
     }
@@ -79,12 +82,6 @@ public class AccountController : Controller
             {
                 ModelState.AddModelError("ImageUrl", "You must upload your profile photo!");
                 return View(customer);
-            }
-
-            using (var countryDb = new WorldDbContext())
-            {
-                var countries = countryDb.Countries.Select(c => c.Name).ToList();
-                ViewBag.CountryName = countries;
             }
 
             customer.EditedDate = DateTime.Now;

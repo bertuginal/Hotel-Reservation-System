@@ -39,6 +39,11 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Phone Number*")]
         public string Phone { get; set; }
 
+        [Required(ErrorMessage = "Area Code cannot be empty!")]
+        [Phone(ErrorMessage = "Please enter a your country's area code!")]
+        [DisplayName("Area Code*")]
+        public string AreaCode { get; set; }
+
         public virtual ICollection<Hotel> WishlistedHotels { get; set; } = new List<Hotel>();
 
     }

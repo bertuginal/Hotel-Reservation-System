@@ -1,0 +1,175 @@
+﻿body {
+    background-color: #F5F7FA;
+}
+
+h2 {
+    text-align: center;
+    color: #343a40;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+h4 {
+    text-align: center;
+    color: #A2A4A6;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: -15px;
+}
+
+.form-horizontal {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #495057;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+    .form-control:focus {
+        border-color: #66afe9; /* Odaklanıldığında kenar rengi */
+        outline: none; /* Kenar çizgisi kaldır */
+    }
+
+.text-danger {
+    color: #d9534f; /* Hata mesajı rengi */
+    font-size: 0.9em; /* Hata mesajı boyutu */
+}
+
+.button-class {
+    text-align: center;
+}
+
+.btn-sign-in {
+    padding: 7px 70px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #28a745;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+    .btn-sign-in:hover {
+        color: #fff;
+        background-color: #218838;
+    }
+
+.btn-google {
+    background-color: #fff;
+    color: #333;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 2px solid #EFEFEF;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 360px;
+}
+
+    .btn-google:hover {
+        border: 2px solid #EFEFEF;
+        background-color: #e6e6e6;
+    }
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+.address-textarea {
+    width: 100%; /* Tam genişlik */
+    max-width: 100%; /* Maksimum genişliği sınırla */
+    box-sizing: border-box; /* Kenarlık ve padding'i genişliğe dahil et */
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-picture {
+    display: flex;
+}
+
+.profile-info p {
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.profile-info span {
+    color: #888;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+
+.sign-in-text {
+    text-align: center;
+    color: #A2A4A6;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 25px;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+    .separator hr {
+        flex: 1;
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 0 15px;
+    }
+
+    .separator span {
+        font-size: 14px;
+        font-weight: 400;
+        color: #A2A4A6;
+    }
+
+.info-text {
+    color: #2C5F50;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+hr {
+    color: #A2A4A6;
+    margin-top: -5px;
+}

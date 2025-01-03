@@ -319,8 +319,13 @@
     <Compile Include="Migrations\202412301235574_AddCitiesTable.Designer.cs">
       <DependentUpon>202412301235574_AddCitiesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501032236261_AreaCodeAddedToUserModel.cs" />
+    <Compile Include="Migrations\202501032236261_AreaCodeAddedToUserModel.Designer.cs">
+      <DependentUpon>202501032236261_AreaCodeAddedToUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AreaCode.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -363,7 +368,7 @@
     <Content Include="Content\css-folder\account\customer\edit-cust.css" />
     <Content Include="Content\css-folder\account\customer\index-cus.css" />
     <Content Include="Content\css-folder\account\customer\logincustomerv.css" />
-    <Content Include="Content\css-folder\account\customer\registercustomer-c.css" />
+    <Content Include="Content\css-folder\account\customer\registercustomerr.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cus.css" />
     <Content Include="Content\css-folder\home-page\index-.css" />
@@ -573,6 +578,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412301235574_AddCitiesTable.resx">
       <DependentUpon>202412301235574_AddCitiesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501032236261_AreaCodeAddedToUserModel.resx">
+      <DependentUpon>202501032236261_AreaCodeAddedToUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
