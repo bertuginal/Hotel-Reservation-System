@@ -370,7 +370,7 @@
     <Content Include="Content\css-folder\account\customer\logincustomerv.css" />
     <Content Include="Content\css-folder\account\customer\registercustomerr.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
-    <Content Include="Content\css-folder\account\customer\update-cus.css" />
+    <Content Include="Content\css-folder\account\customer\update-cust.css" />
     <Content Include="Content\css-folder\home-page\index-.css" />
     <Content Include="Content\css-folder\hotel\create-hs.css" />
     <Content Include="Content\css-folder\hotel\delete-h.css" />

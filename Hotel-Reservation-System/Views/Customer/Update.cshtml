@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Update Customer";
 }
-<link href="~/Content/css-folder/account/customer/update-cus.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/account/customer/update-cust.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -15,12 +15,9 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-body">
+
             <div class="row">
-                <div class="form-group col-md-10">
-                    <p class="page-title">EDIT PROFILE</p>
-                    <hr />
-                </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <div class="current-image">
                         @if (!string.IsNullOrEmpty(Model.ImageUrl))
                         {
@@ -33,7 +30,27 @@
                     </div>
                     @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
                 </div>
+
+                <div class="form-group col-md-9">
+                    <div class="custom-file-upload">
+                        <label for="profilePicture" class="btn btn-primary">Change Profile Picture</label>
+                        <input id="profilePicture" type="file" name="profilePicture" class="form-control upload-image-area" />
+                        <p class="text-info mt-2">
+                            @if (!string.IsNullOrEmpty(ViewBag.ImagePreviewUrl as string))
+                            {
+                            <p id="imagePreviewUrl" class="image-preview-url-text">Current picture: @ViewBag.ImagePreviewUrl</p>
+                        }
+                        else
+                        {
+                            <span>Görsel önizleme URL'si bulunamadı.</span>
+                        }
+                            </p>
+                        </div>
+                </div>
             </div>
+
+            <p class="info-text">Personal Information</p>
+            <hr />
 
             <div class="row">
                 <div class="form-group col-md-6">
@@ -49,6 +66,34 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label class="control-label">Area Code</label>
+                    <select id="AreaCode" name="AreaCode" class="form-control">
+                        <option value="@Model.AreaCode">@(!string.IsNullOrEmpty(Model.AreaCode) ? Model.AreaCode : "Select Area Code ⏷")</option>
+                        @if (ViewBag.AreaCodeName != null)
+                        {
+                            foreach (var areaCode in (List<string>)ViewBag.AreaCodeName)
+                            {
+                                if (areaCode != Model.AreaCode)
+                                {
+                                    <option value="@areaCode">@areaCode</option>
+                                }
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.AreaCode, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-10">
+                    <label class="control-label">Phone Number</label>
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <p class="info-text">Account Information</p>
+            <hr />
 
             <div class="form-group">
                 <div class="col-md-12">
@@ -57,18 +102,19 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Contact Number</label>
-                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label">Update Profile Picture</label>
-                    <input type="file" name="profilePicture" class="form-control upload-image-area" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label">Password</label>
+                    <div class="password-container">
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control password-area", id = "currentPassword", type = "password" })
+                        <span id="passwordToggle" onclick="togglePassword('currentPassword')" class="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
+
+            <p class="info-text">Address Information</p>
+            <hr />
 
             <div class="form-group">
                 <div class="row">
@@ -117,21 +163,9 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <label class="control-label">Address</label>
+                    <label class="control-label">Full Address</label>
                     @Html.TextAreaFor(model => model.Address, new { @class = "form-control address-area", rows = 4, placeholder = "Your Full Address" })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label class="control-label">Password</label>
-                    <div class="password-container">
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control password-area", id = "currentPassword", type = "password" })
-                        <span id="passwordToggle" onclick="togglePassword('currentPassword')" class="toggle-password"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-                    </div>
                 </div>
             </div>
 
@@ -219,5 +253,25 @@
             $('#City').append('<option value="" disabled selected>Select City ⏷</option>');
         }
     });
-});
+    });
+
+    //Dinamik olarak seçilen fotoğrafın url'ini gösterme
+    document.getElementById("profilePicture").addEventListener("change", function (event) {
+        var fileInput = event.target;
+        if (fileInput.files && fileInput.files[0]) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                // JSON kullanarak URL'yi güncelleme
+                var imagePreviewUrl = document.getElementById("imagePreviewUrl");
+                var fileUrl = e.target.result;
+
+                imagePreviewUrl.textContent = "Updated picture: " + file.name; // Dosya adını göster
+                console.log(JSON.stringify({ fileName: file.name, fileUrl: fileUrl })); // JSON formatında göster
+            };
+
+            reader.readAsDataURL(file); // Dosyayı Base64 formatına çevirir
+        }
+    });
 </script>

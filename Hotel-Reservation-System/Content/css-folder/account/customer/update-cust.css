@@ -1,5 +1,7 @@
-﻿.admin-edit-container {
-    max-width: 900px;
+﻿
+
+.admin-edit-container {
+    max-width: 750px;
     margin: 40px auto;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -47,6 +49,7 @@ hr {
 }
 
 .form-control {
+    max-width: 800px;
     width: 100%;
     padding: 10px;
     border: 2px solid #ddd;
@@ -111,12 +114,8 @@ hr {
 
 .current-image img {
     border-radius: 50%;
-    float: right;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    margin-right: 10px;
+    width: 125px;
+    height: 125px;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -168,4 +167,50 @@ hr {
 }
 
 
+.info-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e66100;
+    margin-top: 30px;
+    margin-bottom: -5px;
+}
 
+
+.custom-file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+    .custom-file-upload input[type="file"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .custom-file-upload label {
+        background-color: #fff;
+        color: #7c6aa1;
+        padding: 5px 20px;
+        border-radius: 3px;
+        border: 1px solid #DDDDDD;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+        .custom-file-upload label:hover {
+            background-color: #0056b3;
+        }
+
+.image-preview-url-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #8D8D8D;
+    margin-left: 15px;
+    margin-top: -8px;
+}

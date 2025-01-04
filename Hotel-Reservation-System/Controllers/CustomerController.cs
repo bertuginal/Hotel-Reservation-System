@@ -347,10 +347,17 @@ namespace YourNamespace.Controllers
                 }
             }
 
+            ViewBag.ImagePreviewUrl = !string.IsNullOrEmpty(customer.ImageUrl)
+                ? System.IO.Path.GetFileName(customer.ImageUrl)
+                : null;
+
             using (var worldDb = new WorldDbContext())
             {
                 var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = countries;
+
+                var areaCodes = worldDb.AreaCodes.Select(c => c.Name).ToList();
+                ViewBag.AreaCodeName = areaCodes;
             }
 
             return View(customer);
@@ -400,6 +407,7 @@ namespace YourNamespace.Controllers
                     existingCustomer.LastName = customer.LastName;
                     existingCustomer.Email = customer.Email;
                     existingCustomer.Password = customer.Password;
+                    existingCustomer.AreaCode = customer.AreaCode;
                     existingCustomer.Phone = customer.Phone;
                     existingCustomer.Address = customer.Address;
                     existingCustomer.Country = customer.Country;
