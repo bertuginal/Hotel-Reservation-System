@@ -75,7 +75,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-3">
+                        <label>Area Code</label>
+                        <select id="AreaCode" name="AreaCode" class="form-control">
+                            <option value="@Model.AreaCode">@(!string.IsNullOrEmpty(Model.AreaCode) ? Model.AreaCode : "Select Area Code ⏷")</option>
+                            @if (ViewBag.AreaCodeName != null)
+                            {
+                                foreach (var areaCode in (List<string>)ViewBag.AreaCodeName)
+                                {
+                                    <option value="@areaCode" @(areaCode == Model.AreaCode ? "selected" : "")>
+                                        @areaCode
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-md-9">
                         <label>Phone Number</label>
                         <div class="input-wrapper">
                             @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })

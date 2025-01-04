@@ -233,6 +233,10 @@ namespace YourNamespace.Controllers
             {
                 var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = countries;
+
+                var areaCodes = worldDb.AreaCodes.Select(c => c.Name).ToList();
+                ViewBag.AreaCodeName = areaCodes;
+
             }
 
             return View(customer);
@@ -282,6 +286,7 @@ namespace YourNamespace.Controllers
                     existingCustomer.LastName = customer.LastName;
                     existingCustomer.Email = existingCustomer.Email;
                     existingCustomer.Password = existingCustomer.Password;
+                    existingCustomer.AreaCode = customer.AreaCode;
                     existingCustomer.Phone = customer.Phone;
                     existingCustomer.Address = customer.Address;
                     existingCustomer.Country = customer.Country;
@@ -408,11 +413,7 @@ namespace YourNamespace.Controllers
                     return RedirectToAction("Settings");
                 }
             }
-            using (var worldDb = new WorldDbContext())
-            {
-                var countries = worldDb.Countries.Select(c => c.Name).ToList();
-                ViewBag.CountryName = new SelectList(countries, customer.Country);
-            }
+
             return View(customer);
         }
 

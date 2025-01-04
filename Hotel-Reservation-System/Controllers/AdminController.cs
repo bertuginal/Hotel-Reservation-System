@@ -117,6 +117,13 @@ public class AdminController : Controller
         }
 
         ViewBag.IsAdmin = isAdmin;
+
+        using (var worldDb = new WorldDbContext())
+        {
+            var areaCodes = worldDb.AreaCodes.Select(c => c.Name).ToList();
+            ViewBag.AreaCodeName = areaCodes;
+        }
+
         return View(admin);
     }
 
@@ -134,6 +141,7 @@ public class AdminController : Controller
                 existingAdmin.LastName = admin.LastName;
                 existingAdmin.Email = existingAdmin.Email;
                 existingAdmin.Password = existingAdmin.Password;
+                existingAdmin.AreaCode = admin.AreaCode;
                 existingAdmin.Phone = admin.Phone;
                 existingAdmin.CreatedDate = existingAdmin.CreatedDate;
                 existingAdmin.EditedDate = DateTime.Now;
