@@ -150,6 +150,9 @@ namespace YourNamespace.Controllers
             {
                 var countries = worldDb.Countries.Select(c => c.Name).ToList();
                 ViewBag.CountryName = countries;
+
+                var areaCodes = worldDb.AreaCodes.Select(c => c.Name).ToList();
+                ViewBag.AreaCodeName = areaCodes;
             }
 
             return View();

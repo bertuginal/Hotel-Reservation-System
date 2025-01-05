@@ -362,7 +362,7 @@
     <Content Include="Content\css-folder\account\admin\index-ad.css" />
     <Content Include="Content\css-folder\account\admin\loginadminn.css" />
     <Content Include="Content\css-folder\account\admin\registeradmins.css" />
-    <Content Include="Content\css-folder\account\customer\create-.css" />
+    <Content Include="Content\css-folder\account\customer\create-cc.css" />
     <Content Include="Content\css-folder\account\customer\delete-cus.css" />
     <Content Include="Content\css-folder\account\customer\details-cuss.css" />
     <Content Include="Content\css-folder\account\customer\edit-cust.css" />
@@ -372,7 +372,7 @@
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cust.css" />
     <Content Include="Content\css-folder\home-page\index-.css" />
-    <Content Include="Content\css-folder\hotel\create-hs.css" />
+    <Content Include="Content\css-folder\hotel\create-hh.css" />
     <Content Include="Content\css-folder\hotel\delete-h.css" />
     <Content Include="Content\css-folder\hotel\details-hh.css" />
     <Content Include="Content\css-folder\hotel\edit-hot.css" />
@@ -383,7 +383,7 @@
     <Content Include="Content\css-folder\reservation\details-rr.css" />
     <Content Include="Content\css-folder\reservation\index-r.css" />
     <Content Include="Content\css-folder\reservation\list-re.css" />
-    <Content Include="Content\css-folder\room\create-rr.css" />
+    <Content Include="Content\css-folder\room\create-rf.css" />
     <Content Include="Content\css-folder\room\delete-ro.css" />
     <Content Include="Content\css-folder\room\details-roo.css" />
     <Content Include="Content\css-folder\room\edit-r.css" />

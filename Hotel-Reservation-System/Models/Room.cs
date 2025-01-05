@@ -14,7 +14,7 @@ namespace Hotel_Reservation_System.Models
         [DisplayName("Room's Image*")]
         public string ImageUrl { get; set; }
 
-        [Required(ErrorMessage = "Room number cannot be empty!")]
+        [Required(ErrorMessage = "Room's name cannot be empty!")]
         [DisplayName("Room's Name*")]
         public string Name { get; set; }
 

@@ -15,26 +15,25 @@ footer {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 80px;
     max-width: 800px;
     margin: 50px auto;
     border: 1px solid #e1e1e1;
 }
 
-
 .header-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #007bff;
     text-align: center;
-    margin-bottom: 20px;
+    color: #343a40;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .header-subtitle {
     text-align: center;
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 15px;
+    color: #A2A4A6;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 50px;
 }
 
 .required-text {
@@ -55,17 +54,25 @@ label {
     color: #555;
 }
 
+.control-label {
+    font-weight: bold;
+    color: #495057;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
 b {
     color: #555;
 }
 
 .form-control {
+    width: 100%;
+    padding: 10px 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    font-size: 16px;
-    transition: border 0.3s ease;
+    transition: border-color 0.3s;
+    margin-bottom: 8px;
+    font-size: 13px;
 }
 
 
@@ -76,11 +83,9 @@ b {
 
 input[type="file"] {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fff;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
     input[type="file"]:hover {
@@ -89,9 +94,10 @@ input[type="file"] {
 
 .btn-success, .btn-dark {
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 6px 30px;
     font-size: 16px;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-top: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -106,19 +112,28 @@ input[type="file"] {
     }
 
 .btn-dark {
-    background-color: #212529;
+    background-color: #fff;
     border: none;
-    color: white;
+    color: #333;
+    transition: color 0.3s;
 }
 
     .btn-dark:hover {
-        background-color: #414548;
+        background-color: #fff;
+        color: #dc3545;
     }
 
 .text-dark {
     color: #dc3545;
     font-size: 14px;
     margin-top: 5px;
+}
+
+.text-danger {
+    text-align: center;
+    color: #dc3545;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -204,7 +219,8 @@ input[type="radio"]:checked + .radio-inline {
         position: relative;
         padding-left: 30px;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
+        font-weight: 500;
         display: flex;
         align-items: center;
         transition: color 0.3s ease;
@@ -252,3 +268,26 @@ input[type="radio"]:checked + .radio-inline {
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
     }
 
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: -20px;
+}
+
+.profile-picture {
+    display: flex;
+}
+
+.profile-info p {
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+    margin-top: -6px;
+}
+
+.profile-info span {
+    color: #888;
+    font-size: 12px;
+    margin-left: 15px;
+}
