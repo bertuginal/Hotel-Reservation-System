@@ -64,6 +64,12 @@ public class AdminController : Controller
             }
         }
 
+        using (var worldDb = new WorldDbContext())
+        {
+            var areaCodes = worldDb.AreaCodes.Select(c => c.Name).ToList();
+            ViewBag.AreaCodeName = areaCodes;
+        }
+
         return View();
     }
 

@@ -8,7 +8,7 @@ body {
     max-width: 800px;
     margin: 50px auto;
     background-color: #141414;
-    padding: 30px;
+    padding: 80px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 255, 108, 0.5);
     border: 1px solid #00ff6c;
@@ -18,23 +18,25 @@ h2 {
     color: #00ff6c;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
     text-transform: uppercase;
     text-shadow: 0px 0px 10px #00ff6c;
 }
 
 h4 {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
     margin-bottom: 20px;
+    font-weight: 500;
+    margin-bottom: 50px;
 }
 
 hr {
     border: none;
     height: 1px;
     background-color: #00ff6c;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: -5px;
 }
 
 h6 {
@@ -55,14 +57,17 @@ h6 {
     text-shadow: 0px 0px 5px #00ff6c;
     font-size: 12px;
     margin-bottom: 5px;
+    margin-top: 15px;
 }
 
 .form-control {
+    width: 100%;
+    max-width: 800px;
     background-color: #0d0d0d;
     border: 1px solid #00ff6c;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
+    padding: 10px 15px;
+    font-size: 12px;
     color: #00ff6c;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -73,21 +78,23 @@ h6 {
     }
 
 .text-danger {
-    color: #ff4757;
-    font-size: 14px;
-    font-weight: bold;
+    text-align: center;
+    color: #dc3545;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 .btn {
-    padding: 5px 25px;
+    padding: 6px 30px;
     font-size: 14px;
+    font-weight: 500;
     border-radius: 4px;
     text-transform: uppercase;
     transition: all 0.3s;
     border: 1px solid #00ff6c;
     color: #00ff6c;
     background-color: transparent;
-    margin-top: 15px;
+    margin-top: 40px;
 }
 
     .btn:hover {
@@ -113,7 +120,7 @@ h6 {
     }
 
 .col-md-offset-2 {
-    margin-left: 16.66666667%;
+    text-align: center;
 }
 
 /* Input placeholder style */
@@ -192,5 +199,12 @@ h2 {
 }
 
 .col-md-6 {
-    width: 50%; /* Her bir sütun genişliğini %50 yapar */
+    width: 50%;
+}
+
+.info-text {
+    color: #00FE6C;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 50px;
 }

@@ -355,7 +355,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\css-folder\account\admin\create-add.css" />
+    <Content Include="Content\css-folder\account\admin\create-addd.css" />
     <Content Include="Content\css-folder\account\admin\delete-ad.css" />
     <Content Include="Content\css-folder\account\admin\details-add.css" />
     <Content Include="Content\css-folder\account\admin\edit-a.css" />
