@@ -14,8 +14,8 @@ footer {
 /* General container styling for the form */
 .hotel-edit-container {
 	background-color: #ffffff;
-	padding: 40px;
-	max-width: 900px;
+	padding: 80px;
+	max-width: 1000px;
 	margin: 60px auto;
 	border-radius: 16px;
 	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
@@ -23,25 +23,33 @@ footer {
 }
 
 /* Styling for the page title */
+.hotel-edit-text {
+	font-size: 12px;
+	font-weight: 600;
+	margin-bottom: 0;
+	color: #FFC107;
+}
+
 .page-title {
-	text-align: center;
+	text-align: left;
 	font-size: 30px;
 	font-weight: bold;
 	color: #343a40;
-	margin-bottom: 20px;
+	margin-top: 5px;
 	text-transform: uppercase;
 	letter-spacing: 1.2px;
-	border-bottom: 4px solid #ffc107;
 	display: block;
 	padding-bottom: 8px;
 }
 
 /* Sub-title styling */
 .sub-title {
-	text-align: center;
-	font-size: 18px;
+	text-align: left;
+	font-size: 12px;
+	font-weight: 500;
 	color: #6c757d;
-	margin-bottom: 30px;
+	margin-bottom: -25px;
+	margin-top: -10px;
 }
 
 /* Form body styling */
@@ -55,20 +63,22 @@ footer {
 	color: #495057;
 	margin-bottom: 5px;
 	display: block;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 /* Input field styling */
 .form-control {
 	background-color: #fdfdfd;
 	border: 2px solid #ced4da;
-	border-radius: 10px;
-	padding: 12px;
+	border-radius: 5px;
+	padding: 10px 15px;
 	width: 100%;
-	font-size: 16px;
+	max-width: 900px;
+	font-size: 13px;
 	color: #495057;
 	transition: all 0.3s ease;
 	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+	margin-bottom: 25px;
 }
 
 	.form-control:focus {
@@ -78,32 +88,33 @@ footer {
 		outline: none;
 	}
 
-/* Form group styling */
-.form-group {
-	margin-bottom: 25px;
-}
-
 /* Button styling */
 .btn {
 	display: inline-block;
-	font-weight: 600;
-	padding: 12px 25px;
+	font-weight: 500;
+	padding: 8px 30px;
 	font-size: 15px;
 	text-align: center;
-	border-radius: 8px;
+	border-radius: 5px;
 	transition: background-color 0.3s ease, transform 0.2s ease;
 	border: none;
+	margin-right: 10px;
+	margin-top: 10px;
 }
 
 .btn-secondary {
 	background-color: #ffc107;
-	color: #343a40;
+	color: #fff;
 	box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
 }
 
 	.btn-secondary:hover {
 		background-color: #e6ac00;
 		transform: translateY(-3px);
+	}
+
+	.btn-secondary i {
+		margin-right: 5px;
 	}
 
 .btn-danger {
@@ -126,7 +137,8 @@ footer {
 
 /* Divider between sections */
 hr {
-	margin: 40px 0;
+	margin-top: -5px;
+	margin-bottom: 25px;
 	border-color: #ffc107;
 	border-width: 2px;
 }
@@ -193,7 +205,7 @@ textarea[name="Description"] {
 		position: relative;
 		padding-left: 30px;
 		cursor: pointer;
-		font-size: 14px;
+		font-size: 12px;
 		display: flex;
 		align-items: center;
 		transition: color 0.3s ease;
@@ -255,9 +267,9 @@ textarea[name="Description"] {
 	}
 
 	.rating-group label {
-		font-size: 24px;
-		width: 40px;
-		height: 40px;
+		font-size: 15px;
+		width: 30px;
+		height: 30px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -282,3 +294,62 @@ textarea[name="Description"] {
 		color: white; /* Hover sırasında yazı rengini beyaz yap */
 	}
 
+.info-text {
+	color: #333;
+	font-size: 15px;
+	font-weight: 600;
+	margin-top: 50px;
+}
+
+.text-danger {
+	text-align: center;
+	color: #dc3545;
+	font-size: 10px;
+	font-weight: 600;
+}
+
+
+
+.image-preview-container {
+	position: relative;
+	width: 200px;
+	height: 150px;
+	margin: 10px 0;
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+	.image-preview-container:hover {
+		box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+		transition: box-shadow 0.2s ease-in-out;
+	}
+
+.image-label {
+	display: block;
+	position: relative;
+	cursor: pointer;
+}
+
+.image-preview {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-image-text {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 12px;
+	border-radius: 4px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.image-input {
+	display: none; /* Giriş alanını gizle */
+}
