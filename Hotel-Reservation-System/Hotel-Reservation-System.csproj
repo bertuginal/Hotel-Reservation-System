@@ -386,7 +386,7 @@
     <Content Include="Content\css-folder\room\create-rf.css" />
     <Content Include="Content\css-folder\room\delete-ro.css" />
     <Content Include="Content\css-folder\room\details-roo.css" />
-    <Content Include="Content\css-folder\room\edit-r.css" />
+    <Content Include="Content\css-folder\room\edit-rr.css" />
     <Content Include="Content\css-folder\room\index-r.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

@@ -5,108 +5,122 @@
     ViewBag.Title = "Edit Room";
 }
 
-<link href="~/Content/css-folder/room/edit-r.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/room/edit-rr.css" rel="stylesheet" type="text/css" />
 
 <div class="room-edit-container">
-    <div class="text-center">
-        <h2 class="page-title">ROOM EDIT</h2>
-        <h4 class="sub-title">You can update the information of the room named "@Model.Name"!</h4>
-        <hr />
-    </div>
+        <p class="room-edit-text">Room Edit</p>
+        <h2 class="page-title">@Model.Name</h2>
+        <h4 class="sub-title">@Model.Type - @Model.Hotel.Name</h4>
+
     @using (Html.BeginForm("Edit", "Room", FormMethod.Post, new { @class = "form-horizontal", @role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-body">
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Name</label>
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
+<div class="form-body">
 
-                <div class="form-group col-md-6">
-                    <label class="control-label">Hotel Name</label>
-                    @Html.DropDownList("HotelId", (SelectList)ViewBag.Hotels, "Select a Hotel", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.HotelId, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <p class="info-text">Room Pictures</p>
 
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Type</label>
-                    @Html.DropDownListFor(model => model.Type, new SelectList(new List<string> { "Standard Room", "Family Room", "Suite Room" }, Model.Type), "Select Room Type", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label">Number Of Rooms</label>
-                    @Html.TextBoxFor(model => model.NumberOfRooms, new { @class = "form-control", type = "number", placeholder = "Enter number of rooms" })
-                    @Html.ValidationMessageFor(m => m.NumberOfRooms, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label">Capacity</label>
-                    @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control", type = "number", placeholder = "Enter room capacity" })
-                    @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="control-label">Square Meters</label>
-                    @Html.TextBoxFor(model => model.SquareMeters, new { @class = "form-control", type = "number", placeholder = "Enter room square meters" })
-                    @Html.ValidationMessageFor(m => m.SquareMeters, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Upload Image</label>
-                    <input type="file" name="ImageFile" class="form-control" />
-                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label class="control-label">Price Per Night</label>
-                    @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="facility-group">
-                    @foreach (var facility in Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>())
-                    {
-                        var facilityValue = (int)facility;
-                        var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
-                        <div class="form-check">
-                            <input type="checkbox"
-                                   name="SelectedFacilities"
-                                   value="@facilityValue"
-                                   id="facility-@facilityValue"
-                                   class="facility-checkbox @((facility == FacilityRoom.None) ? "facility-none" : "")"
-                                   @(Model.Facilities.HasFlag(facility) ? "checked" : "") />
-                            <label for="facility-@facilityValue" class="form-check-label">@displayName</label>
-                        </div>
-                    }
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label class="control-label">Description</label>
-                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Enter room description", rows = 4 })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group form-actions">
-                <input type="submit" value="Save Changes" class="btn btn-secondary" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
-            </div>
+    <div class="form-group">
+        <div class="image-preview-container">
+            <label for="imageInput" class="image-label">
+                <img src="@Url.Content(Model.ImageUrl)" alt="Main Image" class="image-preview">
+                <span class="main-image-text">MAIN IMAGE</span>
+            </label>
+            <input id="imageInput" type="file" name="ImageFile" class="image-input" />
         </div>
+        @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
+    </div>
+
+    <p class="info-text">Room Details</p>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label">Room's Name*</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="control-label">Hotel's Name*</label>
+            @Html.DropDownList("HotelId", (SelectList)ViewBag.Hotels, "Select a Hotel", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.HotelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label">Room's Type*</label>
+            @Html.DropDownListFor(model => model.Type, new SelectList(new List<string> { "Standard Room", "Family Room", "Suite Room" }, Model.Type), "Select Room Type", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="control-label">Room's Capacity*</label>
+            @Html.TextBoxFor(model => model.Capacity, new { @class = "form-control", type = "number", placeholder = "Enter room capacity" })
+            @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="control-label">Number Of Rooms*</label>
+            @Html.TextBoxFor(model => model.NumberOfRooms, new { @class = "form-control", type = "number", placeholder = "Total Rooms" })
+            @Html.ValidationMessageFor(m => m.NumberOfRooms, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label">Price Per Night*</label>
+            @Html.EditorFor(model => model.PricePerNight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PricePerNight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label">Square Meters*</label>
+            @Html.TextBoxFor(model => model.SquareMeters, new { @class = "form-control", type = "number", placeholder = "m²" })
+            @Html.ValidationMessageFor(m => m.SquareMeters, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <p class="info-text">Room Amenties</p>
+
+    <div class="form-group">
+        <div class="facility-group">
+            @foreach (var facility in Enum.GetValues(typeof(FacilityRoom)).Cast<FacilityRoom>())
+            {
+                var facilityValue = (int)facility;
+                var displayName = FacilityExtensions.GetEnumDisplayNameRoom(facility);
+                <div class="form-check">
+                    <input type="checkbox"
+                           name="SelectedFacilities"
+                           value="@facilityValue"
+                           id="facility-@facilityValue"
+                           class="facility-checkbox @((facility == FacilityRoom.None) ? "facility-none" : "")"
+                           @(Model.Facilities.HasFlag(facility) ? "checked" : "") />
+                    <label for="facility-@facilityValue" class="form-check-label">@displayName</label>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <label class="control-label">Features*</label>
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Enter room description", rows = 4 })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group form-actions">
+        <button type="submit" class="btn btn-secondary"><i class="fa-regular fa-floppy-disk"></i> Save Changes</button>
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</div>
     }
 </div>
 
