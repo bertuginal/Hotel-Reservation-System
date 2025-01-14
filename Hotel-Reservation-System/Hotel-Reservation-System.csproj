@@ -371,7 +371,7 @@
     <Content Include="Content\css-folder\account\customer\registercustomerr.css" />
     <Content Include="Content\css-folder\account\customer\settings-cu.css" />
     <Content Include="Content\css-folder\account\customer\update-cust.css" />
-    <Content Include="Content\css-folder\home-page\index-.css" />
+    <Content Include="Content\css-folder\home-page\index-hp.css" />
     <Content Include="Content\css-folder\hotel\create-hh.css" />
     <Content Include="Content\css-folder\hotel\delete-h.css" />
     <Content Include="Content\css-folder\hotel\details-hh.css" />

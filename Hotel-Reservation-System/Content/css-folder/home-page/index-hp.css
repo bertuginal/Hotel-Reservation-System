@@ -9,7 +9,7 @@ body {
 .homepage-container {
     text-align: left;
     margin: 30px auto;
-    max-width: 1200px;
+    max-width: 1500px;
 }
 
 h1 {
@@ -50,9 +50,9 @@ hr {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     align-items: center;
-    padding: 20px;
+    padding-right: 20px;
     height: 100%;
-    margin : 10px;
+    margin: 10px;
 }
 
     .hotel-card:hover {
@@ -63,7 +63,7 @@ hr {
 /* Resim düzeni */
 .hotel-image {
     width: 330px;
-    height: 280px;
+    height: 290px;
     object-fit: cover;
     border-start-start-radius: 12px;
     border-end-start-radius: 12px;
@@ -124,7 +124,7 @@ hr {
 /* Konum ve derecelendirme */
 .location-area p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 500;
     color: #357CDC;
     margin-top: 8px;
@@ -188,6 +188,7 @@ hr {
         justify-content: center;
     }
 }
+
 .name-rating {
     display: flex;
     justify-content: space-between;
@@ -205,13 +206,13 @@ hr {
     color: #333;
     font-weight: 500;
     margin-bottom: 0;
-    font-size: 28px;
+    font-size: 24px;
     text-decoration: none;
 }
 
 .name-rating p {
     margin: 0;
-    font-size: 25px;
+    font-size: 22px;
     color: goldenrod;
 }
 
@@ -231,7 +232,7 @@ hr {
 
     .price-info p {
         text-align: right;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
         color: #d9534f;
         margin-bottom: -3px;
@@ -239,26 +240,27 @@ hr {
 
     .price-info del {
         text-align: right;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
         color: #d9534f;
         margin-bottom: -3px;
         margin-right: 5px;
     }
 
-    .text-right {
-        text-align:right;
-    }
+.text-right {
+    text-align: right;
+}
 
 .subtitle-info p {
     margin-top: 1px;
     color: #595959;
-    font-size: 11px;
+    font-size: 9px;
+    font-weight: 500;
 }
 
 .hotel-info .title-area p {
     font-family: 'Lora', serif;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 /* Genel arama çubuğu stilleri */
@@ -267,6 +269,7 @@ hr {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 70px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     border-radius: 20px;
 }
@@ -274,7 +277,7 @@ hr {
     .search-bar input[type="text"],
     .search-bar input[type="date"] {
         padding: 15px;
-        font-size: 16px;
+        font-size: 13px;
         border: 1px solid #ddd;
         transition: border-color 0.3s;
     }
@@ -298,7 +301,7 @@ hr {
 
 #searchButton {
     padding: 15px 20px;
-    font-size: 16px;
+    font-size: 13px;
     color: white;
     background-color: #017BFF;
     border: 1px solid #017BFF;
@@ -319,6 +322,14 @@ hr {
         border: 1px solid #0156B3;
     }
 
+.search-bar-error-message {
+    display: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #F92F60;
+}
+
 .guest-dropdown {
     position: relative;
     display: inline-block;
@@ -326,7 +337,7 @@ hr {
 
 #guestButton {
     padding: 15px;
-    font-size: 16px;
+    font-size: 13px;
     border: 1px solid #ddd;
     background-color: white;
     cursor: pointer;
@@ -367,15 +378,15 @@ hr {
         padding: 10px 0;
     }
 
-        .guest-dropdown-content .guest-type label {
-            font-size: 16px;
+        .guest-dropdown-content .guest-type span {
+            font-size: 13px;
             font-weight: 500;
         }
 
         .guest-dropdown-content .guest-type button {
             width: 30px;
             height: 30px;
-            font-size: 18px;
+            font-size: 13px;
             color: #3498db;
             border: 1px solid #ddd;
             background-color: white;
@@ -420,12 +431,12 @@ hr {
         font-size: 50px;
     }
 
-.loading-area p {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: -10px;
-}
+    .loading-area p {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: -10px;
+    }
 
 
 
@@ -490,6 +501,7 @@ hr {
         position: relative;
         padding-left: 20px;
     }
+
     .price-filter .price-before {
         margin-right: 20px;
     }
@@ -541,7 +553,7 @@ input[type="range"] {
 .partner-logos {
     display: flex;
     align-items: center;
-    gap: 27px; 
+    gap: 27px;
     overflow: hidden;
 }
 
@@ -599,14 +611,138 @@ input[type="range"] {
 }
 
     .hotel-facilities .facility-area i {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 3px;
         display: block;
         color: #555;
     }
 
     .hotel-facilities .facility-area span {
-        font-size: 12px;
+        font-size: 10px;
         color: #555;
         white-space: nowrap;
     }
+
+
+
+.filter-container {
+    margin-top: 30px;
+}
+
+.filter-section {
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    max-height: 130vh;
+    overflow-y: auto;
+}
+
+    .filter-section h4 {
+        color: #333;
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+
+    .filter-section h3 {
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+.filter-group h4 {
+    margin-bottom: 12px;
+    margin-top: 22px;
+    color: #333;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #757575;
+}
+
+.filter-group input[type="number"] {
+    width: 85%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.filter-group input[type="radio"] {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.button-container-amenities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.button-container-stars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.input-container-price-range {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.feature-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 6px 10px;
+    margin: 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .feature-button:hover {
+        background-color: #d4d4d4;
+    }
+
+    .feature-button i {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+
+.range-slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: -10px;
+}
+
+    .range-slider-container input[type="range"] {
+        flex: 1;
+        appearance: none;
+        height: 8px;
+        background: #ccc;
+        outline: none;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+        .range-slider-container input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 14px;
+            background: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+        }

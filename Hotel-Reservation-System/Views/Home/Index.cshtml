@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css-folder/home-page/index-.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/css-folder/home-page/index-hp.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -14,14 +14,6 @@
 <div class="homepage-container">
     <h3>Save up to 40% on your next hotel stay!</h3>
     <p>We compare hotel prices from 100s of sites</p>
-
-    <!-- Price filter range -->
-    <div class="price-filter">
-        <span class="price-before">0.00 ₺</span>
-        <input type="range" id="priceRange" min="0" max="9999" step="1" value="0" oninput="updatePriceRange()" style="width: 100%;">
-        <span class="price-after" id="priceLabel">9999.00 ₺</span>
-        <button onclick="filterByPrice()">Filter by Price</button>
-    </div>
 
     <!-- Filter area -->
     <div class="search-bar">
@@ -63,145 +55,219 @@
     </div>
 
     <!-- Errors -->
-    <p id="notFoundMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❌ Oops! The hotel you are looking for could not be found.</p>
-    <p id="errorMessage" style="display: none; text-align: center; font-weight: bold; color: #F92F60;">❗️Check-out date cannot be earlier than or the same as check-in date!</p>
+        <p id="notFoundMessage" class="search-bar-error-message"><i class="fa-regular fa-face-frown"></i> Oops! The hotel you are looking for could not be found.</p>
+        <p id="errorMessage" class="search-bar-error-message"><i class="fas fa-exclamation-triangle"></i> Check-out date cannot be earlier than or the same as check-in date!</p>
 
     <div class="partner-logos">
-        <a href="#" class="logo">
+        <a href="https://www.booking.com/index.tr.html" class="logo">
             <img src="@Url.Content("~/Content/images/partners/booking.png")" alt="Booking.com" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://www.expedia.com" class="logo">
             <img src="@Url.Content("~/Content/images/partners/expedia.png")" alt="Expedia" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://tr.hotels.com/" class="logo">
             <img src="@Url.Content("~/Content/images/partners/hotels.png")" alt="Hotels.com" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://www.vrbo.com/" class="logo">
             <img src="@Url.Content("~/Content/images/partners/vrbo.png")" alt="Vrbo" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://all.accor.com/" class="logo">
             <img src="@Url.Content("~/Content/images/partners/accor.png")" alt="Accor" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://tr.trip.com/" class="logo">
             <img src="@Url.Content("~/Content/images/partners/trip.png")" alt="Trip.com" />
         </a>
-        <a href="#" class="logo">
+        <a href="https://www.priceline.com/" class="logo">
             <img src="@Url.Content("~/Content/images/partners/priceline.png")" alt="Priceline" />
         </a>
         <span class="more">+100s more</span>
     </div>
 
 
+    <div class="filter-container">
+        <div class="row">
+            <div class="col-md-2 filter-section">
+                <h3>Filter by</h3>
+                <form>
+                    <div class="filter-group">
+                        <h4>Popular filters</h4>
+                        <label><input type="checkbox" name="spa" /> Spa</label>
+                        <label><input type="checkbox" name="wifi" /> Free WI-FI</label>
+                        <label><input type="checkbox" name="cityCenter" /> Fethiye</label>
+                        <label><input type="checkbox" name="allInclusive" /> All Included</label>
+                        <label><input type="checkbox" name="apartHotel" /> Family resort</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price range</h4>
+                        <div class="input-container-price-range">
+                            <label>Min: <input type="number" id="minPrice" name="minPrice" value="0" /></label>
+                            <label>Max: <input type="number" id="maxPrice" name="maxPrice" value="10000" /></label>
+                        </div>
+                        <div class="range-slider-container">
+                            <input type="range"
+                                   id="priceMinRange"
+                                   min="0"
+                                   max="10000"
+                                   value="0"
+                                   step="100" />
+                            <input type="range"
+                                   id="priceMaxRange"
+                                   min="0"
+                                   max="10000"
+                                   value="10000"
+                                   step="100" />
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Stay options</h4>
+                        <label><input type="radio" name="accommodation" value="any" checked /> Any</label>
+                        <label><input type="radio" name="accommodation" value="hotels" /> Hotels</label>
+                        <label><input type="radio" name="accommodation" value="entireHome" /> Homes</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Amenities</h4>
+                        <div class="button-container-amenities">
+                            <button class="feature-button"><i class="fa-solid fa-spa"></i> Spa</button>
+                            <button class="feature-button"><i class="fa-solid fa-wifi"></i> Free WI-FI</button>
+                            <button class="feature-button"><i class="fa-solid fa-hot-tub-person"></i> Hot tub</button>
+                            <button class="feature-button"><i class="fa-solid fa-person-swimming"></i> Pool</button>
+                            <button class="feature-button"><i class="fa-solid fa-paw"></i> Pet friendly</button>
+                            <button class="feature-button"><i class="fa-solid fa-car"></i> Parking</button>
+                            <button class="feature-button"><i class="fa-solid fa-snowflake"></i> Air conditioned</button>
+                            <button class="feature-button"><i class="fa-solid fa-dumbbell"></i> Gym</button>
+                            <button class="feature-button"><i class="fa-solid fa-utensils"></i> Restaurant</button>
+                            <button class="feature-button"><i class="fa-solid fa-martini-glass"></i> Bar</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Star rating</h4>
+                        <div class="button-container-stars">
+                            <button class="feature-button">1 <i class="fa-solid fa-star"></i></button>
+                            <button class="feature-button">2 <i class="fa-solid fa-star"></i></button>
+                            <button class="feature-button">3 <i class="fa-solid fa-star"></i></button>
+                            <button class="feature-button">4 <i class="fa-solid fa-star"></i></button>
+                            <button class="feature-button">5 <i class="fa-solid fa-star"></i></button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
 
 
-    <div class="hotel-list" id="hotelList">
-        @foreach (var hotel in Model)
-        {
-            <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location" data-price="@hotel.PricePerNight">
-                <div class="card-link-container">
-                    <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
-                        <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
-                    </a>
+            <div class="col-md-10 hotel-list" id="hotelList">
+                @foreach (var hotel in Model)
+                {
+                    <div class="hotel-card" data-name="@hotel.Name @hotel.Title @hotel.Location" data-price="@hotel.PricePerNight">
+                        <div class="card-link-container">
+                            <a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">
+                                <img src="@Url.Content(hotel.ImageUrl)" alt="@hotel.Name" class="hotel-image" />
+                            </a>
 
-                    <a href="javascript:void(0)" class="wishlist-icon" onclick="document.getElementById('wishlistForm-@hotel.Id').submit();">
-                        @{ var currentUserId = Session["UserId"] != null ? (int)Session["UserId"] : 0; }
-                        @if (hotel.UsersWhoWishlisted.Any(u => u.Id == currentUserId))
-                        {
-                            <i class="fa-solid fa-heart text-danger"></i>
-                        }
-                        else
-                        {
-                            <i class="fa-regular fa-heart"></i>
-                        }
-
-                        <form id="wishlistForm-@hotel.Id" action="@Url.Action("ToggleWishlist", "Customer", new { referer = Request.Url.PathAndQuery })" method="post" style="display: none;">
-                            <input type="hidden" name="id" value="@hotel.Id" />
-                        </form>
-                    </a>
-                </div>
-                    <div class="hotel-info">
-                        <div class="name-rating">
-                            <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
-                            <p>
-                                @for (var i = 0; i < hotel.Rating; i++)
+                            <a href="javascript:void(0)" class="wishlist-icon" onclick="document.getElementById('wishlistForm-@hotel.Id').submit();">
+                                @{ var currentUserId = Session["UserId"] != null ? (int)Session["UserId"] : 0; }
+                                @if (hotel.UsersWhoWishlisted.Any(u => u.Id == currentUserId))
                                 {
-                                    <span>★</span>
+                                    <i class="fa-solid fa-heart text-danger"></i>
                                 }
-                            </p>
-                        </div>
-                        <div class="title-area">
-                            <p>@hotel.Title</p>
-                        </div>
-                        <div class="location-area">
-                            @{
-                                var locationParts = hotel.Location.Split(',');
-
-                                string city = "Unknown City";
-                                if (locationParts.Length >= 4)
+                                else
                                 {
-                                    city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                                    <i class="fa-regular fa-heart"></i>
                                 }
-                            }
-                            <p><i class="fa-solid fa-location-dot"></i> @city</p>
+
+                                <form id="wishlistForm-@hotel.Id" action="@Url.Action("ToggleWishlist", "Customer", new { referer = Request.Url.PathAndQuery })" method="post" style="display: none;">
+                                    <input type="hidden" name="id" value="@hotel.Id" />
+                                </form>
+                            </a>
                         </div>
-                        <hr />
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                @{
-                                    var allFacilities = Enum.GetValues(typeof(FacilityHotel))
-                                                             .Cast<FacilityHotel>()
-                                                             .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
-                                                             .ToList();
-
-                                    var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(2);
-                                }
-                                <div class="hotel-facilities">
-                                    <ul>
-                                        @foreach (var facility in randomFacilities)
-                                        {
-                                            var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
-                                            var iconClass = FacilityIcons.GetHotelIcon(facility);
-
-                                            <li class="facility-area">
-                                                @if (!string.IsNullOrEmpty(iconClass))
-                                                {
-                                                    <i class="@iconClass" aria-hidden="true"></i>
-                                                }
-                                                <span>@displayName</span>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
+                        <div class="hotel-info">
+                            <div class="name-rating">
+                                <h2><a href="@Url.Action("Details", "Hotel", new { id = hotel.Id })">@hotel.Name</a></h2>
+                                <p>
+                                    @for (var i = 0; i < hotel.Rating; i++)
+                                    {
+                                        <span>★</span>
+                                    }
+                                </p>
                             </div>
-                            <div class="col-md-8"></div>
-                        </div>
+                            <div class="title-area">
+                                <p>@hotel.Title</p>
+                            </div>
+                            <div class="location-area">
+                                @{
+                                    var locationParts = hotel.Location.Split(',');
+
+                                    string city = "Unknown City";
+                                    if (locationParts.Length >= 4)
+                                    {
+                                        city = locationParts[locationParts.Length - 4].Trim() + ", " + locationParts[locationParts.Length - 5].Trim();
+                                    }
+                                }
+                                <p><i class="fa-solid fa-location-dot"></i> @city</p>
+                            </div>
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    @{
+                                        var allFacilities = Enum.GetValues(typeof(FacilityHotel))
+                                                                 .Cast<FacilityHotel>()
+                                                                 .Where(facility => facility != FacilityHotel.None && hotel.Facilities.HasFlag(facility))
+                                                                 .ToList();
+
+                                        var randomFacilities = allFacilities.OrderBy(f => Guid.NewGuid()).Take(2);
+                                    }
+                                    <div class="hotel-facilities">
+                                        <ul>
+                                            @foreach (var facility in randomFacilities)
+                                            {
+                                                var displayName = FacilityExtensions.GetEnumDisplayNameHotel(facility);
+                                                var iconClass = FacilityIcons.GetHotelIcon(facility);
+
+                                                <li class="facility-area">
+                                                    @if (!string.IsNullOrEmpty(iconClass))
+                                                    {
+                                                        <i class="@iconClass" aria-hidden="true"></i>
+                                                    }
+                                                    <span>@displayName</span>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-8"></div>
+                            </div>
 
 
-                        <div class="row">
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6 price-info">
-                                <p><del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
-                                <div class="text-right">
-                                    <div class="subtitle-info">
-                                        <p>
-                                            Price for 1 night <br />
-                                            Taxes and fees included.
-                                        </p>
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6 price-info">
+                                    <p><del>@(hotel.PricePerNight + 100) ₺</del> @hotel.PricePerNight ₺</p>
+                                    <div class="text-right">
+                                        <div class="subtitle-info">
+                                            <p>
+                                                Price for 1 night <br />
+                                                Taxes and fees included.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 }
             </div>
+        </div>
+    </div>
 </div>
 
 <script>
     let searchTimeout;
 
-    // search filter
+    // search-bar-filter
     function filterHotels() {
         clearTimeout(searchTimeout);
 
@@ -240,9 +306,9 @@
                     var subtitleInfo = hotelCards[i].querySelector(".subtitle-info p");
                     if (subtitleInfo) {
                         subtitleInfo.innerHTML = `
-                        Price for ${dayDifference} night(s): <strong>${totalPrice.toFixed(2)} ₺</strong><br />
-                        Taxes and fees included.
-                    `;
+                                                Price for ${dayDifference} night(s): <strong>${totalPrice.toFixed(2)} ₺</strong><br />
+                                                Taxes and fees included.
+                                            `;
                     }
                 } else {
                     hotelCards[i].style.display = "none";
@@ -301,56 +367,6 @@
         }
     }
 
-    // price range filter
-    let priceRange = document.getElementById("priceRange");
-    let priceLabel = document.getElementById("priceLabel");
-
-    function updatePriceRange() {
-        const range = document.getElementById("priceRange");
-        const priceLabel = document.getElementById("priceLabel");
-
-        const value = parseFloat(range.value);
-        const max = parseFloat(range.max);
-
-        const percentage = (value / max) * 100;
-
-        range.style.background = `linear-gradient(to right, #4CAF50 ${percentage}%, #ddd ${percentage}%)`;
-
-        priceLabel.textContent = `${value.toFixed(2)} ₺`;
-    }
-
-    function filterByPrice() {
-        clearTimeout(searchTimeout);
-
-        document.getElementById("loadingMessage").style.display = "block";
-
-        searchTimeout = setTimeout(() => {
-            let maxPrice = parseFloat(priceRange.value) || Infinity;
-            let minPrice = 0;
-            var hotelCards = document.getElementsByClassName("hotel-card");
-            let foundAny = false;
-
-            for (var i = 0; i < hotelCards.length; i++) {
-                var hotelPrice = parseFloat(hotelCards[i].getAttribute("data-price"));
-                if (hotelPrice >= minPrice && hotelPrice <= maxPrice) {
-                    hotelCards[i].style.display = "flex";
-                    foundAny = true;
-                } else {
-                    hotelCards[i].style.display = "none";
-                }
-            }
-
-            document.getElementById("loadingMessage").style.display = "none";
-
-            if (!foundAny) {
-                document.getElementById("notFoundMessage").style.display = "block";
-            } else {
-                document.getElementById("notFoundMessage").style.display = "none";
-            }
-        }, 2500);
-    }
-
-
     //adults - children - rooms buttons
     function toggleGuestDropdown() {
         var dropdown = document.getElementById("guestDropdown");
@@ -379,6 +395,51 @@
         document.getElementById("guestCount").innerText = `${adults} Adult${adults > 1 ? 's' : ''}, ${children} Child${children > 1 ? 'ren' : ''}, ${rooms} Room${rooms > 1 ? 's' : ''}`;
     }
 
+    //price-range-by-filter
+    const priceMinRange = document.getElementById('priceMinRange');
+    const priceMaxRange = document.getElementById('priceMaxRange');
+    const minPriceInput = document.getElementById('minPrice');
+    const maxPriceInput = document.getElementById('maxPrice');
+
+    priceMinRange.addEventListener('input', () => {
+        const min = parseInt(priceMinRange.value);
+        const max = parseInt(priceMaxRange.value);
+
+        if (min > max) {
+            priceMinRange.value = max;
+        }
+        minPriceInput.value = priceMinRange.value;
+    });
+
+    priceMaxRange.addEventListener('input', () => {
+        const min = parseInt(priceMinRange.value);
+        const max = parseInt(priceMaxRange.value);
+
+        if (max < min) {
+            priceMaxRange.value = min;
+        }
+        maxPriceInput.value = priceMaxRange.value;
+    });
+
+    minPriceInput.addEventListener('input', () => {
+        const min = parseInt(minPriceInput.value);
+        const max = parseInt(maxPriceInput.value);
+
+        if (min > max) {
+            minPriceInput.value = max;
+        }
+        priceMinRange.value = minPriceInput.value;
+    });
+
+    maxPriceInput.addEventListener('input', () => {
+        const min = parseInt(minPriceInput.value);
+        const max = parseInt(maxPriceInput.value);
+
+        if (max < min) {
+            maxPriceInput.value = min;
+        }
+        priceMaxRange.value = maxPriceInput.value;
+    });
 
 </script>
 
